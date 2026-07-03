@@ -1,0 +1,363 @@
+source,start_time,end_time,text,is_shouting,sentences
+ateneo_presscon,00:00:00.000,00:00:06.000,good afternoon and thank you for being with us today at the athenea de manila university.,0,['good afternoon and thank you for being with us today at the athenea de manila university.']
+ateneo_presscon,00:00:06.000,00:00:16.000,i am matak villanueva on behalf of the university. i would like to thank the members of the media for joining us as we continue,0,"['i am matak villanueva on behalf of the university.', 'i would like to thank the members of the media for joining us as we continue']"
+ateneo_presscon,00:00:16.000,00:00:25.000,"to grieve the loss of our student athletes renechler, bobet, bartibuah, batirbunya and divine adil.",0,"['to grieve the loss of our student athletes renechler, bobet, bartibuah, batirbunya and divine adil.']"
+ateneo_presscon,00:00:25.000,00:00:32.000,"we have gathered today to address this tragedy, share the steps the university has taken in response",0,"['we have gathered today to address this tragedy, share the steps the university has taken in response']"
+ateneo_presscon,00:00:32.000,00:00:38.000,"and discuss the measures now being undertaken in pursuit of truth, accountability and healing.",0,"['and discuss the measures now being undertaken in pursuit of truth, accountability and healing.']"
+ateneo_presscon,00:00:38.000,00:00:47.000,"before we begin, may i ask everyone to stand up to observe a moment of silence for bobet and divine.",0,"['before we begin, may i ask everyone to stand up to observe a moment of silence for bobet and divine.']"
+ateneo_presscon,00:00:47.000,00:01:01.810,thank you. you may now take your seats.,0,"['thank you.', 'you may now take your seats.']"
+ateneo_presscon,00:01:01.810,00:01:09.810,"as we proceed, we respectfully ask everyone to keep in mind that this tragedy involves grieving families,",0,"['as we proceed, we respectfully ask everyone to keep in mind that this tragedy involves grieving families,']"
+ateneo_presscon,00:01:09.810,00:01:16.810,"teammates, coaches and members of our community who continue to struggle with this loss.",0,"['teammates, coaches and members of our community who continue to struggle with this loss.']"
+ateneo_presscon,00:01:16.810,00:01:25.810,we therefore ask all questions to be asked respectfully in a manner consistent with the seriousness of this occasion.,0,['we therefore ask all questions to be asked respectfully in a manner consistent with the seriousness of this occasion.']
+ateneo_presscon,00:01:25.810,00:01:28.810,a few reminders before we begin.,0,['a few reminders before we begin.']
+ateneo_presscon,00:01:28.810,00:01:38.810,"first, some matters remain under the review of the university's independent fact-finding inquiry as well as by competent authorities.",0,"[""first, some matters remain under the review of the university's independent fact-finding inquiry as well as by competent authorities.""]"
+ateneo_presscon,00:01:38.810,00:01:49.150,questions that would require speculation or prejudge the outcome of these processes may not be answered.,0,['questions that would require speculation or prejudge the outcome of these processes may not be answered.']
+ateneo_presscon,00:01:49.150,00:01:58.150,"second, out of respect for the privacy and welfare of the families, we will not discuss confidential personal matters.",0,"['second, out of respect for the privacy and welfare of the families, we will not discuss confidential personal matters.']"
+ateneo_presscon,00:01:58.150,00:02:08.150,"third, we ask that questions be limited to matters directly related to today's statement and university's response to the tragedy.",0,"[""third, we ask that questions be limited to matters directly related to today's statement and university's response to the tragedy.""]"
+ateneo_presscon,00:02:08.150,00:02:16.750,"fourth, out of respect for the families and for the integrity of these proceedings,",0,"['fourth, out of respect for the families and for the integrity of these proceedings,']"
+ateneo_presscon,00:02:16.750,00:02:33.930,we ask that there be no live streaming or live broadcasting of today's briefing without the prior approval of the university.,0,"[""we ask that there be no live streaming or live broadcasting of today's briefing without the prior approval of the university.""]"
+ateneo_presscon,00:02:33.930,00:02:39.930,we will make available official statement and relevant materials following this program.,0,['we will make available official statement and relevant materials following this program.']
+ateneo_presscon,00:02:39.930,00:02:43.930,we appreciate your cooperation and understanding.,0,['we appreciate your cooperation and understanding.']
+ateneo_presscon,00:02:43.930,00:03:00.340,"joining father yap this afternoon are father arbihi son, director for alumni affairs,",0,"['joining father yap this afternoon are father arbihi son, director for alumni affairs,']"
+ateneo_presscon,00:03:00.340,00:03:12.340,attorneys krishna santos and joseph de jesus who will be available to help address questions related to the university's response and ongoing efforts.,0,"[""attorneys krishna santos and joseph de jesus who will be available to help address questions related to the university's response and ongoing efforts.""]"
+ateneo_presscon,00:03:12.340,00:03:21.340,"at this time, i will ask ateneo de milo university president, roberto c. yap, sj, to deliver the university's statement.",0,"[""at this time, i will ask ateneo de milo university president, roberto c. yap, sj, to deliver the university's statement.""]"
+ateneo_presscon,00:03:21.340,00:03:31.370,father babi.,0,['father babi.']
+ateneo_presscon,00:03:31.370,00:03:36.370,"members of the media, colleagues and the ateneo community.",0,"['members of the media, colleagues and the ateneo community.']"
+ateneo_presscon,00:03:36.370,00:03:40.370,we face you today with heavy hearts.,0,['we face you today with heavy hearts.']
+ateneo_presscon,00:03:40.370,00:03:48.830,speaking from a landscape of deep and profound pain and sorrow.,0,['speaking from a landscape of deep and profound pain and sorrow.']
+ateneo_presscon,00:03:48.830,00:03:57.830,"one week ago on june 8th, 2026, our community was shattered by a tragedy that claimed the lives of our student athletes,",0,"['one week ago on june 8th, 2026, our community was shattered by a tragedy that claimed the lives of our student athletes,']"
+ateneo_presscon,00:03:57.830,00:04:04.039,reneba therbonia and divine adili.,0,['reneba therbonia and divine adili.']
+ateneo_presscon,00:04:04.039,00:04:10.039,no word in any language is capable of describing this loss.,0,['no word in any language is capable of describing this loss.']
+ateneo_presscon,00:04:10.039,00:04:16.040,"when a young man dies, we mourn the loss of life and the shattering of dreams.",0,"['when a young man dies, we mourn the loss of life and the shattering of dreams.']"
+ateneo_presscon,00:04:16.040,00:04:21.290,we mourn the potential that won't come true.,0,"[""we mourn the potential that won't come true.""]"
+ateneo_presscon,00:04:21.290,00:04:32.290,the empty chairs at family dinner tables and the futures that were supposed to unfold in our playing courts and far beyond them.,0,['the empty chairs at family dinner tables and the futures that were supposed to unfold in our playing courts and far beyond them.']
+ateneo_presscon,00:04:32.290,00:04:37.290,"to the families of rene and divine, we see you.",0,"['to the families of rene and divine, we see you.']"
+ateneo_presscon,00:04:37.290,00:04:40.660,we hear you.,0,['we hear you.']
+ateneo_presscon,00:04:40.660,00:04:43.660,we acknowledge the unbearable pain of your mourning.,0,['we acknowledge the unbearable pain of your mourning.']
+ateneo_presscon,00:04:43.660,00:04:57.389,"we know that the grief you carry right now is compounded by an anger that is entirely natural, justified and deeply human.",0,"['we know that the grief you carry right now is compounded by an anger that is entirely natural, justified and deeply human.']"
+ateneo_presscon,00:04:57.389,00:05:11.050,"on behalf of ateneo de milo university, i am here to say simply and directly, we are truly deeply sorry.",0,"['on behalf of ateneo de milo university, i am here to say simply and directly, we are truly deeply sorry.']"
+ateneo_presscon,00:05:11.050,00:05:19.050,we apologize unreservedly to the families and to our entire community for the agonizing pain of this tragedy.,0,['we apologize unreservedly to the families and to our entire community for the agonizing pain of this tragedy.']
+ateneo_presscon,00:05:19.050,00:05:28.389,two young men entrusted to our care did not return home and that fact breaks our hearts.,0,['two young men entrusted to our care did not return home and that fact breaks our hearts.']
+ateneo_presscon,00:05:28.389,00:05:33.389,"no explanation, context or words can undo that loss.",0,"['no explanation, context or words can undo that loss.']"
+ateneo_presscon,00:05:33.389,00:05:41.389,we face this moment with absolute humility and we ask for your prayers and your forgiveness.,0,['we face this moment with absolute humility and we ask for your prayers and your forgiveness.']
+ateneo_presscon,00:05:41.389,00:05:54.769,"after the incident, the university chose direct involved action for the families and the members of the team and we continue to do so.",0,"['after the incident, the university chose direct involved action for the families and the members of the team and we continue to do so.']"
+ateneo_presscon,00:05:54.769,00:06:01.769,the few public updates were not because we did not care for the bereaved families.,0,['the few public updates were not because we did not care for the bereaved families.']
+ateneo_presscon,00:06:01.769,00:06:14.769,we believe and continue to believe that public relations or institutional noise should not intrude upon a family's grief.,0,"[""we believe and continue to believe that public relations or institutional noise should not intrude upon a family's grief.""]"
+ateneo_presscon,00:06:14.769,00:06:23.769,we are truly sorry for not being quick at informing the public of the developments which has led to perceptions of inaction.,0,['we are truly sorry for not being quick at informing the public of the developments which has led to perceptions of inaction.']
+ateneo_presscon,00:06:23.769,00:06:31.769,we focused on being present for the grieving families in their darkest hour.,0,['we focused on being present for the grieving families in their darkest hour.']
+ateneo_presscon,00:06:31.769,00:06:47.769,"we ask that you understand that while we do want the truth to come out, the persons who can shed light on the events of june 8 are also now subject of investigations by the authorities.",0,"['we ask that you understand that while we do want the truth to come out, the persons who can shed light on the events of june 8 are also now subject of investigations by the authorities.']"
+ateneo_presscon,00:06:47.769,00:06:56.769,we recognize that they have their constitutional rights as well and we intend on respecting those rights.,0,['we recognize that they have their constitutional rights as well and we intend on respecting those rights.']
+ateneo_presscon,00:06:56.769,00:07:03.769,and therefore we cannot speak on their behalf nor force them to speak at this time.,0,['and therefore we cannot speak on their behalf nor force them to speak at this time.']
+ateneo_presscon,00:07:03.769,00:07:09.769,"also, like everyone else, the law affords ateneo certain rights.",0,"['also, like everyone else, the law affords ateneo certain rights.']"
+ateneo_presscon,00:07:09.769,00:07:15.769,"if ateneo exercises those rights, it is not to delay or mislead.",0,"['if ateneo exercises those rights, it is not to delay or mislead.']"
+ateneo_presscon,00:07:15.769,00:07:19.769,but simply because that is how it is under our legal system.,0,['but simply because that is how it is under our legal system.']
+ateneo_presscon,00:07:19.769,00:07:33.769,"and if it is eventually found that the university has its shortcomings, please reassure that the university will address them and make them right.",0,"['and if it is eventually found that the university has its shortcomings, please reassure that the university will address them and make them right.']"
+ateneo_presscon,00:07:33.769,00:07:42.769,"while we choose not to immediately broadcast our actions, our commitment on the ground was immediate and full.",0,"['while we choose not to immediately broadcast our actions, our commitment on the ground was immediate and full.']"
+ateneo_presscon,00:07:42.769,00:07:48.769,"from day one, the university reached out to provide full support to the families.",0,"['from day one, the university reached out to provide full support to the families.']"
+ateneo_presscon,00:07:48.769,00:07:56.769,we offered to shoulder all travel costs of rinne's family from agusan to manila so that they could be with him.,0,"[""we offered to shoulder all travel costs of rinne's family from agusan to manila so that they could be with him.""]"
+ateneo_presscon,00:07:56.769,00:08:06.769,"while they choose to accept the kind and generous offer of the agusan del sur governor, our hands remain extended.",0,"['while they choose to accept the kind and generous offer of the agusan del sur governor, our hands remain extended.']"
+ateneo_presscon,00:08:06.769,00:08:13.769,"we also are very thankful to ateneo de davao university and their president, father carl san juan,",0,"['we also are very thankful to ateneo de davao university and their president, father carl san juan,']"
+ateneo_presscon,00:08:13.769,00:08:24.769,with whom we have been in close coordination and since june 8th for their full support and assistance to baobit's family throughout this time.,0,"[""with whom we have been in close coordination and since june 8th for their full support and assistance to baobit's family throughout this time.""]"
+ateneo_presscon,00:08:24.769,00:08:33.769,the university also immediately committed to covering every single expense related to the funeral services and the wake,0,['the university also immediately committed to covering every single expense related to the funeral services and the wake']
+ateneo_presscon,00:08:33.769,00:08:41.769,and fully shouldered all costs for the return of the batarbonia family to agusan via davao.,0,['and fully shouldered all costs for the return of the batarbonia family to agusan via davao.']
+ateneo_presscon,00:08:41.769,00:08:51.769,"similarly, we have also offered to cover all funeral expenses for divine, including flying his family from nigeria to the philippines and back,",0,"['similarly, we have also offered to cover all funeral expenses for divine, including flying his family from nigeria to the philippines and back,']"
+ateneo_presscon,00:08:51.769,00:08:58.769,as well as transportation and expatriation of the body back to his home country.,0,['as well as transportation and expatriation of the body back to his home country.']
+ateneo_presscon,00:08:59.769,00:09:13.769,we share these details to assure everyone that we have been working tirelessly to fulfill our duties of care quietly and respectfully where it matters most.,0,['we share these details to assure everyone that we have been working tirelessly to fulfill our duties of care quietly and respectfully where it matters most.']
+ateneo_presscon,00:09:13.769,00:09:23.769,"so far, all available information and accounts on what happened on june 8th show that it was a tragic accident.",0,"['so far, all available information and accounts on what happened on june 8th show that it was a tragic accident.']"
+ateneo_presscon,00:09:24.769,00:09:32.769,"but we understand completely that for loved ones, the word accident is never easy to accept.",0,"['but we understand completely that for loved ones, the word accident is never easy to accept.']"
+ateneo_presscon,00:09:32.769,00:09:37.769,ateneo de manila is not evading accountability.,0,['ateneo de manila is not evading accountability.']
+ateneo_presscon,00:09:37.769,00:09:46.769,"for full clarity, transparency, and justice, our board of trustees formed an independent, fact-finding body",0,"['for full clarity, transparency, and justice, our board of trustees formed an independent, fact-finding body']"
+ateneo_presscon,00:09:46.769,00:09:57.769,"composed of external, highly competent legal and technical experts who will operate entirely outside ateneo's administrative structure.",0,"[""composed of external, highly competent legal and technical experts who will operate entirely outside ateneo's administrative structure.""]"
+ateneo_presscon,00:09:57.769,00:10:07.769,"their findings and recommendations will be submitted directly to the board of trustees, and i assure the public that their review will be exhaustive,",0,"['their findings and recommendations will be submitted directly to the board of trustees, and i assure the public that their review will be exhaustive,']"
+ateneo_presscon,00:10:07.769,00:10:13.769,"unsparing, and free from influence, whether from the inside or outside.",0,"['unsparing, and free from influence, whether from the inside or outside.']"
+ateneo_presscon,00:10:13.769,00:10:23.769,we also welcome and will fully cooperate with any and all investigations by civil and regulatory bodies.,0,['we also welcome and will fully cooperate with any and all investigations by civil and regulatory bodies.']
+ateneo_presscon,00:10:23.769,00:10:28.769,we are fully committed to the truth wherever it leads.,0,['we are fully committed to the truth wherever it leads.']
+ateneo_presscon,00:10:28.769,00:10:35.769,we also recognize our duty to care for the grieving families of rene and divine.,0,['we also recognize our duty to care for the grieving families of rene and divine.']
+ateneo_presscon,00:10:35.769,00:10:42.769,"while no amount of material support can ever compensate for the loss of a son,",0,"['while no amount of material support can ever compensate for the loss of a son,']"
+ateneo_presscon,00:10:42.769,00:10:57.769,"ateneo has offered full assistance and support to the adili and batarbonia families to cover all financial, emotional, and long-term burdens arising from this tragedy.",0,"['ateneo has offered full assistance and support to the adili and batarbonia families to cover all financial, emotional, and long-term burdens arising from this tragedy.']"
+ateneo_presscon,00:10:57.769,00:11:04.769,this is not a legal settlement. it is our moral obligation.,0,"['this is not a legal settlement.', 'it is our moral obligation.']"
+ateneo_presscon,00:11:04.769,00:11:18.769,we would also like to address the increasing distortion of facts circulating in public regarding ateneo's alleged prior knowledge of safety risks and accusations of institutional intimidation.,0,"[""we would also like to address the increasing distortion of facts circulating in public regarding ateneo's alleged prior knowledge of safety risks and accusations of institutional intimidation.""]"
+ateneo_presscon,00:11:18.769,00:11:32.769,"an initial review of university records show absolutely no complaints, warnings, or communications regarding student safety in this matter, nor was there anyone asked to be silent about this.",0,"['an initial review of university records show absolutely no complaints, warnings, or communications regarding student safety in this matter, nor was there anyone asked to be silent about this.']"
+ateneo_presscon,00:11:32.769,00:11:48.769,"however, we are not dismissing these serious allegations. all claims and data will be turned over to the independent fact-finding body which will then conduct a rigorous forensic audit of all records and communications.",0,"['however, we are not dismissing these serious allegations.', 'all claims and data will be turned over to the independent fact-finding body which will then conduct a rigorous forensic audit of all records and communications.']"
+ateneo_presscon,00:11:48.769,00:11:56.769,"we will not shield or protect anyone, nor will we allow our integrity to be compromised.",0,"['we will not shield or protect anyone, nor will we allow our integrity to be compromised.']"
+ateneo_presscon,00:11:56.769,00:12:11.769,"with this, i also must inform everyone that the university has accepted the resignation of head coach thomas anthony ta baldwin, effective immediately.",0,"['with this, i also must inform everyone that the university has accepted the resignation of head coach thomas anthony ta baldwin, effective immediately.']"
+ateneo_presscon,00:12:11.769,00:12:16.769,we thank him for the years of service to the blue eagles.,0,['we thank him for the years of service to the blue eagles.']
+ateneo_presscon,00:12:16.769,00:12:30.769,"but as we enter a period of deep institutional review, a change in leadership is necessary to ensure the full integrity of our sports programs and safety protocols govern them.",0,"['but as we enter a period of deep institutional review, a change in leadership is necessary to ensure the full integrity of our sports programs and safety protocols govern them.']"
+ateneo_presscon,00:12:30.769,00:12:45.769,"we must look inward, examine our systems, and rebuild the structures of our athletic programs so that our fields and playing courts remain places where dreams are nurtured, not broken.",0,"['we must look inward, examine our systems, and rebuild the structures of our athletic programs so that our fields and playing courts remain places where dreams are nurtured, not broken.']"
+ateneo_presscon,00:12:45.769,00:13:12.620,"to the men's basketball program, especially our student athletes, the players, coaching and supporting staff, we also know that you are grieving and in pain, compounded by the relentless misinformation, harsh discourse, and even dangerous threats directed at you.",0,"[""to the men's basketball program, especially our student athletes, the players, coaching and supporting staff, we also know that you are grieving and in pain, compounded by the relentless misinformation, harsh discourse, and even dangerous threats directed at you.""]"
+ateneo_presscon,00:13:12.620,00:13:26.620,"we will continue to support you through this difficult time and will always be committed to your safety and well-being, especially as you also recover from this tragedy.",0,"['we will continue to support you through this difficult time and will always be committed to your safety and well-being, especially as you also recover from this tragedy.']"
+ateneo_presscon,00:13:26.620,00:13:42.220,"finally, to the ateneo community, right now i know that we are all in deep pain with the events of the past week and it has made us all think about our beloved alma mater,",0,"['finally, to the ateneo community, right now i know that we are all in deep pain with the events of the past week and it has made us all think about our beloved alma mater,']"
+ateneo_presscon,00:13:42.220,00:13:48.220,"the values it stands for, and how we are as a community.",0,"['the values it stands for, and how we are as a community.']"
+ateneo_presscon,00:13:48.220,00:13:57.220,"it is at this moment that we need to come together, to grieve, to reflect, and to heal.",0,"['it is at this moment that we need to come together, to grieve, to reflect, and to heal.']"
+ateneo_presscon,00:13:57.220,00:14:06.220,we are truly sorry for missteps which have caused further pain to the community and we will work hard to rebuild your trust.,0,['we are truly sorry for missteps which have caused further pain to the community and we will work hard to rebuild your trust.']
+ateneo_presscon,00:14:07.220,00:14:24.220,"as we pray for rene, divine, and the loved ones they leave behind, i ask you to also pray for healing, clarity, and reflection in our community as we navigate this dark and painful time.",0,"['as we pray for rene, divine, and the loved ones they leave behind, i ask you to also pray for healing, clarity, and reflection in our community as we navigate this dark and painful time.']"
+ateneo_presscon,00:14:24.220,00:14:34.620,"thank you, and we will now open the floor to a brief q&a session only regarding today's statement.",0,"[""thank you, and we will now open the floor to a brief q&a session only regarding today's statement.""]"
+ateneo_presscon,00:14:34.620,00:14:41.620,we will now open the floor for a brief question and answer session.,0,['we will now open the floor for a brief question and answer session.']
+ateneo_presscon,00:14:41.620,00:14:52.620,"to give everyone an opportunity to participate, we ask members of the media to please identify themselves and their organization before asking their question.",0,"['to give everyone an opportunity to participate, we ask members of the media to please identify themselves and their organization before asking their question.']"
+ateneo_presscon,00:14:52.620,00:15:01.620,"as much as possible, we request one question and one follow-up question per person.",0,"['as much as possible, we request one question and one follow-up question per person.']"
+ateneo_presscon,00:15:02.620,00:15:07.620,we will begin with questions related to the statement that has been delivered.,0,['we will begin with questions related to the statement that has been delivered.']
+ateneo_presscon,00:15:07.620,00:15:17.539,you may now approach any of the mics.,0,['you may now approach any of the mics.']
+ateneo_presscon,00:15:17.539,00:15:20.539,"hello, naveen ganglani of all star magazine.",0,"['hello, naveen ganglani of all star magazine.']"
+ateneo_presscon,00:15:20.539,00:15:26.539,"in addition to coach tab baldwin, team manager epokimpa was also on a leave of absence.",0,"['in addition to coach tab baldwin, team manager epokimpa was also on a leave of absence.']"
+ateneo_presscon,00:15:26.539,00:15:34.539,"just confirming, has the team manager also submitted his desire to resign from his post?",0,"['just confirming, has the team manager also submitted his desire to resign from his post?']"
+ateneo_presscon,00:15:34.539,00:15:37.539,emily also no longer be with the team. thank you very much.,0,"['emily also no longer be with the team.', 'thank you very much.']"
+ateneo_presscon,00:15:38.539,00:15:53.019,"yes, team manager epokimpa has also submitted his resignation and we have also accepted it.",0,"['yes, team manager epokimpa has also submitted his resignation and we have also accepted it.']"
+ateneo_presscon,00:15:53.019,00:15:59.019,"hi, good afternoon. ian suyu from tv5. first question, sir. father bobby.",0,"['hi, good afternoon.', 'ian suyu from tv5.', 'first question, sir.', 'father bobby.']"
+ateneo_presscon,00:16:00.019,00:16:06.019,do you know or how long have you been working on this kind of program?,0,['do you know or how long have you been working on this kind of program?']
+ateneo_presscon,00:16:06.019,00:16:13.019,the coaching staff or the men's basketball team has been working on this kind of program.,0,"[""the coaching staff or the men's basketball team has been working on this kind of program.""]"
+ateneo_presscon,00:16:13.019,00:16:20.019,"this kind of military-like, as they said, ex-players or previous players.",0,"['this kind of military-like, as they said, ex-players or previous players.']"
+ateneo_presscon,00:16:20.019,00:16:24.019,have we received this kind of information before?,0,['have we received this kind of information before?']
+ateneo_presscon,00:16:24.019,00:16:28.019,"and if ever, how long have you been working on this kind of program?",0,"['and if ever, how long have you been working on this kind of program?']"
+ateneo_presscon,00:16:28.019,00:16:36.809,"as far as i know, the team-building that they have been working on,",0,"['as far as i know, the team-building that they have been working on,']"
+ateneo_presscon,00:16:36.809,00:16:42.809,"this happened during the time of norman black, even though he is still a coach.",0,"['this happened during the time of norman black, even though he is still a coach.']"
+ateneo_presscon,00:16:42.809,00:16:54.809,"even though he is a coach, i know that there are four or five visits to aurora.",0,"['even though he is a coach, i know that there are four or five visits to aurora.']"
+ateneo_presscon,00:16:54.809,00:17:01.809,"they have five visits to aurora. so, this is a tradition that only happened during the pandemic.",0,"['they have five visits to aurora.', 'so, this is a tradition that only happened during the pandemic.']"
+ateneo_presscon,00:17:01.809,00:17:13.599,"there is a week when they go there and do team-building and training and conditioning, etc.",0,"['there is a week when they go there and do team-building and training and conditioning, etc.']"
+ateneo_presscon,00:17:13.599,00:17:21.599,"and i know coach tab has already resigned from his post, but just want to get your reaction.",0,"['and i know coach tab has already resigned from his post, but just want to get your reaction.']"
+ateneo_presscon,00:17:21.599,00:17:27.599,"father bobby, about the allegations, particularly concerning about coach tab's throne,",0,"[""father bobby, about the allegations, particularly concerning about coach tab's throne,""]"
+ateneo_presscon,00:17:27.599,00:17:33.599,or said by her estranged wife and step-daughter recently circulating on social media?,0,['or said by her estranged wife and step-daughter recently circulating on social media?']
+ateneo_presscon,00:17:33.599,00:17:49.910,"we don't have direct information so far. in fact, there was never any, as far as we know.",0,"[""we don't have direct information so far."", 'in fact, there was never any, as far as we know.']"
+ateneo_presscon,00:17:50.910,00:17:53.910,thank you very much.,0,['thank you very much.']
+ateneo_presscon,00:17:53.910,00:17:59.289,"may we have the next question, please? yes, go ahead.",0,"['may we have the next question, please?', 'yes, go ahead.']"
+ateneo_presscon,00:17:59.289,00:18:03.289,"hi, i'm a student of the neo de manila and a member of a student publication.",0,"[""hi, i'm a student of the neo de manila and a member of a student publication.""]"
+ateneo_presscon,00:18:03.289,00:18:11.289,"could you tell us more about the safety protocols currently in place, including the parental notification form and the declaration and undertaking forms?",0,"['could you tell us more about the safety protocols currently in place, including the parental notification form and the declaration and undertaking forms?']"
+ateneo_presscon,00:18:11.289,00:18:18.009,we reserve that to that group that will be investigating everything.,0,['we reserve that to that group that will be investigating everything.']
+ateneo_presscon,00:18:19.009,00:18:25.009,"as a student, you know all the forms required for any activity outside of campus. that's real.",0,"['as a student, you know all the forms required for any activity outside of campus.', ""that's real.""]"
+ateneo_presscon,00:18:25.009,00:18:31.009,but you want to make sure that the audit is exhaustive.,0,['but you want to make sure that the audit is exhaustive.']
+ateneo_presscon,00:18:31.009,00:18:38.009,may we just go back to the earlier reminder that we said that some matters remain under review.,0,['may we just go back to the earlier reminder that we said that some matters remain under review.']
+ateneo_presscon,00:18:38.009,00:18:40.009,that will be reviewed.,0,['that will be reviewed.']
+ateneo_presscon,00:18:40.009,00:18:43.009,thank you.,0,['thank you.']
+ateneo_presscon,00:18:43.009,00:18:48.440,"next question, please.",0,"['next question, please.']"
+ateneo_presscon,00:18:48.440,00:18:51.440,"hi, father.",0,"['hi, father.']"
+ateneo_presscon,00:18:51.440,00:18:56.440,"father, you mentioned earlier that tab baldwin was resigning and you accepted it.",0,"['father, you mentioned earlier that tab baldwin was resigning and you accepted it.']"
+ateneo_presscon,00:18:56.440,00:19:00.440,does that mean that he's on his own?,0,"[""does that mean that he's on his own?""]"
+ateneo_presscon,00:19:00.440,00:19:05.440,"like earlier, he's not on his way to the idg in sabina.",0,"[""like earlier, he's not on his way to the idg in sabina.""]"
+ateneo_presscon,00:19:05.440,00:19:08.440,what's the reason for that?,0,"[""what's the reason for that?""]"
+ateneo_presscon,00:19:08.440,00:19:10.440,have you talked to him about that?,0,['have you talked to him about that?']
+ateneo_presscon,00:19:10.440,00:19:17.440,"and even all the players, because even the players are on their way to sabina, sir m. fernandez.",0,"['and even all the players, because even the players are on their way to sabina, sir m. fernandez.']"
+ateneo_presscon,00:19:18.440,00:19:27.440,i think coach tab is the best person to ask about why he resigned.,0,['i think coach tab is the best person to ask about why he resigned.']
+ateneo_presscon,00:19:27.440,00:19:34.440,"he did not go to the idg, so please ask him about it.",0,"['he did not go to the idg, so please ask him about it.']"
+ateneo_presscon,00:19:34.440,00:19:39.440,i think he's the proper person to answer. i cannot speak for him.,0,"[""i think he's the proper person to answer."", 'i cannot speak for him.']"
+ateneo_presscon,00:19:40.440,00:19:47.440,you mentioned earlier that the players are resigning.,0,['you mentioned earlier that the players are resigning.']
+ateneo_presscon,00:19:47.440,00:19:55.440,the resigning is our university athletic director and some coaches.,0,['the resigning is our university athletic director and some coaches.']
+ateneo_presscon,00:19:55.440,00:19:58.440,the players are resigning.,0,['the players are resigning.']
+ateneo_presscon,00:19:58.440,00:20:01.440,"earlier, they were supposed to appear.",0,"['earlier, they were supposed to appear.']"
+ateneo_presscon,00:20:01.440,00:20:06.960,yes.,0,['yes.']
+ateneo_presscon,00:20:06.960,00:20:08.960,please introduce yourself.,0,['please introduce yourself.']
+ateneo_presscon,00:20:08.960,00:20:09.960,"hi, father. good day, brian.",0,"['hi, father.', 'good day, brian.']"
+ateneo_presscon,00:20:10.960,00:20:16.960,"father, yesterday, field oil announced that athenaeus withdrawn from the tournament.",0,"['father, yesterday, field oil announced that athenaeus withdrawn from the tournament.']"
+ateneo_presscon,00:20:16.960,00:20:26.960,will there be some kind of similar withdrawal from the uap or leave of absence or anything?,0,['will there be some kind of similar withdrawal from the uap or leave of absence or anything?']
+ateneo_presscon,00:20:26.960,00:20:29.960,have you talked about that?,0,['have you talked about that?']
+ateneo_presscon,00:20:29.960,00:20:35.589,"the withdrawal of field oil, i hope you understand that.",0,"['the withdrawal of field oil, i hope you understand that.']"
+ateneo_presscon,00:20:35.589,00:20:38.589,divine has been here for a whole week.,0,['divine has been here for a whole week.']
+ateneo_presscon,00:20:38.589,00:20:41.589,our players have been here for a week.,0,['our players have been here for a week.']
+ateneo_presscon,00:20:41.589,00:20:43.589,"in fact, they are in deep grief.",0,"['in fact, they are in deep grief.']"
+ateneo_presscon,00:20:43.589,00:20:47.589,so it doesn't make sense to let them play.,0,"[""so it doesn't make sense to let them play.""]"
+ateneo_presscon,00:20:47.589,00:20:50.589,the uap has no decision.,0,['the uap has no decision.']
+ateneo_presscon,00:20:50.589,00:20:53.589,we have not studied that yet.,0,['we have not studied that yet.']
+ateneo_presscon,00:20:53.589,00:20:57.589,but there is no decision on what to do.,0,['but there is no decision on what to do.']
+ateneo_presscon,00:20:57.589,00:21:02.589,the uap has a statement on the board.,0,['the uap has a statement on the board.']
+ateneo_presscon,00:21:02.589,00:21:05.589,we will follow up.,0,['we will follow up.']
+ateneo_presscon,00:21:05.589,00:21:08.589,"yes, father.",0,"['yes, father.']"
+ateneo_presscon,00:21:08.589,00:21:15.589,"with the removal of coach tab and our resignation of coach tab and sir epoch,",0,"['with the removal of coach tab and our resignation of coach tab and sir epoch,']"
+ateneo_presscon,00:21:15.589,00:21:17.589,how about the coaching staff?,0,['how about the coaching staff?']
+ateneo_presscon,00:21:17.589,00:21:20.589,is there a total rebound or will the coaching staff stay?,0,['is there a total rebound or will the coaching staff stay?']
+ateneo_presscon,00:21:20.589,00:21:23.589,the two have been resigning.,0,['the two have been resigning.']
+ateneo_presscon,00:21:23.589,00:21:30.589,"in fact, the coaching staff has been helping us.",0,"['in fact, the coaching staff has been helping us.']"
+ateneo_presscon,00:21:30.589,00:21:33.589,they are also in the grieving process.,0,['they are also in the grieving process.']
+ateneo_presscon,00:21:33.589,00:21:38.589,we are providing as much support for them as they grieve this tragedy.,0,['we are providing as much support for them as they grieve this tragedy.']
+ateneo_presscon,00:21:38.589,00:21:40.589,they will continue.,0,['they will continue.']
+ateneo_presscon,00:21:40.589,00:21:43.589,there is no rebound of any sort.,0,['there is no rebound of any sort.']
+ateneo_presscon,00:21:43.589,00:21:44.589,they will continue.,0,['they will continue.']
+ateneo_presscon,00:21:44.589,00:21:47.589,"we hope that after a few weeks,",0,"['we hope that after a few weeks,']"
+ateneo_presscon,00:21:47.589,00:21:52.589,"in fact, they can supervise the practices of the team.",0,"['in fact, they can supervise the practices of the team.']"
+ateneo_presscon,00:21:52.589,00:21:54.589,"thank you, father.",0,"['thank you, father.']"
+ateneo_presscon,00:21:54.589,00:21:56.589,"yes, please.",0,"['yes, please.']"
+ateneo_presscon,00:21:56.589,00:22:00.059,go ahead.,0,['go ahead.']
+ateneo_presscon,00:22:00.059,00:22:03.059,"mark salazar of gma news, father bobby.",0,"['mark salazar of gma news, father bobby.']"
+ateneo_presscon,00:22:03.059,00:22:05.059,"can you narrate, father,",0,"['can you narrate, father,']"
+ateneo_presscon,00:22:05.059,00:22:10.059,what was your earliest communication with rené's family?,0,"[""what was your earliest communication with rené's family?""]"
+ateneo_presscon,00:22:10.059,00:22:15.059,"initially, his mother was saying there was no coordination,",0,"['initially, his mother was saying there was no coordination,']"
+ateneo_presscon,00:22:15.059,00:22:18.059,"there was no reach out from ateneo,",0,"['there was no reach out from ateneo,']"
+ateneo_presscon,00:22:18.059,00:22:23.059,there was no connection from aurora back to manila.,0,['there was no connection from aurora back to manila.']
+ateneo_presscon,00:22:23.059,00:22:25.059,"these things, his frustration,",0,"['these things, his frustration,']"
+ateneo_presscon,00:22:25.059,00:22:28.059,there was no presence of ateneo.,0,['there was no presence of ateneo.']
+ateneo_presscon,00:22:28.059,00:22:32.059,if you can narrate to the point or as early as what point,0,['if you can narrate to the point or as early as what point']
+ateneo_presscon,00:22:32.059,00:22:35.059,"ateneo was talking to his family,",0,"['ateneo was talking to his family,']"
+ateneo_presscon,00:22:35.059,00:22:40.059,what kind of assistance were given to them to explain?,0,['what kind of assistance were given to them to explain?']
+ateneo_presscon,00:22:40.059,00:22:48.420,i can say that there was somebody from ateneo,0,['i can say that there was somebody from ateneo']
+ateneo_presscon,00:22:48.420,00:22:52.420,who spoke to her on the very night it happened.,0,['who spoke to her on the very night it happened.']
+ateneo_presscon,00:22:52.420,00:22:56.420,i would like to respect the dignity,0,['i would like to respect the dignity']
+ateneo_presscon,00:22:56.420,00:22:59.420,"and the very difficulty of the situation,",0,"['and the very difficulty of the situation,']"
+ateneo_presscon,00:22:59.420,00:23:04.420,so i don't want to give details of that conversation.,0,"[""so i don't want to give details of that conversation.""]"
+ateneo_presscon,00:23:04.420,00:23:10.420,we were the ones who arranged that they be picked up,0,['we were the ones who arranged that they be picked up']
+ateneo_presscon,00:23:10.420,00:23:15.420,right away from aurora and be brought back to manila.,0,['right away from aurora and be brought back to manila.']
+ateneo_presscon,00:23:15.420,00:23:18.420,"in fact, by the evening of that day,",0,"['in fact, by the evening of that day,']"
+ateneo_presscon,00:23:18.420,00:23:20.420,there was already an ambulance that came,0,['there was already an ambulance that came']
+ateneo_presscon,00:23:20.420,00:23:23.420,and we arranged all of that.,0,['and we arranged all of that.']
+ateneo_presscon,00:23:23.420,00:23:28.420,"in our case, as i mentioned, we offered to fly",0,"['in our case, as i mentioned, we offered to fly']"
+ateneo_presscon,00:23:28.420,00:23:31.420,"and then they chose the agusan governor,",0,"['and then they chose the agusan governor,']"
+ateneo_presscon,00:23:31.420,00:23:35.420,which is very understandable and we walked with the lgu.,0,['which is very understandable and we walked with the lgu.']
+ateneo_presscon,00:23:35.420,00:23:38.420,"we have tried to reach out for and as we said,",0,"['we have tried to reach out for and as we said,']"
+ateneo_presscon,00:23:38.420,00:23:42.420,"we did try to support as much as we can for the wake,",0,"['we did try to support as much as we can for the wake,']"
+ateneo_presscon,00:23:42.420,00:23:46.420,for the care of the family during this situation,0,['for the care of the family during this situation']
+ateneo_presscon,00:23:46.420,00:23:49.420,and we continue to show it by our sister university,0,['and we continue to show it by our sister university']
+ateneo_presscon,00:23:49.420,00:23:54.180,that ended up out.,0,['that ended up out.']
+ateneo_presscon,00:23:54.180,00:23:59.490,we'll take two or three more questions.,0,"[""we'll take two or three more questions.""]"
+ateneo_presscon,00:23:59.490,00:24:00.490,yes?,0,['yes?']
+ateneo_presscon,00:24:00.490,00:24:03.490,ma'am gabriel lalo from inquirer.,0,"[""ma'am gabriel lalo from inquirer.""]"
+ateneo_presscon,00:24:03.490,00:24:06.490,"earlier, there was also a discussion",0,"['earlier, there was also a discussion']"
+ateneo_presscon,00:24:06.490,00:24:09.490,"about why the statement was not released,",0,"['about why the statement was not released,']"
+ateneo_presscon,00:24:10.490,00:24:14.490,but do you think it's a fault,0,"[""but do you think it's a fault""]"
+ateneo_presscon,00:24:14.490,00:24:18.490,or a mistake that you should have updated the public as well?,0,['or a mistake that you should have updated the public as well?']
+ateneo_presscon,00:24:18.490,00:24:20.490,because there were a lot of questions,0,['because there were a lot of questions']
+ateneo_presscon,00:24:20.490,00:24:24.490,which led to assumptions and misinformation,0,['which led to assumptions and misinformation']
+ateneo_presscon,00:24:24.490,00:24:28.490,and speculations regarding what happened.,0,['and speculations regarding what happened.']
+ateneo_presscon,00:24:28.490,00:24:35.380,the atheneo family was the first one admittedly.,0,['the atheneo family was the first one admittedly.']
+ateneo_presscon,00:24:35.380,00:24:39.390,we didn't take the initiative.,0,"[""we didn't take the initiative.""]"
+ateneo_presscon,00:24:39.390,00:24:41.390,a lot of things were released back then,0,['a lot of things were released back then']
+ateneo_presscon,00:24:41.390,00:24:45.390,but it wasn't like that because we respected the family.,0,"[""but it wasn't like that because we respected the family.""]"
+ateneo_presscon,00:24:45.390,00:24:48.390,"a lot of things happened,",0,"['a lot of things happened,']"
+ateneo_presscon,00:24:48.390,00:24:53.440,a lot of things were difficult to say.,0,['a lot of things were difficult to say.']
+ateneo_presscon,00:24:53.440,00:24:56.440,so there was a lot of confusion,0,['so there was a lot of confusion']
+ateneo_presscon,00:24:56.440,00:24:59.440,especially regarding the likes of the family.,0,['especially regarding the likes of the family.']
+ateneo_presscon,00:24:59.440,00:25:03.440,it's good that we gave our friends the data about it.,0,"[""it's good that we gave our friends the data about it.""]"
+ateneo_presscon,00:25:03.440,00:25:10.299,they know it better.,0,['they know it better.']
+ateneo_presscon,00:25:10.299,00:25:14.299,"i was just saying that when mrs. baturbonia came,",0,"['i was just saying that when mrs. baturbonia came,']"
+ateneo_presscon,00:25:14.299,00:25:16.299,i was there.,0,['i was there.']
+ateneo_presscon,00:25:16.299,00:25:18.299,i was there in arlington.,0,['i was there in arlington.']
+ateneo_presscon,00:25:18.299,00:25:20.299,i rented her to the room,0,['i rented her to the room']
+ateneo_presscon,00:25:20.299,00:25:22.299,and the room was already there.,0,['and the room was already there.']
+ateneo_presscon,00:25:22.299,00:25:26.299,i won't tell you what happened in the room.,0,"[""i won't tell you what happened in the room.""]"
+ateneo_presscon,00:25:26.299,00:25:28.299,but i was there personally.,0,['but i was there personally.']
+ateneo_presscon,00:25:28.299,00:25:31.299,i was there as if i was being treated,0,['i was there as if i was being treated']
+ateneo_presscon,00:25:31.299,00:25:33.299,and treated as a kind of a company.,0,['and treated as a kind of a company.']
+ateneo_presscon,00:25:33.299,00:25:38.299,so we didn't want,0,"[""so we didn't want""]"
+ateneo_presscon,00:25:38.299,00:25:41.299,"the attention we had to provide them,",0,"['the attention we had to provide them,']"
+ateneo_presscon,00:25:41.299,00:25:45.299,the consolation and the decency of grieving.,0,['the consolation and the decency of grieving.']
+ateneo_presscon,00:25:45.299,00:25:52.890,i don't want to describe the details of what happened.,0,"[""i don't want to describe the details of what happened.""]"
+ateneo_presscon,00:25:52.890,00:25:54.890,"yes, and then you'll be next.",0,"[""yes, and then you'll be next.""]"
+ateneo_presscon,00:25:54.890,00:25:56.890,she just lies a bit on our news.,0,['she just lies a bit on our news.']
+ateneo_presscon,00:25:56.890,00:26:01.890,can we confirm who or who were in the team building in aurora?,0,['can we confirm who or who were in the team building in aurora?']
+ateneo_presscon,00:26:01.890,00:26:08.700,we said earlier that there was an independent.,0,['we said earlier that there was an independent.']
+ateneo_presscon,00:26:08.700,00:26:11.700,we don't want to compromise the findings of that.,0,"[""we don't want to compromise the findings of that.""]"
+ateneo_presscon,00:26:11.700,00:26:14.700,"even we, the whole university will be answerable",0,"['even we, the whole university will be answerable']"
+ateneo_presscon,00:26:14.700,00:26:16.700,to that fact finding group.,0,['to that fact finding group.']
+ateneo_presscon,00:26:16.700,00:26:18.700,so we don't want to preempt any of..,0,"[""so we don't want to preempt any of..""]"
+ateneo_presscon,00:26:18.700,00:26:20.700,please limit it to the state.,0,['please limit it to the state.']
+ateneo_presscon,00:26:20.700,00:26:21.700,thank you.,0,['thank you.']
+ateneo_presscon,00:26:21.700,00:26:23.700,we'll take the last question.,0,"[""we'll take the last question.""]"
+ateneo_presscon,00:26:23.700,00:26:24.700,yes.,0,['yes.']
+ateneo_presscon,00:26:24.700,00:26:25.700,"good afternoon, benjamin.",0,"['good afternoon, benjamin.']"
+ateneo_presscon,00:26:25.700,00:26:26.700,"sorry, are you queued up?",0,"['sorry, are you queued up?']"
+ateneo_presscon,00:26:26.700,00:26:27.700,no.,0,['no.']
+ateneo_presscon,00:26:27.700,00:26:28.700,okay.,0,['okay.']
+ateneo_presscon,00:26:28.700,00:26:29.700,we'll take last two questions.,0,"[""we'll take last two questions.""]"
+ateneo_presscon,00:26:29.700,00:26:30.700,okay.,0,['okay.']
+ateneo_presscon,00:26:30.700,00:26:31.700,thank you very much.,0,['thank you very much.']
+ateneo_presscon,00:26:31.700,00:26:32.700,thank you.,0,['thank you.']
+ateneo_presscon,00:26:32.700,00:26:34.700,"good afternoon, benjamin hakob of the gaiden.",0,"['good afternoon, benjamin hakob of the gaiden.']"
+ateneo_presscon,00:26:34.700,00:26:36.700,you mentioned earlier that there will be,0,['you mentioned earlier that there will be']
+ateneo_presscon,00:26:36.700,00:26:38.700,an independent investigation that will be performed,0,['an independent investigation that will be performed']
+ateneo_presscon,00:26:38.700,00:26:40.700,outside of the atinae administration.,0,['outside of the atinae administration.']
+ateneo_presscon,00:26:40.700,00:26:44.700,who exactly will be conducting this investigation?,0,['who exactly will be conducting this investigation?']
+ateneo_presscon,00:26:44.700,00:26:48.299,"as i said in my statement, it will be conducted",0,"['as i said in my statement, it will be conducted']"
+ateneo_presscon,00:26:48.299,00:26:52.299,by reputable legal and technical experts,0,['by reputable legal and technical experts']
+ateneo_presscon,00:26:52.299,00:26:54.299,who are not part of the administration.,0,['who are not part of the administration.']
+ateneo_presscon,00:26:54.299,00:26:57.299,but that investigation is internal.,0,['but that investigation is internal.']
+ateneo_presscon,00:26:57.299,00:27:00.299,it was mandated by our board of trustees.,0,['it was mandated by our board of trustees.']
+ateneo_presscon,00:27:00.299,00:27:01.299,thank you.,0,['thank you.']
+ateneo_presscon,00:27:01.299,00:27:02.299,thank you.,0,['thank you.']
+ateneo_presscon,00:27:02.299,00:27:04.299,one last.,0,['one last.']
+ateneo_presscon,00:27:04.299,00:27:06.299,"good afternoon, pope.",0,"['good afternoon, pope.']"
+ateneo_presscon,00:27:06.299,00:27:11.299,i have one swing of daily tribune for father bobby pope.,0,['i have one swing of daily tribune for father bobby pope.']
+ateneo_presscon,00:27:11.299,00:27:13.299,"i would like to ask them, pope.",0,"['i would like to ask them, pope.']"
+ateneo_presscon,00:27:13.299,00:27:16.299,"i know that everything is still being investigated,",0,"['i know that everything is still being investigated,']"
+ateneo_presscon,00:27:16.299,00:27:20.299,but what is the time frame on independent,0,['but what is the time frame on independent']
+ateneo_presscon,00:27:20.299,00:27:22.299,finding of atinaeo?,0,['finding of atinaeo?']
+ateneo_presscon,00:27:22.299,00:27:31.720,what we are saying is that at least two weeks,0,['what we are saying is that at least two weeks']
+ateneo_presscon,00:27:31.720,00:27:36.720,are needed because it is really thorough and exhaustive.,0,['are needed because it is really thorough and exhaustive.']
+ateneo_presscon,00:27:36.720,00:27:39.720,"even if we are in the administration,",0,"['even if we are in the administration,']"
+ateneo_presscon,00:27:39.720,00:27:42.720,"even if we are coaching staff,",0,"['even if we are coaching staff,']"
+ateneo_presscon,00:27:42.720,00:27:48.720,all of them will call and talk to us.,0,['all of them will call and talk to us.']
+ateneo_presscon,00:27:48.720,00:27:51.720,"they will say at least two weeks, maybe more.",0,"['they will say at least two weeks, maybe more.']"
+ateneo_presscon,00:27:51.720,00:27:53.720,i don't want to give a deadline because,0,"[""i don't want to give a deadline because""]"
+ateneo_presscon,00:27:53.720,00:27:57.720,they might say that they can't do that.,0,"[""they might say that they can't do that.""]"
+ateneo_presscon,00:27:57.720,00:28:01.720,but we are trying to do it as comprehensively,0,['but we are trying to do it as comprehensively']
+ateneo_presscon,00:28:01.720,00:28:05.720,as possible and as quickly as possible.,0,['as possible and as quickly as possible.']
+ateneo_presscon,00:28:05.720,00:28:08.319,thank you.,0,['thank you.']
+ateneo_presscon,00:28:08.319,00:28:09.319,last two.,0,['last two.']
+ateneo_presscon,00:28:09.319,00:28:10.319,thank you.,0,['thank you.']
+ateneo_presscon,00:28:10.319,00:28:13.319,"good afternoon, john marquesia from spin.ph.",0,"['good afternoon, john marquesia from spin.ph.']"
+ateneo_presscon,00:28:14.319,00:28:17.319,atinaeo de davao extended scholarship offers,0,['atinaeo de davao extended scholarship offers']
+ateneo_presscon,00:28:17.319,00:28:19.319,to the families of rene.,0,['to the families of rene.']
+ateneo_presscon,00:28:19.319,00:28:22.319,we would like to ask at the end of atinaeo de manila,0,['we would like to ask at the end of atinaeo de manila']
+ateneo_presscon,00:28:22.319,00:28:24.319,what would be the assistance provided,0,['what would be the assistance provided']
+ateneo_presscon,00:28:24.319,00:28:27.319,by the university to the families?,0,['by the university to the families?']
+ateneo_presscon,00:28:27.319,00:28:30.750,thank you.,0,['thank you.']
+ateneo_presscon,00:28:30.750,00:28:33.750,"as i said in my statement,",0,"['as i said in my statement,']"
+ateneo_presscon,00:28:33.750,00:28:38.750,we will provide material assistance,0,['we will provide material assistance']
+ateneo_presscon,00:28:38.750,00:28:40.750,to the families.,0,['to the families.']
+ateneo_presscon,00:28:40.750,00:28:44.750,"we see that not as a form of legal settlement,",0,"['we see that not as a form of legal settlement,']"
+ateneo_presscon,00:28:44.750,00:28:48.750,but that is really a form of our moral responsibility.,0,['but that is really a form of our moral responsibility.']
+ateneo_presscon,00:28:48.750,00:28:52.750,"and i would like to again keep,",0,"['and i would like to again keep,']"
+ateneo_presscon,00:28:52.750,00:28:54.750,i don't want to list out all the details,0,"[""i don't want to list out all the details""]"
+ateneo_presscon,00:28:54.750,00:28:56.750,"of what we are talking,",0,"['of what we are talking,']"
+ateneo_presscon,00:28:56.750,00:28:58.750,but we are presently in communication with them,0,['but we are presently in communication with them']
+ateneo_presscon,00:28:58.750,00:29:00.750,about the assistance.,0,['about the assistance.']
+ateneo_presscon,00:29:00.750,00:29:03.750,and it will be also an assistance,0,['and it will be also an assistance']
+ateneo_presscon,00:29:03.750,00:29:06.750,that will cover a time,0,['that will cover a time']
+ateneo_presscon,00:29:06.750,00:29:08.750,that will really support them,0,['that will really support them']
+ateneo_presscon,00:29:08.750,00:29:13.750,for the needs for a good period of time.,0,['for the needs for a good period of time.']
+ateneo_presscon,00:29:14.750,00:29:16.750,"just the last follow-up, to the extent",0,"['just the last follow-up, to the extent']"
+ateneo_presscon,00:29:16.750,00:29:18.750,"that you may only disclose,",0,"['that you may only disclose,']"
+ateneo_presscon,00:29:18.750,00:29:21.750,during the time that atinaeo wasn't speaking,0,"[""during the time that atinaeo wasn't speaking""]"
+ateneo_presscon,00:29:21.750,00:29:22.750,"about the issue,",0,"['about the issue,']"
+ateneo_presscon,00:29:22.750,00:29:24.750,can you take us through the conversations,0,['can you take us through the conversations']
+ateneo_presscon,00:29:24.750,00:29:26.750,that you had with coach tab,0,['that you had with coach tab']
+ateneo_presscon,00:29:26.750,00:29:28.750,in terms of when to speak out,0,['in terms of when to speak out']
+ateneo_presscon,00:29:28.750,00:29:31.750,and when to at least issue a public statement?,0,['and when to at least issue a public statement?']
+ateneo_presscon,00:29:31.750,00:29:34.750,just a brief timeline of how it went down.,0,['just a brief timeline of how it went down.']
+ateneo_presscon,00:29:34.750,00:29:37.750,"as i said, in terms of coach tab,",0,"['as i said, in terms of coach tab,']"
+ateneo_presscon,00:29:37.750,00:29:39.750,you can really just ask him.,0,['you can really just ask him.']
+ateneo_presscon,00:29:39.750,00:29:41.750,"i would like to keep that also,",0,"['i would like to keep that also,']"
+ateneo_presscon,00:29:41.750,00:29:43.750,respect the confidentiality of coach tab.,0,['respect the confidentiality of coach tab.']
+ateneo_presscon,00:29:43.750,00:29:47.750,so please ask him if it's about it.,0,"[""so please ask him if it's about it.""]"
+ateneo_presscon,00:29:47.750,00:29:49.750,thank you very much.,0,['thank you very much.']
+ateneo_presscon,00:29:49.750,00:29:51.750,"we'll take one last question, final question.",0,"[""we'll take one last question, final question.""]"
+ateneo_presscon,00:29:51.750,00:29:52.750,thank you.,0,['thank you.']
+ateneo_presscon,00:29:52.750,00:29:55.750,"good afternoon, andrea taginas from adsebn.",0,"['good afternoon, andrea taginas from adsebn.']"
+ateneo_presscon,00:29:55.750,00:29:58.750,"you mentioned, father, that you're looking into",0,"[""you mentioned, father, that you're looking into""]"
+ateneo_presscon,00:29:58.750,00:30:01.750,if there were prior warnings given,0,['if there were prior warnings given']
+ateneo_presscon,00:30:01.750,00:30:03.750,if it was dangerous to go in,0,['if it was dangerous to go in']
+ateneo_presscon,00:30:03.750,00:30:06.750,the activity during that time.,0,['the activity during that time.']
+ateneo_presscon,00:30:06.750,00:30:09.750,but i believe there are past interviews,0,['but i believe there are past interviews']
+ateneo_presscon,00:30:09.750,00:30:12.750,from former blue eagles,0,['from former blue eagles']
+ateneo_presscon,00:30:12.750,00:30:15.750,"saying, describing how intense the training was,",0,"['saying, describing how intense the training was,']"
+ateneo_presscon,00:30:15.750,00:30:17.750,someone almost drowned.,0,['someone almost drowned.']
+ateneo_presscon,00:30:17.750,00:30:20.750,were the previous years,0,['were the previous years']
+ateneo_presscon,00:30:20.750,00:30:23.750,not being red flagged for the university,0,['not being red flagged for the university']
+ateneo_presscon,00:30:23.750,00:30:29.750,to look into the nature of the training camp?,0,['to look into the nature of the training camp?']
+ateneo_presscon,00:30:29.750,00:30:32.750,those very things are within really the ambit,0,['those very things are within really the ambit']
+ateneo_presscon,00:30:32.750,00:30:34.750,and the concern of the independent,0,['and the concern of the independent']
+ateneo_presscon,00:30:34.750,00:30:37.750,"fact-finding board, the independent panel.",0,"['fact-finding board, the independent panel.']"
+ateneo_presscon,00:30:37.750,00:30:41.750,so let us give the time to the independent panel,0,['so let us give the time to the independent panel']
+ateneo_presscon,00:30:41.750,00:30:43.750,to establish those things.,0,['to establish those things.']
+ateneo_presscon,00:30:43.750,00:30:44.750,okay.,0,['okay.']
+ateneo_presscon,00:30:44.750,00:30:45.750,all right.,0,['all right.']
+ateneo_presscon,00:30:45.750,00:30:47.750,maraming salamat po.,0,['maraming salamat po.']
+ateneo_presscon,00:30:47.750,00:30:49.750,"on behalf of ataneda mla university,",0,"['on behalf of ataneda mla university,']"
+ateneo_presscon,00:30:49.750,00:30:51.750,we thank the members of the media,0,['we thank the members of the media']
+ateneo_presscon,00:30:51.750,00:30:54.750,for your presence and your professionalism.,0,['for your presence and your professionalism.']
+ateneo_presscon,00:30:54.750,00:30:56.750,we also thank the public for their patience,0,['we also thank the public for their patience']
+ateneo_presscon,00:30:56.750,00:30:58.750,"and as we continue to grieve,",0,"['and as we continue to grieve,']"
+ateneo_presscon,00:30:58.750,00:31:00.750,"support the families,",0,"['support the families,']"
+ateneo_presscon,00:31:00.750,00:31:01.750,co-operate all investigations,0,['co-operate all investigations']
+ateneo_presscon,00:31:01.750,00:31:03.750,"and pursue the truth with honesty,",0,"['and pursue the truth with honesty,']"
+ateneo_presscon,00:31:03.750,00:31:05.750,accountability and compassion.,0,['accountability and compassion.']
+ateneo_presscon,00:31:05.750,00:31:07.750,we ask that you continue to keep the families,0,['we ask that you continue to keep the families']
+ateneo_presscon,00:31:07.750,00:31:09.750,"of bobbitt and divine,",0,"['of bobbitt and divine,']"
+ateneo_presscon,00:31:09.750,00:31:11.750,"their loved ones, teammates, coaches",0,"['their loved ones, teammates, coaches']"
+ateneo_presscon,00:31:11.750,00:31:13.750,and friends and your prayers.,0,['and friends and your prayers.']
+ateneo_presscon,00:31:13.750,00:31:15.750,this concludes today's press conference,0,"[""this concludes today's press conference""]"
+ateneo_presscon,00:31:15.750,00:31:17.750,and thank you and good day.,0,['and thank you and good day.']
