@@ -26,9 +26,18 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 ├── 03-insights/
 │   └── notebooks/
 │       └── summary.ipynb    # Consolidated findings: trajectories, phase rankings, topic shifts
-├── data/
-│   ├── 01-the_incident/ … 08-legal_probe/    # Raw YouTube comment CSVs per crisis phase
-│   └── transcripts-{source}/                 # Raw VTT transcript files
+├── 00-data/
+│   ├── youtube-comments/
+│   │   ├── 01-the_incident/ … 08-legal_probe/   # Raw YouTube comment CSVs per crisis phase
+│   │   └── {video_id}_comments.csv              # One file per video, placed in its crisis phase
+│   ├── reddit-data/
+│   │   ├── 00-unrelated/                        # Non-crisis threads & pre-event posts
+│   │   ├── 01-the_incident/ … 08-legal_probe/   # Mirror of the YouTube phase folders
+│   │   │   ├── ChikaPH/                         # Subreddit subfolders inside every phase
+│   │   │   ├── Philippines/
+│   │   │   └── UAAP/
+│   │   └── phase-mapping.csv                    # post_id → phase assignment audit trail
+│   └── video-transcripts/                       # Raw VTT transcript files
 ├── outputs/
 │   └── figures/          # Generated visualizations (sentiment trajectories, heatmaps, etc.)
 ├── pyproject.toml        # Project metadata & dependencies (uv)
@@ -51,6 +60,27 @@ The dataset spans 9 chronological phases of a single crisis event:
 | 06 | Townhall Podcast | Community dialogue / podcast discussion |
 | 07 | UAAP Ban | Sports league sanctions |
 | 08 | Legal Probe | Legal / judicial proceedings |
+
+## Reddit Dataset
+
+Reddit threads are organized to mirror the YouTube comment phase folders. Unlike the
+previous structure (`reddit-data/REDDIT/{subreddit_or_keyword}/{scrape_keyword}/`), each
+thread now lives under the crisis phase its content belongs to:
+
+- **Phase folders** (`01-the_incident/` … `08-legal_probe/`) match the YouTube annotation
+  semantics — assignment is content-based (thread title + top comments), informed by post
+  date, not purely chronological.
+- **`00-unrelated/`** holds threads that predate the crisis (before 2026-06-08) or are
+  unrelated to it (e.g., general basketball, football, politics threads) so they never
+  pollute per-phase corpora.
+- **Subreddit subfolders** (`ChikaPH/`, `Philippines/`, `UAAP/`) replicate inside each phase.
+  The folder name is read from the CSV `subreddit` column.
+- **Deduplication** — duplicate scrapes of the same post (the old structure stored one file
+  per scrape keyword) were collapsed to the single copy with the most `comment` rows;
+  redundant `.xlsx` exports were dropped. Every unique post is preserved exactly once
+  across the tree.
+- **`phase-mapping.csv`** records the `post_id → phase` assignment (with date, subreddit,
+  comment count, and title) as an audit trail and to re-run/preprocess the split.
 
 ## Pipeline
 
