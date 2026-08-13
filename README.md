@@ -9,9 +9,12 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 ├── 01-preprocessing/
 │   ├── notebooks/
 │   │   ├── youtube-comments-preprocessing.ipynb   # Batch consolidation, cleaning, emoji normalization
+│   │   ├── reddit-posts-preprocessing.ipynb       # Reddit thread loading, anonymization, cleaning
 │   │   └── video-transcripts-preprocessing.ipynb   # VTT parsing, segment extraction, cleaning
 │   └── output/                                     # Cleaned CSVs per crisis phase + transcripts
 │       ├── 01-the_incident.csv … 08-legal_probe.csv
+│       ├── reddit/
+│       │   └── 01-the_incident.csv … 08-legal_probe.csv
 │       └── transcripts-{source}.csv
 ├── 02-analysis/
 │   ├── notebook/
@@ -39,7 +42,10 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 │   │   └── phase-mapping.csv                    # post_id → phase assignment audit trail
 │   └── video-transcripts/                       # Raw VTT transcript files
 ├── outputs/
-│   └── figures/          # Generated visualizations (sentiment trajectories, heatmaps, etc.)
+│   └── figures/          # Generated visualizations
+│       ├── reddit-comments-per-phase.png    # Cross-phase comment distribution (Reddit)
+│       ├── youtube-comments-per-phase.png   # Cross-phase comment distribution (YouTube)
+│       └── *.png                            # Sentiment trajectories, heatmaps, etc.
 ├── pyproject.toml        # Project metadata & dependencies (uv)
 ├── uv.lock               # Lockfile
 └── main.py               # Entry point (placeholder)
