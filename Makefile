@@ -1,0 +1,100 @@
+.PHONY: pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
+       analysis sentiment-youtube topics-youtube sentiment-transcripts topics-transcripts \
+       insights sentiment-change summary clean help
+
+# Default target
+help:
+	@echo "=== Crisis Management Analysis Pipeline ==="
+	@echo ""
+	@echo "Usage: make <target>"
+	@echo ""
+	@echo "Pipeline targets:"
+	@echo "  pipeline              Run full pipeline (preprocess → analysis → insights)"
+	@echo "  preprocess            Run all preprocessing stages"
+	@echo "  analysis              Run all analysis stages (depends on preprocess)"
+	@echo "  insights              Run all insight stages (depends on analysis)"
+	@echo ""
+	@echo "Preprocessing targets:"
+	@echo "  preprocess-youtube    Preprocess YouTube comments"
+	@echo "  preprocess-reddit     Preprocess Reddit posts"
+	@echo "  preprocess-transcripts Preprocess video transcripts"
+	@echo ""
+	@echo "Analysis targets:"
+	@echo "  sentiment-youtube     YouTube sentiment analysis"
+	@echo "  topics-youtube        YouTube topic modeling"
+	@echo "  sentiment-transcripts Transcript sentiment analysis"
+	@echo "  topics-transcripts    Transcript topic modeling"
+	@echo ""
+	@echo "Insight targets:"
+	@echo "  sentiment-change      Sentiment change across phases"
+	@echo "  summary               Final summary and visualizations"
+	@echo ""
+	@echo "Utility targets:"
+	@echo "  clean                 Remove all output files"
+
+# Full pipeline
+pipeline: preprocess analysis insights
+	@echo "=== Pipeline complete ==="
+
+# === Preprocessing ===
+
+preprocess: preprocess-youtube preprocess-reddit preprocess-transcripts
+	@echo "=== All preprocessing complete ==="
+
+preprocess-youtube:
+	@echo "--- Preprocessing YouTube comments ---"
+	@bash 01-preprocessing/run_youtube.sh
+
+preprocess-reddit:
+	@echo "--- Preprocessing Reddit posts ---"
+	@bash 01-preprocessing/run_reddit.sh
+
+preprocess-transcripts:
+	@echo "--- Preprocessing video transcripts ---"
+	@bash 01-preprocessing/run_transcripts.sh
+
+# === Analysis ===
+
+analysis: sentiment-youtube topics-youtube sentiment-transcripts topics-transcripts
+	@echo "=== All analysis complete ==="
+
+sentiment-youtube:
+	@echo "--- YouTube sentiment analysis ---"
+	@bash 02-analysis/run_youtube_sentiment.sh
+
+topics-youtube:
+	@echo "--- YouTube topic modeling ---"
+	@bash 02-analysis/run_youtube_topics.sh
+
+sentiment-transcripts:
+	@echo "--- Transcript sentiment analysis ---"
+	@bash 02-analysis/run_transcript_sentiment.sh
+
+topics-transcripts:
+	@echo "--- Transcript topic modeling ---"
+	@bash 02-analysis/run_transcript_topics.sh
+
+# === Insights ===
+
+insights: sentiment-change summary
+	@echo "=== All insights complete ==="
+
+sentiment-change:
+	@echo "--- Sentiment change across phases ---"
+	@bash 02-analysis/run_sentiment_change.sh
+
+summary:
+	@echo "--- Generating summary ---"
+	@bash 02-analysis/run_summary.sh
+
+# === Cleanup ===
+
+clean:
+	@echo "--- Cleaning outputs ---"
+	rm -f 01-preprocessing/output/youtube/*.csv
+	rm -f 01-preprocessing/output/reddit/*.csv
+	rm -f 01-preprocessing/output/transcripts/*.csv
+	rm -f 02-analysis/output/scored_*.csv
+	rm -f 02-analysis/output/topics_*.csv
+	rm -f outputs/figures/*.png
+	@echo "=== Outputs cleaned ==="
