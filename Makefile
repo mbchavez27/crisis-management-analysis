@@ -1,5 +1,5 @@
 .PHONY: pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
-       analysis sentiment-youtube topics-youtube sentiment-transcripts topics-transcripts \
+       analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
        insights sentiment-change summary clean help
 
 # Default target
@@ -22,6 +22,7 @@ help:
 	@echo "Analysis targets:"
 	@echo "  sentiment-youtube     YouTube sentiment analysis"
 	@echo "  topics-youtube        YouTube topic modeling"
+	@echo "  topic-validation      Cross-phase topic label validation"
 	@echo "  sentiment-transcripts Transcript sentiment analysis"
 	@echo "  topics-transcripts    Transcript topic modeling"
 	@echo ""
@@ -55,7 +56,7 @@ preprocess-transcripts:
 
 # === Analysis ===
 
-analysis: sentiment-youtube topics-youtube sentiment-transcripts topics-transcripts
+analysis: sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts
 	@echo "=== All analysis complete ==="
 
 sentiment-youtube:
@@ -65,6 +66,10 @@ sentiment-youtube:
 topics-youtube:
 	@echo "--- YouTube topic modeling ---"
 	@bash 02-analysis/run_youtube_topics.sh
+
+topic-validation:
+	@echo "--- Topic validation (cross-phase review) ---"
+	@bash 02-analysis/run_topic_validation.sh
 
 sentiment-transcripts:
 	@echo "--- Transcript sentiment analysis ---"
