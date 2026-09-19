@@ -85,9 +85,7 @@ def run_stage(name: str, force: bool = False) -> bool:
 def clean_outputs():
     """Remove all output files."""
     dirs = [
-        PROJECT_ROOT / "01-preprocessing/output/youtube",
-        PROJECT_ROOT / "01-preprocessing/output/reddit",
-        PROJECT_ROOT / "01-preprocessing/output/transcripts",
+        PROJECT_ROOT / "01-preprocessing/output",
         PROJECT_ROOT / "02-analysis/output",
         PROJECT_ROOT / "outputs/figures",
     ]
@@ -98,7 +96,7 @@ def clean_outputs():
         if not d.exists():
             continue
         for pattern in patterns:
-            for f in d.glob(pattern):
+            for f in d.rglob(pattern):
                 f.unlink()
                 count += 1
 

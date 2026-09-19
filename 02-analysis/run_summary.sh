@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+CRISIS="${CRISIS:-ateneo-drowning}"
+
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/../03-insights/notebooks"
 
-echo "=== Summary / Insights ==="
+echo "=== Summary / Insights [$CRISIS] ==="
 papermill "$NOTEBOOK_DIR/summary.ipynb" /dev/null \
-  --log-output
+  -p crisis_name "$CRISIS" --log-output
 
 echo "Summary complete."

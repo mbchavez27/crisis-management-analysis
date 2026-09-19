@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+CRISIS="${CRISIS:-ateneo-drowning}"
+
 TRANSCRIPTS=(
   ateneo_presscon
   coach_tab
@@ -9,9 +11,9 @@ TRANSCRIPTS=(
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"
 
 for name in "${TRANSCRIPTS[@]}"; do
-  echo "=== Transcript: $name ==="
+  echo "=== Transcript [$CRISIS]: $name ==="
   papermill "$NOTEBOOK_DIR/video-transcripts-preprocessing.ipynb" /dev/null \
-    -p transcript_name "$name" --log-output
+    -p crisis_name "$CRISIS" -p transcript_name "$name" --log-output
 done
 
 echo "All transcripts complete."

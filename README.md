@@ -1,6 +1,6 @@
 # Crisis Management Analysis
 
-Text mining approach to analyzing public sentiment and discourse during a multi-phase crisis event — using YouTube comments and video transcripts as primary data sources.
+Text mining approach to analyzing public sentiment and discourse during multi-phase crisis events — using YouTube comments, Reddit threads, and video transcripts as primary data sources.
 
 ## Project Structure
 
@@ -11,87 +11,82 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 │   │   ├── youtube-comments-preprocessing.ipynb   # Batch consolidation, cleaning, emoji normalization
 │   │   ├── reddit-posts-preprocessing.ipynb       # Reddit thread loading, anonymization, cleaning
 │   │   └── video-transcripts-preprocessing.ipynb   # VTT parsing, segment extraction, cleaning
-│   └── output/                                     # Cleaned CSVs per crisis phase + transcripts
-│   ├── 01-immediate_reaction_24h.csv … 04-institutional_response.csv
+│   └── output/{crisis-slug}/                      # Cleaned CSVs per crisis
+│       ├── youtube/
 │       ├── reddit/
-│       │   └── 01-immediate_reaction_24h.csv … 04-institutional_response.csv
-│       └── transcripts-{source}.csv
+│       └── transcripts/
 ├── 02-analysis/
 │   ├── notebook/
-│   │   ├── youtube-comments-sentiment-analysis.ipynb              # XLM-RoBERTa sentiment scoring
-│   │   ├── youtube-comments-topic-modeling.ipynb                  # BERTopic unsupervised topic discovery
-│   │   ├── youtube-comments-sentiment-change-across-phases.ipynb  # Cross-phase sentiment trajectory
-│   │   ├── video-transcripts-sentiment-analysis.ipynb             # Transcript sentiment scoring
-│   │   └── video-transcripts-topic-modeling.ipynb                 # Transcript topic modeling
-│   └── output/
-│       ├── scored_{phase}.csv / scored_transcripts-{source}.csv   # Sentiment-labeled outputs
-│       └── topics_{phase}.csv / topics_transcripts-{source}.csv   # Topic-labeled outputs
+│   │   ├── youtube-comments-sentiment-analysis.ipynb
+│   │   ├── youtube-comments-topic-modeling.ipynb
+│   │   ├── youtube-comments-sentiment-change-across-phases.ipynb
+│   │   ├── youtube-comments-topic-validation.ipynb
+│   │   ├── video-transcripts-sentiment-analysis.ipynb
+│   │   └── video-transcripts-topic-modeling.ipynb
+│   └── output/{crisis-slug}/
+│       ├── scored_{phase}.csv / scored_transcripts-{source}.csv
+│       └── topics_{phase}.csv / topics_transcripts-{source}.csv
 ├── 03-insights/
 │   └── notebooks/
-│       └── summary.ipynb    # Consolidated findings: trajectories, phase rankings, topic shifts
+│       └── summary.ipynb    # Consolidated findings
 ├── 00-data/
-│   ├── youtube-comments/
-│   │   ├── 01-immediate_reaction_24h/ … 05-aftermath/   # Raw YouTube comment CSVs per crisis phase
-│   │   └── {video_id}_comments.csv              # One file per video, placed in its crisis phase
-│   ├── reddit-data/
-│   │   ├── 00-unrelated/                        # Non-crisis threads & pre-event posts
-│   │   ├── 01-the_incident/ … 08-legal_probe/   # Reddit phase folders (mirrors YouTube annotation)
-│   │   │   ├── ChikaPH/                         # Subreddit subfolders inside every phase
-│   │   │   ├── Philippines/
-│   │   │   └── UAAP/
-│   │   └── phase-mapping.csv                    # post_id → phase assignment audit trail
-│   └── video-transcripts/                       # Raw VTT transcript files
+│   ├── CRISIS-PHASES-TEMPLATE.md   # Canonical phase definitions for adding new crises
+│   ├── ateneo-drowning/            # First crisis dataset
+│   │   ├── youtube-comments/{phase}/
+│   │   ├── reddit-data/{phase}/{subreddit}/
+│   │   └── video-transcripts/
+│   └── {future-crisis}/            # Add new crises here
 ├── outputs/
-│   └── figures/          # Generated visualizations
-│       ├── reddit-comments-per-phase.png    # Cross-phase comment distribution (Reddit)
-│       ├── youtube-comments-per-phase.png   # Cross-phase comment distribution (YouTube)
-│       └── *.png                            # Sentiment trajectories, heatmaps, etc.
-├── pyproject.toml        # Project metadata & dependencies (uv)
-├── uv.lock               # Lockfile
-└── main.py               # Entry point (placeholder)
+│   └── figures/
+├── pyproject.toml
+├── uv.lock
+└── main.py
 ```
 
-## Crisis Phases
+## Multi-Crisis Structure
 
-The dataset spans 5 chronological phases of a single crisis event, defined by
-trigger-based boundaries:
+Each crisis lives under `00-data/{crisis-slug}/` with its own set of YouTube, Reddit, and transcript data. See `00-data/CRISIS-PHASES-TEMPLATE.md` for the canonical phase definitions and instructions for adding new crises.
 
-| # | Phase | Trigger Boundary |
-|---|-------|-----------------|
-| 01 | Immediate Reaction (24h) | Incident → +24 hours exactly |
-| 02 | Immediate Reaction (Extended) | +24h → first official confirmation / 72h |
-| 03 | Escalation | Phase 2 end → first formal investigation opens |
-| 04 | Institutional Response | Formal investigation → first accountability outcome |
-| 05 | Aftermath / Long Tail | Formal outcome → pre-registered cutoff |
+### Current Crises
 
-## Reddit Dataset
+| Slug | Description | Videos | Reddit Threads | Transcripts |
+|------|-------------|--------|---------------|-------------|
+| `ateneo-drowning` | Ateneo basketball team drowning incident (June 2026) | 58 | 261 | 2 |
 
-Reddit threads are organized to mirror the YouTube comment phase folders. Unlike the
-previous structure (`reddit-data/REDDIT/{subreddit_or_keyword}/{scrape_keyword}/`), each
-thread now lives under the crisis phase its content belongs to:
+## Crisis Phases (5 phases, trigger-based)
 
-- **Phase folders** (`01-the_incident/` … `08-legal_probe/`) match the original YouTube annotation
-  semantics — assignment is content-based (thread title + top comments), informed by post
-  date, not purely chronological. Reddit uses the legacy 9-phase structure.
-- **`00-unrelated/`** holds threads that predate the crisis (before 2026-06-08) or are
-  unrelated to it (e.g., general basketball, football, politics threads) so they never
-  pollute per-phase corpora.
-- **Subreddit subfolders** (`ChikaPH/`, `Philippines/`, `UAAP/`) replicate inside each phase.
-  The folder name is read from the CSV `subreddit` column.
-- **Deduplication** — duplicate scrapes of the same post (the old structure stored one file
-  per scrape keyword) were collapsed to the single copy with the most `comment` rows;
-  redundant `.xlsx` exports were dropped. Every unique post is preserved exactly once
-  across the tree.
-- **`phase-mapping.csv`** records the `post_id → phase` assignment (with date, subreddit,
-  comment count, and title) as an audit trail and to re-run/preprocess the split.
+| # | Phase | Folder Slug | Trigger Boundary |
+|---|-------|-------------|-----------------|
+| 01 | Immediate Reaction (24h) | `01-immediate_reaction_24h` | Incident → +24 hours exactly |
+| 02 | Immediate Reaction (Extended) | `02-immediate_reaction_extended` | +24h → first official confirmation / 72h |
+| 03 | Escalation | `03-escalation` | Phase 2 end → first formal investigation opens |
+| 04 | Institutional Response | `04-institutional_response` | Formal investigation → first accountability outcome |
+| 05 | Aftermath / Long Tail | `05-aftermath` | Formal outcome → pre-registered cutoff |
 
 ## Pipeline
 
-1. **Preprocessing** — Consolidates raw CSVs per phase, cleans text (lowercasing, URL/digit stripping, emoji normalization), and tokenizes into sentences.
-2. **Sentiment Analysis** — Classifies text using `cardiffnlp/twitter-xlm-roberta-base-sentiment` (multilingual, 3-class). Uses most-confident-sentence aggregation for long comments.
-3. **Topic Modeling** — Unsupervised topic discovery via BERTopic (sentence-transformers embeddings → UMAP → HDBSCAN → c-TF-IDF). Includes manual topic labeling.
-4. **Cross-Phase Analysis** — Measures sentiment trajectory across phases, within-phase outrage decay (day 1 vs rest), and phase boundary sentiment shifts.
-5. **Summary** — Consolidates all findings into narrative insights with visualizations.
+1. **Preprocessing** — Consolidates raw CSVs per phase, cleans text, tokenizes into sentences.
+2. **Sentiment Analysis** — XLM-RoBERTa multilingual 3-class sentiment scoring.
+3. **Topic Modeling** — BERTopic unsupervised topic discovery.
+4. **Cross-Phase Analysis** — Sentiment trajectory, within-phase decay, boundary shifts.
+5. **Summary** — Consolidated findings with visualizations.
+
+### Running the Pipeline
+
+```bash
+# Full pipeline for default crisis (ateneo-drowning)
+python main.py --stage pipeline
+
+# Run specific stage
+python main.py --stage preprocess
+python main.py --stage analysis
+
+# Clean outputs
+python main.py --clean
+
+# Run for specific crisis (set CRISIS env var)
+CRISIS=ateneo-drowning bash 01-preprocessing/run_youtube.sh
+```
 
 ## Setup
 
