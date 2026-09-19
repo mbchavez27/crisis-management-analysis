@@ -57,11 +57,11 @@ Each crisis lives under `00-data/{crisis-slug}/` with its own set of YouTube, Re
 
 | # | Phase | Folder Slug | Trigger Boundary |
 |---|-------|-------------|-----------------|
-| 01 | Immediate Reaction (24h) | `01-immediate_reaction_24h` | Incident → +24 hours exactly |
-| 02 | Immediate Reaction (Extended) | `02-immediate_reaction_extended` | +24h → first official confirmation / 72h |
-| 03 | Escalation | `03-escalation` | Phase 2 end → first formal investigation opens |
-| 04 | Institutional Response | `04-institutional_response` | Formal investigation → first accountability outcome |
-| 05 | Aftermath / Long Tail | `05-aftermath` | Formal outcome → pre-registered cutoff |
+| 01 | Onset | `01-onset` | Incident → +24 hours exactly |
+| 02 | Confirmation | `02-confirmation` | +24h → first formal investigation opens, OR 72h — whichever first |
+| 03 | Spread | `03-spread` | Phase 2 end → first formal accountability act |
+| 04 | Reckoning | `04-reckoning` | First accountability act → last accountability act by same party |
+| 05 | Lingering | `05-lingering` | End of Phase 4 → pre-registered cutoff |
 
 ## Pipeline
 

@@ -27,11 +27,11 @@ institutional aftermath (June 10–23, 2026).
 ## Directory Structure
 
 ```
-├── 01-immediate_reaction_24h/     (7 videos, 1,034 comments)
-├── 02-immediate_reaction_extended/ (14 videos, 3,197 comments)
-├── 03-escalation/                  (9 videos, 8,071 comments)
-├── 04-institutional_response/      (28 videos, 1,727 comments)
-└── 05-aftermath/                   (0 videos, 0 comments)
+├── 01-onset/          (7 videos, 1,034 comments)
+├── 02-confirmation/   (14 videos, 3,197 comments)
+├── 03-spread/         (9 videos, 8,071 comments)
+├── 04-reckoning/      (28 videos, 1,727 comments)
+└── 05-lingering/      (0 videos, 0 comments)
 ```
 
 ## Schema

@@ -4,11 +4,11 @@ set -euo pipefail
 CRISIS="${CRISIS:-ateneo-drowning}"
 
 PHASES=(
-  01-immediate_reaction_24h
-  02-immediate_reaction_extended
-  03-escalation
-  04-institutional_response
-  05-aftermath
+  01-onset
+  02-confirmation
+  03-spread
+  04-reckoning
+  05-lingering
 )
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"
