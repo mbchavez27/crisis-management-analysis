@@ -3,27 +3,35 @@
 Comments from major YouTube videos covering the Ateneo drowning crisis and its
 institutional aftermath (June 10–23, 2026).
 
+## Phase Definitions
+
+5 chronological phases based on trigger-based boundaries:
+
+| # | Phase | Trigger Boundary |
+|---|-------|-----------------|
+| 1 | Immediate Reaction (24h) | Incident → +24 hours exactly |
+| 2 | Immediate Reaction (Extended) | +24h → first official casualty/status confirmation, or 72h, whichever is later |
+| 3 | Escalation | Phase 2 end → first formal investigative/regulatory body opens |
+| 4 | Institutional Response | Formal investigation opens → first formal accountability outcome |
+| 5 | Aftermath / Long Tail | Formal outcome → pre-registered cutoff |
+
 ## Sampling Frame
 
 - **Source:** Major Philippine news networks (ANC/ABS-CBN, GMA, Rappler),
   expert commentary shows (On Point, The Scorecard), and independent creators
 - **Inclusion:** Each video assigned to the chronological crisis phase its
   content addresses
-- **Scale:** 58 videos across 9 phases, 10,836 raw comments
+- **Scale:** 58 videos across 5 phases, 10,836 raw comments
 - **No minimum engagement threshold** applied; comment counts range from 1 to 356
 
 ## Directory Structure
 
 ```
-├── 01-the_incident/            (7 videos)
-├── 02-autopsy_request/         (8 videos)
-├── 03-public_outcry/           (6 videos)
-├── 03.1-baldwin_apology/       (5 videos)
-├── 04-scholarships_withdrawal/ (4 videos)
-├── 05-resignation_presscon/    (7 videos)
-├── 06-townhall_podcast/        (5 videos)
-├── 07-uaap_ban/                (4 videos)
-└── 08-legal_probe/             (12 videos)
+├── 01-immediate_reaction_24h/     (7 videos, 1,034 comments)
+├── 02-immediate_reaction_extended/ (14 videos, 3,197 comments)
+├── 03-escalation/                  (9 videos, 8,071 comments)
+├── 04-institutional_response/      (28 videos, 1,727 comments)
+└── 05-aftermath/                   (0 videos, 0 comments)
 ```
 
 ## Schema

@@ -2,15 +2,11 @@
 set -euo pipefail
 
 PHASES=(
-  01-the_incident
-  02-autopsy_request
-  03.1-baldwin_apology
-  03-public_outcry
-  04-scholarships_withdrawal
-  05-resignation_presscon
-  06-townhall_podcast
-  07-uaap_ban
-  08-legal_probe
+  01-immediate_reaction_24h
+  02-immediate_reaction_extended
+  03-escalation
+  04-institutional_response
+  05-aftermath
 )
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"

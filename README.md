@@ -12,9 +12,9 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 │   │   ├── reddit-posts-preprocessing.ipynb       # Reddit thread loading, anonymization, cleaning
 │   │   └── video-transcripts-preprocessing.ipynb   # VTT parsing, segment extraction, cleaning
 │   └── output/                                     # Cleaned CSVs per crisis phase + transcripts
-│       ├── 01-the_incident.csv … 08-legal_probe.csv
+│   ├── 01-immediate_reaction_24h.csv … 04-institutional_response.csv
 │       ├── reddit/
-│       │   └── 01-the_incident.csv … 08-legal_probe.csv
+│       │   └── 01-immediate_reaction_24h.csv … 04-institutional_response.csv
 │       └── transcripts-{source}.csv
 ├── 02-analysis/
 │   ├── notebook/
@@ -31,11 +31,11 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 │       └── summary.ipynb    # Consolidated findings: trajectories, phase rankings, topic shifts
 ├── 00-data/
 │   ├── youtube-comments/
-│   │   ├── 01-the_incident/ … 08-legal_probe/   # Raw YouTube comment CSVs per crisis phase
+│   │   ├── 01-immediate_reaction_24h/ … 05-aftermath/   # Raw YouTube comment CSVs per crisis phase
 │   │   └── {video_id}_comments.csv              # One file per video, placed in its crisis phase
 │   ├── reddit-data/
 │   │   ├── 00-unrelated/                        # Non-crisis threads & pre-event posts
-│   │   ├── 01-the_incident/ … 08-legal_probe/   # Mirror of the YouTube phase folders
+│   │   ├── 01-the_incident/ … 08-legal_probe/   # Reddit phase folders (mirrors YouTube annotation)
 │   │   │   ├── ChikaPH/                         # Subreddit subfolders inside every phase
 │   │   │   ├── Philippines/
 │   │   │   └── UAAP/
@@ -53,19 +53,16 @@ Text mining approach to analyzing public sentiment and discourse during a multi-
 
 ## Crisis Phases
 
-The dataset spans 9 chronological phases of a single crisis event:
+The dataset spans 5 chronological phases of a single crisis event, defined by
+trigger-based boundaries:
 
-| # | Phase | Description |
-|---|-------|-------------|
-| 01 | The Incident | Initial event and immediate reactions |
-| 02 | Autopsy Request | Calls for investigation / medical inquiry |
-| 03 | Public Outcry | Broader public backlash and media coverage |
-| 03.1 | Baldwin Apology | Public figure's formal apology |
-| 04 | Scholarships Withdrawal | Institutional consequences (scholarship revocation) |
-| 05 | Resignation Press Con | Official resignation and press conference |
-| 06 | Townhall Podcast | Community dialogue / podcast discussion |
-| 07 | UAAP Ban | Sports league sanctions |
-| 08 | Legal Probe | Legal / judicial proceedings |
+| # | Phase | Trigger Boundary |
+|---|-------|-----------------|
+| 01 | Immediate Reaction (24h) | Incident → +24 hours exactly |
+| 02 | Immediate Reaction (Extended) | +24h → first official confirmation / 72h |
+| 03 | Escalation | Phase 2 end → first formal investigation opens |
+| 04 | Institutional Response | Formal investigation → first accountability outcome |
+| 05 | Aftermath / Long Tail | Formal outcome → pre-registered cutoff |
 
 ## Reddit Dataset
 
@@ -73,9 +70,9 @@ Reddit threads are organized to mirror the YouTube comment phase folders. Unlike
 previous structure (`reddit-data/REDDIT/{subreddit_or_keyword}/{scrape_keyword}/`), each
 thread now lives under the crisis phase its content belongs to:
 
-- **Phase folders** (`01-the_incident/` … `08-legal_probe/`) match the YouTube annotation
+- **Phase folders** (`01-the_incident/` … `08-legal_probe/`) match the original YouTube annotation
   semantics — assignment is content-based (thread title + top comments), informed by post
-  date, not purely chronological.
+  date, not purely chronological. Reddit uses the legacy 9-phase structure.
 - **`00-unrelated/`** holds threads that predate the crisis (before 2026-06-08) or are
   unrelated to it (e.g., general basketball, football, politics threads) so they never
   pollute per-phase corpora.
