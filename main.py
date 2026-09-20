@@ -26,19 +26,21 @@ STAGES = {
     "preprocess-reddit":     "01-preprocessing/run_reddit.sh",
     "preprocess-transcripts": "01-preprocessing/run_transcripts.sh",
     # YouTube analysis
-    "sentiment-youtube":     "02-analysis/run_youtube_sentiment.sh",
-    "topics-youtube":        "02-analysis/run_youtube_topics.sh",
+    "sentiment-youtube":     "02-analysis/youtube/run_sentiment.sh",
+    "topics-youtube":        "02-analysis/youtube/run_topics.sh",
+    "topic-validation":      "02-analysis/youtube/run_topic_validation.sh",
+    "sentiment-change":      "02-analysis/youtube/run_sentiment_change.sh",
     # Transcript analysis
-    "sentiment-transcripts": "02-analysis/run_transcript_sentiment.sh",
-    "topics-transcripts":    "02-analysis/run_transcript_topics.sh",
+    "sentiment-transcripts": "02-analysis/transcripts/run_sentiment.sh",
+    "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
     # Insights
-    "sentiment-change":      "02-analysis/run_sentiment_change.sh",
-    "summary":               "02-analysis/run_summary.sh",
+    "summary":               "03-insights/run_summary.sh",
 }
 
 COMPOSITE_STAGES = {
     "preprocess": ["preprocess-youtube", "preprocess-reddit", "preprocess-transcripts"],
-    "analysis":   ["sentiment-youtube", "topics-youtube", "sentiment-transcripts", "topics-transcripts"],
+    "analysis":   ["sentiment-youtube", "topics-youtube", "topic-validation",
+                   "sentiment-transcripts", "topics-transcripts"],
     "insights":   ["sentiment-change", "summary"],
     "pipeline":   ["preprocess", "analysis", "insights"],
 }
@@ -85,8 +87,10 @@ def run_stage(name: str, force: bool = False) -> bool:
 def clean_outputs():
     """Remove all output files."""
     dirs = [
-        PROJECT_ROOT / "01-preprocessing/output",
-        PROJECT_ROOT / "02-analysis/output",
+        PROJECT_ROOT / "01-preprocessing/output/ateneo-drowning/youtube",
+        PROJECT_ROOT / "01-preprocessing/output/ateneo-drowning/reddit",
+        PROJECT_ROOT / "01-preprocessing/output/ateneo-drowning/transcripts",
+        PROJECT_ROOT / "02-analysis/output/ateneo-drowning",
         PROJECT_ROOT / "outputs/figures",
     ]
     patterns = ["*.csv", "*.png"]
@@ -117,15 +121,15 @@ MENU = """
   3. Analysis
      a. YouTube sentiment
      b. YouTube topics
-     c. Transcript sentiment
-     d. Transcript topics
-     e. All YouTube analysis
-     f. All transcript analysis
-     g. All analysis
+     c. Topic validation
+     d. Sentiment change across phases
+     e. Transcript sentiment
+     f. Transcript topics
+     g. All YouTube analysis
+     h. All transcript analysis
+     i. All analysis
   4. Insights
-     a. Sentiment change across phases
-     b. Summary
-     c. All insights
+     a. Summary
   5. Clean outputs
   0. Exit
 """
@@ -138,14 +142,15 @@ INTERACTIVE_MAP = {
     "2d": "preprocess",
     "3a": "sentiment-youtube",
     "3b": "topics-youtube",
-    "3c": "sentiment-transcripts",
-    "3d": "topics-transcripts",
-    "3e": ["sentiment-youtube", "topics-youtube"],
-    "3f": ["sentiment-transcripts", "topics-transcripts"],
-    "3g": "analysis",
-    "4a": "sentiment-change",
-    "4b": "summary",
-    "4c": "insights",
+    "3c": "topic-validation",
+    "3d": "sentiment-change",
+    "3e": "sentiment-transcripts",
+    "3f": "topics-transcripts",
+    "3g": ["sentiment-youtube", "topics-youtube", "topic-validation", "sentiment-change"],
+    "3h": ["sentiment-transcripts", "topics-transcripts"],
+    "3i": "analysis",
+    "4a": "summary",
+    "4b": "insights",
 }
 
 

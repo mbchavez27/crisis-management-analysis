@@ -8,12 +8,12 @@ TRANSCRIPTS=(
   coach_tab
 )
 
-NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebook"
+NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 for name in "${TRANSCRIPTS[@]}"; do
-  echo "=== Transcript Sentiment [$CRISIS]: $name ==="
-  papermill "$NOTEBOOK_DIR/video-transcripts-sentiment-analysis.ipynb" /dev/null \
+  echo "=== Transcript Topics [$CRISIS]: $name ==="
+  papermill "$NOTEBOOK_DIR/video-transcripts-topic-modeling.ipynb" /dev/null \
     -p crisis_name "$CRISIS" -p transcript_name "$name" --log-output
 done
 
-echo "All transcript sentiment complete."
+echo "All transcript topic phases complete."

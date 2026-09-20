@@ -61,23 +61,23 @@ analysis: sentiment-youtube topics-youtube topic-validation sentiment-transcript
 
 sentiment-youtube:
 	@echo "--- YouTube sentiment analysis ---"
-	@bash 02-analysis/run_youtube_sentiment.sh
+	@bash 02-analysis/youtube/run_sentiment.sh
 
 topics-youtube:
 	@echo "--- YouTube topic modeling ---"
-	@bash 02-analysis/run_youtube_topics.sh
+	@bash 02-analysis/youtube/run_topics.sh
 
 topic-validation:
 	@echo "--- Topic validation (cross-phase review) ---"
-	@bash 02-analysis/run_topic_validation.sh
+	@bash 02-analysis/youtube/run_topic_validation.sh
 
 sentiment-transcripts:
 	@echo "--- Transcript sentiment analysis ---"
-	@bash 02-analysis/run_transcript_sentiment.sh
+	@bash 02-analysis/transcripts/run_sentiment.sh
 
 topics-transcripts:
 	@echo "--- Transcript topic modeling ---"
-	@bash 02-analysis/run_transcript_topics.sh
+	@bash 02-analysis/transcripts/run_topics.sh
 
 # === Insights ===
 
@@ -86,20 +86,20 @@ insights: sentiment-change summary
 
 sentiment-change:
 	@echo "--- Sentiment change across phases ---"
-	@bash 02-analysis/run_sentiment_change.sh
+	@bash 02-analysis/youtube/run_sentiment_change.sh
 
 summary:
 	@echo "--- Generating summary ---"
-	@bash 02-analysis/run_summary.sh
+	@bash 03-insights/run_summary.sh
 
 # === Cleanup ===
 
 clean:
 	@echo "--- Cleaning outputs ---"
-	rm -f 01-preprocessing/output/youtube/*.csv
-	rm -f 01-preprocessing/output/reddit/*.csv
-	rm -f 01-preprocessing/output/transcripts/*.csv
-	rm -f 02-analysis/output/scored_*.csv
-	rm -f 02-analysis/output/topics_*.csv
+	rm -f 01-preprocessing/output/ateneo-drowning/youtube/*.csv
+	rm -f 01-preprocessing/output/ateneo-drowning/reddit/*.csv
+	rm -f 01-preprocessing/output/ateneo-drowning/transcripts/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/scored_*.csv
+	rm -f 02-analysis/output/ateneo-drowning/topics_*.csv
 	rm -f outputs/figures/*.png
 	@echo "=== Outputs cleaned ==="
