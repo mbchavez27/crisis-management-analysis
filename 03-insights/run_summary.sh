@@ -7,6 +7,6 @@ NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"
 
 echo "=== Summary / Insights [$CRISIS] ==="
 papermill "$NOTEBOOK_DIR/summary.ipynb" /dev/null \
-  -p crisis_name "$CRISIS" --log-output
+  -p crisis_name "$CRISIS" --cwd "$NOTEBOOK_DIR" --log-output
 
 echo "Summary complete."

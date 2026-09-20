@@ -17,7 +17,7 @@ NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"
 for phase in "${PHASES[@]}"; do
   echo "=== Reddit [$CRISIS]: $phase ==="
   papermill "$NOTEBOOK_DIR/reddit-posts-preprocessing.ipynb" /dev/null \
-    -p crisis_name "$CRISIS" -p phase_name "$phase" --log-output
+    -p crisis_name "$CRISIS" -p phase_name "$phase" --cwd "$NOTEBOOK_DIR" --log-output
 done
 
 echo "All Reddit phases complete."
