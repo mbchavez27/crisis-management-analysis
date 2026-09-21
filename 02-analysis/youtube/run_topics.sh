@@ -8,6 +8,7 @@ PHASES=(
   02-confirmation
   03-spread
   04-reckoning
+  05-lingering
 )
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
