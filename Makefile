@@ -99,7 +99,14 @@ clean:
 	rm -f 01-preprocessing/output/ateneo-drowning/youtube/*.csv
 	rm -f 01-preprocessing/output/ateneo-drowning/reddit/*.csv
 	rm -f 01-preprocessing/output/ateneo-drowning/transcripts/*.csv
-	rm -f 02-analysis/output/ateneo-drowning/scored_*.csv
-	rm -f 02-analysis/output/ateneo-drowning/topics_*.csv
-	rm -f outputs/figures/*.png
+	rm -f 02-analysis/output/ateneo-drowning/youtube-comments/sentiment-analysis/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/youtube-comments/topic-modeling/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/transcripts/sentiment-analysis/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/transcripts/topic-modeling/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/reddit/sentiment-analysis/*.csv
+	rm -f 02-analysis/output/ateneo-drowning/reddit/topic-modeling/*.csv
+	rm -f outputs/figures/01-preprocessing/*.png
+	rm -f outputs/figures/02-analysis/youtube/*.png
+	rm -f outputs/figures/02-analysis/transcripts/*.png
+	rm -f outputs/figures/03-insights/*.png
 	@echo "=== Outputs cleaned ==="

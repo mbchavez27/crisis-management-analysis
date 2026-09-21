@@ -4,7 +4,7 @@ set -euo pipefail
 CRISIS="${CRISIS:-ateneo-drowning}"
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
-REVIEW_CSV="$(cd "$(dirname "$0")/../../02-analysis/output/$CRISIS" && pwd)/topic-review-sheet.csv"
+REVIEW_CSV="$(cd "$(dirname "$0")/../../02-analysis/output/$CRISIS/youtube-comments/topic-modeling" && pwd)/topic-review-sheet.csv"
 
 echo "=== Generating cross-phase review sheet ==="
 papermill "$NOTEBOOK_DIR/youtube-comments-topic-validation.ipynb" /dev/null \
