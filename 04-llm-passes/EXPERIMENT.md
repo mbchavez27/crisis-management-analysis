@@ -9,7 +9,7 @@ parses back a JSON array. Architecture adapted from the Translation Pipeline v2
 
 | Decision | Value |
 |---|---|
-| Data | `youtube_backup/04-institutional_response-uaap_ban.csv` (100 rows) |
+| Data | `youtube_backup/02-immediate_reaction_extended.csv`, seeded sample n=2000 (`sample_seed = 42`) |
 | Text | Full, no truncation (`max_comment_chars = None`) |
 | IDs | Synthesized `{stem}-{idx:05d}`; source CSVs have no `id` column |
 | Batch / workers | 25 / 2, shared token-bucket pacing at 12 RPM target |
@@ -23,7 +23,7 @@ parses back a JSON array. Architecture adapted from the Translation Pipeline v2
 
 | Decision | Trigger criterion | Status |
 |---|---|---|
-| Batch 25 vs 50 | 0 batch failures on `uaap_ban` → 50, else stay 25 | pending evidence |
+| Batch 25 vs 50 | 0 batch failures on the 2k sample → 50, else stay 25 | pending evidence |
 | Production workers | Measured sec/call + AI Studio RPM/TPM quota | pending evidence |
 | Keep Gemma vs Gemini Flash fallback | Spot-check quality, esp. prompt-2 category discipline | pending evidence |
 | Pipeline wiring (default composite vs opt-in) | First full-run wall time | pending evidence |
