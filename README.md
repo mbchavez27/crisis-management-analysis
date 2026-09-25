@@ -27,6 +27,7 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │       ├── scored_{phase}.csv / scored_transcripts-{source}.csv
 │       └── topics_{phase}.csv / topics_transcripts-{source}.csv
 ├── 03-llm-passes/
+│   ├── prompts/                          # Versioned LLM pass prompts (notebook-loadable)
 │   ├── notebooks/                        # LLM passes (topic-label refinement, phase summaries)
 │   └── output/{crisis-slug}/              # LLM pass outputs per crisis
 ├── 04-summary/
@@ -41,6 +42,8 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │   └── {future-crisis}/            # Add new crises here
 ├── outputs/
 │   └── figures/
+├── setup.sh                # Fresh-PC setup (uv sync + calamancy model + NLTK)
+├── .env.example            # Template for .env (copy, never commit .env)
 ├── pyproject.toml
 ├── uv.lock
 └── main.py
@@ -74,30 +77,69 @@ Each crisis lives under `00-data/{crisis-slug}/` with its own set of YouTube, Re
 4. **Cross-Phase Analysis** — Sentiment trajectory, within-phase decay, boundary shifts.
 5. **Summary** — Consolidated findings with visualizations.
 
-### Running the Pipeline
+### Running the Pipeline (always via `uv run`)
 
 ```bash
 # Full pipeline for default crisis (ateneo-drowning)
-python main.py --stage pipeline
+uv run python main.py --stage pipeline
+
+# Interactive menu
+uv run python main.py
 
 # Run specific stage
-python main.py --stage preprocess
-python main.py --stage analysis
+uv run python main.py --stage preprocess
+uv run python main.py --stage analysis
+
+# List all stages
+uv run python main.py --list
 
 # Clean outputs
-python main.py --clean
+uv run python main.py --clean
+
+# Direct scripts (equivalent, venv-safe without activation)
+uv run bash 01-preprocessing/run_youtube.sh
 
 # Run for specific crisis (set CRISIS env var)
-CRISIS=ateneo-drowning bash 01-preprocessing/run_youtube.sh
+CRISIS=ateneo-drowning uv run bash 01-preprocessing/run_youtube.sh
+
+# Or via make
+make pipeline
 ```
 
-## Setup
+## Setup (fresh clone / lab PC)
+
+Prerequisites: `uv 0.10+`, ~25GB free disk (`.venv` ~6GB + HuggingFace cache ~15GB), internet on first run.
 
 ```bash
-uv sync
+git clone git@github.com:mbchavez27/crisis-management-analysis.git
+cd crisis-management-analysis
+
+# 1. Env + models (or: make setup)
+bash setup.sh
+
+# 2. API keys (.env is gitignored — never commit it)
+cp .env.example .env  # then fill GEMINI_API_KEY / GEMMA_API_KEY
+
+# 3. Run
+uv run python main.py --stage pipeline
 ```
 
-Requires Python >= 3.11. Key dependencies: `pandas`, `numpy`, `emoji`, `nltk`, `transformers`, `bertopic`, `sentence-transformers`, `spacy`, `matplotlib`, `seaborn`, `scipy`, `torch`.
+| Env var | Needed for | Where used |
+|---|---|---|
+| `GEMINI_API_KEY` | topic-label refinement | `02-analysis/*/topic-modeling.ipynb` via `load_dotenv("../../.env")` |
+| `GEMMA_API_KEY` | LLM passes | `03-llm-passes/notebooks/` |
+| `CRISIS` | multi-crisis select (default `ateneo-drowning`) | all `run_*.sh`, e.g. `CRISIS=... uv run bash ...` |
+
+Dependencies (`pyproject.toml`, pinned in `uv.lock`): `torch`, `transformers`, `sentence-transformers`, `bertopic`, `calamancy` + `tl_calamancy_md` (installed by `setup.sh` from HuggingFace, not PyPI), `spacy`, `nltk` (`punkt_tab`, `stopwords`), `pandas`, `emoji`, `matplotlib`, `seaborn`, `papermill`, `google-genai`, `python-dotenv`. Python 3.11 per `.python-version` (uv auto-provisions).
+
+Raw data (`00-data/`, ~12MB) is tracked in git — no separate download needed. First notebook run also pulls HF models (XLM-R, embeddings) into the HF cache.
+
+Troubleshooting:
+
+- `KeyError: 'GEMINI_API_KEY'` → you skipped `cp .env.example .env`.
+- `Can't find model 'tl_calamancy_md'` → rerun `bash setup.sh` (step 2).
+- `papermill: command not found` → you ran bare `bash run_*.sh`; use `uv run bash ...` or `source .venv/bin/activate` first.
+- Slow on CPU-only lab PC → expected for XLM-R + BERTopic; test one phase first (e.g. `uv run python main.py --stage sentiment-youtube`).
 
 ## License
 

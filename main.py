@@ -72,7 +72,7 @@ def run_stage(name: str, force: bool = False) -> bool:
     print(f"{'='*50}\n")
 
     result = subprocess.run(
-        ["bash", str(script_path)],
+        ["uv", "run", "bash", str(script_path)],
         cwd=str(PROJECT_ROOT),
     )
 

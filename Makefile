@@ -1,12 +1,15 @@
-.PHONY: pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
-       analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
-       insights sentiment-change summary clean help
+.PHONY: setup pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
+        analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
+        insights sentiment-change summary clean help
 
 # Default target
 help:
 	@echo "=== Crisis Management Analysis Pipeline ==="
 	@echo ""
 	@echo "Usage: make <target>"
+	@echo ""
+	@echo "Setup:"
+	@echo "  setup                 Fresh-PC setup (uv sync + calamancy model + NLTK data)"
 	@echo ""
 	@echo "Pipeline targets:"
 	@echo "  pipeline              Run full pipeline (preprocess → analysis → insights)"
@@ -32,6 +35,12 @@ help:
 	@echo ""
 	@echo "Utility targets:"
 	@echo "  clean                 Remove all output files"
+
+# === Setup ===
+
+setup:
+	@echo "--- Fresh-PC setup ---"
+	@bash setup.sh
 
 # Full pipeline
 pipeline: preprocess analysis insights

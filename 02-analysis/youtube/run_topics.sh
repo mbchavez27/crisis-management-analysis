@@ -15,7 +15,7 @@ NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 for phase in "${PHASES[@]}"; do
   echo "=== YouTube Topics [$CRISIS]: $phase ==="
-  papermill "$NOTEBOOK_DIR/youtube-comments-topic-modeling.ipynb" /dev/null \
+  uv run papermill "$NOTEBOOK_DIR/youtube-comments-topic-modeling.ipynb" /dev/null \
     -p crisis_name "$CRISIS" -p phase_name "$phase" --cwd "$NOTEBOOK_DIR" --log-output
 done
 
