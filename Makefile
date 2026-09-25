@@ -90,7 +90,7 @@ sentiment-change:
 
 summary:
 	@echo "--- Generating summary ---"
-	@bash 05-summary/run_summary.sh
+	@bash 04-summary/run_summary.sh
 
 # === Cleanup ===
 
@@ -108,5 +108,5 @@ clean:
 	rm -f outputs/figures/01-preprocessing/*.png
 	rm -f outputs/figures/02-analysis/youtube/*.png
 	rm -f outputs/figures/02-analysis/transcripts/*.png
-	rm -f outputs/figures/05-summary/*.png
+	rm -f outputs/figures/04-summary/*.png
 	@echo "=== Outputs cleaned ==="

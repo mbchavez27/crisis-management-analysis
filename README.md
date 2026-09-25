@@ -26,10 +26,10 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │   └── output/{crisis-slug}/
 │       ├── scored_{phase}.csv / scored_transcripts-{source}.csv
 │       └── topics_{phase}.csv / topics_transcripts-{source}.csv
-├── 04-llm-passes/
+├── 03-llm-passes/
 │   ├── notebooks/                        # LLM passes (topic-label refinement, phase summaries)
 │   └── output/{crisis-slug}/              # LLM pass outputs per crisis
-├── 05-summary/
+├── 04-summary/
 │   └── notebooks/
 │       └── summary.ipynb    # Consolidated findings
 ├── 00-data/

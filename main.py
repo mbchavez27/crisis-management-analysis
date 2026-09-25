@@ -34,7 +34,7 @@ STAGES = {
     "sentiment-transcripts": "02-analysis/transcripts/run_sentiment.sh",
     "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
     # Insights
-    "summary":               "05-summary/run_summary.sh",
+    "summary":               "04-summary/run_summary.sh",
 }
 
 COMPOSITE_STAGES = {

@@ -1,4 +1,4 @@
-# 04-llm-passes Experiment Log
+# 03-llm-passes Experiment Log
 
 Batched LLM annotation passes over crisis comments (Gemma 4 31B via Gemini API).
 Each notebook packs `batch_size` comments as `id,comment` CSV per request and
@@ -31,6 +31,6 @@ parses back a JSON array. Architecture adapted from the Translation Pipeline v2
 
 ## Results
 
-_Blocked: no `GEMMA_API_KEY` available yet — run `bash 04-llm-passes/run_experiment.sh`
+_Blocked: no `GEMMA_API_KEY` available yet — run `bash 03-llm-passes/run_experiment.sh`
 once a key is in `.env`, then fill in parse success rate, id coverage, failure
 tallies, sec/call, and spot-check notes here._
