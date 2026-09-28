@@ -33,6 +33,8 @@ STAGES = {
     # Transcript analysis
     "sentiment-transcripts": "02-analysis/transcripts/run_sentiment.sh",
     "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
+    # Local LLM passes (full-phase, no API key)
+    "llm-local":             "03-llm-passes/run_local.sh",
     # Insights
     "summary":               "04-summary/run_summary.sh",
 }
