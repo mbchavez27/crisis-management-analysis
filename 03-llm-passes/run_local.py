@@ -1,16 +1,16 @@
-"""Local-LLM runner for the 03-llm-passes coding passes.
+"""Local-LLM runner for the v2 full-codebook coding pass.
 
-Mirrors the pass notebooks cell-for-cell except the micro-sample step:
-full phase CSVs are coded instead of head(n_sample). One file serves all
-three passes; per-pass differences (prompt, output dir, JSON schema) live
-in the PASSES table so shared logic is never triplicated.
+Mirrors the pass-04 notebook cell-for-cell except the micro-sample step:
+full phase CSVs are coded instead of head(n_sample). Passes 1-3 (notebooks
+and prompts) are archived under legacy/; this runner serves the single
+active v2 codebook pass.
 
 Opt-in execution: --phases and --passes are both required, and the script
 runs exactly their cartesian product (one phase x one prompt per run pair).
 
 Example:
-    uv run python run_local.py --phases 04-reckoning --passes 1
-    uv run python run_local.py --phases 04-reckoning --passes 1,2,3 --limit 10
+    uv run python run_local.py --phases 04-reckoning --passes 4
+    uv run python run_local.py --phases 04-reckoning --passes 4 --limit 10
 """
 
 from __future__ import annotations
@@ -33,7 +33,97 @@ PROMPTS_DIR = HERE / "prompts"
 OUTPUT_ROOT = HERE / "output"
 
 DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B"
-SKIP_SUMMARY_COLS = {"row_id", "video_id", "text", "_row_id", "row_ids"}
+SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids"}
+
+REQUIRED_KEYS = frozenset(
+    {
+        "id",
+        "LANGUAGE",
+        "ANGER",
+        "CONTEMPT",
+        "DISGUST",
+        "SADNESS",
+        "CONDOLENCE",
+        "COMPASSION_VICTIMS",
+        "SYMPATHY_OFFENDER",
+        "FEAR",
+        "NORM_VIOLATION",
+        "ATTRIBUTION",
+        "IGNORED_WARNING",
+        "RECURRENCE",
+        "COVER_UP",
+        "ALT_ACCOUNT",
+        "INJUSTICE",
+        "SELF_INTEREST",
+        "BLAME_TARGETS",
+        "STANCE",
+        "NEEDS_CONTEXT",
+        "VALUES",
+        "CLASS_FRAME",
+        "CLASS_DIRECTION",
+        "IDENTITY_FRAME",
+        "APPEARANCE_ATTACK",
+        "ACTIONS",
+        "RESPONSE_TARGET",
+        "RESPONSE_EVAL",
+        "REJECT_REASONS",
+        "TARGET_OF_COMMENT",
+        "META_DISCOURSE",
+        "SARCASM",
+        "UNCODABLE",
+        "evidence",
+        "evidence_en",
+        "EMERGENT",
+        "OTHER_NOTE",
+        "confidence",
+    }
+)
+
+COLUMN_ORDER = [
+    "row_id",
+    "comment_id",
+    "video_id",
+    "text",
+    "id",
+    "LANGUAGE",
+    "ANGER",
+    "CONTEMPT",
+    "DISGUST",
+    "SADNESS",
+    "CONDOLENCE",
+    "COMPASSION_VICTIMS",
+    "SYMPATHY_OFFENDER",
+    "FEAR",
+    "NORM_VIOLATION",
+    "ATTRIBUTION",
+    "IGNORED_WARNING",
+    "RECURRENCE",
+    "COVER_UP",
+    "ALT_ACCOUNT",
+    "INJUSTICE",
+    "SELF_INTEREST",
+    "BLAME_TARGETS",
+    "STANCE",
+    "NEEDS_CONTEXT",
+    "VALUES",
+    "CLASS_FRAME",
+    "CLASS_DIRECTION",
+    "IDENTITY_FRAME",
+    "APPEARANCE_ATTACK",
+    "ACTIONS",
+    "RESPONSE_TARGET",
+    "RESPONSE_EVAL",
+    "REJECT_REASONS",
+    "TARGET_OF_COMMENT",
+    "META_DISCOURSE",
+    "SARCASM",
+    "UNCODABLE",
+    "evidence",
+    "evidence_en",
+    "EMERGENT",
+    "OTHER_NOTE",
+    "confidence",
+]
 
 
 @dataclass(frozen=True)
@@ -41,7 +131,6 @@ class PassSpec:
     """Per-pass configuration. Everything else is shared logic."""
 
     num: int
-    prompt_file: str
     outdir: str
     prefix: str
     required_keys: frozenset[str]
@@ -49,61 +138,46 @@ class PassSpec:
 
 
 PASSES: dict[int, PassSpec] = {
-    1: PassSpec(
-        num=1,
-        prompt_file="pass-01-grief-outrage.txt",
-        outdir="pass-01-grief-outrage",
-        prefix="pass01",
-        required_keys=frozenset(
-            {
-                "video_id",
-                "text",
-                "grief_or_outrage",
-                "value_or_relationship_invoked",
-                "family_referenced",
-            }
-        ),
-        column_order=[
-            "row_id",
-            "video_id",
-            "text",
-            "grief_or_outrage",
-            "value_or_relationship_invoked",
-            "family_referenced",
-        ],
-    ),
-    2: PassSpec(
-        num=2,
-        prompt_file="pass-02-basic-emotions.txt",
-        outdir="pass-02-basic-emotions",
-        prefix="pass02",
-        required_keys=frozenset(
-            {
-                "video_id",
-                "text",
-                "basic_emotions",
-                "value_or_relationship_invoked",
-                "family_referenced",
-            }
-        ),
-        column_order=[
-            "row_id",
-            "video_id",
-            "text",
-            "basic_emotions",
-            "value_or_relationship_invoked",
-            "family_referenced",
-        ],
-    ),
-    3: PassSpec(
-        num=3,
-        prompt_file="pass-03-actions-demanded.txt",
-        outdir="pass-03-actions-demanded",
-        prefix="pass03",
-        required_keys=frozenset({"video_id", "text", "action_demanded"}),
-        column_order=["row_id", "video_id", "text", "action_demanded"],
+    4: PassSpec(
+        num=4,
+        outdir="pass-04-full-codebook",
+        prefix="pass04",
+        required_keys=REQUIRED_KEYS,
+        column_order=COLUMN_ORDER,
     ),
 }
+
+
+def build_codebook_prompt(crisis: str, phase: str) -> str:
+    """Assemble the v2 prompt: wrapper + codebook text + per-phase context.
+
+    Mirrors the pass-04 notebook's prompt-assembly cell so notebook and
+    runner send byte-identical instructions for the same phase.
+    """
+    codebook = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
+    wrapper = (PROMPTS_DIR / "coding-prompt-v2.txt").read_text(encoding="utf-8").strip()
+    contexts = json.loads((PROMPTS_DIR / "phase-context.json").read_text(encoding="utf-8"))
+    case_context = contexts.get(crisis, {}).get(phase, "")
+    if not case_context:
+        raise RuntimeError(f"No phase context for {crisis}/{phase} in phase-context.json.")
+    prompt = (
+        wrapper.replace("MODE: [PILOT | FULL]", "MODE: FULL")
+        .replace("<<<paste full text of the codebook here>>>", codebook)
+        .replace(
+            "[The data are made about a Youtube video on ..... No judgments about fault.]",
+            case_context,
+        )
+    )
+    for marker in ("<<<paste", "PILOT | FULL", "....."):
+        if marker in prompt:
+            raise RuntimeError(f"Prompt assembly missed placeholder: {marker}")
+    return prompt
+
+
+def to_line(cid: Any, txt: Any) -> str:
+    """Format one comment as an `id | text` line (newlines flattened)."""
+    flat = str(txt).replace("\r", " ").replace("\n", " ").strip()
+    return f"{cid} | {flat}"
 
 
 def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
@@ -120,7 +194,7 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--passes",
         required=True,
-        help="Comma-separated pass numbers from {1,2,3}, e.g. '1' or '1,2,3'.",
+        help="Comma-separated pass numbers from {4}, e.g. '4'.",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL, help="HF model id.")
     parser.add_argument(
@@ -131,7 +205,7 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--chunk-size", type=int, default=5, help="Rows per LLM call.")
     parser.add_argument(
-        "--max-new-tokens", type=int, default=2048, help="Generation ceiling per chunk."
+        "--max-new-tokens", type=int, default=8192, help="Generation ceiling per chunk."
     )
     parser.add_argument(
         "--overwrite",
@@ -154,9 +228,10 @@ def load_phase_df(crisis: str, phase: str, limit: Optional[int]) -> pd.DataFrame
     full_df = pd.read_csv(input_path)
     if limit is not None:
         full_df = full_df.head(limit)
-    df = full_df[["video_id", "text"]].copy()
+    df = full_df[["comment_id", "video_id", "text"]].copy()
     df = df.dropna()
-    df["text"] = df["text"].astype(str).str.strip()
+    for col in ("comment_id", "video_id", "text"):
+        df[col] = df[col].astype(str).str.strip()
     df = df[df["text"] != ""].reset_index(drop=True)
     df["row_id"] = df.index
     return df
@@ -170,18 +245,33 @@ def strip_fences(raw: str) -> str:
     return text.strip()
 
 
+def load_objs(raw: str) -> list[dict[str, Any]] | dict[str, Any]:
+    """Parse model output as JSONL-per-line, falling back to a JSON value."""
+    text = strip_fences(raw)
+    if "\n" in text:
+        try:
+            return [json.loads(line) for line in text.splitlines() if line.strip()]
+        except Exception:
+            pass
+    return json.loads(text)
+
+
 def parse_chunk_response(
-    raw: str, row_ids: list[int], required: frozenset[str]
+    raw: str,
+    row_ids: list[int],
+    required: frozenset[str],
+    id_of: Optional[dict[int, str]] = None,
 ) -> list[dict[str, Any]]:
     """Parse one chunk response into per-row records.
 
-    Raises ValueError on empty output, bad JSON, count mismatch, or
-    missing keys so the caller can split-and-retry or log a hard failure.
+    Raises ValueError on empty output, bad JSON, count mismatch, missing
+    keys, or id mismatch so the caller can split-and-retry or log a hard
+    failure.
     """
     if not raw.strip():
         raise ValueError("empty_response")
     try:
-        objs = json.loads(strip_fences(raw))
+        objs = load_objs(raw)
     except Exception as exc:
         raise ValueError(f"json_decode: {exc!r}") from exc
     if isinstance(objs, dict):
@@ -193,6 +283,11 @@ def parse_chunk_response(
         missing = required - set(obj.keys())
         if missing:
             raise ValueError(f"missing_keys: {sorted(missing)}")
+        if id_of is not None:
+            want = str(id_of.get(rid, "")).strip()
+            got = str(obj.get("id", "")).strip()
+            if got != want:
+                raise ValueError(f"id_mismatch: {got!r} vs {want!r}")
         obj["_row_id"] = rid
         records.append(obj)
     return records
@@ -276,7 +371,8 @@ def run_pair(
     partial_resp = Path(str(output_path) + ".partial.jsonl")
     partial_fail = Path(str(log_path) + ".partial.log")
 
-    prompt_template = (PROMPTS_DIR / spec.prompt_file).read_text(encoding="utf-8").strip()
+    prompt_template = build_codebook_prompt(crisis, phase)
+    id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
 
     chunks_queue = [df.iloc[i : i + chunk_size] for i in range(0, len(df), chunk_size)]
     raw_responses: list[dict[str, Any]] = []
@@ -349,12 +445,16 @@ def run_pair(
             current = chunks_queue.pop(0)
             n_rows = len(current)
             row_ids = current["row_id"].tolist()
-            csv_str = current[["video_id", "text"]].to_csv(index=False)
+            payload = "\n".join(
+                to_line(r["comment_id"], r["text"]) for _, r in current.iterrows()
+            )
             try:
-                raw = generator.generate(prompt_template + "\n\nData:\n" + csv_str)
+                raw = generator.generate(
+                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload
+                )
                 rec = {"row_ids": row_ids, "text": raw or ""}
                 # Validate now so bad chunks split immediately instead of at export.
-                parse_chunk_response(raw or "", row_ids, spec.required_keys)
+                parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of)
                 raw_responses.append(rec)
                 with open(partial_resp, "a", encoding="utf-8") as f:
                     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -369,7 +469,7 @@ def run_pair(
                     row = current.iloc[0]
                     entry = {
                         "row_id": int(row["row_id"]),
-                        "video_id": row.get("video_id"),
+                        "comment_id": row.get("comment_id"),
                         "reason": "content_failure",
                         "error": repr(exc),
                         "text_length": len(str(row["text"])),
@@ -395,7 +495,7 @@ def run_pair(
         try:
             parsed_records.extend(
                 parse_chunk_response(
-                    item["text"], item["row_ids"], spec.required_keys
+                    item["text"], item["row_ids"], spec.required_keys, id_of
                 )
             )
         except Exception as exc:
@@ -406,9 +506,11 @@ def run_pair(
             f.write(json.dumps({"kind": "api_failure", **entry}, ensure_ascii=False) + "\n")
         for entry in parse_failures:
             f.write(json.dumps({"kind": "parse_failure", **entry}, ensure_ascii=False) + "\n")
+    emergent_hit = sum(1 for r in parsed_records if str(r.get("EMERGENT", "")).strip())
     print(
         f"parsed: {len(parsed_records)}/{len(df)} rows | "
-        f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)}"
+        f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)} | "
+        f"EMERGENT non-empty (FULL-mode warning): {emergent_hit}"
     )
 
     with open(output_path, "w", encoding="utf-8") as f:
@@ -429,6 +531,8 @@ def run_pair(
     for col in [c for c in merged.columns if c not in SKIP_SUMMARY_COLS]:
         if col == "model" or col.endswith("_llm"):
             continue
+        if col in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE"):
+            continue
         series = (
             merged[col].astype(str)
             if merged[col].apply(lambda v: isinstance(v, list)).any()
@@ -438,10 +542,10 @@ def run_pair(
         print(series.value_counts(dropna=False).head(20).to_string())
 
     keep = [c for c in spec.column_order if c in merged.columns]
-    for drop_col in ("video_id_llm", "text_llm"):
+    for drop_col in ("comment_id_llm", "video_id_llm", "text_llm"):
         if drop_col in merged.columns:
             merged = merged.drop(columns=[drop_col])
-    for list_col in [c for c in keep if c not in ("row_id", "video_id", "text")]:
+    for list_col in [c for c in keep if c not in ("row_id", "comment_id", "video_id", "text")]:
         if list_col in merged.columns:
             merged[list_col] = merged[list_col].apply(
                 lambda v: json.dumps(v, ensure_ascii=False)
@@ -460,7 +564,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     pass_nums = [int(tok) for tok in split_csv_arg(args.passes)]
     for num in pass_nums:
         if num not in PASSES:
-            print(f"Unknown pass: {num} (choose from 1,2,3)")
+            print(f"Unknown pass: {num} (choose from {sorted(PASSES)})")
             return 2
 
     ok = True

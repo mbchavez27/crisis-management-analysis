@@ -1,0 +1,10 @@
+{
+  "_note": "Neutral per-phase CASE CONTEXT strings for the v2 coding prompt. Descriptive only: timing and information environment, no judgments about fault. Grounded in 00-data/ateneo-drowning/youtube-comments/README.md trigger boundaries.",
+  "ateneo-drowning": {
+    "01-onset": "The comments below are on YouTube videos posted within 24 hours of a drowning incident in June 2026 involving Ateneo student-athletes. No official account of what happened exists yet; reactions are immediate and information is sparse. No judgments about fault.",
+    "02-confirmation": "The comments below are on YouTube videos posted after the first 24 hours, once the first official casualty and status confirmations and initial institutional statements were released. Commenters are reacting to both the incident and these first official framings. No judgments about fault.",
+    "03-spread": "The comments below are on YouTube videos posted after official confirmations and before any formal investigative or regulatory body opened a case. Coverage has widened to secondary storylines and public debate, with multiple narratives circulating. No judgments about fault.",
+    "04-reckoning": "The comments below are on YouTube videos posted after a formal investigation opened and around the first formal accountability outcomes (institutional statements, apologies, internal responses). Commenters are reacting to both the incident and these organizational responses. No judgments about fault.",
+    "05-lingering": "The comments below are on YouTube videos posted after the first formal accountability outcomes, in the aftermath and long tail of the June 2026 drowning incident involving Ateneo student-athletes. Attention is lower-intensity and may reference legal or regulatory proceedings. No judgments about fault."
+  }
+}
