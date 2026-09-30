@@ -132,20 +132,61 @@ uv run python main.py --stage pipeline
 
 ### Local LLM runner (GPU)
 
-`03-llm-passes/run_local.sh` needs **no API key and no `.env`** — only `uv sync`, a CUDA GPU, and network to HuggingFace for the first weight download (~18GB for the default 9B model).
+`03-llm-passes/run_local.sh` needs **no API key and no `.env`** — only `uv`, a CUDA GPU, and network to HuggingFace for the first weight download (~18GB for the default 9B model). `setup.sh` / `.env` are for the notebook pipeline, not this runner.
+
+#### Lab PC (8–12 GB GPU, e.g. RTX 3060 — 4-bit)
 
 ```bash
-# Smoke test first: codes 10 rows, validates model + GPU + output format
-LIMIT=10 PASSES=1 uv run bash 03-llm-passes/run_local.sh
+# Prereqs: uv (curl -LsSf https://astral.sh/uv/install.sh | sh), working nvidia-smi, ~35GB free disk
+git clone git@github.com:mbchavez27/crisis-management-analysis.git
+cd crisis-management-analysis
+uv sync
 
-# Full precision (default; needs >=20GB VRAM — A100/3090-class)
-PHASES=04-reckoning PASSES=1 uv run bash 03-llm-passes/run_local.sh
+# Smoke test: codes 10 rows, pulls the ~18GB weights, validates GPU + output format
+LIMIT=10 LOAD_IN_4BIT=1 PASSES=1 uv run bash 03-llm-passes/run_local.sh
 
-# 4-bit nf4 (<=12GB VRAM, e.g. lab RTX 3060; ~6GB for the 9B default)
-LOAD_IN_4BIT=1 PHASES=04-reckoning PASSES=1 uv run bash 03-llm-passes/run_local.sh
+# Real run (4-bit nf4, ~6GB VRAM for the 9B default)
+PHASES=04-reckoning PASSES=1 LOAD_IN_4BIT=1 uv run bash 03-llm-passes/run_local.sh
 ```
 
-Precision policy: run each crisis's **canonical results in full precision** (GPU VM) and treat 4-bit output as secondary — don't mix precisions within one crisis's analysis without disclosing it. Any standard HF causal LM works via `MODEL=<hf-id>`; vet new models with `LIMIT=10` first (weak models fail as content failures, not crashes). Exit code 1 means rows are still pending — rerun the same command to resume (never `OVERWRITE=1` on a resume).
+GPUs below compute capability 7.5 (e.g. GTX 10-series) are unsupported by current torch wheels — use the GCP VM instead.
+
+#### GCP VM (A100 40 GB — canonical full precision)
+
+```bash
+# 0. One-time: request NVIDIA_A100_GPUS quota (1) in your region — approval can take days
+# 1. Create the VM (Deep Learning image = driver preinstalled; pick another pytorch image
+#    family with: gcloud compute images list --project=deeplearning-platform-release)
+gcloud compute instances create coding-vm \
+  --zone=us-central1-a --machine-type=a2-highgpu-1g \
+  --image-family=pytorch-2-cuda12-8-ubuntu-22-04-pt \
+  --image-project=deeplearning-platform-release \
+  --boot-disk-size=100GB
+
+# 2. SSH in and set up
+gcloud compute ssh coding-vm --zone=us-central1-a
+nvidia-smi    # expect 1x A100-SXM4-40GB
+curl -LsSf https://astral.sh/uv/install.sh | sh && source ~/.local/bin/env
+git clone git@github.com:mbchavez27/crisis-management-analysis.git
+cd crisis-management-analysis && uv sync
+uv run hf auth login    # only if the weights download is 401 license-gated
+
+# 3. Smoke test, then run inside tmux (an SSH drop must not kill an 8h+ run)
+LIMIT=10 PASSES=1 uv run bash 03-llm-passes/run_local.sh
+tmux new -s coding
+PHASES=04-reckoning PASSES=1 uv run bash 03-llm-passes/run_local.sh 2>&1 | tee reckoning.log
+# remaining phases (after reckoning finishes):
+# PHASES=01-onset,02-confirmation,03-spread,05-lingering PASSES=1 uv run bash 03-llm-passes/run_local.sh
+
+# 4. Retrieve results, then STOP the VM (an idle A100 bills ~$3.67/hr)
+exit
+gcloud compute scp --recurse coding-vm:~/crisis-management-analysis/03-llm-passes/output ./vm-output --zone=us-central1-a
+gcloud compute instances stop coding-vm --zone=us-central1-a
+```
+
+Spot variant saves ~40% (`--provisioning-model=SPOT`): safe because per-chunk checkpoints resume automatically after a preemption — rerun the same command. One model load is reused across all requested phases, so pass every phase in one invocation when possible.
+
+Shared notes: precision policy — run each crisis's **canonical results in full precision** (GPU VM) and treat 4-bit output as secondary — don't mix precisions within one crisis's analysis without disclosing it. Any standard HF causal LM works via `MODEL=<hf-id>`; vet new models with `LIMIT=10` first (weak models fail as content failures, not crashes). Exit code 1 means rows are still pending — rerun the same command to resume (never `OVERWRITE=1` on a resume).
 
 Dependencies (`pyproject.toml`, pinned in `uv.lock`): `torch`, `transformers`, `accelerate`, `bitsandbytes`, `sentence-transformers`, `bertopic`, `calamancy` + `tl_calamancy_md` (installed by `setup.sh` from HuggingFace, not PyPI), `spacy`, `nltk` (`punkt_tab`, `stopwords`), `pandas`, `emoji`, `matplotlib`, `seaborn`, `papermill`, `google-genai`, `python-dotenv`. Python 3.11 per `.python-version` (uv auto-provisions).
 
