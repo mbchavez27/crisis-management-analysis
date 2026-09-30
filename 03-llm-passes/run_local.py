@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import random
 import re
 import sys
 import time
@@ -34,6 +35,71 @@ OUTPUT_ROOT = HERE / "output"
 
 DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B"
 SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids"}
+
+# Outage-resilient retry: exponential backoff, requeue, circuit breaker.
+# Values mirror the full-codebook-coding notebook inference cell exactly.
+TRANSIENT_TRIES = 5       # 5 attempts => transient sleeps ~10/20/40/80s
+TRANSIENT_BASE_S = 10
+BACKOFF_CAP_S = 300
+RATE_LIMIT_SLEEP = (60, 90)
+COOLDOWN_S = 60           # pause before a requeued chunk is attempted again
+MAX_REVISITS = 3          # requeues per chunk before it is marked pending
+BREAKER_TRIP = 5          # consecutive outage-exhausted chunks before abort
+
+
+def is_rate_limited(e: Exception) -> bool:
+    msg = repr(e)
+    return ("429" in msg) or ("RESOURCE_EXHAUSTED" in msg)
+
+
+def is_transient(e: Exception) -> bool:
+    msg = repr(e)
+    return any(
+        k in msg
+        for k in (
+            "500",
+            "INTERNAL",
+            "503",
+            "UNAVAILABLE",
+            "HIGH DEMAND",
+            "Timeout",
+            "TIMEOUT",
+            "TimeoutError",
+            "timed out",
+        )
+    )
+
+
+def generate_with_retry(generator: Any, prompt: str, tries: int = TRANSIENT_TRIES) -> str:
+    """Generate one chunk with exponential backoff for outages (mirrors the notebook)."""
+    for attempt in range(tries):
+        try:
+            return generator.generate(prompt)
+        except Exception as e:
+            if attempt == tries - 1:
+                raise
+            if is_rate_limited(e):
+                sleep_time = random.uniform(*RATE_LIMIT_SLEEP)
+            elif is_transient(e):
+                sleep_time = min(TRANSIENT_BASE_S * (2 ** attempt) + random.uniform(0, 5), BACKOFF_CAP_S)
+            else:
+                sleep_time = (2 ** attempt) + random.uniform(0, 1)
+            print(f"  [Attempt {attempt+1} failed: {repr(e)}] Retrying in {sleep_time:.1f}s...")
+            time.sleep(sleep_time)
+
+
+def append_pending_rows(path: Path, chunk: pd.DataFrame, reason: str, error: str) -> None:
+    """Append chunk rows to the pending (transient-outage) checkpoint."""
+    with open(path, "a", encoding="utf-8") as f:
+        for _, row in chunk.iterrows():
+            ent = {
+                "row_id": int(row["row_id"]),
+                "comment_id": row.get("comment_id"),
+                "reason": reason,
+                "error": error,
+                "text_length": len(str(row["text"])),
+            }
+            f.write(json.dumps({"kind": "pending_transient", **ent}, ensure_ascii=False) + "\n")
 
 REQUIRED_KEYS = frozenset(
     {
@@ -367,9 +433,11 @@ def run_pair(
     pass_dir.mkdir(parents=True, exist_ok=True)
     output_path = pass_dir / f"{spec.prefix}_results.jsonl"
     log_path = pass_dir / f"{spec.prefix}_failures.log"
+    pending_path = pass_dir / f"{spec.prefix}_pending.log"
     csv_path = pass_dir / f"{spec.prefix}_results.csv"
     partial_resp = Path(str(output_path) + ".partial.jsonl")
     partial_fail = Path(str(log_path) + ".partial.log")
+    partial_pending = Path(str(pending_path) + ".partial.log")
 
     prompt_template = build_codebook_prompt(crisis, phase)
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
@@ -377,6 +445,8 @@ def run_pair(
     chunks_queue = [df.iloc[i : i + chunk_size] for i in range(0, len(df), chunk_size)]
     raw_responses: list[dict[str, Any]] = []
     hard_failures: list[dict[str, Any]] = []
+    revisit_counts: dict[tuple[int, ...], int] = {}
+    outage_streak = 0
 
     # Resume: successes filter the queue; prior failures are retried, never skipped.
     if not overwrite:
@@ -406,6 +476,16 @@ def run_pair(
                     partial_fail.unlink()
                 except Exception:
                     pass
+            pending_prior = 0
+            if partial_pending.exists():
+                with open(partial_pending, encoding="utf-8") as f:
+                    for line in f:
+                        try:
+                            entry = json.loads(line)
+                            if "row_id" in entry:
+                                pending_prior += 1
+                        except Exception:
+                            pass
             hard_failures = []
             if ok_ids:
                 chunks_queue = [
@@ -416,12 +496,13 @@ def run_pair(
                 print(
                     f"Resuming: {len(ok_ids)} rows done, "
                     f"{prior_failures} prior failures to retry, "
+                    f"{pending_prior} pending-transient, "
                     f"{len(chunks_queue)} chunks left."
                 )
         except Exception as exc:
             print(f"Resume check failed ({exc!r}); starting fresh.")
     else:
-        for p in (partial_resp, partial_fail):
+        for p in (partial_resp, partial_fail, partial_pending):
             try:
                 p.unlink(missing_ok=True)
             except Exception:
@@ -440,6 +521,28 @@ def run_pair(
         desc=f"LLM-local {crisis}/{phase}/pass{spec.num}",
         unit="rows",
     )
+    def split_or_log(chunk: pd.DataFrame, n_rows: int, exc: Exception) -> None:
+        """Non-outage failure: halve the chunk, or log a single-row content failure."""
+        if n_rows > 1:
+            print(f"Chunk failure (size {n_rows}): {exc!r} — splitting.")
+            mid = n_rows // 2
+            chunks_queue.insert(0, chunk.iloc[mid:])
+            chunks_queue.insert(0, chunk.iloc[:mid])
+        else:
+            row = chunk.iloc[0]
+            print(f"Hard failure on row_id {row['row_id']}: {exc!r}")
+            entry = {
+                "row_id": int(row["row_id"]),
+                "comment_id": row.get("comment_id"),
+                "reason": "content_failure",
+                "error": repr(exc),
+                "text_length": len(str(row["text"])),
+            }
+            hard_failures.append(entry)
+            with open(partial_fail, "a", encoding="utf-8") as f:
+                f.write(json.dumps({"kind": "api_failure", **entry}, ensure_ascii=False) + "\n")
+            pbar.update(1)
+
     try:
         while chunks_queue:
             current = chunks_queue.pop(0)
@@ -449,44 +552,68 @@ def run_pair(
                 to_line(r["comment_id"], r["text"]) for _, r in current.iterrows()
             )
             try:
-                raw = generator.generate(
-                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload
+                raw = generate_with_retry(
+                    generator,
+                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload,
                 )
-                rec = {"row_ids": row_ids, "text": raw or ""}
-                # Validate now so bad chunks split immediately instead of at export.
-                parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of)
-                raw_responses.append(rec)
-                with open(partial_resp, "a", encoding="utf-8") as f:
-                    f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                pbar.update(n_rows)
             except Exception as exc:
-                print(f"Chunk failure (size {n_rows}): {exc!r}")
-                if n_rows > 1:
-                    mid = n_rows // 2
-                    chunks_queue.insert(0, current.iloc[mid:])
-                    chunks_queue.insert(0, current.iloc[:mid])
-                else:
-                    row = current.iloc[0]
-                    entry = {
-                        "row_id": int(row["row_id"]),
-                        "comment_id": row.get("comment_id"),
-                        "reason": "content_failure",
-                        "error": repr(exc),
-                        "text_length": len(str(row["text"])),
-                    }
-                    hard_failures.append(entry)
-                    with open(partial_fail, "a", encoding="utf-8") as f:
-                        f.write(
-                            json.dumps({"kind": "api_failure", **entry}, ensure_ascii=False)
-                            + "\n"
+                if is_rate_limited(exc) or is_transient(exc):
+                    reason = (
+                        "rate_limited_exhausted"
+                        if is_rate_limited(exc)
+                        else "transient_exhausted"
+                    )
+                    outage_streak += 1
+                    key = tuple(row_ids)
+                    revisit_counts[key] = revisit_counts.get(key, 0) + 1
+                    if revisit_counts[key] > MAX_REVISITS:
+                        print(
+                            f"   -> {reason} after {MAX_REVISITS} requeues. "
+                            f"Marking {n_rows} rows pending."
                         )
-                    pbar.update(1)
+                        append_pending_rows(partial_pending, current, reason, repr(exc))
+                        pbar.update(n_rows)
+                    else:
+                        print(
+                            f"   -> {reason}. Requeueing chunk "
+                            f"({revisit_counts[key]}/{MAX_REVISITS}); "
+                            f"cooldown {COOLDOWN_S}s."
+                        )
+                        time.sleep(COOLDOWN_S)
+                        chunks_queue.append(current)
+                    if outage_streak >= BREAKER_TRIP:
+                        print(
+                            f"Circuit breaker: {outage_streak} consecutive outage-"
+                            f"exhausted chunks. Aborting with {len(chunks_queue)} "
+                            f"chunks queued — partials saved, rerun to resume."
+                        )
+                        for c in chunks_queue:
+                            append_pending_rows(partial_pending, c, "breaker_abort", repr(exc))
+                        break
+                    continue
+                split_or_log(current, n_rows, exc)
+                continue
+            # Validate now so bad chunks split immediately instead of at export.
+            try:
+                parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of)
+            except Exception as exc:
+                split_or_log(current, n_rows, exc)
+                continue
+            rec = {"row_ids": row_ids, "text": raw or ""}
+            raw_responses.append(rec)
+            with open(partial_resp, "a", encoding="utf-8") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            outage_streak = 0
+            pbar.update(n_rows)
             time.sleep(0.1)
     finally:
         pbar.close()
         if owned_generator:
             del generator
-    print(f"Done. {len(raw_responses)} ok chunks, {len(hard_failures)} hard failures.")
+    print(
+        f"Done. {len(raw_responses)} ok chunks, {len(hard_failures)} hard failures, "
+        f"{len(chunks_queue)} chunks left queued."
+    )
 
     # Clean & parse raw chunk responses into per-row records.
     parsed_records: list[dict[str, Any]] = []
@@ -506,10 +633,32 @@ def run_pair(
             f.write(json.dumps({"kind": "api_failure", **entry}, ensure_ascii=False) + "\n")
         for entry in parse_failures:
             f.write(json.dumps({"kind": "parse_failure", **entry}, ensure_ascii=False) + "\n")
+
+    # Final pending log: drop rows that later succeeded (self-heals stale entries).
+    ok_row_ids = {rid for it in raw_responses for rid in it.get("row_ids", [])}
+    pending_entries: list[dict[str, Any]] = []
+    seen_pending: set[int] = set()
+    if partial_pending.exists():
+        with open(partial_pending, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    entry = json.loads(line)
+                except Exception:
+                    continue
+                rid = entry.get("row_id")
+                if rid in ok_row_ids or rid in seen_pending:
+                    continue
+                seen_pending.add(rid)
+                pending_entries.append(entry)
+    with open(pending_path, "w", encoding="utf-8") as f:
+        for entry in pending_entries:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
     emergent_hit = sum(1 for r in parsed_records if str(r.get("EMERGENT", "")).strip())
     print(
         f"parsed: {len(parsed_records)}/{len(df)} rows | "
         f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)} | "
+        f"pending (transient): {len(pending_entries)} | "
         f"EMERGENT non-empty (FULL-mode warning): {emergent_hit}"
     )
 
@@ -520,11 +669,17 @@ def run_pair(
     print(f"Wrote {len(parsed_records)} records -> {output_path}")
 
     res_df = pd.read_json(output_path, lines=True) if parsed_records else pd.DataFrame()
-    merged = df.merge(
-        res_df, left_on="row_id", right_on="_row_id", how="left", suffixes=("", "_llm")
-    )
-    coverage = merged["_row_id"].notna().mean() if len(merged) else 0.0
-    print(f"Coverage: {coverage:.1%} ({merged['_row_id'].notna().sum()}/{len(merged)} matched)")
+    if "_row_id" in res_df.columns:
+        merged = df.merge(
+            res_df, left_on="row_id", right_on="_row_id", how="left", suffixes=("", "_llm")
+        )
+        n_matched = int(merged["_row_id"].notna().sum())
+        coverage = (n_matched / len(merged)) if len(merged) else 0.0
+    else:
+        merged = df.copy()
+        n_matched = 0
+        coverage = 0.0
+    print(f"Coverage: {coverage:.1%} ({n_matched}/{len(merged)} matched)")
 
     # Summary counts QA gate (generic: every non-key column is a coded field).
     print(f"n rows: {len(merged)}")
@@ -554,7 +709,11 @@ def run_pair(
             )
     merged.sort_values("row_id")[keep].to_csv(csv_path, index=False)
     print(f"Wrote {len(merged)} rows (coverage {coverage:.1%}) -> {csv_path}")
-    return len(hard_failures) == 0 and len(parse_failures) == 0
+    return (
+        len(hard_failures) == 0
+        and len(parse_failures) == 0
+        and len(pending_entries) == 0
+    )
 
 
 def main(argv: Optional[list[str]] = None) -> int:
