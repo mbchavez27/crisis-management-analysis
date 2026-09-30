@@ -1,16 +1,16 @@
 """Local-LLM runner for the v2 full-codebook coding pass.
 
-Mirrors the pass-04 notebook cell-for-cell except the micro-sample step:
-full phase CSVs are coded instead of head(n_sample). Passes 1-3 (notebooks
-and prompts) are archived under legacy/; this runner serves the single
-active v2 codebook pass.
+Mirrors the full-codebook-coding notebook cell-for-cell except the micro-sample
+step: full phase CSVs are coded instead of head(n_sample). Passes 1-3
+(notebooks and prompts) are archived under legacy/; this runner serves the
+single active v2 codebook pass.
 
 Opt-in execution: --phases and --passes are both required, and the script
 runs exactly their cartesian product (one phase x one prompt per run pair).
 
 Example:
-    uv run python run_local.py --phases 04-reckoning --passes 4
-    uv run python run_local.py --phases 04-reckoning --passes 4 --limit 10
+    uv run python run_local.py --phases 04-reckoning --passes 1
+    uv run python run_local.py --phases 04-reckoning --passes 1 --limit 10
 """
 
 from __future__ import annotations
@@ -138,10 +138,10 @@ class PassSpec:
 
 
 PASSES: dict[int, PassSpec] = {
-    4: PassSpec(
-        num=4,
-        outdir="pass-04-full-codebook",
-        prefix="pass04",
+    1: PassSpec(
+        num=1,
+        outdir="full-codebook-coding",
+        prefix="full_codebook",
         required_keys=REQUIRED_KEYS,
         column_order=COLUMN_ORDER,
     ),
@@ -151,11 +151,11 @@ PASSES: dict[int, PassSpec] = {
 def build_codebook_prompt(crisis: str, phase: str) -> str:
     """Assemble the v2 prompt: wrapper + codebook text + per-phase context.
 
-    Mirrors the pass-04 notebook's prompt-assembly cell so notebook and
-    runner send byte-identical instructions for the same phase.
+    Mirrors the full-codebook-coding notebook's prompt-assembly cell so
+    notebook and runner send byte-identical instructions for the same phase.
     """
     codebook = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
-    wrapper = (PROMPTS_DIR / "coding-prompt-v2.txt").read_text(encoding="utf-8").strip()
+    wrapper = (PROMPTS_DIR / "coding-prompt.txt").read_text(encoding="utf-8").strip()
     contexts = json.loads((PROMPTS_DIR / "phase-context.json").read_text(encoding="utf-8"))
     case_context = contexts.get(crisis, {}).get(phase, "")
     if not case_context:
@@ -194,7 +194,7 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--passes",
         required=True,
-        help="Comma-separated pass numbers from {4}, e.g. '4'.",
+        help="Comma-separated pass numbers from {1}, e.g. '1'.",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL, help="HF model id.")
     parser.add_argument(
