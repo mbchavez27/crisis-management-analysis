@@ -130,7 +130,24 @@ uv run python main.py --stage pipeline
 | `GEMMA_API_KEY` | LLM passes | `03-llm-passes/notebooks/` |
 | `CRISIS` | multi-crisis select (default `ateneo-drowning`) | all `run_*.sh`, e.g. `CRISIS=... uv run bash ...` |
 
-Dependencies (`pyproject.toml`, pinned in `uv.lock`): `torch`, `transformers`, `sentence-transformers`, `bertopic`, `calamancy` + `tl_calamancy_md` (installed by `setup.sh` from HuggingFace, not PyPI), `spacy`, `nltk` (`punkt_tab`, `stopwords`), `pandas`, `emoji`, `matplotlib`, `seaborn`, `papermill`, `google-genai`, `python-dotenv`. Python 3.11 per `.python-version` (uv auto-provisions).
+### Local LLM runner (GPU)
+
+`03-llm-passes/run_local.sh` needs **no API key and no `.env`** — only `uv sync`, a CUDA GPU, and network to HuggingFace for the first weight download (~18GB for the default 9B model).
+
+```bash
+# Smoke test first: codes 10 rows, validates model + GPU + output format
+LIMIT=10 PASSES=1 uv run bash 03-llm-passes/run_local.sh
+
+# Full precision (default; needs >=20GB VRAM — A100/3090-class)
+PHASES=04-reckoning PASSES=1 uv run bash 03-llm-passes/run_local.sh
+
+# 4-bit nf4 (<=12GB VRAM, e.g. lab RTX 3060; ~6GB for the 9B default)
+LOAD_IN_4BIT=1 PHASES=04-reckoning PASSES=1 uv run bash 03-llm-passes/run_local.sh
+```
+
+Precision policy: run each crisis's **canonical results in full precision** (GPU VM) and treat 4-bit output as secondary — don't mix precisions within one crisis's analysis without disclosing it. Any standard HF causal LM works via `MODEL=<hf-id>`; vet new models with `LIMIT=10` first (weak models fail as content failures, not crashes). Exit code 1 means rows are still pending — rerun the same command to resume (never `OVERWRITE=1` on a resume).
+
+Dependencies (`pyproject.toml`, pinned in `uv.lock`): `torch`, `transformers`, `accelerate`, `bitsandbytes`, `sentence-transformers`, `bertopic`, `calamancy` + `tl_calamancy_md` (installed by `setup.sh` from HuggingFace, not PyPI), `spacy`, `nltk` (`punkt_tab`, `stopwords`), `pandas`, `emoji`, `matplotlib`, `seaborn`, `papermill`, `google-genai`, `python-dotenv`. Python 3.11 per `.python-version` (uv auto-provisions).
 
 Raw data (`00-data/`, ~12MB) is tracked in git — no separate download needed. First notebook run also pulls HF models (XLM-R, embeddings) into the HF cache.
 

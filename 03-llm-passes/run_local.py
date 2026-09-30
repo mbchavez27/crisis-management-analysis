@@ -11,6 +11,10 @@ runs exactly their cartesian product (one phase x one prompt per run pair).
 Example:
     uv run python run_local.py --phases 04-reckoning --passes 1
     uv run python run_local.py --phases 04-reckoning --passes 1 --limit 10
+    uv run python run_local.py --phases 04-reckoning --passes 1 --load-in-4bit
+
+--load-in-4bit: nf4 quantization for <=12GB GPUs. Full precision is the
+default so canonical runs (GPU VM) stay byte-identical across machines.
 """
 
 from __future__ import annotations
@@ -274,6 +278,11 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         "--max-new-tokens", type=int, default=8192, help="Generation ceiling per chunk."
     )
     parser.add_argument(
+        "--load-in-4bit",
+        action="store_true",
+        help="nf4 quantization for <=12GB GPUs (~6GB for the 9B default). Full precision otherwise.",
+    )
+    parser.add_argument(
         "--overwrite",
         action="store_true",
         help="Discard partial checkpoints and start fresh.",
@@ -362,7 +371,7 @@ def parse_chunk_response(
 class LocalGenerator:
     """Thin wrapper around a transformers causal LM. Imported lazily."""
 
-    def __init__(self, model_id: str, max_new_tokens: int) -> None:
+    def __init__(self, model_id: str, max_new_tokens: int, load_in_4bit: bool = False) -> None:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -383,16 +392,36 @@ class LocalGenerator:
         else:
             dtype = torch.float32
 
+        # 4-bit nf4 for <=12GB GPUs; full precision stays the default so
+        # canonical (A100) runs are byte-identical to pre-quantization output.
+        if load_in_4bit:
+            if not has_cuda:
+                raise RuntimeError("--load-in-4bit requires a CUDA GPU.")
+            from transformers import BitsAndBytesConfig
+
+            quant_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_compute_dtype=dtype,
+            )
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_id, dtype=dtype, quantization_config=quant_config, device_map="auto"
+            )
+            precision = "4-bit nf4"
         # device_map="auto" needs accelerate; otherwise pin to one device.
         # Local 9B weights expect a GPU for production throughput; CPU works but slowly.
-        if has_accelerate:
+        elif has_accelerate:
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_id, dtype=dtype, device_map="auto"
             )
+            precision = str(dtype).removeprefix("torch.")
         else:
             self.model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype)
             self.model.to("cuda" if has_cuda else "cpu")
+            precision = str(dtype).removeprefix("torch.")
         self.model.eval()
+        print(f"Model [{model_id}] loaded in {precision} on {'cuda' if has_cuda else 'cpu'}.")
 
     def generate(self, prompt: str) -> str:
         """Generate a response for one chunk prompt (deterministic decoding)."""
@@ -728,7 +757,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     ok = True
     # One model load reused across all requested pairs (9B weights are slow to load).
-    generator = LocalGenerator(args.model, args.max_new_tokens)
+    generator = LocalGenerator(args.model, args.max_new_tokens, args.load_in_4bit)
     try:
         for phase in phases:
             df = load_phase_df(args.crisis, phase, args.limit)
