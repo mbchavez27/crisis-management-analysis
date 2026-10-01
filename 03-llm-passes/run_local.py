@@ -487,7 +487,7 @@ def run_pair(
     generator: Optional[LocalGenerator] = None,
 ) -> bool:
     """Code one phase x one pass with checkpoint resume. Returns True if clean."""
-    pass_dir = OUTPUT_ROOT / crisis / spec.outdir
+    pass_dir = OUTPUT_ROOT / crisis / spec.outdir / phase
     pass_dir.mkdir(parents=True, exist_ok=True)
     output_path = pass_dir / f"{spec.prefix}_results.jsonl"
     log_path = pass_dir / f"{spec.prefix}_failures.log"
