@@ -23,7 +23,6 @@ import argparse
 import importlib.util
 import json
 import random
-import re
 import sys
 import time
 from dataclasses import dataclass
@@ -50,6 +49,12 @@ COOLDOWN_S = 60           # pause before a requeued chunk is attempted again
 MAX_REVISITS = 3          # requeues per chunk before it is marked pending
 BREAKER_TRIP = 5          # consecutive outage-exhausted chunks before abort
 
+# Restates the task after the comments so the output spec is the last thing read.
+CLOSING = (
+    "\n\nNow output exactly one JSON object per comment above, one per line, "
+    "following the OUTPUT format. Output only JSON, no other text."
+)
+
 
 def is_rate_limited(e: Exception) -> bool:
     msg = repr(e)
@@ -74,11 +79,13 @@ def is_transient(e: Exception) -> bool:
     )
 
 
-def generate_with_retry(generator: Any, prompt: str, tries: int = TRANSIENT_TRIES) -> str:
+def generate_with_retry(
+    generator: Any, prompt: str, tries: int = TRANSIENT_TRIES, **kw: Any
+) -> str:
     """Generate one chunk with exponential backoff for outages (mirrors the notebook)."""
     for attempt in range(tries):
         try:
-            return generator.generate(prompt)
+            return generator.generate(prompt, **kw)
         except Exception as e:
             if attempt == tries - 1:
                 raise
@@ -104,6 +111,13 @@ def append_pending_rows(path: Path, chunk: pd.DataFrame, reason: str, error: str
                 "text_length": len(str(row["text"])),
             }
             f.write(json.dumps({"kind": "pending_transient", **ent}, ensure_ascii=False) + "\n")
+
+
+def dump_raw(path: Path, row_ids: list[int], err: str, raw: str) -> None:
+    """Keep the raw model output for every failed chunk so failures can be inspected."""
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps({"row_ids": row_ids, "err": err, "raw": raw}, ensure_ascii=False) + "\n")
+
 
 REQUIRED_KEYS = frozenset(
     {
@@ -312,23 +326,24 @@ def load_phase_df(crisis: str, phase: str, limit: Optional[int]) -> pd.DataFrame
     return df
 
 
-def strip_fences(raw: str) -> str:
-    """Remove a single wrapping markdown code fence from model output."""
-    text = raw.strip()
-    text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"\s*```$", "", text)
-    return text.strip()
+_DEC = json.JSONDecoder()
 
 
-def load_objs(raw: str) -> list[dict[str, Any]] | dict[str, Any]:
-    """Parse model output as JSONL-per-line, falling back to a JSON value."""
-    text = strip_fences(raw)
-    if "\n" in text:
+def load_objs(raw: str) -> list[dict[str, Any]]:
+    """Extract every top-level JSON object from the output, ignoring other text."""
+    objs: list[dict[str, Any]] = []
+    i = 0
+    while (i := raw.find("{", i)) != -1:
         try:
-            return [json.loads(line) for line in text.splitlines() if line.strip()]
-        except Exception:
-            pass
-    return json.loads(text)
+            obj, i = _DEC.raw_decode(raw, i)
+        except json.JSONDecodeError:
+            i += 1
+            continue
+        if isinstance(obj, dict):
+            objs.append(obj)
+    if not objs:
+        raise ValueError("no JSON object found")
+    return objs
 
 
 def parse_chunk_response(
@@ -351,6 +366,8 @@ def parse_chunk_response(
         raise ValueError(f"json_decode: {exc!r}") from exc
     if isinstance(objs, dict):
         objs = [objs]
+    if len(objs) > len(row_ids):
+        objs = objs[: len(row_ids)]  # model kept going; the id check guards correctness
     if len(objs) != len(row_ids):
         raise ValueError(f"count_mismatch: {len(objs)} objs for {len(row_ids)} rows")
     records: list[dict[str, Any]] = []
@@ -376,6 +393,7 @@ class LocalGenerator:
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
         self.max_new_tokens = max_new_tokens
+        self._printed_len = False
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
@@ -423,8 +441,8 @@ class LocalGenerator:
         self.model.eval()
         print(f"Model [{model_id}] loaded in {precision} on {'cuda' if has_cuda else 'cpu'}.")
 
-    def generate(self, prompt: str) -> str:
-        """Generate a response for one chunk prompt (deterministic decoding)."""
+    def generate(self, prompt: str, prefill: str = "") -> str:
+        """Deterministic generation. `prefill` is forced as the start of the reply."""
         import torch
 
         try:
@@ -433,17 +451,28 @@ class LocalGenerator:
                 tokenize=False,
                 add_generation_prompt=True,
             )
+            has_template = True
         except Exception:
-            chat = prompt
-        inputs = self.tokenizer(chat, return_tensors="pt").to(self.model.device)
+            chat, has_template = prompt, False
+        chat += prefill
+        # The chat template already contains BOS; don't add a second one.
+        inputs = self.tokenizer(
+            chat, return_tensors="pt", add_special_tokens=not has_template
+        ).to(self.model.device)
+        n_in = inputs["input_ids"].shape[1]
+        if not self._printed_len:
+            print(f"prompt tokens: {n_in}")
+            self._printed_len = True
         with torch.no_grad():
             out = self.model.generate(
                 **inputs,
                 max_new_tokens=self.max_new_tokens,
                 do_sample=False,
             )
-        gen = out[0][inputs["input_ids"].shape[1] :]
-        return self.tokenizer.decode(gen, skip_special_tokens=True)
+        gen = out[0][n_in:]
+        if len(gen) >= self.max_new_tokens:
+            print(f"  [warn] hit max_new_tokens ({self.max_new_tokens}); output may be truncated")
+        return prefill + self.tokenizer.decode(gen, skip_special_tokens=True)
 
 
 def run_pair(
@@ -464,6 +493,7 @@ def run_pair(
     log_path = pass_dir / f"{spec.prefix}_failures.log"
     pending_path = pass_dir / f"{spec.prefix}_pending.log"
     csv_path = pass_dir / f"{spec.prefix}_results.csv"
+    debug_path = pass_dir / "debug_raw.jsonl"
     partial_resp = Path(str(output_path) + ".partial.jsonl")
     partial_fail = Path(str(log_path) + ".partial.log")
     partial_pending = Path(str(pending_path) + ".partial.log")
@@ -531,7 +561,7 @@ def run_pair(
         except Exception as exc:
             print(f"Resume check failed ({exc!r}); starting fresh.")
     else:
-        for p in (partial_resp, partial_fail, partial_pending):
+        for p in (partial_resp, partial_fail, partial_pending, debug_path):
             try:
                 p.unlink(missing_ok=True)
             except Exception:
@@ -550,6 +580,7 @@ def run_pair(
         desc=f"LLM-local {crisis}/{phase}/pass{spec.num}",
         unit="rows",
     )
+
     def split_or_log(chunk: pd.DataFrame, n_rows: int, exc: Exception) -> None:
         """Non-outage failure: halve the chunk, or log a single-row content failure."""
         if n_rows > 1:
@@ -580,10 +611,13 @@ def run_pair(
             payload = "\n".join(
                 to_line(r["comment_id"], r["text"]) for _, r in current.iterrows()
             )
+            # Force the reply to start as the first comment's JSON object.
+            prefill = '{"id":"' + str(current.iloc[0]["comment_id"]) + '",'
             try:
                 raw = generate_with_retry(
                     generator,
-                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload,
+                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload + CLOSING,
+                    prefill=prefill,
                 )
             except Exception as exc:
                 if is_rate_limited(exc) or is_transient(exc):
@@ -626,6 +660,7 @@ def run_pair(
             try:
                 parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of)
             except Exception as exc:
+                dump_raw(debug_path, row_ids, repr(exc), raw or "")
                 split_or_log(current, n_rows, exc)
                 continue
             rec = {"row_ids": row_ids, "text": raw or ""}
