@@ -517,6 +517,11 @@ def parse_chunk_response(
     keys, or id mismatch so the caller can split-and-retry or log a hard
     failure.
     """
+    # Strip hallucinated instruction loops before parsing
+    loop_marker = "Now output exactly one JSON object per comment above"
+    if loop_marker in raw:
+        raw = raw.split(loop_marker)[0]
+        
     if not raw.strip():
         raise ValueError("empty_response")
     try:
