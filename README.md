@@ -140,13 +140,35 @@ uv run python main.py --stage pipeline
 # Prereqs: uv (curl -LsSf https://astral.sh/uv/install.sh | sh), working nvidia-smi, ~35GB free disk
 git clone git@github.com:mbchavez27/crisis-management-analysis.git
 cd crisis-management-analysis
+
+# Standard Setup: syncs the virtual environment exactly to the project lockfile
 uv sync
+
+# OPTIONAL: If you need to manually patch the environment for older NVIDIA drivers:
+# uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# ==========================================
+# PATH A: STANDARD RUNS (Auto-sync enabled)
+# Use these if your environment perfectly matches the lockfile.
+# ==========================================
 
 # Smoke test: codes 10 rows, pulls the ~18GB weights, validates GPU + output format
 LIMIT=10 LOAD_IN_4BIT=1 PASSES=1 uv run bash 03-llm-passes/run_local.sh
 
 # Real run (4-bit nf4, ~6GB VRAM for the 9B default)
 PHASES=04-reckoning PASSES=1 LOAD_IN_4BIT=1 uv run bash 03-llm-passes/run_local.sh
+
+# ==========================================
+# PATH B: NO-SYNC RUNS (Preserves manual fixes)
+# Use these if you applied custom pip installs (like the PyTorch downgrade) 
+# to prevent `uv run` from uninstalling them.
+# ==========================================
+
+# Smoke test without syncing:
+LIMIT=10 LOAD_IN_4BIT=1 PASSES=1 UV_NO_SYNC=1 uv run bash 03-llm-passes/run_local.sh
+
+# Real run without syncing:
+PHASES=04-reckoning PASSES=1 LOAD_IN_4BIT=1 UV_NO_SYNC=1 uv run bash 03-llm-passes/run_local.sh
 ```
 
 GPUs below compute capability 7.5 (e.g. GTX 10-series) are unsupported by current torch wheels — use the GCP VM instead.
