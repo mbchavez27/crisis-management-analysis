@@ -23,6 +23,7 @@ import argparse
 import importlib.util
 import json
 import random
+import re
 import sys
 import time
 from dataclasses import dataclass
@@ -49,11 +50,61 @@ COOLDOWN_S = 60           # pause before a requeued chunk is attempted again
 MAX_REVISITS = 3          # requeues per chunk before it is marked pending
 BREAKER_TRIP = 5          # consecutive outage-exhausted chunks before abort
 
-# Restates the task after the comments so the output spec is the last thing read.
+# Optional reminder after the comments. OFF by default: on emoji-only comments the
+# model copied this sentence into `evidence`. The forced `{"id":"..."` prefill is
+# what keeps output JSON-only. Enable with --closing if echo loops come back.
 CLOSING = (
-    "\n\nNow output exactly one JSON object per comment above, one per line, "
-    "following the OUTPUT format. Output only JSON, no other text."
+    "\n\nRespond with the JSON object(s) only, one per line, as specified in OUTPUT."
 )
+
+# Substrings that only appear if the model copied the output template or our own
+# instructions into a field instead of coding the comment.
+PLACEHOLDER_MARKERS = (
+    "short quote(s)",
+    "english translation of the evidence",
+    "supporting each non-zero code",
+    "high|medium|low",
+    "output only json",
+    "respond with the json",
+    "now output exactly",
+    "one json object per comment",
+)
+
+BINARY_KEYS = (
+    "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
+    "SYMPATHY_OFFENDER", "FEAR", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
+    "COVER_UP", "ALT_ACCOUNT", "INJUSTICE", "SELF_INTEREST", "NEEDS_CONTEXT",
+    "CLASS_FRAME", "APPEARANCE_ATTACK", "META_DISCOURSE", "SARCASM", "UNCODABLE",
+)
+SCALAR_ENUMS: dict[str, frozenset[str]] = {
+    "LANGUAGE": frozenset({"ENGLISH", "FILIPINO", "TAGLISH", "OTHER_PH_LANGUAGE", "EMOJI", "OTHER"}),
+    "ATTRIBUTION": frozenset({"NONE", "ACCIDENT", "ACCUSATION", "NEGLIGENCE", "INTENTIONAL", "VICTIM_FAULT"}),
+    "STANCE": frozenset({"CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"}),
+    "CLASS_DIRECTION": frozenset({"INEQUALITY_JUSTICE", "VICTIMS_POOR", "INSTITUTION_ELITE", "OTHER", "NA"}),
+    "RESPONSE_TARGET": frozenset({"UNIVERSITY_ANNOUNCEMENT", "COACH_APOLOGY", "PRESIDENT_STATEMENT",
+                                  "POLICE_REPORT", "OTHER", "NA"}),
+    "RESPONSE_EVAL": frozenset({"ACKNOWLEDGES", "REJECTS", "MIXED", "NA"}),
+    "TARGET_OF_COMMENT": frozenset({"ORGANIZATION", "PERSON", "VICTIMS_FAMILY", "OTHER_COMMENTERS",
+                                    "MEDIA", "NONE"}),
+    "confidence": frozenset({"HIGH", "MEDIUM", "LOW"}),
+}
+LIST_ENUMS: dict[str, tuple[frozenset[str], str]] = {  # key -> (allowed, empty-value)
+    "BLAME_TARGETS": (frozenset({"COACH", "COACHING_STAFF", "UNIVERSITY", "PRESIDENT", "ORGANIZERS",
+                                 "VENUE", "AUTHORITIES", "VICTIMS", "OTHER", "NONE"}), "NONE"),
+    "VALUES": (frozenset({"FAMILY", "CHILD_POTENTIAL", "PARENT_SACRIFICE", "DUTY_OF_CARE",
+                          "EDUCATION_MOBILITY", "FAITH", "JUSTICE", "SOLIDARITY", "SANCTITY_OF_LIFE",
+                          "OTHER", "NONE"}), "NONE"),
+    "IDENTITY_FRAME": (frozenset({"NATIONALITY", "RACE", "REGION", "RELIGION", "NONE"}), "NONE"),
+    "ACTIONS": (frozenset({"PUNITIVE", "RETALIATION", "RESTITUTION", "ACCOUNTABILITY", "INFORMATION",
+                           "REFORM", "BOYCOTT", "SUPPORT", "NONE"}), "NONE"),
+    "REJECT_REASONS": (frozenset({"INSINCERE", "WORDS_NOT_ENOUGH", "TOO_SOON", "TOO_LATE",
+                                  "NO_INFORMATION", "SELF_CENTERED", "SHIFTS_BLAME", "DISMISSIVE",
+                                  "NO_FAMILY_OUTREACH", "OTHER", "NA"}), "NA"),
+}
+
+_SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
+_UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]")
+_HANDLE = re.compile(r"@[\w.\-]+")
 
 
 def is_rate_limited(e: Exception) -> bool:
@@ -207,6 +258,7 @@ COLUMN_ORDER = [
     "EMERGENT",
     "OTHER_NOTE",
     "confidence",
+    "autofix",
 ]
 
 
@@ -297,6 +349,11 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         help="nf4 quantization for <=12GB GPUs (~6GB for the 9B default). Full precision otherwise.",
     )
     parser.add_argument(
+        "--closing",
+        action="store_true",
+        help="Append a short 'JSON only' reminder after the comments (off by default).",
+    )
+    parser.add_argument(
         "--overwrite",
         action="store_true",
         help="Discard partial checkpoints and start fresh.",
@@ -346,11 +403,113 @@ def load_objs(raw: str) -> list[dict[str, Any]]:
     return objs
 
 
+def _enum(v: Any) -> str:
+    return str(v).strip().upper().replace(" ", "_")
+
+
+def _as_bin(v: Any) -> int:
+    if isinstance(v, bool):
+        return int(v)
+    if isinstance(v, (int, float)) and v in (0, 1):
+        return int(v)
+    if isinstance(v, str) and v.strip() in ("0", "1"):
+        return int(v.strip())
+    raise ValueError(f"not 0/1: {v!r}")
+
+
+def is_emoji_only(text: str) -> bool:
+    """True if the comment has no words once emoji and :shortcodes: are removed."""
+    if not text.strip():
+        return False
+    bare = _UNI_EMOJI.sub("", _SHORTCODE.sub("", text))
+    return re.sub(r"[\W_]+", "", bare) == ""
+
+
+def validate_record(obj: dict[str, Any], text: str) -> list[str]:
+    """Check one coded record against codebook v2.1 and normalise it in place.
+
+    Raises ValueError for unusable output (template/prompt text copied into a
+    field, values outside the codebook, non-0/1 flags, bad types); the caller
+    then retries or logs it. Deterministic codebook rules are applied directly
+    and returned as a list of fix labels, stored in the `autofix` column.
+    Everything judgement-based is left as the model coded it.
+    """
+    fixes: list[str] = []
+
+    # Free-text fields: strings only, and never the template or our instructions.
+    for k in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "confidence"):
+        v = obj.get(k, "")
+        if v is None:
+            v = ""
+        if isinstance(v, (list, dict)):
+            raise ValueError(f"bad_type: {k} is {type(v).__name__}")
+        v = str(v)
+        low = v.lower()
+        if any(m in low for m in PLACEHOLDER_MARKERS):
+            raise ValueError(f"placeholder_leak: {k}={v[:70]!r}")
+        obj[k] = v
+    for k in ("evidence", "evidence_en"):
+        if _HANDLE.search(obj[k]):
+            obj[k] = _HANDLE.sub("[USER]", obj[k])
+            fixes.append("anonymized_handle")
+
+    for k in BINARY_KEYS:
+        try:
+            obj[k] = _as_bin(obj[k])
+        except ValueError as exc:
+            raise ValueError(f"bad_binary: {k} {exc}") from exc
+
+    for k, allowed in SCALAR_ENUMS.items():
+        val = _enum(obj[k])
+        if val not in allowed:
+            raise ValueError(f"bad_enum: {k}={obj[k]!r}")
+        obj[k] = val
+
+    for k, (allowed, empty) in LIST_ENUMS.items():
+        v = obj[k]
+        if isinstance(v, str):
+            v = [v]
+        if not isinstance(v, list) or not v:
+            raise ValueError(f"bad_list: {k}={obj[k]!r}")
+        items: list[str] = []
+        for x in v:
+            e = _enum(x)
+            if e not in allowed:
+                raise ValueError(f"bad_enum: {k} has {x!r}")
+            if e not in items:
+                items.append(e)
+        if len(items) > 1 and empty in items:
+            items.remove(empty)  # NONE/NA alongside real values is contradictory
+        obj[k] = items
+
+    # Deterministic codebook rules.
+    if is_emoji_only(text) and obj["LANGUAGE"] != "EMOJI":
+        obj["LANGUAGE"] = "EMOJI"  # A1: emoji only, no words
+        fixes.append("language->EMOJI")
+    if obj["NEEDS_CONTEXT"] == 1 and obj["STANCE"] != "NEUTRAL":
+        obj["STANCE"] = "NEUTRAL"  # general rule 8
+        fixes.append("stance->NEUTRAL(needs_context)")
+    if obj["CLASS_FRAME"] == 0 and obj["CLASS_DIRECTION"] != "NA":
+        obj["CLASS_DIRECTION"] = "NA"  # F2: NA if CLASS_FRAME = 0
+        fixes.append("class_direction->NA")
+    if obj["CLASS_FRAME"] == 1 and obj["CLASS_DIRECTION"] == "NA":
+        raise ValueError("class_frame_without_direction")
+    if (obj["RESPONSE_TARGET"] == "NA") != (obj["RESPONSE_EVAL"] == "NA"):
+        raise ValueError(
+            f"response_na_mismatch: target={obj['RESPONSE_TARGET']} eval={obj['RESPONSE_EVAL']}"
+        )
+    if obj["RESPONSE_EVAL"] not in ("REJECTS", "MIXED") and obj["REJECT_REASONS"] != ["NA"]:
+        obj["REJECT_REASONS"] = ["NA"]  # H3: NA unless REJECTS or MIXED
+        fixes.append("reject_reasons->NA")
+    return fixes
+
+
 def parse_chunk_response(
     raw: str,
     row_ids: list[int],
     required: frozenset[str],
     id_of: Optional[dict[int, str]] = None,
+    text_of: Optional[dict[int, str]] = None,
 ) -> list[dict[str, Any]]:
     """Parse one chunk response into per-row records.
 
@@ -380,6 +539,11 @@ def parse_chunk_response(
             got = str(obj.get("id", "")).strip()
             if got != want:
                 raise ValueError(f"id_mismatch: {got!r} vs {want!r}")
+        try:
+            fixes = validate_record(obj, (text_of or {}).get(rid, ""))
+        except ValueError as exc:
+            raise ValueError(f"row {rid}: {exc}") from exc
+        obj["autofix"] = ";".join(fixes)
         obj["_row_id"] = rid
         records.append(obj)
     return records
@@ -485,6 +649,7 @@ def run_pair(
     max_new_tokens: int,
     overwrite: bool,
     generator: Optional[LocalGenerator] = None,
+    use_closing: bool = False,
 ) -> bool:
     """Code one phase x one pass with checkpoint resume. Returns True if clean."""
     pass_dir = OUTPUT_ROOT / crisis / spec.outdir / phase
@@ -500,6 +665,8 @@ def run_pair(
 
     prompt_template = build_codebook_prompt(crisis, phase)
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
+    text_of = dict(zip(df["row_id"].tolist(), df["text"].astype(str).tolist()))
+    retry_notes: dict[tuple[int, ...], str] = {}  # one corrective retry per bad single row
 
     chunks_queue = [df.iloc[i : i + chunk_size] for i in range(0, len(df), chunk_size)]
     raw_responses: list[dict[str, Any]] = []
@@ -613,12 +780,15 @@ def run_pair(
             )
             # Force the reply to start as the first comment's JSON object.
             prefill = '{"id":"' + str(current.iloc[0]["comment_id"]) + '",'
+            full_prompt = (
+                prompt_template
+                + "\n\nCOMMENTS TO CODE\n"
+                + payload
+                + (CLOSING if use_closing else "")
+                + retry_notes.get(tuple(row_ids), "")
+            )
             try:
-                raw = generate_with_retry(
-                    generator,
-                    prompt_template + "\n\nCOMMENTS TO CODE\n" + payload + CLOSING,
-                    prefill=prefill,
-                )
+                raw = generate_with_retry(generator, full_prompt, prefill=prefill)
             except Exception as exc:
                 if is_rate_limited(exc) or is_transient(exc):
                     reason = (
@@ -658,9 +828,22 @@ def run_pair(
                 continue
             # Validate now so bad chunks split immediately instead of at export.
             try:
-                parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of)
+                parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of, text_of)
             except Exception as exc:
                 dump_raw(debug_path, row_ids, repr(exc), raw or "")
+                key = tuple(row_ids)
+                if n_rows == 1 and key not in retry_notes:
+                    # Greedy decoding would repeat itself, so retry once with the
+                    # rejection reason appended to change the input.
+                    print(f"Row {row_ids[0]} rejected ({str(exc)[:120]}); retrying once with a correction note.")
+                    retry_notes[key] = (
+                        "\n\nCORRECTION: the previous answer for this comment was rejected: "
+                        f"{str(exc)[:200]}. Code only this comment. Copy exact words from the "
+                        "comment into evidence, never field descriptions or instructions, and set "
+                        "confidence to exactly one of HIGH, MEDIUM or LOW."
+                    )
+                    chunks_queue.insert(0, current)
+                    continue
                 split_or_log(current, n_rows, exc)
                 continue
             rec = {"row_ids": row_ids, "text": raw or ""}
@@ -686,7 +869,7 @@ def run_pair(
         try:
             parsed_records.extend(
                 parse_chunk_response(
-                    item["text"], item["row_ids"], spec.required_keys, id_of
+                    item["text"], item["row_ids"], spec.required_keys, id_of, text_of
                 )
             )
         except Exception as exc:
@@ -719,6 +902,9 @@ def run_pair(
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
     emergent_hit = sum(1 for r in parsed_records if str(r.get("EMERGENT", "")).strip())
+    autofixed = sum(1 for r in parsed_records if r.get("autofix"))
+    if autofixed:
+        print(f"autofixed (deterministic codebook rules): {autofixed}/{len(parsed_records)} rows")
     print(
         f"parsed: {len(parsed_records)}/{len(df)} rows | "
         f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)} | "
@@ -750,7 +936,7 @@ def run_pair(
     for col in [c for c in merged.columns if c not in SKIP_SUMMARY_COLS]:
         if col == "model" or col.endswith("_llm"):
             continue
-        if col in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE"):
+        if col in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "autofix"):
             continue
         series = (
             merged[col].astype(str)
@@ -773,11 +959,24 @@ def run_pair(
             )
     merged.sort_values("row_id")[keep].to_csv(csv_path, index=False)
     print(f"Wrote {len(merged)} rows (coverage {coverage:.1%}) -> {csv_path}")
-    return (
+    clean = (
         len(hard_failures) == 0
         and len(parse_failures) == 0
         and len(pending_entries) == 0
     )
+    if parsed_records:
+        keys = ("id", "LANGUAGE", "ANGER", "CONTEMPT", "NORM_VIOLATION", "ATTRIBUTION",
+                "STANCE", "evidence", "confidence")
+        print("\nSample record 0:", json.dumps({k: parsed_records[0].get(k) for k in keys}, ensure_ascii=False))
+    print(
+        f"\n{'=' * 60}\n"
+        f"{'SUCCESS' if clean else 'FAILED'} [{phase}]: {len(parsed_records)}/{len(df)} rows coded | "
+        f"{len(hard_failures)} hard failures | {len(parse_failures)} parse failures | "
+        f"{len(pending_entries)} pending\n"
+        + ("" if clean else f"Raw outputs of failures: {debug_path}\n")
+        + f"{'=' * 60}"
+    )
+    return clean
 
 
 def main(argv: Optional[list[str]] = None) -> int:
@@ -810,10 +1009,12 @@ def main(argv: Optional[list[str]] = None) -> int:
                     args.max_new_tokens,
                     args.overwrite,
                     generator,
+                    args.closing,
                 )
                 ok = ok and clean
     finally:
         del generator
+    print(f"\nOverall: {'ALL PAIRS CLEAN' if ok else 'ONE OR MORE PAIRS FAILED'}")
     return 0 if ok else 1
 
 
