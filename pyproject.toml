@@ -3,7 +3,7 @@ name = "crisis-management-analysis"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.13"
 dependencies = [
     "accelerate>=1.15.0",
     "bertopic>=0.17.4",
@@ -24,7 +24,19 @@ dependencies = [
     "sentencepiece>=0.2.1",
     "spacy>=3.8.14",
     "tiktoken>=0.13.0",
-    "torch>=2.12.1",
+    "torch==2.5.1",
+    "torchaudio==2.5.1",
+    "torchvision==0.20.1",
     "tqdm>=4.66.0",
     "transformers>=5.12.1",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu121" }
+torchaudio = { index = "pytorch-cu121" }
+torchvision = { index = "pytorch-cu121" }

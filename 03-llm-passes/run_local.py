@@ -1,4 +1,4 @@
-"""Local-LLM runner for the v2 full-codebook coding pass.
+r"""Local-LLM runner for the v2 full-codebook coding pass.
 
 Mirrors the full-codebook-coding notebook cell-for-cell except the micro-sample
 step: full phase CSVs are coded instead of head(n_sample). Passes 1-3
@@ -13,6 +13,12 @@ Example:
     uv run python run_local.py --phases 04-reckoning --passes 1 --limit 10
     uv run python run_local.py --phases 04-reckoning --passes 1 --load-in-4bit
 
+    # All phases, ONE model load (comma-separated):
+    PHASES=$(ls ../01-preprocessing/output/ateneo-drowning/youtube/*.csv \
+             | xargs -n1 basename | sed 's/\.csv//' | sort | paste -sd,)
+    uv run --no-sync python run_local.py --crisis ateneo-drowning \
+        --phases "$PHASES" --passes 1 --chunk-size 1 --load-in-4bit --closing
+
 --load-in-4bit: nf4 quantization for <=12GB GPUs. Full precision is the
 default so canonical runs (GPU VM) stay byte-identical across machines.
 """
@@ -20,7 +26,6 @@ default so canonical runs (GPU VM) stay byte-identical across machines.
 from __future__ import annotations
 
 import argparse
-import importlib.util
 import json
 import random
 import re
@@ -38,7 +43,11 @@ PROMPTS_DIR = HERE / "prompts"
 OUTPUT_ROOT = HERE / "output"
 
 DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B"
-SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids"}
+# Total context (prompt + output). Gemma 2's native limit is 8192; vLLM 0.6.4
+# caps Gemma 2 at 4096 (no interleaved sliding-window support), newer vLLM
+# allows the full 8192.
+MAX_MODEL_LEN = 8192
+SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids", "status"}
 
 # Outage-resilient retry: exponential backoff, requeue, circuit breaker.
 # Values mirror the full-codebook-coding notebook inference cell exactly.
@@ -103,8 +112,9 @@ LIST_ENUMS: dict[str, tuple[frozenset[str], str]] = {  # key -> (allowed, empty-
 }
 
 _SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
-_UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]")
+_UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿️‍]")
 _HANDLE = re.compile(r"@[\w.\-]+")
+_LEFTOVER_SLOT = re.compile(r"<<[^<>\n]*>>")
 
 
 def is_rate_limited(e: Exception) -> bool:
@@ -148,6 +158,7 @@ def generate_with_retry(
                 sleep_time = (2 ** attempt) + random.uniform(0, 1)
             print(f"  [Attempt {attempt+1} failed: {repr(e)}] Retrying in {sleep_time:.1f}s...")
             time.sleep(sleep_time)
+    raise RuntimeError("generate_with_retry: no attempts made")
 
 
 def append_pending_rows(path: Path, chunk: pd.DataFrame, reason: str, error: str) -> None:
@@ -259,6 +270,7 @@ COLUMN_ORDER = [
     "OTHER_NOTE",
     "confidence",
     "autofix",
+    "status",
 ]
 
 
@@ -283,30 +295,46 @@ PASSES: dict[int, PassSpec] = {
     ),
 }
 
+# Slot names the wrapper may use for the codebook text. The first entry is the
+# placeholder actually used in prompts/coding-prompt.txt; it must come before the
+# shorter <<...>> spellings so all three brackets on each side are replaced. The
+# result is verified below (a leftover <<...>> slot aborts the run instead of
+# silently sending a broken prompt).
+CODEBOOK_SLOTS = (
+    "<<<paste full text of the codebook here>>>",
+    "<<CODEBOOK>>",
+    "<<codebook>>",
+    "<<CODEBOOK_TEXT>>",
+    "<<>>",
+)
+CASE_CONTEXT_SLOT = "[The data are made about a Youtube video on ..... No judgments about fault.]"
+
 
 def build_codebook_prompt(crisis: str, phase: str) -> str:
-    """Assemble the v2 prompt: wrapper + codebook text + per-phase context.
-
-    Mirrors the full-codebook-coding notebook's prompt-assembly cell so
-    notebook and runner send byte-identical instructions for the same phase.
-    """
+    """Assemble the v2 prompt: wrapper + codebook text + per-phase context."""
     codebook = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
     wrapper = (PROMPTS_DIR / "coding-prompt.txt").read_text(encoding="utf-8").strip()
     contexts = json.loads((PROMPTS_DIR / "phase-context.json").read_text(encoding="utf-8"))
     case_context = contexts.get(crisis, {}).get(phase, "")
     if not case_context:
         raise RuntimeError(f"No phase context for {crisis}/{phase} in phase-context.json.")
-    prompt = (
-        wrapper.replace("MODE: [PILOT | FULL]", "MODE: FULL")
-        .replace("<<<paste full text of the codebook here>>>", codebook)
-        .replace(
-            "[The data are made about a Youtube video on ..... No judgments about fault.]",
-            case_context,
+
+    prompt = wrapper.replace("MODE: [PILOT | FULL]", "MODE: FULL")
+    for slot in CODEBOOK_SLOTS:
+        prompt = prompt.replace(slot, codebook)
+    prompt = prompt.replace(CASE_CONTEXT_SLOT, case_context)
+
+    # Guard: never send a prompt that still contains unfilled template slots.
+    if CASE_CONTEXT_SLOT in prompt:
+        raise RuntimeError("Prompt still contains the case-context placeholder.")
+    leftover = _LEFTOVER_SLOT.search(prompt.replace(codebook, ""))
+    if leftover:
+        raise RuntimeError(
+            f"Prompt still contains an unfilled slot {leftover.group(0)!r}; "
+            f"add it to CODEBOOK_SLOTS."
         )
-    )
-    for marker in ("<<<paste", "PILOT | FULL", "....."):
-        if marker in prompt:
-            raise RuntimeError(f"Prompt assembly missed placeholder: {marker}")
+    if codebook[:80] not in prompt:
+        raise RuntimeError("Codebook text was not inserted into the prompt.")
     return prompt
 
 
@@ -341,12 +369,16 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--chunk-size", type=int, default=5, help="Rows per LLM call.")
     parser.add_argument(
-        "--max-new-tokens", type=int, default=8192, help="Generation ceiling per chunk."
+        "--max-new-tokens",
+        type=int,
+        default=1024,
+        help="Generation ceiling per chunk. One coded object is ~400-600 tokens, so "
+             "scale this with --chunk-size (e.g. 1024 for size 1, 3072 for size 5).",
     )
     parser.add_argument(
         "--load-in-4bit",
         action="store_true",
-        help="nf4 quantization for <=12GB GPUs (~6GB for the 9B default). Full precision otherwise.",
+        help="Quantization for <=12GB GPUs. Uses bitsandbytes via vLLM.",
     )
     parser.add_argument(
         "--closing",
@@ -378,7 +410,12 @@ def load_phase_df(crisis: str, phase: str, limit: Optional[int]) -> pd.DataFrame
     df = df.dropna()
     for col in ("comment_id", "video_id", "text"):
         df[col] = df[col].astype(str).str.strip()
-    df = df[df["text"] != ""].reset_index(drop=True)
+    df = df[df["text"] != ""]
+    n_before = len(df)
+    df = df.drop_duplicates("comment_id", keep="first")  # one coded row per comment
+    if len(df) != n_before:
+        print(f"  Dropped {n_before - len(df)} duplicate comment_id rows in {phase}.")
+    df = df.reset_index(drop=True)
     df["row_id"] = df.index
     return df
 
@@ -426,14 +463,7 @@ def is_emoji_only(text: str) -> bool:
 
 
 def validate_record(obj: dict[str, Any], text: str) -> list[str]:
-    """Check one coded record against codebook v2.1 and normalise it in place.
-
-    Raises ValueError for unusable output (template/prompt text copied into a
-    field, values outside the codebook, non-0/1 flags, bad types); the caller
-    then retries or logs it. Deterministic codebook rules are applied directly
-    and returned as a list of fix labels, stored in the `autofix` column.
-    Everything judgement-based is left as the model coded it.
-    """
+    """Check one coded record against codebook v2.1 and normalise it in place."""
     fixes: list[str] = []
 
     # Free-text fields: strings only, and never the template or our instructions.
@@ -511,25 +541,18 @@ def parse_chunk_response(
     id_of: Optional[dict[int, str]] = None,
     text_of: Optional[dict[int, str]] = None,
 ) -> list[dict[str, Any]]:
-    """Parse one chunk response into per-row records.
-
-    Raises ValueError on empty output, bad JSON, count mismatch, missing
-    keys, or id mismatch so the caller can split-and-retry or log a hard
-    failure.
-    """
+    """Parse one chunk response into per-row records."""
     # Strip hallucinated instruction loops before parsing
     loop_marker = "Now output exactly one JSON object per comment above"
     if loop_marker in raw:
         raw = raw.split(loop_marker)[0]
-        
+
     if not raw.strip():
         raise ValueError("empty_response")
     try:
         objs = load_objs(raw)
     except Exception as exc:
         raise ValueError(f"json_decode: {exc!r}") from exc
-    if isinstance(objs, dict):
-        objs = [objs]
     if len(objs) > len(row_ids):
         objs = objs[: len(row_ids)]  # model kept going; the id check guards correctness
     if len(objs) != len(row_ids):
@@ -555,93 +578,65 @@ def parse_chunk_response(
 
 
 class LocalGenerator:
-    """Thin wrapper around a transformers causal LM. Imported lazily."""
+    """Thin wrapper around vLLM for high-throughput generation with Prefix Caching."""
 
     def __init__(self, model_id: str, max_new_tokens: int, load_in_4bit: bool = False) -> None:
-        import torch
-        from transformers import AutoModelForCausalLM, AutoTokenizer
+        from vllm import LLM, SamplingParams
 
         self.max_new_tokens = max_new_tokens
-        self._printed_len = False
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.max_model_len = MAX_MODEL_LEN
 
-        has_accelerate = importlib.util.find_spec("accelerate") is not None
-        has_cuda = torch.cuda.is_available()
-        if has_cuda:
-            try:
-                dtype = torch.bfloat16
-                # Validate bf16 support before committing to it.
-                torch.zeros(1, dtype=dtype, device="cuda")
-            except Exception:
-                dtype = torch.float16
-        else:
-            dtype = torch.float32
+        print(f"\nInitializing vLLM Engine for '{model_id}'...")
+        print(" -> Prefix Caching: ENABLED (This handles long prompts perfectly)")
+        print(f" -> 4-bit Quantization: {'ENABLED' if load_in_4bit else 'DISABLED'}")
 
-        # 4-bit nf4 for <=12GB GPUs; full precision stays the default so
-        # canonical (A100) runs are byte-identical to pre-quantization output.
+        quant_kwargs: dict[str, Any] = {}
         if load_in_4bit:
-            if not has_cuda:
-                raise RuntimeError("--load-in-4bit requires a CUDA GPU.")
-            from transformers import BitsAndBytesConfig
+            quant_kwargs["quantization"] = "bitsandbytes"
+            quant_kwargs["load_format"] = "bitsandbytes"
 
-            quant_config = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_quant_type="nf4",
-                bnb_4bit_use_double_quant=True,
-                bnb_4bit_compute_dtype=dtype,
-            )
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_id, dtype=dtype, quantization_config=quant_config, device_map="auto"
-            )
-            precision = "4-bit nf4"
-        # device_map="auto" needs accelerate; otherwise pin to one device.
-        # Local 9B weights expect a GPU for production throughput; CPU works but slowly.
-        elif has_accelerate:
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_id, dtype=dtype, device_map="auto"
-            )
-            precision = str(dtype).removeprefix("torch.")
-        else:
-            self.model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype)
-            self.model.to("cuda" if has_cuda else "cpu")
-            precision = str(dtype).removeprefix("torch.")
-        self.model.eval()
-        print(f"Model [{model_id}] loaded in {precision} on {'cuda' if has_cuda else 'cpu'}.")
+        self.llm = LLM(
+            model=model_id,
+            enable_prefix_caching=True,
+            max_model_len=self.max_model_len,
+            trust_remote_code=True,
+            **quant_kwargs,
+        )
+        self.tokenizer = self.llm.get_tokenizer()
+        self.sampling_params = SamplingParams(
+            temperature=0.0,
+            max_tokens=self.max_new_tokens,
+        )
 
-    def generate(self, prompt: str, prefill: str = "") -> str:
-        """Deterministic generation. `prefill` is forced as the start of the reply."""
-        import torch
-
+    def _chat(self, prompt: str) -> str:
+        """Wrap the prompt in the model's chat template (raw prompt if it has none)."""
         try:
-            chat = self.tokenizer.apply_chat_template(
+            return self.tokenizer.apply_chat_template(
                 [{"role": "user", "content": prompt}],
                 tokenize=False,
                 add_generation_prompt=True,
             )
-            has_template = True
         except Exception:
-            chat, has_template = prompt, False
-        chat += prefill
-        # The chat template already contains BOS; don't add a second one.
-        inputs = self.tokenizer(
-            chat, return_tensors="pt", add_special_tokens=not has_template
-        ).to(self.model.device)
-        n_in = inputs["input_ids"].shape[1]
-        if not self._printed_len:
-            print(f"prompt tokens: {n_in}")
-            self._printed_len = True
-        with torch.no_grad():
-            out = self.model.generate(
-                **inputs,
-                max_new_tokens=self.max_new_tokens,
-                do_sample=False,
-            )
-        gen = out[0][n_in:]
-        if len(gen) >= self.max_new_tokens:
-            print(f"  [warn] hit max_new_tokens ({self.max_new_tokens}); output may be truncated")
-        return prefill + self.tokenizer.decode(gen, skip_special_tokens=True)
+            print("WARNING: chat template failed; sending the raw prompt. "
+                  "Is this a base (non-instruct) model?")
+            return prompt
+
+    def count_prompt_tokens(self, prompt: str) -> int:
+        """Tokens the prompt occupies once wrapped in the chat template."""
+        return len(self.tokenizer(self._chat(prompt), add_special_tokens=False)["input_ids"])
+
+    def generate(self, prompt: str, prefill: str = "") -> str:
+        """Deterministic generation. `prefill` is forced as the start of the reply."""
+        chat = self._chat(prompt) + prefill
+
+        outputs = self.llm.generate(
+            prompts=[chat],
+            sampling_params=self.sampling_params,
+            use_tqdm=False,  # Prevent vLLM from printing a progress bar per chunk
+        )
+
+        gen_text = outputs[0].outputs[0].text
+        return prefill + gen_text
 
 
 def run_pair(
@@ -669,6 +664,8 @@ def run_pair(
     partial_pending = Path(str(pending_path) + ".partial.log")
 
     prompt_template = build_codebook_prompt(crisis, phase)
+
+    print(f"\n\n{'='*80}\nPROMPT FOR PHASE: {phase}\n{'='*80}\n{prompt_template[:500]}...[TRUNCATED FOR LOGS]\n{'='*80}\n")
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
     text_of = dict(zip(df["row_id"].tolist(), df["text"].astype(str).tolist()))
     retry_notes: dict[tuple[int, ...], str] = {}  # one corrective retry per bad single row
@@ -745,6 +742,24 @@ def run_pair(
         generator = LocalGenerator(model_id, max_new_tokens)
         owned_generator = True
     assert generator is not None
+
+    # Pre-flight: if the fixed part of the prompt plus the output budget cannot fit
+    # in the context window, every row would fail and be logged as a "hard failure".
+    # Abort loudly instead of producing an empty run.
+    base_tokens = generator.count_prompt_tokens(prompt_template + "\n\nCOMMENTS TO CODE\n")
+    budget = generator.max_model_len - generator.max_new_tokens
+    print(
+        f"Prompt template: {base_tokens} tokens | max_model_len {generator.max_model_len} "
+        f"- max_new_tokens {generator.max_new_tokens} = {budget} available for the prompt "
+        f"({budget - base_tokens} left for comment text)."
+    )
+    if base_tokens >= budget:
+        raise RuntimeError(
+            f"Prompt template ({base_tokens} tokens) does not fit: only {budget} tokens are "
+            f"available after reserving {generator.max_new_tokens} for output. Lower "
+            f"--max-new-tokens, raise MAX_MODEL_LEN (needs a vLLM that supports it for this "
+            f"model), or use a longer-context model."
+        )
 
     pbar = tqdm(
         total=len(df),
@@ -829,6 +844,8 @@ def run_pair(
                             append_pending_rows(partial_pending, c, "breaker_abort", repr(exc))
                         break
                     continue
+                # Non-outage error (e.g. prompt too long, CUDA OOM): split or log it.
+                # (Previously a stray `continue` made this unreachable and dropped rows silently.)
                 split_or_log(current, n_rows, exc)
                 continue
             # Validate now so bad chunks split immediately instead of at export.
@@ -857,7 +874,6 @@ def run_pair(
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
             outage_streak = 0
             pbar.update(n_rows)
-            time.sleep(0.1)
     finally:
         pbar.close()
         if owned_generator:
@@ -930,8 +946,10 @@ def run_pair(
         )
         n_matched = int(merged["_row_id"].notna().sum())
         coverage = (n_matched / len(merged)) if len(merged) else 0.0
+        merged["status"] = merged["_row_id"].notna().map({True: "coded", False: "missing"})
     else:
         merged = df.copy()
+        merged["status"] = "missing"
         n_matched = 0
         coverage = 0.0
     print(f"Coverage: {coverage:.1%} ({n_matched}/{len(merged)} matched)")
@@ -968,6 +986,7 @@ def run_pair(
         len(hard_failures) == 0
         and len(parse_failures) == 0
         and len(pending_entries) == 0
+        and n_matched == len(df)
     )
     if parsed_records:
         keys = ("id", "LANGUAGE", "ANGER", "CONTEMPT", "NORM_VIOLATION", "ATTRIBUTION",

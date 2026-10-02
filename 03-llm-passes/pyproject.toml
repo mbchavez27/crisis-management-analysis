@@ -1,0 +1,13 @@
+[project]
+name = "llm-passes"
+version = "0.1.0"
+description = "Local vLLM coding runner for the crisis comment codebook"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "vllm",
+    "setuptools<81",
+    "bitsandbytes>=0.45",
+    "pandas>=2.2,<3",
+    "tqdm>=4.66",
+]
+
