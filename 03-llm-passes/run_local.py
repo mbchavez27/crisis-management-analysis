@@ -58,6 +58,7 @@ RATE_LIMIT_SLEEP = (60, 90)
 COOLDOWN_S = 60           # pause before a requeued chunk is attempted again
 MAX_REVISITS = 3          # requeues per chunk before it is marked pending
 BREAKER_TRIP = 5          # consecutive outage-exhausted chunks before abort
+MAX_CORRECTIONS = 2       # corrective retries per single-row content rejection
 
 # Optional reminder after the comments. OFF by default: on emoji-only comments the
 # model copied this sentence into `evidence`. The forced `{"id":"..."` prefill is
@@ -77,6 +78,10 @@ PLACEHOLDER_MARKERS = (
     "respond with the json",
     "now output exactly",
     "one json object per comment",
+    "«exact words»",
+    "«english translation»",
+    "exact words from the comment",
+    "literal english translation",
 )
 
 BINARY_KEYS = (
@@ -114,52 +119,132 @@ LIST_ENUMS: dict[str, tuple[frozenset[str], str]] = {  # key -> (allowed, empty-
 FREE_TEXT_KEYS = ("evidence", "evidence_en", "OTHER_NOTE")
 
 
-def _generation_order() -> list[str]:
-    """Order the model writes fields in: evidence right after LANGUAGE.
+# --- Structured evidence (coding-prompt v1.3) ----------------------------------
+# The model writes codes ONLY inside evidence items, each tied to a quote:
+#   {"quote": "...", "quote_en": "...", "codes": ["ANGER", "BLAME_TARGETS=COACH"],
+#    "other_label": ""}
+# The script derives every code field from those items; anything not cited keeps
+# its default (0 / NONE / NA / NEUTRAL). Every code is grounded in quoted words by
+# construction, and decoding is constrained so the format cannot break.
+_SCALAR_CODE_DEFAULTS = {
+    "ATTRIBUTION": "NONE",
+    "CLASS_DIRECTION": "NA",
+    "RESPONSE_TARGET": "NA",
+    "RESPONSE_EVAL": "NA",
+}
+# Judgments about the comment as a whole (D1, I1). Since v1.4 they are top-level
+# fields chosen after the evidence, not cited codes: in v1.3 the model rarely
+# cited words for them, so they defaulted to NEUTRAL / NONE on every row.
+WHOLE_COMMENT_KEYS = ("STANCE", "TARGET_OF_COMMENT")
 
-    Quoting and translating the comment first makes the model ground its codes in
-    what the comment actually says instead of justifying codes after the fact
-    (coding-prompt v1.1). The CSV keeps COLUMN_ORDER; only generation changes.
-    """
-    coded = COLUMN_ORDER[COLUMN_ORDER.index("id"): COLUMN_ORDER.index("confidence") + 1]
-    head = ["id", "LANGUAGE", "evidence", "evidence_en"]
-    return head + [k for k in coded if k not in head]
+
+def _code_tokens() -> list[str]:
+    """Every citable code: binaries by name, other codes as NAME=VALUE (no defaults)."""
+    toks = list(BINARY_KEYS)
+    for k, default in _SCALAR_CODE_DEFAULTS.items():
+        toks += [f"{k}={v}" for v in sorted(SCALAR_ENUMS[k]) if v != default]
+    for k, (allowed, empty) in LIST_ENUMS.items():
+        toks += [f"{k}={v}" for v in sorted(allowed) if v != empty]
+    return toks
+
+
+CODE_TOKENS: list[str] = _code_tokens()
 
 
 def build_record_schema(comment_id: str) -> dict[str, Any]:
-    """JSON schema for one coded comment, used to constrain decoding.
-
-    Every key is required, every code can only take a codebook value, and the id
-    is pinned to the comment being coded. Property order follows the OUTPUT
-    template so the model writes fields in the order the prompt shows.
-    """
-    props: dict[str, Any] = {}
-    for key in GENERATION_ORDER:
-        if key == "id":
-            props[key] = {"type": "string", "enum": [str(comment_id)]}
-        elif key in BINARY_KEYS:
-            props[key] = {"type": "integer", "enum": [0, 1]}
-        elif key in SCALAR_ENUMS:
-            props[key] = {"type": "string", "enum": sorted(SCALAR_ENUMS[key])}
-        elif key in LIST_ENUMS:
-            allowed, _empty = LIST_ENUMS[key]
-            props[key] = {
+    """JSON schema constraining decoding for one comment (coding-prompt v1.3)."""
+    item = {
+        "type": "object",
+        "properties": {
+            "quote": {"type": "string"},
+            "quote_en": {"type": "string"},
+            "codes": {
                 "type": "array",
-                "items": {"type": "string", "enum": sorted(allowed)},
+                "items": {"type": "string", "enum": CODE_TOKENS},
                 "minItems": 1,
-            }
-        elif key == "EMERGENT":
-            props[key] = {"type": "string", "enum": [""]}  # MODE: FULL -> always empty
-        elif key in FREE_TEXT_KEYS:
-            props[key] = {"type": "string"}
-        else:
-            raise KeyError(f"no schema rule for {key}")
+            },
+            "other_label": {"type": "string"},
+        },
+        "required": ["quote", "quote_en", "codes", "other_label"],
+        "additionalProperties": False,
+    }
+    props = {
+        "id": {"type": "string", "enum": [str(comment_id)]},
+        "evidence": {"type": "array", "items": item},
+        "STANCE": {"type": "string", "enum": sorted(SCALAR_ENUMS["STANCE"])},
+        "TARGET_OF_COMMENT": {
+            "type": "string",
+            "enum": sorted(SCALAR_ENUMS["TARGET_OF_COMMENT"]),
+        },
+        "LANGUAGE": {"type": "string", "enum": sorted(SCALAR_ENUMS["LANGUAGE"])},
+        "OTHER_NOTE": {"type": "string"},
+        "confidence": {"type": "string", "enum": sorted(SCALAR_ENUMS["confidence"])},
+    }
     return {
         "type": "object",
         "properties": props,
         "required": list(props),
         "additionalProperties": False,
     }
+
+
+def expand_structured(obj: dict[str, Any]) -> dict[str, Any]:
+    """Turn a v1.3 structured answer into the flat 39-field record.
+
+    Raises ValueError on a scalar cited with two different values or an OTHER
+    without a label. The flat `evidence` / `evidence_en` strings are rendered in
+    the v1.2 «quote» -> CODES form so check_evidence() verifies the quotes.
+    """
+    rec: dict[str, Any] = {k: 0 for k in BINARY_KEYS}
+    rec.update(_SCALAR_CODE_DEFAULTS)
+    for k, (_allowed, empty) in LIST_ENUMS.items():
+        rec[k] = [empty]
+    rec["id"] = obj.get("id", "")
+    for k in WHOLE_COMMENT_KEYS:
+        rec[k] = obj.get(k, "")
+    rec["LANGUAGE"] = obj.get("LANGUAGE", "")
+    rec["OTHER_NOTE"] = obj.get("OTHER_NOTE", "") or ""
+    rec["confidence"] = obj.get("confidence", "")
+    rec["EMERGENT"] = ""  # MODE: FULL
+
+    parts, parts_en = [], []
+    for it in obj.get("evidence") or []:
+        if not isinstance(it, dict):
+            raise ValueError("evidence_format: each evidence item must be an object")
+        quote = str(it.get("quote", "")).strip()
+        codes = [str(c).strip() for c in (it.get("codes") or []) if str(c).strip()]
+        label = str(it.get("other_label", "") or "").strip()
+        if not quote or not codes:
+            raise ValueError("evidence_format: every item needs a quote and at least one code")
+        for tok in codes:
+            key, _, val = tok.partition("=")
+            key, val = key.upper(), val.upper()
+            if key in BINARY_KEYS:
+                rec[key] = 1
+            elif key in _SCALAR_CODE_DEFAULTS:
+                cur = rec[key]
+                if cur != _SCALAR_CODE_DEFAULTS[key] and cur != val:
+                    hint = " (use STANCE=MIXED)" if key == "STANCE" else ""
+                    raise ValueError(
+                        f"scalar_conflict: {key} cited as {cur} and {val}; choose ONE{hint}"
+                    )
+                rec[key] = val
+            elif key in LIST_ENUMS:
+                empty = LIST_ENUMS[key][1]
+                items = [v for v in rec[key] if v != empty]
+                if val not in items:
+                    items.append(val)
+                rec[key] = items
+            else:
+                raise ValueError(f"evidence_format: unknown code {tok!r}")
+            if val == "OTHER" and not label:
+                raise ValueError(f"other_without_label: {key}=OTHER needs other_label")
+        shown = [c + (f"({label})" if c.endswith("=OTHER") else "") for c in codes]
+        parts.append(f"«{quote}» -> {', '.join(shown)}")
+        parts_en.append(f"«{str(it.get('quote_en', '')).strip()}»")
+    rec["evidence"] = "; ".join(parts)
+    rec["evidence_en"] = "; ".join(parts_en)
+    return rec
 
 
 _SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
@@ -328,7 +413,6 @@ COLUMN_ORDER = [
     "autofix",
     "status",
 ]
-GENERATION_ORDER: list[str] = _generation_order()
 
 
 @dataclass(frozen=True)
@@ -554,6 +638,122 @@ def is_emoji_only(text: str) -> bool:
     return re.sub(r"[\W_]+", "", bare) == ""
 
 
+# --- Evidence linking (coding-prompt v1.2) -------------------------------------
+# evidence:    «exact words» -> CODE, CODE=VALUE; «exact words» -> CODE
+# evidence_en: «translation»; «translation»        (one per quote, same order)
+QUOTE_MAX_WORDS = 15
+# Scalar codes that need a supporting quote when they differ from these defaults.
+SCALAR_DEFAULTS = {
+    "ATTRIBUTION": "NONE",
+    "CLASS_DIRECTION": "NA",
+    "RESPONSE_TARGET": "NA",
+    "RESPONSE_EVAL": "NA",
+}  # STANCE and TARGET_OF_COMMENT are whole-comment judgments: no quote required
+_EVID_ITEM = re.compile(r"«([^«»]+)»\s*->\s*([^«]*)")
+_EVID_QUOTE = re.compile(r"«([^«»]*)»")
+_CODE_TOKEN = re.compile(r"([A-Za-z_]+)(?:\s*=\s*([A-Za-z0-9_]+)(?:\s*\([^)]*\))?)?")
+
+
+def _norm_text(t: str) -> str:
+    """Case-, quote-mark- and whitespace-insensitive form for verbatim matching."""
+    t = t.replace("\ufe0f", "").replace("\u2018", "'").replace("\u2019", "'")
+    t = t.replace("\u201c", '"').replace("\u201d", '"')
+    return re.sub(r"\s+", " ", t.casefold()).strip()
+
+
+def expected_evidence_codes(obj: dict[str, Any]) -> set[tuple[str, str]]:
+    """Every code that departs from its default and so needs a supporting quote."""
+    exp: set[tuple[str, str]] = set()
+    for k in BINARY_KEYS:
+        if obj[k] == 1:
+            exp.add((k, "1"))
+    for k, default in SCALAR_DEFAULTS.items():
+        if obj[k] != default:
+            exp.add((k, obj[k]))
+    for k, (_allowed, empty) in LIST_ENUMS.items():
+        for v in obj[k]:
+            if v != empty:
+                exp.add((k, v))
+    return exp
+
+
+def check_evidence(obj: dict[str, Any], text: str) -> None:
+    """Reject a record whose codes are not each tied to words actually in the comment."""
+    expected = expected_evidence_codes(obj)
+    evidence = obj["evidence"].strip()
+    items = _EVID_ITEM.findall(evidence)
+    if not items:
+        if expected:
+            raise ValueError(
+                "evidence_format: write evidence as «exact words» -> CODES for every "
+                "non-default code"
+            )
+        return
+    comment = _norm_text(_HANDLE.sub("[USER]", text))
+    linked: set[tuple[str, str]] = set()
+    for quote, codes in items:
+        q = _norm_text(quote).strip(" .,!?;:")
+        if q and q not in comment:
+            raise ValueError(f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
+        if len(quote.split()) > QUOTE_MAX_WORDS:
+            raise ValueError(
+                f"evidence_too_long: quotes must be at most {QUOTE_MAX_WORDS} words; "
+                "quote only the words that support the codes"
+            )
+        for key, val in _CODE_TOKEN.findall(codes):
+            key = key.upper()
+            if key in ("LANGUAGE", "CONFIDENCE", "NONE", "NA", "NEUTRAL", *WHOLE_COMMENT_KEYS):
+                continue
+            if key in BINARY_KEYS:
+                linked.add((key, "1"))
+            elif key in SCALAR_DEFAULTS or key in LIST_ENUMS:
+                if not val:
+                    raise ValueError(f"evidence_format: {key} needs a value, e.g. {key}=VALUE")
+                linked.add((key, val.upper()))
+            else:
+                raise ValueError(f"evidence_format: unknown code {key!r} in evidence")
+    defaults = {(k, v) for k, v in SCALAR_DEFAULTS.items()} | {
+        (k, empty) for k, (_a, empty) in LIST_ENUMS.items()
+    }
+    missing = expected - linked
+    if missing:
+        listed = ", ".join(f"{k}={v}" if v != "1" else k for k, v in sorted(missing))
+        raise ValueError(f"evidence_missing: no quote supports {listed}")
+    extra = linked - expected - defaults
+    if extra:
+        listed = ", ".join(f"{k}={v}" if v != "1" else k for k, v in sorted(extra))
+        raise ValueError(f"evidence_contradiction: evidence cites {listed} but the code is not set")
+    n_en = len(_EVID_QUOTE.findall(obj["evidence_en"]))
+    if n_en != len(items):
+        raise ValueError(
+            f"evidence_en_count: give one «translation» per quote ({len(items)} quotes)"
+        )
+
+
+# Common Filipino and Cebuano function words. Used only to FLAG likely LANGUAGE
+# errors for review, never to overwrite the model's code.
+_PH_MARKERS = frozenset(
+    """ang ng nang mga sa si ni na po opo ko mo niya nila namin natin kami kayo sila siya
+    ito iyan yan iyon yun yung naman lang lamang talaga kasi pero hindi di wala may meron
+    ba pa din rin daw raw sana dapat kaya ano bakit sino grabe sobra nga ug dili gyud kaayo
+    unsa kini kana walay""".split()
+)
+_WORD = re.compile(r"[a-zA-Z']+")
+
+
+def language_flag(language: str, text: str) -> Optional[str]:
+    """Return an autofix flag when LANGUAGE disagrees with a simple word check."""
+    words = {w.lower().strip("'") for w in _WORD.findall(_SHORTCODE.sub(" ", text))}
+    if not words:
+        return None
+    has_ph = bool(words & _PH_MARKERS)
+    if language in ("TAGLISH", "FILIPINO") and not has_ph:
+        return "language_check:no_filipino_words"
+    if language == "ENGLISH" and has_ph:
+        return "language_check:filipino_words_in_english"
+    return None
+
+
 def validate_record(obj: dict[str, Any], text: str) -> list[str]:
     """Check one coded record against codebook v2.1 and normalise it in place."""
     fixes: list[str] = []
@@ -604,6 +804,14 @@ def validate_record(obj: dict[str, Any], text: str) -> list[str]:
             items.remove(empty)  # NONE/NA alongside real values is contradictory
         obj[k] = items
 
+    # Evidence must tie every non-default code to words in the comment (v1.2).
+    # Runs before the autofixes below, which may reset codes the evidence cites.
+    check_evidence(obj, text)
+
+    flag = language_flag(obj["LANGUAGE"], text)
+    if flag and not is_emoji_only(text):
+        fixes.append(flag)  # flagged for review, not overwritten
+
     # Deterministic codebook rules.
     if is_emoji_only(text) and obj["LANGUAGE"] != "EMOJI":
         obj["LANGUAGE"] = "EMOJI"  # A1: emoji only, no words
@@ -651,6 +859,11 @@ def parse_chunk_response(
         raise ValueError(f"count_mismatch: {len(objs)} objs for {len(row_ids)} rows")
     records: list[dict[str, Any]] = []
     for rid, obj in zip(row_ids, objs):
+        if isinstance(obj.get("evidence"), list):  # v1.3 structured answer
+            try:
+                obj = expand_structured(obj)
+            except ValueError as exc:
+                raise ValueError(f"row {rid}: {exc}") from exc
         missing = required - set(obj.keys())
         if missing:
             raise ValueError(f"missing_keys: {sorted(missing)}")
@@ -809,7 +1022,8 @@ def run_pair(
     print(f"\n\n{'='*80}\nPROMPT FOR PHASE: {phase}\n{'='*80}\n{prompt_template[:500]}...[TRUNCATED FOR LOGS]\n{'='*80}\n")
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
     text_of = dict(zip(df["row_id"].tolist(), df["text"].astype(str).tolist()))
-    retry_notes: dict[tuple[int, ...], str] = {}  # one corrective retry per bad single row
+    retry_notes: dict[tuple[int, ...], str] = {}  # latest correction note per single row
+    correction_counts: dict[tuple[int, ...], int] = {}
 
     chunks_queue = [df.iloc[i : i + chunk_size] for i in range(0, len(df), chunk_size)]
     raw_responses: list[dict[str, Any]] = []
@@ -821,15 +1035,21 @@ def run_pair(
     if not overwrite:
         try:
             ok_ids: set[int] = set()
+            stale_version = 0
             if partial_resp.exists():
                 with open(partial_resp, encoding="utf-8") as f:
                     for line in f:
                         try:
                             rec = json.loads(line)
-                            ok_ids.update(rec.get("row_ids", []))
-                            raw_responses.append(rec)
                         except Exception:
-                            pass
+                            continue
+                        # Outputs made with another prompt version are recoded, not
+                        # mixed in (v1.0 checkpoints carry no version field).
+                        if rec.get("prompt_version", "v1.0") != prompt_version:
+                            stale_version += 1
+                            continue
+                        ok_ids.update(rec.get("row_ids", []))
+                        raw_responses.append(rec)
             prior_failures = 0
             if partial_fail.exists():
                 with open(partial_fail, encoding="utf-8") as f:
@@ -856,6 +1076,11 @@ def run_pair(
                         except Exception:
                             pass
             hard_failures = []
+            if stale_version:
+                print(
+                    f"Ignoring {stale_version} checkpointed rows coded with another prompt "
+                    f"version; they will be recoded with {prompt_version}."
+                )
             if ok_ids:
                 chunks_queue = [
                     c
@@ -1014,21 +1239,28 @@ def run_pair(
             except Exception as exc:
                 dump_raw(debug_path, row_ids, repr(exc), raw or "")
                 key = tuple(row_ids)
-                if n_rows == 1 and key not in retry_notes:
-                    # Greedy decoding would repeat itself, so retry once with the
-                    # rejection reason appended to change the input.
-                    print(f"Row {row_ids[0]} rejected ({str(exc)[:120]}); retrying once with a correction note.")
+                if n_rows == 1 and correction_counts.get(key, 0) < MAX_CORRECTIONS:
+                    # Greedy decoding would repeat itself, so retry with the rejection
+                    # reason appended to change the input.
+                    correction_counts[key] = correction_counts.get(key, 0) + 1
+                    print(
+                        f"Row {row_ids[0]} rejected ({str(exc)[:120]}); retry "
+                        f"{correction_counts[key]}/{MAX_CORRECTIONS} with a correction note."
+                    )
                     retry_notes[key] = (
                         "\n\nCORRECTION: the previous answer for this comment was rejected: "
-                        f"{str(exc)[:200]}. Code only this comment. Copy exact words from the "
-                        "comment into evidence, never field descriptions or instructions, and set "
-                        "confidence to exactly one of HIGH, MEDIUM or LOW."
+                        f"{str(exc)[:200]}. Code only this comment, from its own words. Each "
+                        "evidence item needs a short quote copied exactly from the comment (at "
+                        "most 15 words), its literal English translation, and the codes those "
+                        "words support. Cite each choose-ONE code with only one value. Name any "
+                        "OTHER in other_label. CLASS_FRAME needs a CLASS_DIRECTION value, and "
+                        "RESPONSE_TARGET and RESPONSE_EVAL are cited together."
                     )
                     chunks_queue.insert(0, current)
                     continue
                 split_or_log(current, n_rows, exc)
                 continue
-            rec = {"row_ids": row_ids, "text": raw or ""}
+            rec = {"row_ids": row_ids, "text": raw or "", "prompt_version": prompt_version}
             raw_responses.append(rec)
             with open(partial_resp, "a", encoding="utf-8") as f:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -1083,9 +1315,22 @@ def run_pair(
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
     emergent_hit = sum(1 for r in parsed_records if str(r.get("EMERGENT", "")).strip())
-    autofixed = sum(1 for r in parsed_records if r.get("autofix"))
+    def _fixes(r: dict[str, Any]) -> list[str]:
+        return [f for f in str(r.get("autofix", "")).split(";") if f]
+
+    autofixed = sum(
+        1 for r in parsed_records if any(not f.startswith("language_check") for f in _fixes(r))
+    )
+    lang_flags = sum(
+        1 for r in parsed_records if any(f.startswith("language_check") for f in _fixes(r))
+    )
     if autofixed:
         print(f"autofixed (deterministic codebook rules): {autofixed}/{len(parsed_records)} rows")
+    if lang_flags:
+        print(
+            f"LANGUAGE flagged for review (see autofix column): "
+            f"{lang_flags}/{len(parsed_records)} rows"
+        )
     print(
         f"parsed: {len(parsed_records)}/{len(df)} rows | "
         f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)} | "

@@ -1,4 +1,4 @@
-# coding-prompt v1.1 (2026-10-02) — used with codebook v2.1
+# coding-prompt v1.4 (2026-10-02) — used with codebook v2.1
 # Lines starting with "#" at the top of this file are metadata. run_local.py strips
 # them before the prompt is sent and records the version in every coded record.
 # Changes are logged in coding-prompt-CHANGELOG.md.
@@ -14,6 +14,9 @@ MODE: [PILOT | FULL]
 
 CASE CONTEXT
 [The data are made about a Youtube video on ..... No judgments about fault.]
+The case context is background, so you can understand what a comment
+refers to. Never code anything from it. Every code must come from the
+words of the comment itself.
 
 CODEBOOK
 <<<paste full text of the codebook here>>>
@@ -33,23 +36,64 @@ INSTRUCTIONS
 4. Do not create new codes or values. Anything that does not fit goes
    in EMERGENT (pilot) or OTHER_NOTE (full).
 5. In evidence fields, replace @handles and user IDs with [USER].
-6. Work in this order. First, copy the exact words from the comment
-   that your coding rests on into "evidence" and translate them into
-   English in "evidence_en". Then assign every code based on what those
-   words actually say. Code what the commenter asserts or clearly
-   implies, not merely the topics the comment mentions.
+6. Codes are given ONLY inside evidence items. For each part of the
+   comment that carries meaning, write one item: the exact words, their
+   translation, and the codes those words support. Anything you do not
+   cite stays 0 / NONE / NA / NEUTRAL. Code what the commenter asserts or
+   clearly implies, not merely the topics the comment mentions.
+
+EVIDENCE ITEMS
+Each item in "evidence" has four fields:
+- "quote": words copied exactly from the comment, at most 15 words.
+  Quote only the words that support the codes, not the whole comment.
+- "quote_en": a literal English translation of the quote. Translate only
+  what is there; add no words, tone or interpretation. If the quote is
+  already English, repeat it.
+- "codes": the codes these words support. Binary codes by name
+  ("ANGER"); other codes as NAME=VALUE ("ATTRIBUTION=NEGLIGENCE",
+  "BLAME_TARGETS=COACH", "VALUES=JUSTICE"). Values are the codebook's.
+- "other_label": name the category when a code is OTHER
+  ("VALUES=OTHER" -> "resilience"); otherwise "".
+Rules:
+- A choose-ONE code (ATTRIBUTION, CLASS_DIRECTION, RESPONSE_TARGET,
+  RESPONSE_EVAL) may be cited with only one value.
+- If nothing in the comment supports any code, "evidence" is [].
+
+WHOLE-COMMENT CODES
+After the evidence items, judge the comment as a whole:
+- "STANCE" (D1): CRITICAL, DEFENDING, MIXED or NEUTRAL. A comment that
+  rejects blame or calls the incident an accident is DEFENDING; one that
+  both criticizes and defends is MIXED. If NEEDS_CONTEXT is cited,
+  STANCE is NEUTRAL.
+- "TARGET_OF_COMMENT" (I1): who the comment is mainly addressed to or
+  about: ORGANIZATION, PERSON, VICTIMS_FAMILY, OTHER_COMMENTERS, MEDIA or
+  NONE.
+
+CODING REMINDERS
+- BLAME_TARGETS: code a target only if the comment names it or clearly
+  refers to it ("coach", "Ateneo", "admin", "kayo" said to the school).
+  If wrongdoing is implied but no one is named, code NONE; the framing
+  still goes in ATTRIBUTION.
+- VALUES: code a value only if the comment's own words invoke it
+  (general rule 4). Sadness, prayers or a call for investigation do not
+  by themselves invoke a value.
+- IDENTITY_FRAME: only the four identities in F3 (nationality, race,
+  region, religion). A university, school or organization is not an
+  identity.
+- Emotions: code an emotion only if the words or emojis express it
+  (general rules 1 and 9). A topic being sad is not SADNESS.
+- LANGUAGE: decide from the comment's actual words. A comment written
+  entirely in English is ENGLISH even though the case is Filipino.
 
 CONSISTENCY CHECKS
 Before finishing each object, make sure that:
-- CLASS_DIRECTION is NA if and only if CLASS_FRAME = 0.
-- RESPONSE_TARGET and RESPONSE_EVAL are both NA, or neither is NA.
-- REJECT_REASONS is ["NA"] unless RESPONSE_EVAL is REJECTS or MIXED.
-- If NEEDS_CONTEXT = 1, STANCE is NEUTRAL.
-- If UNCODABLE = 1, every other code is 0, NONE or NA.
-- In list fields, NONE or NA appears only on its own, never next to
-  another value.
-- Every non-zero code is supported by the evidence.
-- In FULL mode, EMERGENT is "".
+- CLASS_FRAME and a CLASS_DIRECTION value are cited together, or neither.
+- RESPONSE_TARGET and RESPONSE_EVAL are cited together, or neither.
+- REJECT_REASONS are cited only with RESPONSE_EVAL=REJECTS or MIXED.
+- If NEEDS_CONTEXT is cited, STANCE is NEUTRAL.
+- If UNCODABLE is cited, no other code is cited, STANCE is NEUTRAL and
+  TARGET_OF_COMMENT is NONE.
+- Every cited code is supported by the words of its quote.
 
 CONFIDENCE
 - HIGH: every code follows from explicit words in the comment.
@@ -59,23 +103,17 @@ CONFIDENCE
   cannot see.
 
 OUTPUT
-One JSON object per comment, one per line, no other text. Use exactly
-these keys in this order. The values shown are placeholders and
-defaults; replace them with your coding:
-{"id":"","LANGUAGE":"",
-"evidence":"short quote(s) supporting each non-zero code",
-"evidence_en":"English translation of the evidence",
-"ANGER":0,"CONTEMPT":0,"DISGUST":0,"SADNESS":0,"CONDOLENCE":0,
-"COMPASSION_VICTIMS":0,"SYMPATHY_OFFENDER":0,"FEAR":0,
-"NORM_VIOLATION":0,"ATTRIBUTION":"NONE","IGNORED_WARNING":0,
-"RECURRENCE":0,"COVER_UP":0,"ALT_ACCOUNT":0,"INJUSTICE":0,
-"SELF_INTEREST":0,"BLAME_TARGETS":["NONE"],
-"STANCE":"NEUTRAL","NEEDS_CONTEXT":0,
-"VALUES":["NONE"],
-"CLASS_FRAME":0,"CLASS_DIRECTION":"NA","IDENTITY_FRAME":["NONE"],
-"APPEARANCE_ATTACK":0,
-"ACTIONS":["NONE"],
-"RESPONSE_TARGET":"NA","RESPONSE_EVAL":"NA","REJECT_REASONS":["NA"],
-"TARGET_OF_COMMENT":"NONE","META_DISCOURSE":0,"SARCASM":0,"UNCODABLE":0,
-"EMERGENT":"","OTHER_NOTE":"",
+One JSON object per comment, one per line, no other text, with exactly
+these keys in this order (values shown are placeholders):
+{"id":"",
+"evidence":[
+ {"quote":"exact words from the comment",
+  "quote_en":"literal English translation",
+  "codes":["CODE","NAME=VALUE"],
+  "other_label":""}
+],
+"STANCE":"NEUTRAL",
+"TARGET_OF_COMMENT":"NONE",
+"LANGUAGE":"",
+"OTHER_NOTE":"",
 "confidence":"HIGH|MEDIUM|LOW"}
