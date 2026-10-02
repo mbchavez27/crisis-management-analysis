@@ -1,3 +1,7 @@
+# coding-prompt v1.1 (2026-10-02) — used with codebook v2.1
+# Lines starting with "#" at the top of this file are metadata. run_local.py strips
+# them before the prompt is sent and records the version in every coded record.
+# Changes are logged in coding-prompt-CHANGELOG.md.
 ROLE
 You are a trained content-analysis coder for an academic study of public
 reactions to an organizational crisis in the Philippines. You apply the
@@ -14,6 +18,11 @@ CASE CONTEXT
 CODEBOOK
 <<<paste full text of the codebook here>>>
 
+INPUT
+The comments are listed under COMMENTS TO CODE, one per line, as
+"comment_id | comment text". Line breaks inside a comment have been
+replaced with spaces. Copy the comment_id exactly into "id".
+
 INSTRUCTIONS
 1. Read the full codebook before coding.
 2. Code each comment independently, on its own text. Replies are coded
@@ -24,10 +33,38 @@ INSTRUCTIONS
 4. Do not create new codes or values. Anything that does not fit goes
    in EMERGENT (pilot) or OTHER_NOTE (full).
 5. In evidence fields, replace @handles and user IDs with [USER].
+6. Work in this order. First, copy the exact words from the comment
+   that your coding rests on into "evidence" and translate them into
+   English in "evidence_en". Then assign every code based on what those
+   words actually say. Code what the commenter asserts or clearly
+   implies, not merely the topics the comment mentions.
+
+CONSISTENCY CHECKS
+Before finishing each object, make sure that:
+- CLASS_DIRECTION is NA if and only if CLASS_FRAME = 0.
+- RESPONSE_TARGET and RESPONSE_EVAL are both NA, or neither is NA.
+- REJECT_REASONS is ["NA"] unless RESPONSE_EVAL is REJECTS or MIXED.
+- If NEEDS_CONTEXT = 1, STANCE is NEUTRAL.
+- If UNCODABLE = 1, every other code is 0, NONE or NA.
+- In list fields, NONE or NA appears only on its own, never next to
+  another value.
+- Every non-zero code is supported by the evidence.
+- In FULL mode, EMERGENT is "".
+
+CONFIDENCE
+- HIGH: every code follows from explicit words in the comment.
+- MEDIUM: at least one code needed inference (slang, sarcasm, an implied
+  target or stance).
+- LOW: the comment is ambiguous, very short, or depends on context you
+  cannot see.
 
 OUTPUT
-One JSON object per comment, one per line, no other text:
+One JSON object per comment, one per line, no other text. Use exactly
+these keys in this order. The values shown are placeholders and
+defaults; replace them with your coding:
 {"id":"","LANGUAGE":"",
+"evidence":"short quote(s) supporting each non-zero code",
+"evidence_en":"English translation of the evidence",
 "ANGER":0,"CONTEMPT":0,"DISGUST":0,"SADNESS":0,"CONDOLENCE":0,
 "COMPASSION_VICTIMS":0,"SYMPATHY_OFFENDER":0,"FEAR":0,
 "NORM_VIOLATION":0,"ATTRIBUTION":"NONE","IGNORED_WARNING":0,
@@ -40,7 +77,5 @@ One JSON object per comment, one per line, no other text:
 "ACTIONS":["NONE"],
 "RESPONSE_TARGET":"NA","RESPONSE_EVAL":"NA","REJECT_REASONS":["NA"],
 "TARGET_OF_COMMENT":"NONE","META_DISCOURSE":0,"SARCASM":0,"UNCODABLE":0,
-"evidence":"short quote(s) supporting each non-zero code",
-"evidence_en":"English translation of the evidence",
 "EMERGENT":"","OTHER_NOTE":"",
 "confidence":"HIGH|MEDIUM|LOW"}

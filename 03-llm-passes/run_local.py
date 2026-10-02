@@ -111,6 +111,57 @@ LIST_ENUMS: dict[str, tuple[frozenset[str], str]] = {  # key -> (allowed, empty-
                                   "NO_FAMILY_OUTREACH", "OTHER", "NA"}), "NA"),
 }
 
+FREE_TEXT_KEYS = ("evidence", "evidence_en", "OTHER_NOTE")
+
+
+def _generation_order() -> list[str]:
+    """Order the model writes fields in: evidence right after LANGUAGE.
+
+    Quoting and translating the comment first makes the model ground its codes in
+    what the comment actually says instead of justifying codes after the fact
+    (coding-prompt v1.1). The CSV keeps COLUMN_ORDER; only generation changes.
+    """
+    coded = COLUMN_ORDER[COLUMN_ORDER.index("id"): COLUMN_ORDER.index("confidence") + 1]
+    head = ["id", "LANGUAGE", "evidence", "evidence_en"]
+    return head + [k for k in coded if k not in head]
+
+
+def build_record_schema(comment_id: str) -> dict[str, Any]:
+    """JSON schema for one coded comment, used to constrain decoding.
+
+    Every key is required, every code can only take a codebook value, and the id
+    is pinned to the comment being coded. Property order follows the OUTPUT
+    template so the model writes fields in the order the prompt shows.
+    """
+    props: dict[str, Any] = {}
+    for key in GENERATION_ORDER:
+        if key == "id":
+            props[key] = {"type": "string", "enum": [str(comment_id)]}
+        elif key in BINARY_KEYS:
+            props[key] = {"type": "integer", "enum": [0, 1]}
+        elif key in SCALAR_ENUMS:
+            props[key] = {"type": "string", "enum": sorted(SCALAR_ENUMS[key])}
+        elif key in LIST_ENUMS:
+            allowed, _empty = LIST_ENUMS[key]
+            props[key] = {
+                "type": "array",
+                "items": {"type": "string", "enum": sorted(allowed)},
+                "minItems": 1,
+            }
+        elif key == "EMERGENT":
+            props[key] = {"type": "string", "enum": [""]}  # MODE: FULL -> always empty
+        elif key in FREE_TEXT_KEYS:
+            props[key] = {"type": "string"}
+        else:
+            raise KeyError(f"no schema rule for {key}")
+    return {
+        "type": "object",
+        "properties": props,
+        "required": list(props),
+        "additionalProperties": False,
+    }
+
+
 _SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
 _UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿️‍]")
 _HANDLE = re.compile(r"@[\w.\-]+")
@@ -277,6 +328,7 @@ COLUMN_ORDER = [
     "autofix",
     "status",
 ]
+GENERATION_ORDER: list[str] = _generation_order()
 
 
 @dataclass(frozen=True)
@@ -315,10 +367,38 @@ CODEBOOK_SLOTS = (
 CASE_CONTEXT_SLOT = "[The data are made about a Youtube video on ..... No judgments about fault.]"
 
 
+# The codebook's analysis-only sections (derived variables, theory mapping, change
+# log) explain how codes are used later; they do not help code a comment. They are
+# cut from the LLM's copy so the coding definitions stay identical for human and
+# LLM coders while the prompt shrinks by ~660 tokens (coding-prompt v1.1).
+CODEBOOK_CUT_MARKER = "DERIVED VARIABLES (COMPUTED IN ANALYSIS, NOT CODED)"
+_PROMPT_VERSION_RE = re.compile(r"coding-prompt\s+(v[0-9][0-9.]*)", re.I)
+
+
+def read_wrapper() -> tuple[str, str]:
+    """Return (wrapper text without its '#' metadata header, prompt version)."""
+    lines = (PROMPTS_DIR / "coding-prompt.txt").read_text(encoding="utf-8").splitlines()
+    header: list[str] = []
+    while lines and lines[0].startswith("#"):
+        header.append(lines.pop(0))
+    match = _PROMPT_VERSION_RE.search("\n".join(header))
+    return "\n".join(lines).strip(), (match.group(1) if match else "v1.0")
+
+
+def coding_codebook_text() -> str:
+    """The codebook as sent to the LLM: everything up to the analysis-only sections."""
+    full = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
+    cut = full.find(CODEBOOK_CUT_MARKER)
+    if cut == -1:
+        print(f"WARNING: '{CODEBOOK_CUT_MARKER}' not found; sending the full codebook.")
+        return full
+    return full[:cut].rstrip()
+
+
 def build_codebook_prompt(crisis: str, phase: str) -> str:
     """Assemble the v2 prompt: wrapper + codebook text + per-phase context."""
-    codebook = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
-    wrapper = (PROMPTS_DIR / "coding-prompt.txt").read_text(encoding="utf-8").strip()
+    codebook = coding_codebook_text()
+    wrapper, _version = read_wrapper()
     contexts = json.loads((PROMPTS_DIR / "phase-context.json").read_text(encoding="utf-8"))
     case_context = contexts.get(crisis, {}).get(phase, "")
     if not case_context:
@@ -632,6 +712,7 @@ class LocalGenerator:
             **engine_kwargs,
         )
         self.tokenizer = self.llm.get_tokenizer()
+        self._SamplingParams = SamplingParams
         self.sampling_params = SamplingParams(
             temperature=0.0,
             max_tokens=self.max_new_tokens,
@@ -654,15 +735,44 @@ class LocalGenerator:
         """Tokens the prompt occupies once wrapped in the chat template."""
         return len(self.tokenizer(self._chat(prompt), add_special_tokens=False)["input_ids"])
 
-    def generate(self, prompt: str, prefill: str = "") -> str:
-        """Deterministic generation. `prefill` is forced as the start of the reply."""
+    def _schema_params(self, schema: dict[str, Any]) -> Any:
+        """Greedy sampling constrained to `schema` (vLLM >= 0.11 name, older fallback)."""
+        try:
+            from vllm.sampling_params import StructuredOutputsParams
+
+            return self._SamplingParams(
+                temperature=0.0,
+                max_tokens=self.max_new_tokens,
+                structured_outputs=StructuredOutputsParams(json=schema),
+            )
+        except ImportError:
+            from vllm.sampling_params import GuidedDecodingParams
+
+            return self._SamplingParams(
+                temperature=0.0,
+                max_tokens=self.max_new_tokens,
+                guided_decoding=GuidedDecodingParams(json=schema),
+            )
+
+    def generate(
+        self, prompt: str, prefill: str = "", schema: Optional[dict[str, Any]] = None
+    ) -> str:
+        """Deterministic generation.
+
+        With `schema`, decoding is constrained to that JSON schema (all keys present,
+        codebook values only) and `prefill` must be empty. Without it, `prefill` is
+        forced as the start of the reply.
+        """
+        if schema is not None and prefill:
+            raise ValueError("prefill cannot be combined with a schema")
         chat = self._chat(prompt) + prefill
         if self.count_prompt_tokens(prompt) + len(prefill) // 2 + self.max_new_tokens > self.max_model_len:
             # No digits in the message: the retry logic treats "500" in an error as transient.
             raise ValueError("prompt_too_long: comment does not fit in the context window")
+        params = self._schema_params(schema) if schema is not None else self.sampling_params
         outputs = self.llm.generate(
             [chat],
-            sampling_params=self.sampling_params,
+            sampling_params=params,
             use_tqdm=False,  # no per-call progress bar
         )
         return prefill + outputs[0].outputs[0].text
@@ -693,6 +803,8 @@ def run_pair(
     partial_pending = Path(str(pending_path) + ".partial.log")
 
     prompt_template = build_codebook_prompt(crisis, phase)
+    _, prompt_version = read_wrapper()
+    print(f"Coding prompt {prompt_version} | codebook v2.1 (analysis-only sections omitted)")
 
     print(f"\n\n{'='*80}\nPROMPT FOR PHASE: {phase}\n{'='*80}\n{prompt_template[:500]}...[TRUNCATED FOR LOGS]\n{'='*80}\n")
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))
@@ -827,7 +939,13 @@ def run_pair(
                 to_line(r["comment_id"], r["text"]) for _, r in current.iterrows()
             )
             # Force the reply to start as the first comment's JSON object.
-            prefill = '{"id":"' + str(current.iloc[0]["comment_id"]) + '",'
+            # One comment per call: constrain decoding to the codebook schema, which
+            # guarantees every key and only codebook values. Multi-comment chunks fall
+            # back to the old forced-prefix approach.
+            schema = (
+                build_record_schema(str(current.iloc[0]["comment_id"])) if n_rows == 1 else None
+            )
+            prefill = "" if schema else '{"id":"' + str(current.iloc[0]["comment_id"]) + '",'
             full_prompt = (
                 prompt_template
                 + "\n\nCOMMENTS TO CODE\n"
@@ -836,7 +954,7 @@ def run_pair(
                 + retry_notes.get(tuple(row_ids), "")
             )
             try:
-                raw = generate_with_retry(generator, full_prompt, prefill=prefill)
+                raw = generate_with_retry(generator, full_prompt, prefill=prefill, schema=schema)
             except Exception as exc:
                 if is_engine_dead(exc):
                     # Retrying is pointless and would mark every remaining row a
@@ -978,6 +1096,7 @@ def run_pair(
     with open(output_path, "w", encoding="utf-8") as f:
         for record in parsed_records:
             record["model"] = model_id
+            record["prompt_version"] = prompt_version
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     print(f"Wrote {len(parsed_records)} records -> {output_path}")
 
