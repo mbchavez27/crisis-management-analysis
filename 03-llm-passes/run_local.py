@@ -19,7 +19,8 @@ Example:
     uv run --no-sync python run_local.py --crisis ateneo-drowning \
         --phases "$PHASES" --passes 1 --chunk-size 1 --load-in-4bit --closing
 
---load-in-4bit: nf4 quantization for <=12GB GPUs. Full precision is the
+--load-in-4bit: nf4 quantization (bitsandbytes, applied by vLLM at load time)
+for <=12GB GPUs. Required for the 9B model on a 12GB card. Full precision is the
 default so canonical runs (GPU VM) stay byte-identical across machines.
 """
 
@@ -42,10 +43,9 @@ HERE = Path(__file__).parent
 PROMPTS_DIR = HERE / "prompts"
 OUTPUT_ROOT = HERE / "output"
 
-DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B"
-# Total context (prompt + output). Gemma 2's native limit is 8192; vLLM 0.6.4
-# caps Gemma 2 at 4096 (no interleaved sliding-window support), newer vLLM
-# allows the full 8192.
+# Instruction-tuned SEA-LION v3 (the plain "-9B" checkpoint is the base model).
+DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B-IT"
+# Total context (prompt + output). Gemma 2's native limit is 8192.
 MAX_MODEL_LEN = 8192
 SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids", "status"}
 
@@ -140,6 +140,11 @@ def is_transient(e: Exception) -> bool:
     )
 
 
+def is_engine_dead(e: Exception) -> bool:
+    """The local inference engine crashed (e.g. GPU out of memory); nothing will recover it."""
+    return type(e).__name__ == "EngineDeadError" or "EngineDeadError" in repr(e)
+
+
 def generate_with_retry(
     generator: Any, prompt: str, tries: int = TRANSIENT_TRIES, **kw: Any
 ) -> str:
@@ -148,7 +153,7 @@ def generate_with_retry(
         try:
             return generator.generate(prompt, **kw)
         except Exception as e:
-            if attempt == tries - 1:
+            if attempt == tries - 1 or is_engine_dead(e):
                 raise
             if is_rate_limited(e):
                 sleep_time = random.uniform(*RATE_LIMIT_SLEEP)
@@ -378,7 +383,14 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--load-in-4bit",
         action="store_true",
-        help="Quantization for <=12GB GPUs. Uses bitsandbytes via vLLM.",
+        help="nf4 4-bit quantization (bitsandbytes) for <=12GB GPUs. Needed for 9B on 12GB.",
+    )
+    parser.add_argument(
+        "--max-model-len",
+        type=int,
+        default=MAX_MODEL_LEN,
+        help="Total context (prompt + output). 8192 on large GPUs; 7168 fits a 12GB card "
+             "with --load-in-4bit.",
     )
     parser.add_argument(
         "--closing",
@@ -578,29 +590,46 @@ def parse_chunk_response(
 
 
 class LocalGenerator:
-    """Thin wrapper around vLLM for high-throughput generation with Prefix Caching."""
+    """Thin wrapper around vLLM for generation with prefix caching (codebook prompt reused)."""
 
-    def __init__(self, model_id: str, max_new_tokens: int, load_in_4bit: bool = False) -> None:
+    def __init__(
+        self,
+        model_id: str,
+        max_new_tokens: int,
+        load_in_4bit: bool = False,
+        max_model_len: int = MAX_MODEL_LEN,
+    ) -> None:
         from vllm import LLM, SamplingParams
 
         self.max_new_tokens = max_new_tokens
-        self.max_model_len = MAX_MODEL_LEN
+        self.max_model_len = max_model_len
 
         print(f"\nInitializing vLLM Engine for '{model_id}'...")
-        print(" -> Prefix Caching: ENABLED (This handles long prompts perfectly)")
-        print(f" -> 4-bit Quantization: {'ENABLED' if load_in_4bit else 'DISABLED'}")
+        print(" -> Prefix Caching: ENABLED (codebook prompt is computed once and reused)")
+        print(f" -> 4-bit Quantization (bitsandbytes nf4): {'ENABLED' if load_in_4bit else 'DISABLED'}")
 
-        quant_kwargs: dict[str, Any] = {}
+        engine_kwargs: dict[str, Any] = {"gpu_memory_utilization": 0.90}
         if load_in_4bit:
-            quant_kwargs["quantization"] = "bitsandbytes"
-            quant_kwargs["load_format"] = "bitsandbytes"
+            engine_kwargs["quantization"] = "bitsandbytes"
+            # Small-GPU profile (12 GB cards). The script sends one request at a time,
+            # so vLLM's defaults (256 parallel sequences, 8192-token prefill batches)
+            # only reserve memory that is never used. Shrinking them frees room for
+            # the 8K KV cache without changing what the model computes.
+            engine_kwargs.update(
+                # 0.90, not higher: the desktop (Xorg, browser) and the CUDA context
+                # also live on this card, and 0.93 left no room for the 4-bit
+                # dequantize buffers during prefill.
+                gpu_memory_utilization=0.90,
+                max_num_seqs=1,
+                max_num_batched_tokens=512,  # small prefill pieces = small activation peak
+                enforce_eager=True,  # skip CUDA graph capture (saves memory, some speed)
+            )
 
         self.llm = LLM(
             model=model_id,
             enable_prefix_caching=True,
             max_model_len=self.max_model_len,
-            trust_remote_code=True,
-            **quant_kwargs,
+            **engine_kwargs,
         )
         self.tokenizer = self.llm.get_tokenizer()
         self.sampling_params = SamplingParams(
@@ -628,15 +657,15 @@ class LocalGenerator:
     def generate(self, prompt: str, prefill: str = "") -> str:
         """Deterministic generation. `prefill` is forced as the start of the reply."""
         chat = self._chat(prompt) + prefill
-
+        if self.count_prompt_tokens(prompt) + len(prefill) // 2 + self.max_new_tokens > self.max_model_len:
+            # No digits in the message: the retry logic treats "500" in an error as transient.
+            raise ValueError("prompt_too_long: comment does not fit in the context window")
         outputs = self.llm.generate(
-            prompts=[chat],
+            [chat],
             sampling_params=self.sampling_params,
-            use_tqdm=False,  # Prevent vLLM from printing a progress bar per chunk
+            use_tqdm=False,  # no per-call progress bar
         )
-
-        gen_text = outputs[0].outputs[0].text
-        return prefill + gen_text
+        return prefill + outputs[0].outputs[0].text
 
 
 def run_pair(
@@ -757,8 +786,7 @@ def run_pair(
         raise RuntimeError(
             f"Prompt template ({base_tokens} tokens) does not fit: only {budget} tokens are "
             f"available after reserving {generator.max_new_tokens} for output. Lower "
-            f"--max-new-tokens, raise MAX_MODEL_LEN (needs a vLLM that supports it for this "
-            f"model), or use a longer-context model."
+            f"--max-new-tokens, use a longer-context model, or shorten the codebook prompt."
         )
 
     pbar = tqdm(
@@ -810,6 +838,20 @@ def run_pair(
             try:
                 raw = generate_with_retry(generator, full_prompt, prefill=prefill)
             except Exception as exc:
+                if is_engine_dead(exc):
+                    # Retrying is pointless and would mark every remaining row a
+                    # "hard failure". Park them as pending so a rerun resumes cleanly.
+                    print(
+                        "\nInference engine died (see the vLLM traceback above, usually "
+                        "CUDA out of memory). Stopping this phase; remaining rows are "
+                        "marked pending and will be retried on the next run."
+                    )
+                    append_pending_rows(partial_pending, current, "engine_dead", repr(exc))
+                    for c in chunks_queue:
+                        append_pending_rows(partial_pending, c, "engine_dead", repr(exc))
+                    pbar.update(n_rows + sum(len(c) for c in chunks_queue))
+                    chunks_queue.clear()
+                    break
                 if is_rate_limited(exc) or is_transient(exc):
                     reason = (
                         "rate_limited_exhausted"
@@ -1015,7 +1057,9 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     ok = True
     # One model load reused across all requested pairs (9B weights are slow to load).
-    generator = LocalGenerator(args.model, args.max_new_tokens, args.load_in_4bit)
+    generator = LocalGenerator(
+        args.model, args.max_new_tokens, args.load_in_4bit, args.max_model_len
+    )
     try:
         for phase in phases:
             df = load_phase_df(args.crisis, phase, args.limit)
