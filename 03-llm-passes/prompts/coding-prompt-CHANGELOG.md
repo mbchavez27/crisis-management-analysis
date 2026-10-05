@@ -58,8 +58,47 @@ Pipeline (`run_local.py`):
 - **Quote matching ignores quote marks** and accepts near-verbatim quotes (similarity
   ≥ 0.85 to the best-matching stretch of the comment), flagged `evidence_fuzzy`.
   Invented quotes still fail.
-- **`--only-ids FILE`** codes only the listed comment_ids (the pilot sample). Pilot
-  rows are checkpointed like any other, so the full run resumes from them.
+- **`--only-ids FILE`** codes only the listed comment_ids (the pilot sample); use with
+  `--run-name pilot` so pilot output goes to `full-codebook-coding-pilot/`.
+- **Batching (`--concurrency`, default 3):** several comments are generated per vLLM
+  call, sharing the cached codebook prompt. Per-comment retries and review flags are
+  unchanged. Note for the methods: batch composition can change floating-point
+  results slightly, so record the concurrency used.
+- **Per-comment output budget (`--min-new-tokens`, default 512).** The v1.5 prompt
+  is ~6,000 tokens; a fixed 1,024-token output reservation left only ~140 tokens for
+  the comment on a 7,168 context. Each request now gets the context that is left
+  (512–1,024 tokens). Answers cut off at the limit are detected (`output_truncated`)
+  and retried with a note to use fewer, shorter evidence items, instead of failing
+  as misleading "missing keys". `prompt_too_long` is no longer retried.
+- **Codebook-rule corrections after coding (prompt unchanged; re-applied on every
+  export, so they also apply to saved answers without recoding).** Prompted by the v1.5
+  10-row test (3060, 4-bit): NEEDS_CONTEXT on 5/10 top-level comments, LANGUAGE =
+  TAGLISH on 10/10 incl. 6 English, UNCODABLE alongside other codes, invented COACH
+  blame on 2/10, one false CLASS_FRAME.
+  - `needs_context->0(not_reply)` — D2: NEEDS_CONTEXT is 1 only for replies (YouTube
+    reply ids contain a dot; replies may open with a user mention). Applied before the
+    rule-8 STANCE reset, so the model's own STANCE stands.
+  - `uncodable->0(codes_cited)` — I4: a comment with other codes cited was codable.
+  - `language->ENGLISH(rule)` / `language->FILIPINO(rule)` — A1: TAGLISH is corrected
+    when the comment has no Filipino function words and 2+ English ones (or the
+    reverse); ambiguous comments keep the model's code. Off with `--no-language-rule`.
+    Disclose: LANGUAGE is partly rule-coded.
+  - Review flags (codes unchanged): `blame_unnamed(X)` when a blame target is never
+    named or addressed in the comment (C9), `class_frame_no_class_word` when CLASS_FRAME
+    is cited on a comment without class vocabulary (F1 audit).
+- **Precision options and GPU profiles.** `--fp8-weights`, `--fp8-kv-cache`,
+  `--compact-json`, `--attention-backend`, and `--gpu-profile`
+  (`rtx3060` / `l4-full` / `l4-fp8` / `a100`). Every record and checkpoint stores its
+  `precision` (`nf4-weights`, `bf16-weights`, `fp8-weights+fp8-kv`, ...); resuming at a
+  different precision recodes rows, each phase folder gets `run_info.json`, and the
+  validator warns on mixed precisions. FP8 is 8-bit, not full precision: disclose it
+  and measure its agreement on the pilot before using it for reported results.
+- **Sampling (`--sample-per-phase N`, `--class-census`, `--sample-seed`):** a seeded
+  per-phase sample, identical on every machine. With `--class-census`, every comment
+  with class vocabulary is kept and the rest of N is a simple random sample of the
+  other comments; `sample_stratum` and `sample_weight` (inverse selection
+  probability) are written per row and the design to `sample_info.json`.
+  `validate_results.py` weights its percentages accordingly.
 
 Comparability: v1.4 and v1.5 outputs must not be pooled. v1.5 recodes everything.
 

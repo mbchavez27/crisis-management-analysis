@@ -32,6 +32,7 @@ import random
 import re
 import sys
 import time
+import zlib
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -48,7 +49,7 @@ OUTPUT_ROOT = HERE / "output"
 DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B-IT"
 # Total context (prompt + output). Gemma 2's native limit is 8192.
 MAX_MODEL_LEN = 8192
-SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids", "status"}
+SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids", "status", "sample_weight"}
 
 # Outage-resilient retry: exponential backoff, requeue, circuit breaker.
 # Values mirror the full-codebook-coding notebook inference cell exactly.
@@ -281,6 +282,24 @@ def is_transient(e: Exception) -> bool:
     )
 
 
+class TruncatedOutput(ValueError):
+    """The answer hit the output-token limit and was cut off (finish_reason='length').
+
+    Parsing a cut-off JSON object would report misleading errors (a fragment
+    looks like a record with missing keys), so it is flagged as truncation and
+    retried with a note asking for fewer, shorter evidence items.
+    """
+
+    def __init__(self, text: str) -> None:
+        super().__init__("output_truncated: the answer exceeded the output budget and was cut off")
+        self.text = text
+
+
+def is_prompt_too_long(e: Exception) -> bool:
+    """A comment that cannot fit the context window; retrying cannot help."""
+    return "prompt_too_long" in repr(e)
+
+
 def is_engine_dead(e: Exception) -> bool:
     """The local inference engine crashed (e.g. GPU out of memory); nothing will recover it."""
     return type(e).__name__ == "EngineDeadError" or "EngineDeadError" in repr(e)
@@ -294,7 +313,7 @@ def generate_with_retry(
         try:
             return generator.generate(prompt, **kw)
         except Exception as e:
-            if attempt == tries - 1 or is_engine_dead(e):
+            if attempt == tries - 1 or is_engine_dead(e) or is_prompt_too_long(e):
                 raise
             if is_rate_limited(e):
                 sleep_time = random.uniform(*RATE_LIMIT_SLEEP)
@@ -305,6 +324,26 @@ def generate_with_retry(
             print(f"  [Attempt {attempt+1} failed: {repr(e)}] Retrying in {sleep_time:.1f}s...")
             time.sleep(sleep_time)
     raise RuntimeError("generate_with_retry: no attempts made")
+
+
+def generate_batch_with_retry(
+    generator: Any, jobs: list[tuple[str, str, Optional[dict[str, Any]]]],
+    tries: int = TRANSIENT_TRIES,
+) -> list[Any]:
+    """Batch version of generate_with_retry: returns one text or Exception per job."""
+    for attempt in range(tries):
+        try:
+            return generator.generate_batch(jobs)
+        except Exception as e:
+            if attempt == tries - 1 or is_engine_dead(e):
+                return [e] * len(jobs)
+            if is_transient(e) or is_rate_limited(e):
+                sleep_time = min(TRANSIENT_BASE_S * (2 ** attempt) + random.uniform(0, 5), BACKOFF_CAP_S)
+            else:
+                sleep_time = (2 ** attempt) + random.uniform(0, 1)
+            print(f"  [Batch attempt {attempt+1} failed: {repr(e)[:200]}] Retrying in {sleep_time:.1f}s...")
+            time.sleep(sleep_time)
+    return [RuntimeError("generate_batch_with_retry: no attempts made")] * len(jobs)
 
 
 def append_pending_rows(path: Path, chunk: pd.DataFrame, reason: str, error: str) -> None:
@@ -418,6 +457,8 @@ COLUMN_ORDER = [
     "autofix",
     "review_flags",
     "status",
+    "sample_stratum",
+    "sample_weight",
 ]
 
 
@@ -519,6 +560,49 @@ def to_line(cid: Any, txt: Any) -> str:
     return f"{cid} | {flat}"
 
 
+# One flag per machine. Explicit flags always override the profile's values.
+GPU_PROFILES: dict[str, dict[str, Any]] = {
+    # 12 GB desktop card: 4-bit weights (secondary precision), shorter context.
+    "rtx3060": {"load_in_4bit": True, "max_model_len": 7168, "concurrency": 2,
+                "gpu_memory_utilization": 0.90},
+    # 24 GB server card, full-precision (bf16) weights: memory-tight, ~4 at once.
+    "l4-full": {"low_memory": True, "max_model_len": 8192, "concurrency": 4,
+                "gpu_memory_utilization": 0.95},
+    # 24 GB server card, FP8 weights + FP8 KV cache: about half the weight memory, so
+    # each step reads half as much and far more comments fit at once. 8-bit, not full
+    # precision: disclose it and validate it on the pilot.
+    "l4-fp8": {"fp8_weights": True, "fp8_kv_cache": True, "max_model_len": 8192,
+               "concurrency": 12, "gpu_memory_utilization": 0.95, "compact_json": True},
+    # 40/80 GB: full precision with room to batch.
+    "a100": {"max_model_len": 8192, "concurrency": 8, "gpu_memory_utilization": 0.95},
+}
+
+
+def apply_gpu_profile(args: argparse.Namespace) -> argparse.Namespace:
+    """Fill unset options from --gpu-profile, then from the global defaults."""
+    prof = GPU_PROFILES.get(args.gpu_profile or "", {})
+    for key, val in prof.items():
+        if getattr(args, key) in (None, False):
+            setattr(args, key, val)
+    for key, default in (("max_model_len", MAX_MODEL_LEN), ("concurrency", 3)):
+        if getattr(args, key) is None:
+            setattr(args, key, default)
+    if args.load_in_4bit and args.fp8_weights:
+        raise SystemExit("--load-in-4bit and --fp8-weights are mutually exclusive.")
+    return args
+
+
+def precision_label(args: argparse.Namespace) -> str:
+    """Numerical precision of a run, stored with every coded row (do not pool across it)."""
+    if args.load_in_4bit:
+        w = "nf4"
+    elif args.fp8_weights:
+        w = "fp8"
+    else:
+        w = "bf16"
+    return f"{w}-weights" + ("+fp8-kv" if args.fp8_kv_cache else "")
+
+
 def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     """Parse CLI flags. Phases and passes are required (opt-in, no implicit all)."""
     parser = argparse.ArgumentParser(
@@ -556,17 +640,104 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         help="nf4 4-bit quantization (bitsandbytes) for <=12GB GPUs. Needed for 9B on 12GB.",
     )
     parser.add_argument(
+        "--min-new-tokens",
+        type=int,
+        default=512,
+        help="Minimum output tokens guaranteed per comment (default 512). Each request gets "
+             "what the context has left, up to --max-new-tokens; comments that leave less "
+             "than this are prompt_too_long.",
+    )
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        default=None,
+        help="Comments generated at once (default 3). They share the cached codebook prompt; "
+             "throughput rises almost linearly while GPU memory allows. 3060 (4-bit): 2; "
+             "L4 (full precision): 3-4; A100: 8+.",
+    )
+    parser.add_argument(
+        "--sample-per-phase",
+        type=int,
+        default=None,
+        help="Code a seeded random sample of this many comments per phase (default: all).",
+    )
+    parser.add_argument(
+        "--class-census",
+        action="store_true",
+        help="With --sample-per-phase: also keep every comment with class vocabulary, "
+             "filling the rest of the target size randomly. Weights are written per row.",
+    )
+    parser.add_argument(
+        "--sample-seed",
+        type=int,
+        default=20261005,
+        help="Seed for --sample-per-phase (same seed = same comments on every machine).",
+    )
+    parser.add_argument(
+        "--run-name",
+        default=None,
+        help="Write to full-codebook-coding-<run-name>/ instead (e.g. 'pilot').",
+    )
+    parser.add_argument(
+        "--low-memory",
+        action="store_true",
+        help="Trim vLLM's unused reservations (implied by --load-in-4bit). Use for full "
+             "precision on 24 GB cards such as the L4.",
+    )
+    parser.add_argument(
+        "--gpu-profile",
+        choices=sorted(GPU_PROFILES),
+        default=None,
+        help="Preset for the machine: rtx3060 (4-bit), l4-full (bf16), l4-fp8 (FP8 weights + "
+             "FP8 cache), a100 (bf16). Explicit flags override it.",
+    )
+    parser.add_argument(
+        "--fp8-weights",
+        action="store_true",
+        help="Quantize weights to FP8 at load time (needs an Ada/Hopper GPU such as the L4 "
+             "for full speed). 8-bit: disclose and validate on the pilot.",
+    )
+    parser.add_argument(
+        "--fp8-kv-cache",
+        action="store_true",
+        help="Store the attention cache in FP8: about twice as many comments fit at once. "
+             "Changes numerics slightly; disclose.",
+    )
+    parser.add_argument(
+        "--no-language-rule",
+        action="store_true",
+        help="Keep the model's LANGUAGE as is (by default TAGLISH is corrected to ENGLISH / "
+             "FILIPINO when the words clearly show one language; logged in autofix).",
+    )
+    parser.add_argument(
+        "--compact-json",
+        action="store_true",
+        help="Forbid optional whitespace inside the JSON answer (fewer output tokens, same codes).",
+    )
+    parser.add_argument(
+        "--attention-backend",
+        default=None,
+        help="Set VLLM_ATTENTION_BACKEND (e.g. FLASHINFER, TRITON_ATTN) if the default backend "
+             "rejects the FP8 cache.",
+    )
+    parser.add_argument(
+        "--gpu-memory-utilization",
+        type=float,
+        default=None,
+        help="Fraction of GPU memory vLLM may use (default 0.90). 0.95 is fine on a "
+             "headless server GPU.",
+    )
+    parser.add_argument(
         "--only-ids",
         type=Path,
         default=None,
         help="File of comment_ids (one per line, or a CSV with a comment_id column) to code; "
-             "other comments are skipped. Used for the pilot sample; the full run resumes "
-             "from these rows.",
+             "other comments are skipped. Used for the pilot sample (with --run-name pilot).",
     )
     parser.add_argument(
         "--max-model-len",
         type=int,
-        default=MAX_MODEL_LEN,
+        default=None,
         help="Total context (prompt + output). 8192 on large GPUs; 7168 fits a 12GB card "
              "with --load-in-4bit.",
     )
@@ -580,12 +751,53 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         action="store_true",
         help="Discard partial checkpoints and start fresh.",
     )
-    return parser.parse_args(argv)
+    return apply_gpu_profile(parser.parse_args(argv))
 
 
 def split_csv_arg(value: str) -> list[str]:
     """Split a comma-separated flag into cleaned tokens."""
     return [tok.strip() for tok in value.split(",") if tok.strip()]
+
+
+# Class vocabulary (F1). Same pattern as validate_results.py / make_pilot_sample.py.
+CLASS_WORDS = re.compile(
+    r"\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\w*|"
+    r"scholar\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\w*|"
+    r"working class|middle class|tuition|matrikula|afford\w*|breadwinner|classism|burgis|"
+    r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
+
+
+def select_sample(df: pd.DataFrame, phase: str, n: Optional[int], seed: int,
+                  class_census: bool) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """Seeded per-phase sample, identical on every machine.
+
+    With class_census, every comment containing class vocabulary is kept (the RQs
+    centre on class, which a plain random sample under-represents) and the rest
+    of the target size is a simple random sample of the other comments. Weights
+    (`sample_weight` = inverse selection probability) make phase-level estimates
+    unbiased; the class census has weight 1.
+    """
+    N = len(df)
+    df = df.copy()
+    if n is None or n >= N:
+        df["sample_stratum"], df["sample_weight"] = "all", 1.0
+        return df, {"phase": phase, "N": N, "n": N, "design": "all comments"}
+    is_class = df["text"].str.contains(CLASS_WORDS) if class_census else pd.Series(False, index=df.index)
+    cls = df[is_class]
+    rest = df[~is_class]
+    n_rest = max(0, min(len(rest), n - len(cls)))
+    phase_seed = (seed + zlib.crc32(phase.encode())) % (2**32)
+    rnd = rest.sample(n=n_rest, random_state=phase_seed)
+    w_rest = round(len(rest) / n_rest, 4) if n_rest else None
+    out = pd.concat([cls.assign(sample_stratum="class_census", sample_weight=1.0),
+                     rnd.assign(sample_stratum="random", sample_weight=w_rest)]).sort_values("row_id")
+    info = {"phase": phase, "N": N, "n": int(len(out)), "seed": seed, "phase_seed": int(phase_seed),
+            "design": "class census + simple random sample" if class_census else "simple random sample",
+            "class_census_n": int(len(cls)), "random_n": int(n_rest), "random_pool_N": int(len(rest)),
+            "random_weight": w_rest, "class_pattern": CLASS_WORDS.pattern if class_census else None}
+    if class_census and len(cls) > n:
+        print(f"  NOTE {phase}: {len(cls)} class-vocabulary comments exceed --sample-per-phase {n}; all kept.")
+    return out, info
 
 
 def load_phase_df(crisis: str, phase: str, limit: Optional[int]) -> pd.DataFrame:
@@ -803,6 +1015,69 @@ _PH_MARKERS = frozenset(
 _WORD = re.compile(r"[a-zA-Z']+")
 
 
+# --- Deterministic codebook rules applied after coding (no prompt change) ---------
+# Toggle set by main(); --no-language-rule turns the A1 rule off.
+LANGUAGE_RULE = True
+
+_EN_MARKERS = frozenset(
+    """the is are was were and to of you your for that this with not but he she they we
+    it in on be have has should why like will so them their what who how can just all
+    because been being do does did there these those an if or my our his her its would
+    could must""".split()
+)
+_REPLY_START = re.compile(r"^\s*(?:@|\[user\]|user_)", re.I)
+
+
+def is_reply(comment_id: str, text: str) -> bool:
+    """YouTube reply ids are '<parent>.<reply>'; replies also tend to open with a mention."""
+    return "." in str(comment_id) or bool(_REPLY_START.match(str(text)))
+
+
+def language_rule(language: str, text: str) -> Optional[str]:
+    """A1 by word evidence. Only corrects TAGLISH, the value the model over-uses:
+    no Filipino words and 2+ English function words -> ENGLISH; no English and 2+
+    Filipino -> FILIPINO. Anything ambiguous keeps the model's code."""
+    if language != "TAGLISH":
+        return None
+    words = [w.lower().strip("'") for w in _WORD.findall(_SHORTCODE.sub(" ", text))]
+    fil = sum(w in _PH_MARKERS for w in words)
+    en = sum(w in _EN_MARKERS for w in words)
+    if fil == 0 and en >= 2:
+        return "ENGLISH"
+    if en == 0 and fil >= 2:
+        return "FILIPINO"
+    return None
+
+
+# Words that name or point at each blame target. Used only to FLAG a target that the
+# comment never mentions (C9: code a target only if named or clearly referred to).
+_TARGET_WORDS = {
+    "COACH": r"coach\w*|kowts?|tagapagsanay",
+    "COACHING_STAFF": r"coach\w*|staff|trainer\w*|kowts?",
+    "UNIVERSITY": r"ateneo|admu|school|university|univ|unibersidad|paaralan|eskwelahan|"
+                  r"admin\w*|management|institution|jesuit\w*|blue ?eagles?",
+    "PRESIDENT": r"president|presidente|pres\.|fr\.?|father|padre",
+    "ORGANIZERS": r"organi[sz]\w*|nag-?organi\w*",
+    "VENUE": r"resort|venue|beach|dagat|sea|ilog|river|pool|lugar",
+    "AUTHORITIES": r"police|pulis\w*|pnp|government|gobyerno|lgu|coast ?guard|"
+                   r"authorit\w*|cops?|nbi|senat\w*|congress",
+    "VICTIMS": r"victim\w*|biktima|athlete\w*|atleta|players?|students?|bata|kids?|"
+               r"rene|divine|sila|they|them",
+}
+# Pronouns that address an institution directly ("kayo", "you") count as referring to it.
+_ADDRESS = re.compile(r"\b(?:kayo|ninyo|nyo|niyo|you|your|kau)\b", re.I)
+
+
+def blame_unnamed(target: str, text: str) -> bool:
+    pat = _TARGET_WORDS.get(target)
+    if not pat or target == "OTHER":
+        return False
+    if re.search(rf"\b(?:{pat})", text, re.I):
+        return False
+    return not (target in ("UNIVERSITY", "COACH", "COACHING_STAFF", "ORGANIZERS")
+                and _ADDRESS.search(text))
+
+
 def language_flag(language: str, text: str) -> Optional[str]:
     """Return an autofix flag when LANGUAGE disagrees with a simple word check."""
     words = {w.lower().strip("'") for w in _WORD.findall(_SHORTCODE.sub(" ", text))}
@@ -877,9 +1152,40 @@ def validate_record(
     # Runs before the autofixes below, which may reset codes the evidence cites.
     check_evidence(obj, text, lenient, review)
 
+    # D2 / general rule 8: NEEDS_CONTEXT is only for replies. A top-level comment cannot
+    # depend on a parent; the model used it for "needs background facts", which then
+    # forced STANCE to NEUTRAL. Runs before the STANCE rule so the model's own STANCE stands.
+    if obj["NEEDS_CONTEXT"] == 1 and not is_reply(obj.get("id", ""), text):
+        obj["NEEDS_CONTEXT"] = 0
+        fixes.append("needs_context->0(not_reply)")
+
+    # I4: UNCODABLE means nothing in the comment can be coded. If other codes are cited,
+    # the comment was codable.
+    if obj["UNCODABLE"] == 1:
+        others = [k for k in BINARY_KEYS if k not in ("UNCODABLE", "NEEDS_CONTEXT") and obj[k] == 1]
+        others += [k for k, (_a, empty) in LIST_ENUMS.items() if obj[k] != [empty]]
+        if others:
+            obj["UNCODABLE"] = 0
+            fixes.append("uncodable->0(codes_cited)")
+
+    # A1: correct TAGLISH when the words clearly show one language (--no-language-rule: off).
+    if LANGUAGE_RULE and not is_emoji_only(text):
+        new_lang = language_rule(obj["LANGUAGE"], text)
+        if new_lang:
+            fixes.append(f"language->{new_lang}(rule)")
+            obj["LANGUAGE"] = new_lang
+
     flag = language_flag(obj["LANGUAGE"], text)
     if flag and not is_emoji_only(text):
         fixes.append(flag)  # flagged for review, not overwritten
+
+    # Review flags (codes unchanged): blame targets the comment never mentions (C9), and
+    # class frames on comments without class vocabulary (F1) - the RQs' central code.
+    for t in obj["BLAME_TARGETS"]:
+        if t != "NONE" and blame_unnamed(t, text):
+            review.append(f"blame_unnamed({t})")
+    if obj["CLASS_FRAME"] == 1 and not CLASS_WORDS.search(text):
+        review.append("class_frame_no_class_word")
 
     # Deterministic codebook rules.
     if is_emoji_only(text) and obj["LANGUAGE"] != "EMOJI":
@@ -975,32 +1281,59 @@ class LocalGenerator:
         max_new_tokens: int,
         load_in_4bit: bool = False,
         max_model_len: int = MAX_MODEL_LEN,
+        low_memory: bool = False,
+        gpu_memory_utilization: Optional[float] = None,
+        concurrency: int = 1,
+        min_new_tokens: int = 512,
+        fp8_weights: bool = False,
+        fp8_kv_cache: bool = False,
+        compact_json: bool = False,
+        attention_backend: Optional[str] = None,
     ) -> None:
+        import os
+
+        if attention_backend:
+            os.environ["VLLM_ATTENTION_BACKEND"] = attention_backend  # read at vLLM import
         from vllm import LLM, SamplingParams
 
+        self.compact_json = compact_json
+
         self.max_new_tokens = max_new_tokens
+        self.min_new_tokens = min(min_new_tokens, max_new_tokens)
         self.max_model_len = max_model_len
 
         print(f"\nInitializing vLLM Engine for '{model_id}'...")
         print(" -> Prefix Caching: ENABLED (codebook prompt is computed once and reused)")
-        print(f" -> 4-bit Quantization (bitsandbytes nf4): {'ENABLED' if load_in_4bit else 'DISABLED'}")
+        weights = "nf4 (bitsandbytes 4-bit)" if load_in_4bit else ("FP8" if fp8_weights else "bf16 (full)")
+        print(f" -> Weights: {weights} | KV cache: {'FP8' if fp8_kv_cache else 'auto (bf16)'}"
+              f" | compact JSON: {'ON' if compact_json else 'OFF'}")
 
-        engine_kwargs: dict[str, Any] = {"gpu_memory_utilization": 0.90}
+        engine_kwargs: dict[str, Any] = {"gpu_memory_utilization": 0.90,
+                                         "max_num_seqs": max(1, concurrency)}
         if load_in_4bit:
             engine_kwargs["quantization"] = "bitsandbytes"
-            # Small-GPU profile (12 GB cards). The script sends one request at a time,
-            # so vLLM's defaults (256 parallel sequences, 8192-token prefill batches)
-            # only reserve memory that is never used. Shrinking them frees room for
-            # the 8K KV cache without changing what the model computes.
+        elif fp8_weights:
+            engine_kwargs["quantization"] = "fp8"  # online dynamic FP8 quantization
+        if fp8_kv_cache:
+            engine_kwargs["kv_cache_dtype"] = "fp8"
+        if load_in_4bit or low_memory:
+            # Low-memory profile (12 GB cards in 4-bit; 24 GB cards such as the L4 at
+            # full precision). The script sends one request at a time, so vLLM's
+            # defaults (256 parallel sequences, 8192-token prefill batches) only reserve
+            # memory that is never used. Shrinking them frees room for the 8K KV cache
+            # without changing what the model computes.
             engine_kwargs.update(
-                # 0.90, not higher: the desktop (Xorg, browser) and the CUDA context
-                # also live on this card, and 0.93 left no room for the 4-bit
-                # dequantize buffers during prefill.
-                gpu_memory_utilization=0.90,
-                max_num_seqs=1,
+                max_num_seqs=max(1, concurrency),  # only as many sequences as we send
                 max_num_batched_tokens=512,  # small prefill pieces = small activation peak
                 enforce_eager=True,  # skip CUDA graph capture (saves memory, some speed)
             )
+        if gpu_memory_utilization is not None:
+            # 0.90 on a card that also drives a desktop (3060); up to 0.95 on a headless
+            # server GPU (L4, A100) where nothing else uses the memory.
+            engine_kwargs["gpu_memory_utilization"] = gpu_memory_utilization
+        print(f" -> Memory: utilization {engine_kwargs['gpu_memory_utilization']}, "
+              f"low-memory profile {'ON' if (load_in_4bit or low_memory) else 'OFF'}, "
+              f"concurrency {concurrency}")
 
         self.llm = LLM(
             model=model_id,
@@ -1032,24 +1365,76 @@ class LocalGenerator:
         """Tokens the prompt occupies once wrapped in the chat template."""
         return len(self.tokenizer(self._chat(prompt), add_special_tokens=False)["input_ids"])
 
-    def _schema_params(self, schema: dict[str, Any]) -> Any:
+    def _schema_params(self, schema: dict[str, Any], max_tokens: Optional[int] = None) -> Any:
         """Greedy sampling constrained to `schema` (vLLM >= 0.11 name, older fallback)."""
+        max_tokens = max_tokens or self.max_new_tokens
         try:
             from vllm.sampling_params import StructuredOutputsParams
 
+            try:
+                so = StructuredOutputsParams(json=schema, disable_any_whitespace=self.compact_json)
+            except TypeError:  # older field set
+                so = StructuredOutputsParams(json=schema)
             return self._SamplingParams(
                 temperature=0.0,
-                max_tokens=self.max_new_tokens,
-                structured_outputs=StructuredOutputsParams(json=schema),
+                max_tokens=max_tokens,
+                structured_outputs=so,
             )
         except ImportError:
             from vllm.sampling_params import GuidedDecodingParams
 
             return self._SamplingParams(
                 temperature=0.0,
-                max_tokens=self.max_new_tokens,
+                max_tokens=max_tokens,
                 guided_decoding=GuidedDecodingParams(json=schema),
             )
+
+    def output_budget(self, prompt: str, prefill: str = "") -> int:
+        """Output tokens available for this prompt: what the context has left, capped
+        at --max-new-tokens. Raises prompt_too_long below --min-new-tokens.
+
+        A fixed 1,024-token reservation left only ~140 tokens for the comment on a
+        7,168 context once the v1.5 prompt reached ~6,000 tokens. Most answers need
+        far less, so each request gets the room that is actually left.
+        """
+        room = self.max_model_len - self.count_prompt_tokens(prompt) - len(prefill) // 2
+        if room < self.min_new_tokens:
+            # No digits in the message: the retry logic treats "500" in an error as transient.
+            raise ValueError("prompt_too_long: comment does not fit in the context window")
+        return min(self.max_new_tokens, room)
+
+    def generate_batch(
+        self, jobs: list[tuple[str, str, Optional[dict[str, Any]]]]
+    ) -> list[Any]:
+        """Generate several (prompt, prefill, schema) jobs in one vLLM call.
+
+        Decoding speed is limited by reading the model weights once per step, so
+        a step for several sequences costs about the same as for one; the shared
+        codebook prompt is cached once. Returns, per job, the text or the
+        Exception for that job (e.g. prompt too long). An engine-level failure
+        raises for the whole batch.
+        """
+        results: list[Any] = [None] * len(jobs)
+        chats, params, where = [], [], []
+        for i, (prompt, prefill, schema) in enumerate(jobs):
+            if schema is not None and prefill:
+                results[i] = ValueError("prefill cannot be combined with a schema")
+                continue
+            try:
+                budget = self.output_budget(prompt, prefill)
+            except ValueError as exc:
+                results[i] = exc
+                continue
+            chats.append(self._chat(prompt) + prefill)
+            params.append(self._schema_params(schema, budget) if schema is not None
+                          else self._SamplingParams(temperature=0.0, max_tokens=budget))
+            where.append(i)
+        if chats:
+            outputs = self.llm.generate(chats, sampling_params=params, use_tqdm=False)
+            for i, out in zip(where, outputs):
+                text = jobs[i][1] + out.outputs[0].text
+                results[i] = TruncatedOutput(text) if out.outputs[0].finish_reason == "length" else text
+        return results
 
     def generate(
         self, prompt: str, prefill: str = "", schema: Optional[dict[str, Any]] = None
@@ -1063,16 +1448,18 @@ class LocalGenerator:
         if schema is not None and prefill:
             raise ValueError("prefill cannot be combined with a schema")
         chat = self._chat(prompt) + prefill
-        if self.count_prompt_tokens(prompt) + len(prefill) // 2 + self.max_new_tokens > self.max_model_len:
-            # No digits in the message: the retry logic treats "500" in an error as transient.
-            raise ValueError("prompt_too_long: comment does not fit in the context window")
-        params = self._schema_params(schema) if schema is not None else self.sampling_params
+        budget = self.output_budget(prompt, prefill)
+        params = (self._schema_params(schema, budget) if schema is not None
+                  else self._SamplingParams(temperature=0.0, max_tokens=budget))
         outputs = self.llm.generate(
             [chat],
             sampling_params=params,
             use_tqdm=False,  # no per-call progress bar
         )
-        return prefill + outputs[0].outputs[0].text
+        text = prefill + outputs[0].outputs[0].text
+        if outputs[0].outputs[0].finish_reason == "length":
+            raise TruncatedOutput(text)
+        return text
 
 
 def run_pair(
@@ -1086,9 +1473,14 @@ def run_pair(
     overwrite: bool,
     generator: Optional[LocalGenerator] = None,
     use_closing: bool = False,
+    concurrency: int = 1,
+    run_name: Optional[str] = None,
+    sample_info: Optional[dict[str, Any]] = None,
+    precision: str = "bf16-weights",
 ) -> bool:
     """Code one phase x one pass with checkpoint resume. Returns True if clean."""
-    pass_dir = OUTPUT_ROOT / crisis / spec.outdir / phase
+    outdir = spec.outdir + (f"-{run_name}" if run_name else "")
+    pass_dir = OUTPUT_ROOT / crisis / outdir / phase
     pass_dir.mkdir(parents=True, exist_ok=True)
     output_path = pass_dir / f"{spec.prefix}_results.jsonl"
     log_path = pass_dir / f"{spec.prefix}_failures.log"
@@ -1100,7 +1492,14 @@ def run_pair(
     partial_pending = Path(str(pending_path) + ".partial.log")
 
     prompt_template = build_codebook_prompt(crisis, phase)
+    if sample_info is not None:
+        (pass_dir / "sample_info.json").write_text(json.dumps(sample_info, indent=2), encoding="utf-8")
     _, prompt_version = read_wrapper()
+    (pass_dir / "run_info.json").write_text(json.dumps({
+        "model": model_id, "precision": precision, "prompt_version": prompt_version,
+        "concurrency": concurrency, "max_model_len": getattr(generator, "max_model_len", None),
+        "max_new_tokens": max_new_tokens, "written": time.strftime("%Y-%m-%dT%H:%M:%S"),
+    }, indent=2), encoding="utf-8")
     print(f"Coding prompt {prompt_version} | codebook v2.1 (analysis-only sections omitted)")
 
     print(f"\n\n{'='*80}\nPROMPT FOR PHASE: {phase}\n{'='*80}\n{prompt_template[:500]}...[TRUNCATED FOR LOGS]\n{'='*80}\n")
@@ -1120,6 +1519,7 @@ def run_pair(
         try:
             ok_ids: set[int] = set()
             stale_version = 0
+            frame_rids = set(df["row_id"].tolist())
             if partial_resp.exists():
                 with open(partial_resp, encoding="utf-8") as f:
                     for line in f:
@@ -1131,6 +1531,13 @@ def run_pair(
                         # mixed in (v1.0 checkpoints carry no version field).
                         if rec.get("prompt_version", "v1.0") != prompt_version:
                             stale_version += 1
+                            continue
+                        # Rows coded at another precision (nf4 / fp8 / bf16) are recoded too.
+                        if rec.get("precision", precision) != precision:
+                            stale_version += 1
+                            continue
+                        # Only rows in this run's frame (a sample, or --only-ids).
+                        if not set(rec.get("row_ids", [])) <= frame_rids:
                             continue
                         ok_ids.update(rec.get("row_ids", []))
                         raw_responses.append(rec)
@@ -1163,7 +1570,7 @@ def run_pair(
             if stale_version:
                 print(
                     f"Ignoring {stale_version} checkpointed rows coded with another prompt "
-                    f"version; they will be recoded with {prompt_version}."
+                    f"version or precision; they will be recoded ({prompt_version}, {precision})."
                 )
             if ok_ids:
                 chunks_queue = [
@@ -1197,17 +1604,19 @@ def run_pair(
     # in the context window, every row would fail and be logged as a "hard failure".
     # Abort loudly instead of producing an empty run.
     base_tokens = generator.count_prompt_tokens(prompt_template + "\n\nCOMMENTS TO CODE\n")
-    budget = generator.max_model_len - generator.max_new_tokens
+    min_out = getattr(generator, "min_new_tokens", generator.max_new_tokens)
+    budget = generator.max_model_len - min_out
     print(
-        f"Prompt template: {base_tokens} tokens | max_model_len {generator.max_model_len} "
-        f"- max_new_tokens {generator.max_new_tokens} = {budget} available for the prompt "
-        f"({budget - base_tokens} left for comment text)."
+        f"Prompt template: {base_tokens} tokens | max_model_len {generator.max_model_len} | "
+        f"output {min_out}-{generator.max_new_tokens} tokens per comment | up to "
+        f"{budget - base_tokens} tokens of comment text "
+        f"({generator.max_model_len - generator.max_new_tokens - base_tokens} with the full output budget)."
     )
     if base_tokens >= budget:
         raise RuntimeError(
             f"Prompt template ({base_tokens} tokens) does not fit: only {budget} tokens are "
-            f"available after reserving {generator.max_new_tokens} for output. Lower "
-            f"--max-new-tokens, use a longer-context model, or shorten the codebook prompt."
+            f"available after reserving {min_out} for output. Use a larger --max-model-len "
+            f"(8192 on the L4/A100) or a lower --min-new-tokens."
         )
 
     pbar = tqdm(
@@ -1240,20 +1649,13 @@ def run_pair(
             pbar.update(1)
 
     try:
-        while chunks_queue:
-            current = chunks_queue.pop(0)
-            n_rows = len(current)
+        def build_job(current: pd.DataFrame) -> tuple[str, str, Optional[dict[str, Any]]]:
             row_ids = current["row_id"].tolist()
-            payload = "\n".join(
-                to_line(r["comment_id"], r["text"]) for _, r in current.iterrows()
-            )
-            # Force the reply to start as the first comment's JSON object.
+            payload = "\n".join(to_line(r["comment_id"], r["text"]) for _, r in current.iterrows())
             # One comment per call: constrain decoding to the codebook schema, which
             # guarantees every key and only codebook values. Multi-comment chunks fall
             # back to the old forced-prefix approach.
-            schema = (
-                build_record_schema(str(current.iloc[0]["comment_id"])) if n_rows == 1 else None
-            )
+            schema = build_record_schema(str(current.iloc[0]["comment_id"])) if len(current) == 1 else None
             prefill = "" if schema else '{"id":"' + str(current.iloc[0]["comment_id"]) + '",'
             full_prompt = (
                 prompt_template
@@ -1262,75 +1664,66 @@ def run_pair(
                 + (CLOSING if use_closing else "")
                 + retry_notes.get(tuple(row_ids), "")
             )
-            try:
-                raw = generate_with_retry(generator, full_prompt, prefill=prefill, schema=schema)
-            except Exception as exc:
-                if is_engine_dead(exc):
-                    # Retrying is pointless and would mark every remaining row a
-                    # "hard failure". Park them as pending so a rerun resumes cleanly.
-                    print(
-                        "\nInference engine died (see the vLLM traceback above, usually "
-                        "CUDA out of memory). Stopping this phase; remaining rows are "
-                        "marked pending and will be retried on the next run."
-                    )
-                    append_pending_rows(partial_pending, current, "engine_dead", repr(exc))
+            return full_prompt, prefill, schema
+
+        def accept(current: pd.DataFrame, raw: str, lenient: bool = False) -> None:
+            nonlocal outage_streak
+            rec = {"row_ids": current["row_id"].tolist(), "text": raw or "",
+                   "prompt_version": prompt_version, "precision": precision}
+            if lenient:
+                rec["lenient"] = True
+            raw_responses.append(rec)
+            with open(partial_resp, "a", encoding="utf-8") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            outage_streak = 0
+            pbar.update(len(current))
+
+        def handle_error(current: pd.DataFrame, exc: Exception) -> bool:
+            """Outage / generation error for one job. Returns True to stop the phase."""
+            nonlocal outage_streak
+            n_rows, key = len(current), tuple(current["row_id"].tolist())
+            if is_rate_limited(exc) or is_transient(exc):
+                reason = "rate_limited_exhausted" if is_rate_limited(exc) else "transient_exhausted"
+                outage_streak += 1
+                revisit_counts[key] = revisit_counts.get(key, 0) + 1
+                if revisit_counts[key] > MAX_REVISITS:
+                    print(f"   -> {reason} after {MAX_REVISITS} requeues. Marking {n_rows} rows pending.")
+                    append_pending_rows(partial_pending, current, reason, repr(exc))
+                    pbar.update(n_rows)
+                else:
+                    print(f"   -> {reason}. Requeueing chunk ({revisit_counts[key]}/{MAX_REVISITS}); "
+                          f"cooldown {COOLDOWN_S}s.")
+                    time.sleep(COOLDOWN_S)
+                    chunks_queue.append(current)
+                if outage_streak >= BREAKER_TRIP:
+                    print(f"Circuit breaker: {outage_streak} consecutive outage-exhausted chunks. "
+                          f"Aborting with {len(chunks_queue)} chunks queued — partials saved, rerun to resume.")
                     for c in chunks_queue:
-                        append_pending_rows(partial_pending, c, "engine_dead", repr(exc))
-                    pbar.update(n_rows + sum(len(c) for c in chunks_queue))
+                        append_pending_rows(partial_pending, c, "breaker_abort", repr(exc))
                     chunks_queue.clear()
-                    break
-                if is_rate_limited(exc) or is_transient(exc):
-                    reason = (
-                        "rate_limited_exhausted"
-                        if is_rate_limited(exc)
-                        else "transient_exhausted"
-                    )
-                    outage_streak += 1
-                    key = tuple(row_ids)
-                    revisit_counts[key] = revisit_counts.get(key, 0) + 1
-                    if revisit_counts[key] > MAX_REVISITS:
-                        print(
-                            f"   -> {reason} after {MAX_REVISITS} requeues. "
-                            f"Marking {n_rows} rows pending."
-                        )
-                        append_pending_rows(partial_pending, current, reason, repr(exc))
-                        pbar.update(n_rows)
-                    else:
-                        print(
-                            f"   -> {reason}. Requeueing chunk "
-                            f"({revisit_counts[key]}/{MAX_REVISITS}); "
-                            f"cooldown {COOLDOWN_S}s."
-                        )
-                        time.sleep(COOLDOWN_S)
-                        chunks_queue.append(current)
-                    if outage_streak >= BREAKER_TRIP:
-                        print(
-                            f"Circuit breaker: {outage_streak} consecutive outage-"
-                            f"exhausted chunks. Aborting with {len(chunks_queue)} "
-                            f"chunks queued — partials saved, rerun to resume."
-                        )
-                        for c in chunks_queue:
-                            append_pending_rows(partial_pending, c, "breaker_abort", repr(exc))
-                        break
-                    continue
-                # Non-outage error (e.g. prompt too long, CUDA OOM): split or log it.
-                # (Previously a stray `continue` made this unreachable and dropped rows silently.)
-                split_or_log(current, n_rows, exc)
-                continue
-            # Validate now so bad chunks split immediately instead of at export.
+                    return True
+                return False
+            # Non-outage error (e.g. prompt too long): split or log it.
+            split_or_log(current, n_rows, exc)
+            return False
+
+        def handle_output(current: pd.DataFrame, raw: str,
+                          pre_exc: Optional[Exception] = None) -> None:
+            """Validate one answer: accept, retry with a correction note, keep with flags, or log."""
+            n_rows, row_ids = len(current), current["row_id"].tolist()
+            key = tuple(row_ids)
             try:
+                if pre_exc is not None:
+                    raise pre_exc
                 parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of, text_of)
             except Exception as exc:
                 dump_raw(debug_path, row_ids, repr(exc), raw or "")
-                key = tuple(row_ids)
                 if n_rows == 1 and correction_counts.get(key, 0) < MAX_CORRECTIONS:
                     # Greedy decoding would repeat itself, so retry with the rejection
                     # reason appended to change the input.
                     correction_counts[key] = correction_counts.get(key, 0) + 1
-                    print(
-                        f"Row {row_ids[0]} rejected ({str(exc)[:120]}); retry "
-                        f"{correction_counts[key]}/{MAX_CORRECTIONS} with a correction note."
-                    )
+                    print(f"Row {row_ids[0]} rejected ({str(exc)[:120]}); retry "
+                          f"{correction_counts[key]}/{MAX_CORRECTIONS} with a correction note.")
                     retry_notes[key] = (
                         "\n\nCORRECTION: the previous answer for this comment was rejected: "
                         f"{str(exc)[:200]}. Code only this comment, from its own words. Each "
@@ -1339,36 +1732,52 @@ def run_pair(
                         "words support. Name any OTHER in other_label. If CLASS_FRAME is cited, "
                         "choose a CLASS_DIRECTION; give RESPONSE_TARGET and RESPONSE_EVAL both "
                         "or neither."
+                        + (" Your answer was too long: use fewer evidence items, one per idea, "
+                           "and quote a repeated emoji or phrase only once."
+                           if isinstance(exc, TruncatedOutput) else "")
                     )
                     chunks_queue.insert(0, current)
-                    continue
+                    return
                 # Retries spent: keep the row if only soft issues remain (flagged).
-                lenient_ok = False
                 if n_rows == 1:
                     try:
                         parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of,
                                              text_of, lenient=True)
-                        lenient_ok = True
                     except Exception:
-                        lenient_ok = False
-                if not lenient_ok:
-                    split_or_log(current, n_rows, exc)
-                    continue
-                print(f"Row {row_ids[0]} kept with review flags after {MAX_CORRECTIONS} retries.")
-                rec = {"row_ids": row_ids, "text": raw or "", "prompt_version": prompt_version,
-                       "lenient": True}
-                raw_responses.append(rec)
-                with open(partial_resp, "a", encoding="utf-8") as f:
-                    f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                outage_streak = 0
-                pbar.update(n_rows)
-                continue
-            rec = {"row_ids": row_ids, "text": raw or "", "prompt_version": prompt_version}
-            raw_responses.append(rec)
-            with open(partial_resp, "a", encoding="utf-8") as f:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            outage_streak = 0
-            pbar.update(n_rows)
+                        split_or_log(current, n_rows, exc)
+                        return
+                    print(f"Row {row_ids[0]} kept with review flags after {MAX_CORRECTIONS} retries.")
+                    accept(current, raw, lenient=True)
+                    return
+                split_or_log(current, n_rows, exc)
+                return
+            accept(current, raw)
+
+        while chunks_queue:
+            batch = [chunks_queue.pop(0) for _ in range(min(concurrency, len(chunks_queue)))]
+            results = generate_batch_with_retry(generator, [build_job(c) for c in batch])
+            if any(isinstance(r, Exception) and is_engine_dead(r) for r in results):
+                # Retrying is pointless and would mark every remaining row a hard
+                # failure. Park them as pending so a rerun resumes cleanly.
+                exc = next(r for r in results if isinstance(r, Exception) and is_engine_dead(r))
+                print("\nInference engine died (see the vLLM traceback above, usually CUDA out of "
+                      "memory). Stopping this phase; remaining rows are marked pending and will be "
+                      "retried on the next run.")
+                for c in batch + chunks_queue:
+                    append_pending_rows(partial_pending, c, "engine_dead", repr(exc))
+                pbar.update(sum(len(c) for c in batch + chunks_queue))
+                chunks_queue.clear()
+                break
+            stop = False
+            for current, res in zip(batch, results):
+                if isinstance(res, TruncatedOutput):
+                    handle_output(current, res.text, pre_exc=res)
+                elif isinstance(res, Exception):
+                    stop = handle_error(current, res) or stop
+                else:
+                    handle_output(current, res)
+            if stop:
+                break
     finally:
         pbar.close()
         if owned_generator:
@@ -1449,6 +1858,7 @@ def run_pair(
         for record in parsed_records:
             record["model"] = model_id
             record["prompt_version"] = prompt_version
+            record["precision"] = precision
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     print(f"Wrote {len(parsed_records)} records -> {output_path}")
 
@@ -1542,18 +1952,32 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     ok = True
     # One model load reused across all requested pairs (9B weights are slow to load).
+    global LANGUAGE_RULE
+    LANGUAGE_RULE = not args.no_language_rule
+    precision = precision_label(args)
+    print(f"Run precision: {precision}" + (f" | profile {args.gpu_profile}" if args.gpu_profile else ""))
     generator = LocalGenerator(
-        args.model, args.max_new_tokens, args.load_in_4bit, args.max_model_len
+        args.model, args.max_new_tokens, args.load_in_4bit, args.max_model_len,
+        low_memory=args.low_memory, gpu_memory_utilization=args.gpu_memory_utilization,
+        concurrency=args.concurrency, min_new_tokens=args.min_new_tokens,
+        fp8_weights=args.fp8_weights, fp8_kv_cache=args.fp8_kv_cache,
+        compact_json=args.compact_json, attention_backend=args.attention_backend,
     )
     try:
         for phase in phases:
             df = load_phase_df(args.crisis, phase, args.limit)
+            sample_info: Optional[dict[str, Any]] = None
             if only_ids is not None:
-                # Keep row_ids from the full phase so checkpoints line up with the full run.
+                # Keep row_ids from the full phase so ids line up across runs.
                 df = df[df["comment_id"].isin(only_ids)]
                 if df.empty:
                     print(f"Phase {phase}: no listed comments; skipped.")
                     continue
+            elif args.sample_per_phase is not None:
+                df, sample_info = select_sample(df, phase, args.sample_per_phase,
+                                                args.sample_seed, args.class_census)
+                print(f"Phase {phase}: sample {sample_info['n']} of {sample_info['N']} "
+                      f"({sample_info['design']})")
             print(f"Phase {phase}: {len(df)} rows")
             for num in pass_nums:
                 spec = PASSES[num]
@@ -1569,6 +1993,10 @@ def main(argv: Optional[list[str]] = None) -> int:
                     args.overwrite,
                     generator,
                     args.closing,
+                    concurrency=max(1, args.concurrency),
+                    run_name=args.run_name,
+                    sample_info=sample_info,
+                    precision=precision,
                 )
                 ok = ok and clean
     finally:

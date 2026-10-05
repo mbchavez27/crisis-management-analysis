@@ -111,7 +111,8 @@ EMOTIONS = ["ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION
 # review_flags written by run_local.py v1.5 (rows kept after correction retries).
 REVIEW_SEVERITY = {"evidence_unverified": "WARN", "class_direction_missing": "WARN",
                    "response_incomplete": "WARN", "class_direction_without_frame": "WARN",
-                   "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO"}
+                   "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO",
+                   "blame_unnamed": "WARN", "class_frame_no_class_word": "INFO"}
 NEEDS_CONTEXT_MAX = 0.15
 LEN_BINS = [(0, 20, "words_le20"), (21, 80, "words_21_80"), (81, 10**9, "words_gt80")]
 ANGER_EMOJI = {"enraged_face", "angry_face", "face_with_symbols_on_mouth", "pouting_face"}
@@ -424,6 +425,21 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         "chars_mean": round(float(chars.mean()), 1) if len(chars) else None,
         "emoji_only": int(df["text"].map(is_emoji_only).sum()) if "text" in df.columns else None,
     }
+    # Sampled runs (run_local.py --sample-per-phase / --class-census) carry per-row
+    # weights; the class census oversamples class talk, so unweighted percentages
+    # would overstate class-related codes. Percentages are weighted when weights exist.
+    weighted = "sample_weight" in ok.columns and ok["sample_weight"].astype(str).str.strip().ne("").any()
+    w = (pd.to_numeric(ok["sample_weight"], errors="coerce").fillna(1.0) if weighted
+         else pd.Series(1.0, index=ok.index))
+    ov["weighted"] = bool(weighted)
+    if weighted:
+        strata = ok["sample_stratum"].value_counts().to_dict() if "sample_stratum" in ok.columns else {}
+        ov["sample_strata"] = ";".join(f"{k}:{v}" for k, v in strata.items())
+        ov["population_N_est"] = round(float(w.sum()))
+
+    def wpct(mask: pd.Series) -> float:
+        return round(100.0 * float(w[mask].sum()) / float(w.sum()), 1) if len(w) and w.sum() else 0.0
+
     if "text" in df.columns and "id" in df.columns:
         words_all = df["text"].str.split().str.len().fillna(0)
         for lo, hi, name in LEN_BINS:
@@ -434,7 +450,7 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         ov["class_vocab_uncoded_pct"] = pct(int((df.loc[kw_all, "id"] == "").sum()), int(kw_all.sum()))
     if n and "CLASS_FRAME" in ok.columns:
         kw = ok["text"].str.contains(CLASS_WORDS)
-        ov["CLASS_FRAME_pct"] = pct(int((ok["CLASS_FRAME"] == "1").sum()), n)
+        ov["CLASS_FRAME_pct"] = wpct(ok["CLASS_FRAME"] == "1")
         ov["class_vocab_framed_pct"] = pct(int(((ok["CLASS_FRAME"] == "1") & kw).sum()), int(kw.sum()))
         ov["NEEDS_CONTEXT_pct"] = pct(int((ok["NEEDS_CONTEXT"] == "1").sum()), n)
     if "review_flags" in ok.columns:
@@ -451,6 +467,8 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         d = results_path.parent
         versions = read_jsonl_field(d / "full_codebook_results.jsonl", "prompt_version")
         models = read_jsonl_field(d / "full_codebook_results.jsonl", "model")
+        precisions = read_jsonl_field(d / "full_codebook_results.jsonl", "precision")
+        ov["precisions"] = ";".join(f"{k}:{v}" for k, v in sorted(precisions.items()))
         ov["prompt_versions"] = ";".join(f"{k}:{v}" for k, v in sorted(versions.items()))
         ov["models"] = ";".join(f"{k}:{v}" for k, v in sorted(models.items()))
         ov["hard_failures"] = count_lines(d / "full_codebook_failures.log")
@@ -459,24 +477,25 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         ov["pending"] = count_lines(d / "full_codebook_pending.log")
 
     long: list[dict] = []
-
-    def add(var: str, kind: str, cat: str, k: int) -> None:
-        long.append({"phase": phase, "variable": var, "type": kind, "category": cat,
-                     "n": int(k), "pct_of_coded": pct(int(k), n)})
+    def add(var: str, kind: str, cat: str, k: int, mask: pd.Series | None = None) -> None:
+        long.append({"phase": phase, "variable": var, "type": kind, "category": cat, "n": int(k),
+                     "pct_of_coded": wpct(mask) if mask is not None else pct(int(k), n),
+                     "pct_unweighted": pct(int(k), n), "weighted": bool(weighted)})
 
     if n:
         for c in BINARY:
             if c in ok.columns:
-                add(c, "binary", "1", (ok[c] == "1").sum())
+                m = ok[c] == "1"
+                add(c, "binary", "1", m.sum(), m)
         for c in SCALARS:
             if c in ok.columns:
                 for cat, k in ok[c].value_counts().items():
-                    add(c, "categorical", str(cat), k)
+                    add(c, "categorical", str(cat), k, ok[c] == cat)
         for c in LISTS:
             if c in ok.columns:
                 parsed = ok[c].map(lambda v: parse_list(v) or [])
                 for cat, k in Counter(x for v in parsed for x in v).most_common():
-                    add(c, "multi_label", cat, k)
+                    add(c, "multi_label", cat, k, parsed.map(lambda v, cat=cat: cat in v))
                 real = parsed.map(lambda v: [x for x in v if x not in NEUTRAL])
                 ov[f"{c}_labels_per_row"] = round(float(real.str.len().mean()), 2)
         if "CLASS_FRAME" in ok.columns:
@@ -489,9 +508,9 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
                                      "category": "1", "n": k, "pct_of_coded": pct(k, len(grp))})
         for c in KEY_RATES:
             if c in ok.columns:
-                ov[f"{c}_pct"] = pct(int((ok[c] == "1").sum()), n)
+                ov[f"{c}_pct"] = wpct(ok[c] == "1")
         for cat in ("CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"):
-            ov[f"STANCE_{cat}_pct"] = pct(int((ok["STANCE"] == cat).sum()), n) if "STANCE" in ok.columns else None
+            ov[f"STANCE_{cat}_pct"] = wpct(ok["STANCE"] == cat) if "STANCE" in ok.columns else None
     return ov, long
 
 
@@ -503,10 +522,14 @@ def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[
           f"hard failures {ov.get('hard_failures', '-')} | pending {ov.get('pending', '-')}")
     print(f"comments: {ov['videos']} videos | words mean {ov['words_mean']}, median {ov['words_median']}, "
           f"max {ov['words_max']} | emoji-only {ov['emoji_only']}")
+    if ov.get("weighted"):
+        print(f"SAMPLED: strata {ov.get('sample_strata')} | estimated population {ov.get('population_N_est')} "
+              f"| percentages below are WEIGHTED by sample_weight")
     if ov.get("failure_reasons"):
         print(f"hard-failure reasons: {ov['failure_reasons']}")
     if ov.get("prompt_versions"):
-        print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']}")
+        print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']} | "
+              f"precision: {ov.get('precisions') or 'unrecorded'}")
     if "language_review_flags" in ov:
         print(f"LANGUAGE review flags: {ov['language_review_flags']} | autofixed rows: {ov['autofixed_rows']}")
     if "review_flagged_rows" in ov:
@@ -531,7 +554,7 @@ def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[
     if not show_dist or not ov["coded"]:
         return
     rates = [x for x in long if x["type"] == "binary"]
-    print("\nBinary code prevalence (% of coded rows):")
+    print("\nBinary code prevalence (% of coded rows" + (", weighted" if ov.get("weighted") else "") + "):")
     line = [f"{x['variable']}={x['n']}({x['pct_of_coded']}%)" for x in rates]
     for i in range(0, len(line), 4):
         print("  " + "  ".join(line[i:i + 4]))
@@ -610,6 +633,8 @@ def main() -> int:
         models = {v.split(":")[0] for o in overviews for v in (o.get("models") or "").split(";") if v}
         ov_all["prompt_versions"] = ";".join(sorted(versions))
         ov_all["models"] = ";".join(sorted(models))
+        precs = {v.split(":")[0] for o in overviews for v in (o.get("precisions") or "").split(";") if v}
+        ov_all["precisions"] = ";".join(sorted(precs))
         print_phase("ALL SELECTED PHASES", Path(", ".join(p for p, _ in targets)), ov_all, long_comb,
                     flags_all, not args.no_distributions)
         overviews.append(ov_all)
@@ -618,6 +643,7 @@ def main() -> int:
     else:
         versions = {v.split(":")[0] for v in (overviews[0].get("prompt_versions") or "").split(";") if v}
         models = {v.split(":")[0] for v in (overviews[0].get("models") or "").split(";") if v}
+        precs = {v.split(":")[0] for v in (overviews[0].get("precisions") or "").split(";") if v}
 
     # Results from different prompt versions or models must not be pooled.
     if len(versions) > 1:
@@ -625,6 +651,12 @@ def main() -> int:
               "Recode older phases with the current prompt.")
         flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
                           "check": "mixed_prompt_versions", "detail": str(sorted(versions))})
+    precs.discard("unrecorded")
+    if len(precs) > 1:
+        print(f"\nWARNING: results mix precisions {sorted(precs)} (e.g. bf16 vs fp8 vs nf4); "
+              "do not pool them without disclosure.")
+        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
+                          "check": "mixed_precision", "detail": str(sorted(precs))})
     if len(models) > 1:
         print(f"\nWARNING: results mix models {sorted(models)}; do not pool them.")
         flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",

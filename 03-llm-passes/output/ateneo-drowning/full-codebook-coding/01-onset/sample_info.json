@@ -1,0 +1,13 @@
+{
+  "phase": "01-onset",
+  "N": 856,
+  "n": 700,
+  "seed": 20261005,
+  "phase_seed": 2369573125,
+  "design": "class census + simple random sample",
+  "class_census_n": 32,
+  "random_n": 668,
+  "random_pool_N": 824,
+  "random_weight": 1.2335,
+  "class_pattern": "\\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\\w*|scholar\\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\\w*|working class|middle class|tuition|matrikula|afford\\w*|breadwinner|classism|burgis|connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|co\u00f1?o)\\b"
+}
