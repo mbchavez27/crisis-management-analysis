@@ -8,6 +8,61 @@ in the codebook, which human and LLM coders share.
 Every coded record stores the prompt version it was produced with (`prompt_version`
 in `full_codebook_results.jsonl`), read from the `# coding-prompt vX.Y` header line.
 
+## v1.5 — 2026-10-05
+
+Codebook: v2.1 (definitions unchanged; all reminders restate A1, C2, D2/rule 8, F1/F2,
+H1/H2). Purpose: output fit for the class RQs ("How does class manifest in crisis
+communication? How does class function in the emotional turn? How do emotions make
+class visible?").
+
+Prompted by: full v1.4 run, all 5 phases (11,561 comments, 4-bit, RTX 3060), and a
+review of 03-spread:
+
+- 1,421 comments (12.3%) uncoded after retries. Causes: evidence_not_verbatim 579,
+  scalar_conflict 362, evidence_too_long 153, response_na_mismatch 150,
+  other_without_label 104, prompt_too_long 58.
+- Missingness rose with length: 3–6% for comments up to 20 words, 19% for 41–80,
+  45% over 80. Comments containing double quotes were 5x over-represented among
+  failures. Comments with class vocabulary failed at 22% vs 12% (median 40 vs 19
+  words): the central construct was disproportionately missing.
+- CLASS_FRAME on 3.8% of 03-spread; of comments with class vocabulary (tuition,
+  scholarship, money, mahirap/mayaman, elite, …) only 37% were class-framed, although
+  F1 already covers wealth, money and scholarship status.
+- NEEDS_CONTEXT on ~24% of comments, mostly standalone opinions addressed to someone;
+  rule 8 then forced STANCE = NEUTRAL (DEFENDING 1.5%).
+- 594 of 3,658 TAGLISH comments contained no Filipino words.
+
+Prompt text:
+
+- **ATTRIBUTION, CLASS_DIRECTION, RESPONSE_TARGET and RESPONSE_EVAL are whole-comment
+  fields** (with STANCE and TARGET_OF_COMMENT): one value each, chosen after the
+  evidence. Removes scalar_conflict by construction. CLASS_FRAME stays a cited code,
+  so every class frame remains tied to a quote for close reading.
+- **New reminders:** LANGUAGE (A1: TAGLISH needs both languages in the comment),
+  NEEDS_CONTEXT (D2/rule 8: only when stance or meaning cannot be determined without
+  the parent; addressing someone is not enough), CLASS_FRAME (F1 restated with its
+  own examples: money, cost of schooling, elite school, humble background).
+- WHOLE-COMMENT CODES, CONSISTENCY CHECKS and OUTPUT updated to match.
+
+Pipeline (`run_local.py`):
+
+- **Retry, then keep with a review flag (no more silent loss).** Soft issues trigger
+  up to two correction retries; if they persist, the row is kept, repaired where the
+  codebook says how, and flagged in a new `review_flags` column:
+  `evidence_unverified`, `evidence_long`, `other_unlabeled(X)`,
+  `class_direction_missing` (CLASS_FRAME kept, direction NA),
+  `response_incomplete(T/E)` (both set to NA, rule 2),
+  `class_direction_without_frame(X)` (direction set to NA per F2; possible missed
+  class frame). Hard failures remain only for unusable output (bad JSON, prompt too
+  long). Analyses can be run with and without flagged rows.
+- **Quote matching ignores quote marks** and accepts near-verbatim quotes (similarity
+  ≥ 0.85 to the best-matching stretch of the comment), flagged `evidence_fuzzy`.
+  Invented quotes still fail.
+- **`--only-ids FILE`** codes only the listed comment_ids (the pilot sample). Pilot
+  rows are checkpointed like any other, so the full run resumes from them.
+
+Comparability: v1.4 and v1.5 outputs must not be pooled. v1.5 recodes everything.
+
 ## v1.4 — 2026-10-02
 
 Codebook: v2.1 (definitions unchanged).

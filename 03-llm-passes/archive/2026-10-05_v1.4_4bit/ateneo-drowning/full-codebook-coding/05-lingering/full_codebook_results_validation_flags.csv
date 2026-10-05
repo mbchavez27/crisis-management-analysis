@@ -38,6 +38,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,35,Ugzbzsr1OtPbrN50t8Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,35,Ugzbzsr1OtPbrN50t8Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,35,Ugzbzsr1OtPbrN50t8Z4AaABAg,WARN,appearance_missed,matched 'kalbo'
+05-lingering,36,Ugwd8cLLSSrZfCQUYvd4AaABAg,INFO,class_word_not_framed,matched 'pera'
 05-lingering,38,UgwAXtWsYshzwd30bsp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,40,UgzUCnGS14LBeGnFXGJ4AaABAg,ERROR,uncoded_row,no model output for this row
 05-lingering,42,Ugw88K2-6wcX6ZwVCEF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -234,6 +235,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,252,UgwbiA2nPOR1DQN1drF4AaABAg.AYVwWWsHWK7AYW7FYK1JIg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,253,UgwbiA2nPOR1DQN1drF4AaABAg.AYVwWWsHWK7AYW7HtZa-DZ,WARN,attribution_without_norm_violation,INTENTIONAL
 05-lingering,256,Ugytao5H4W8nx1R4BOR4AaABAg.AYVwEfqVYLkAYVww9j18vB,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,257,UgyApbf4IplJ6Agqg2N4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 05-lingering,257,UgyApbf4IplJ6Agqg2N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,258,Ugxg-guiGl7MTE-CaKh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 05-lingering,259,UgxaTWxWjTZHofzyqIh4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -303,6 +305,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,344,UgzC2HLOZVnfGoVDsDJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,345,UgyxNKXqDhrWEIORFfF4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 05-lingering,347,UgxQdpBhHVmW4KxPowd4AaABAg,ERROR,uncoded_row,no model output for this row
+05-lingering,348,UgxJ57JSXnIcd-uY6Kt4AaABAg,INFO,class_word_not_framed,matched 'million'
 05-lingering,349,UgynmXLWW8jzPY0JcWN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,351,Ugx9Ne40O-ckTH12JVB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,353,Ugy0_YzseZEqWd5wgnF4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -363,11 +366,13 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,450,Ugwh9AbiwaaMTXsSUgt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,453,UgyCptS4N-Vnul42NCJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,457,Ugx36Zzh60fBZ-HoH6V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,459,UgwPV0DztekevpZKXL14AaABAg,INFO,class_word_not_framed,matched 'kahirapan'
 05-lingering,462,UgyVe6qpmfAXxhGXleV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,463,UgyJjIMPMbFHnkuw53B4AaABAg,ERROR,uncoded_row,no model output for this row
 05-lingering,464,Ugwzr630MPZzRbnpURd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,465,Ugz2QzSdXHf6bdk2Ilh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,466,UgzP5HGTjEs2rzcUCt14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,469,UgxOGAvPIFEDVVXiMGN4AaABAg,INFO,class_word_not_framed,matched 'mayaman'
 05-lingering,471,UgyiZ1rCEA_bMk6jNwR4AaABAg.A_HK9CGh_QuA_wQY9HX-eC,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,472,Ugwutvjv2KZTtXD3sIh4AaABAg,ERROR,uncoded_row,no model output for this row
 05-lingering,473,UgzpEalidmjJfR1EZ0Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -463,6 +468,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,610,Ugwql9Cu4Dc7e2Loj2l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,612,UgxWFNNrUn3NYDQqIpJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,612,UgxWFNNrUn3NYDQqIpJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,613,UgywarU59VscC5u2Ush4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 05-lingering,613,UgywarU59VscC5u2Ush4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,614,UgxDhs8kNYPHhPIwJzR4AaABAg,ERROR,uncoded_row,no model output for this row
 05-lingering,615,UgwjnPzsYCQtH_TM28d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -534,9 +540,11 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,735,Ugz2vLbbZYRJXPu_nbR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,737,UgzsYKcZPkWX537rAbh4AaABAg,ERROR,uncoded_row,no model output for this row
 05-lingering,739,UgyB8akV2oEvXXgdf-J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,740,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_KI-Oc2oY7,INFO,class_word_not_framed,matched 'million'
 05-lingering,740,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_KI-Oc2oY7,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,741,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HvyS0ErLI,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,742,Ugz3JZzkqzPBx66TLBZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,744,UgwmR11dctski5nh4Rd4AaABAg,INFO,class_word_not_framed,matched 'elite'
 05-lingering,745,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_bjrHnZGVc,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,747,UgwJ_NR1PiNR65WZN_14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,747,UgwJ_NR1PiNR65WZN_14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -584,6 +592,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,813,UgxKwA_iOi27-RkoTzB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,814,Ugxy9DwufcF59ksT_vB4AaABAg.A_HRYExRaz6A_JOHTqJF3n,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,822,UgyrsIKvcw21B7RDoRt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,824,UgxtoIuxEUF1GusFK_54AaABAg,INFO,class_word_not_framed,matched 'pera'
 05-lingering,824,UgxtoIuxEUF1GusFK_54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,825,Ugz1ia1EBcN_Vaum0-t4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 05-lingering,825,Ugz1ia1EBcN_Vaum0-t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -687,6 +696,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,984,Ugyv4hPCYC7T5tiTDrt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,985,UgwrWOx8SJP6B6Zhq194AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,986,UgweZeuoGAeZDoM22al4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,987,UgxngbFXIXwIIofFYNF4AaABAg.A_HGPJAcYhdA_HIB1pskT-,INFO,class_word_not_framed,matched 'connection'
 05-lingering,988,UgwCcr4UulVa9qUpD8t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,988,UgwCcr4UulVa9qUpD8t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,989,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_KFIoxo8Do,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -714,6 +724,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,1021,Ugz9vbk-iz_DuEwoDXJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1022,Ugx34cvEt9VuarEpbg94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1023,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HnfekqV64,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1024,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HSMnJM6Lb,INFO,class_word_not_framed,matched 'pera'
 05-lingering,1026,UgyTCIizpj6Xtmp7AsN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1028,UgzKYi-cZkxUbMBITqp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1031,UgwtFm3S-4g08wfCpgh4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -779,6 +790,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,1151,Ugzpy7tueFugQY_WFpB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1152,UgwZC_5QkAGC6k6gW_94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1153,Ugw89MugmhRjmW3nC_B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1154,Ugyiw4nEOofDBeS0kmR4AaABAg,INFO,class_word_not_framed,matched 'million'
 05-lingering,1155,UgyYFAdqZ0RfFeSKhth4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1155,UgyYFAdqZ0RfFeSKhth4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 05-lingering,1157,Ugwn_SMgcX62JaM1n-l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -820,6 +832,7 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,1216,UgyiZ1rCEA_bMk6jNwR4AaABAg.A_HK9CGh_QuA_HdXqYpcdO,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1218,UgzhY5gMFSobk4eAFuF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,1219,Ugyj7ceIVjjhdF3NlOt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+05-lingering,1222,UgzThattLBBtvCQbdoZ4AaABAg,INFO,class_word_not_framed,matched 'scholar'
 05-lingering,1223,UgyGz7meGQDErUiQ94B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 05-lingering,1223,UgyGz7meGQDErUiQ94B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1225,Ugy5aDapogc4wJuNGi94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -850,3 +863,4 @@ phase,row_id,comment_id,severity,check,detail
 05-lingering,1260,Ugws2sMHhoGSsnh7ndJ4AaABAg.AauDwk613w6AaxVdBYfGYZ,WARN,attribution_without_norm_violation,ACCUSATION
 05-lingering,1260,Ugws2sMHhoGSsnh7ndJ4AaABAg.AauDwk613w6AaxVdBYfGYZ,WARN,language_heuristic,coded TAGLISH but only one language detected
 05-lingering,1261,Ugws2sMHhoGSsnh7ndJ4AaABAg.AauDwk613w6AaxxJlBo9Nn,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,,,WARN,class_comments_missing,26% of class-vocabulary comments uncoded vs 10% of others

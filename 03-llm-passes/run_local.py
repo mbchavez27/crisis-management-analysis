@@ -33,6 +33,7 @@ import re
 import sys
 import time
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Optional
 
@@ -126,16 +127,21 @@ FREE_TEXT_KEYS = ("evidence", "evidence_en", "OTHER_NOTE")
 # The script derives every code field from those items; anything not cited keeps
 # its default (0 / NONE / NA / NEUTRAL). Every code is grounded in quoted words by
 # construction, and decoding is constrained so the format cannot break.
-_SCALAR_CODE_DEFAULTS = {
+# Choose-ONE codes are whole-comment fields, chosen after the evidence items:
+# STANCE and TARGET_OF_COMMENT since v1.4 (the model rarely cited words for them),
+# ATTRIBUTION, CLASS_DIRECTION, RESPONSE_TARGET and RESPONSE_EVAL since v1.5 (citing
+# them per quote produced conflicting values, the second-largest failure cause).
+# The schema allows exactly one value each, so conflicts cannot occur.
+WHOLE_COMMENT_DEFAULTS = {
     "ATTRIBUTION": "NONE",
+    "STANCE": "NEUTRAL",
+    "TARGET_OF_COMMENT": "NONE",
     "CLASS_DIRECTION": "NA",
     "RESPONSE_TARGET": "NA",
     "RESPONSE_EVAL": "NA",
 }
-# Judgments about the comment as a whole (D1, I1). Since v1.4 they are top-level
-# fields chosen after the evidence, not cited codes: in v1.3 the model rarely
-# cited words for them, so they defaulted to NEUTRAL / NONE on every row.
-WHOLE_COMMENT_KEYS = ("STANCE", "TARGET_OF_COMMENT")
+WHOLE_COMMENT_KEYS = tuple(WHOLE_COMMENT_DEFAULTS)
+_SCALAR_CODE_DEFAULTS: dict[str, str] = {}  # no choose-ONE code is cited in evidence
 
 
 def _code_tokens() -> list[str]:
@@ -171,11 +177,7 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
     props = {
         "id": {"type": "string", "enum": [str(comment_id)]},
         "evidence": {"type": "array", "items": item},
-        "STANCE": {"type": "string", "enum": sorted(SCALAR_ENUMS["STANCE"])},
-        "TARGET_OF_COMMENT": {
-            "type": "string",
-            "enum": sorted(SCALAR_ENUMS["TARGET_OF_COMMENT"]),
-        },
+        **{k: {"type": "string", "enum": sorted(SCALAR_ENUMS[k])} for k in WHOLE_COMMENT_KEYS},
         "LANGUAGE": {"type": "string", "enum": sorted(SCALAR_ENUMS["LANGUAGE"])},
         "OTHER_NOTE": {"type": "string"},
         "confidence": {"type": "string", "enum": sorted(SCALAR_ENUMS["confidence"])},
@@ -188,7 +190,9 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
     }
 
 
-def expand_structured(obj: dict[str, Any]) -> dict[str, Any]:
+def expand_structured(
+    obj: dict[str, Any], lenient: bool = False, review: Optional[list[str]] = None
+) -> dict[str, Any]:
     """Turn a v1.3 structured answer into the flat 39-field record.
 
     Raises ValueError on a scalar cited with two different values or an OTHER
@@ -200,8 +204,8 @@ def expand_structured(obj: dict[str, Any]) -> dict[str, Any]:
     for k, (_allowed, empty) in LIST_ENUMS.items():
         rec[k] = [empty]
     rec["id"] = obj.get("id", "")
-    for k in WHOLE_COMMENT_KEYS:
-        rec[k] = obj.get(k, "")
+    for k, default in WHOLE_COMMENT_DEFAULTS.items():
+        rec[k] = obj.get(k, default)
     rec["LANGUAGE"] = obj.get("LANGUAGE", "")
     rec["OTHER_NOTE"] = obj.get("OTHER_NOTE", "") or ""
     rec["confidence"] = obj.get("confidence", "")
@@ -238,7 +242,8 @@ def expand_structured(obj: dict[str, Any]) -> dict[str, Any]:
             else:
                 raise ValueError(f"evidence_format: unknown code {tok!r}")
             if val == "OTHER" and not label:
-                raise ValueError(f"other_without_label: {key}=OTHER needs other_label")
+                _soft(review if review is not None else [], lenient, f"other_unlabeled({key})",
+                      f"other_without_label: {key}=OTHER needs other_label")
         shown = [c + (f"({label})" if c.endswith("=OTHER") else "") for c in codes]
         parts.append(f"«{quote}» -> {', '.join(shown)}")
         parts_en.append(f"«{str(it.get('quote_en', '')).strip()}»")
@@ -411,6 +416,7 @@ COLUMN_ORDER = [
     "OTHER_NOTE",
     "confidence",
     "autofix",
+    "review_flags",
     "status",
 ]
 
@@ -550,6 +556,14 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         help="nf4 4-bit quantization (bitsandbytes) for <=12GB GPUs. Needed for 9B on 12GB.",
     )
     parser.add_argument(
+        "--only-ids",
+        type=Path,
+        default=None,
+        help="File of comment_ids (one per line, or a CSV with a comment_id column) to code; "
+             "other comments are skipped. Used for the pilot sample; the full run resumes "
+             "from these rows.",
+    )
+    parser.add_argument(
         "--max-model-len",
         type=int,
         default=MAX_MODEL_LEN,
@@ -643,22 +657,64 @@ def is_emoji_only(text: str) -> bool:
 # evidence_en: «translation»; «translation»        (one per quote, same order)
 QUOTE_MAX_WORDS = 15
 # Scalar codes that need a supporting quote when they differ from these defaults.
-SCALAR_DEFAULTS = {
-    "ATTRIBUTION": "NONE",
-    "CLASS_DIRECTION": "NA",
-    "RESPONSE_TARGET": "NA",
-    "RESPONSE_EVAL": "NA",
-}  # STANCE and TARGET_OF_COMMENT are whole-comment judgments: no quote required
+SCALAR_DEFAULTS: dict[str, str] = {}  # choose-ONE codes are whole-comment fields (v1.5)
 _EVID_ITEM = re.compile(r"«([^«»]+)»\s*->\s*([^«]*)")
 _EVID_QUOTE = re.compile(r"«([^«»]*)»")
 _CODE_TOKEN = re.compile(r"([A-Za-z_]+)(?:\s*=\s*([A-Za-z0-9_]+)(?:\s*\([^)]*\))?)?")
 
 
+class SoftIssue(ValueError):
+    """A rejection worth a correction retry, but not worth losing the row over.
+
+    Strict parsing raises it so the row is retried with a correction note. When
+    the retries are spent, the row is re-parsed leniently: it is kept, repaired
+    where the codebook says how, and given a review flag (v1.5). Dropping these
+    rows made long comments -- where class talk concentrates -- disproportionately
+    missing.
+    """
+
+    def __init__(self, msg: str, flag: str) -> None:
+        super().__init__(msg)
+        self.flag = flag
+
+
+def _soft(review: list[str], lenient: bool, flag: str, msg: str) -> None:
+    if lenient:
+        review.append(flag)
+    else:
+        raise SoftIssue(msg, flag)
+
+
+_QUOTE_MARKS = re.compile("[\"'`\\\u2018\u2019\u201c\u201d]")
+FUZZY_MIN_RATIO = 0.85  # similarity to the best-matching stretch of the comment
+
+
 def _norm_text(t: str) -> str:
-    """Case-, quote-mark- and whitespace-insensitive form for verbatim matching."""
-    t = t.replace("\ufe0f", "").replace("\u2018", "'").replace("\u2019", "'")
-    t = t.replace("\u201c", '"').replace("\u201d", '"')
+    """Case-, quote-mark- and whitespace-insensitive form for verbatim matching.
+
+    Quote marks are dropped entirely: comments quoting someone ("…") made the model
+    alter or escape them, the main cause of evidence_not_verbatim in v1.4.
+    """
+    t = _QUOTE_MARKS.sub("", t.replace("\ufe0f", ""))
     return re.sub(r"\s+", " ", t.casefold()).strip()
+
+
+def _coverage(quote: str, comment: str) -> float:
+    """Similarity of the quote to the stretch of the comment it best lines up with.
+
+    Anchors on the longest shared run of characters, then compares the quote with
+    the comment window at that position. Typos and spacing changes score high;
+    a quote that is not in the comment has no long shared run and scores low.
+    """
+    if not quote:
+        return 1.0
+    sm = SequenceMatcher(None, comment, quote, autojunk=False)
+    a, b, size = sm.find_longest_match(0, len(comment), 0, len(quote))
+    if size < 4:
+        return 0.0
+    start = max(0, a - b)
+    window = comment[start:start + len(quote) + 3]
+    return SequenceMatcher(None, window, quote, autojunk=False).ratio()
 
 
 def expected_evidence_codes(obj: dict[str, Any]) -> set[tuple[str, str]]:
@@ -677,8 +733,11 @@ def expected_evidence_codes(obj: dict[str, Any]) -> set[tuple[str, str]]:
     return exp
 
 
-def check_evidence(obj: dict[str, Any], text: str) -> None:
-    """Reject a record whose codes are not each tied to words actually in the comment."""
+def check_evidence(
+    obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
+) -> None:
+    """Check that every cited code is tied to words actually in the comment."""
+    review = review if review is not None else []
     expected = expected_evidence_codes(obj)
     evidence = obj["evidence"].strip()
     items = _EVID_ITEM.findall(evidence)
@@ -694,12 +753,15 @@ def check_evidence(obj: dict[str, Any], text: str) -> None:
     for quote, codes in items:
         q = _norm_text(quote).strip(" .,!?;:")
         if q and q not in comment:
-            raise ValueError(f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
+            if _coverage(q, comment) >= FUZZY_MIN_RATIO:
+                review.append("evidence_fuzzy")  # typo / spacing differences only
+            else:
+                _soft(review, lenient, "evidence_unverified",
+                      f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
         if len(quote.split()) > QUOTE_MAX_WORDS:
-            raise ValueError(
-                f"evidence_too_long: quotes must be at most {QUOTE_MAX_WORDS} words; "
-                "quote only the words that support the codes"
-            )
+            _soft(review, lenient, "evidence_long",
+                  f"evidence_too_long: quotes must be at most {QUOTE_MAX_WORDS} words; "
+                  "quote only the words that support the codes")
         for key, val in _CODE_TOKEN.findall(codes):
             key = key.upper()
             if key in ("LANGUAGE", "CONFIDENCE", "NONE", "NA", "NEUTRAL", *WHOLE_COMMENT_KEYS):
@@ -754,9 +816,16 @@ def language_flag(language: str, text: str) -> Optional[str]:
     return None
 
 
-def validate_record(obj: dict[str, Any], text: str) -> list[str]:
-    """Check one coded record against codebook v2.1 and normalise it in place."""
+def validate_record(
+    obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
+) -> list[str]:
+    """Check one coded record against codebook v2.1 and normalise it in place.
+
+    Returns deterministic autofixes. Review flags (rows kept but needing a look)
+    are appended to `review`; see SoftIssue.
+    """
     fixes: list[str] = []
+    review = review if review is not None else []
 
     # Free-text fields: strings only, and never the template or our instructions.
     for k in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "confidence"):
@@ -806,7 +875,7 @@ def validate_record(obj: dict[str, Any], text: str) -> list[str]:
 
     # Evidence must tie every non-default code to words in the comment (v1.2).
     # Runs before the autofixes below, which may reset codes the evidence cites.
-    check_evidence(obj, text)
+    check_evidence(obj, text, lenient, review)
 
     flag = language_flag(obj["LANGUAGE"], text)
     if flag and not is_emoji_only(text):
@@ -820,14 +889,22 @@ def validate_record(obj: dict[str, Any], text: str) -> list[str]:
         obj["STANCE"] = "NEUTRAL"  # general rule 8
         fixes.append("stance->NEUTRAL(needs_context)")
     if obj["CLASS_FRAME"] == 0 and obj["CLASS_DIRECTION"] != "NA":
-        obj["CLASS_DIRECTION"] = "NA"  # F2: NA if CLASS_FRAME = 0
+        # F2: NA if CLASS_FRAME = 0. Kept in the flag: a direction without a cited
+        # class quote is a possible missed CLASS_FRAME worth reviewing.
+        review.append(f"class_direction_without_frame({obj['CLASS_DIRECTION']})")
+        obj["CLASS_DIRECTION"] = "NA"
         fixes.append("class_direction->NA")
     if obj["CLASS_FRAME"] == 1 and obj["CLASS_DIRECTION"] == "NA":
-        raise ValueError("class_frame_without_direction")
+        # Keep the cited class frame (central to the RQs); only the direction is missing.
+        _soft(review, lenient, "class_direction_missing", "class_frame_without_direction: "
+              "CLASS_FRAME is cited, so choose a CLASS_DIRECTION")
     if (obj["RESPONSE_TARGET"] == "NA") != (obj["RESPONSE_EVAL"] == "NA"):
-        raise ValueError(
-            f"response_na_mismatch: target={obj['RESPONSE_TARGET']} eval={obj['RESPONSE_EVAL']}"
-        )
+        msg = (f"response_na_mismatch: target={obj['RESPONSE_TARGET']} "
+               f"eval={obj['RESPONSE_EVAL']}; give both or neither")
+        _soft(review, lenient, f"response_incomplete({obj['RESPONSE_TARGET']}/{obj['RESPONSE_EVAL']})", msg)
+        if lenient:  # general rule 2: when in doubt, NA
+            obj["RESPONSE_TARGET"] = obj["RESPONSE_EVAL"] = "NA"
+            fixes.append("response->NA(incomplete)")
     if obj["RESPONSE_EVAL"] not in ("REJECTS", "MIXED") and obj["REJECT_REASONS"] != ["NA"]:
         obj["REJECT_REASONS"] = ["NA"]  # H3: NA unless REJECTS or MIXED
         fixes.append("reject_reasons->NA")
@@ -840,8 +917,9 @@ def parse_chunk_response(
     required: frozenset[str],
     id_of: Optional[dict[int, str]] = None,
     text_of: Optional[dict[int, str]] = None,
+    lenient: bool = False,
 ) -> list[dict[str, Any]]:
-    """Parse one chunk response into per-row records."""
+    """Parse one chunk response into per-row records (lenient: keep soft issues as flags)."""
     # Strip hallucinated instruction loops before parsing
     loop_marker = "Now output exactly one JSON object per comment above"
     if loop_marker in raw:
@@ -859,9 +937,12 @@ def parse_chunk_response(
         raise ValueError(f"count_mismatch: {len(objs)} objs for {len(row_ids)} rows")
     records: list[dict[str, Any]] = []
     for rid, obj in zip(row_ids, objs):
-        if isinstance(obj.get("evidence"), list):  # v1.3 structured answer
+        review: list[str] = []
+        if isinstance(obj.get("evidence"), list):  # v1.3+ structured answer
             try:
-                obj = expand_structured(obj)
+                obj = expand_structured(obj, lenient, review)
+            except SoftIssue as exc:
+                raise SoftIssue(f"row {rid}: {exc}", exc.flag) from exc
             except ValueError as exc:
                 raise ValueError(f"row {rid}: {exc}") from exc
         missing = required - set(obj.keys())
@@ -873,10 +954,13 @@ def parse_chunk_response(
             if got != want:
                 raise ValueError(f"id_mismatch: {got!r} vs {want!r}")
         try:
-            fixes = validate_record(obj, (text_of or {}).get(rid, ""))
+            fixes = validate_record(obj, (text_of or {}).get(rid, ""), lenient, review)
+        except SoftIssue as exc:
+            raise SoftIssue(f"row {rid}: {exc}", exc.flag) from exc
         except ValueError as exc:
             raise ValueError(f"row {rid}: {exc}") from exc
         obj["autofix"] = ";".join(fixes)
+        obj["review_flags"] = ";".join(dict.fromkeys(review))
         obj["_row_id"] = rid
         records.append(obj)
     return records
@@ -1252,13 +1336,32 @@ def run_pair(
                         f"{str(exc)[:200]}. Code only this comment, from its own words. Each "
                         "evidence item needs a short quote copied exactly from the comment (at "
                         "most 15 words), its literal English translation, and the codes those "
-                        "words support. Cite each choose-ONE code with only one value. Name any "
-                        "OTHER in other_label. CLASS_FRAME needs a CLASS_DIRECTION value, and "
-                        "RESPONSE_TARGET and RESPONSE_EVAL are cited together."
+                        "words support. Name any OTHER in other_label. If CLASS_FRAME is cited, "
+                        "choose a CLASS_DIRECTION; give RESPONSE_TARGET and RESPONSE_EVAL both "
+                        "or neither."
                     )
                     chunks_queue.insert(0, current)
                     continue
-                split_or_log(current, n_rows, exc)
+                # Retries spent: keep the row if only soft issues remain (flagged).
+                lenient_ok = False
+                if n_rows == 1:
+                    try:
+                        parse_chunk_response(raw or "", row_ids, spec.required_keys, id_of,
+                                             text_of, lenient=True)
+                        lenient_ok = True
+                    except Exception:
+                        lenient_ok = False
+                if not lenient_ok:
+                    split_or_log(current, n_rows, exc)
+                    continue
+                print(f"Row {row_ids[0]} kept with review flags after {MAX_CORRECTIONS} retries.")
+                rec = {"row_ids": row_ids, "text": raw or "", "prompt_version": prompt_version,
+                       "lenient": True}
+                raw_responses.append(rec)
+                with open(partial_resp, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                outage_streak = 0
+                pbar.update(n_rows)
                 continue
             rec = {"row_ids": row_ids, "text": raw or "", "prompt_version": prompt_version}
             raw_responses.append(rec)
@@ -1282,7 +1385,8 @@ def run_pair(
         try:
             parsed_records.extend(
                 parse_chunk_response(
-                    item["text"], item["row_ids"], spec.required_keys, id_of, text_of
+                    item["text"], item["row_ids"], spec.required_keys, id_of, text_of,
+                    lenient=bool(item.get("lenient")),
                 )
             )
         except Exception as exc:
@@ -1326,6 +1430,9 @@ def run_pair(
     )
     if autofixed:
         print(f"autofixed (deterministic codebook rules): {autofixed}/{len(parsed_records)} rows")
+    reviewed = sum(1 for r in parsed_records if r.get("review_flags"))
+    if reviewed:
+        print(f"kept with review flags (see review_flags column): {reviewed}/{len(parsed_records)} rows")
     if lang_flags:
         print(
             f"LANGUAGE flagged for review (see autofix column): "
@@ -1424,6 +1531,15 @@ def main(argv: Optional[list[str]] = None) -> int:
             print(f"Unknown pass: {num} (choose from {sorted(PASSES)})")
             return 2
 
+    only_ids: Optional[set[str]] = None
+    if args.only_ids is not None:
+        if args.only_ids.suffix.lower() == ".csv":
+            only_ids = set(pd.read_csv(args.only_ids, dtype=str)["comment_id"].str.strip())
+        else:
+            only_ids = {ln.strip() for ln in args.only_ids.read_text(encoding="utf-8").splitlines()
+                        if ln.strip()}
+        print(f"--only-ids: coding {len(only_ids)} listed comments only.")
+
     ok = True
     # One model load reused across all requested pairs (9B weights are slow to load).
     generator = LocalGenerator(
@@ -1432,6 +1548,12 @@ def main(argv: Optional[list[str]] = None) -> int:
     try:
         for phase in phases:
             df = load_phase_df(args.crisis, phase, args.limit)
+            if only_ids is not None:
+                # Keep row_ids from the full phase so checkpoints line up with the full run.
+                df = df[df["comment_id"].isin(only_ids)]
+                if df.empty:
+                    print(f"Phase {phase}: no listed comments; skipped.")
+                    continue
             print(f"Phase {phase}: {len(df)} rows")
             for num in pass_nums:
                 spec = PASSES[num]

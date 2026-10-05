@@ -24,9 +24,12 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,26,UgzXqMn_3nC3JgrjuKh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,27,UgzwZSNNw9xsqjsqNcN4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,27,UgzwZSNNw9xsqjsqNcN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,29,UgxlkW8JeQWLT_FXtPp4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,30,UgwgXUMFIJ_r_mVFUqR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,31,UgySMjHrlcr6M0NJx5V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,33,UgxebtCm8wU3CQ8Ue_t4AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,33,UgxebtCm8wU3CQ8Ue_t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,34,UgxebtCm8wU3CQ8Ue_t4AaABAg.AXzSq5PaZ8MAY0dvARVtlv,INFO,class_word_not_framed,matched 'money'
 03-spread,36,UgxdvarySPme0-C4a0N4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,37,UgwLO2r7oLbhU7yQt5d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,38,UgzS3MUAc5s9c6S8FGd4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -37,7 +40,9 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,47,UgwcLuigkK4nM5SrgsV4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,48,Ugw6dRu4a2sHOKWZDmt4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,49,UgyrY5OLqlet0-cr-V14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,50,UgznGHhTJj0H8I20DOZ4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,50,UgznGHhTJj0H8I20DOZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,51,UgwaUr5BYY_GSmPGPFV4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,52,UgydMCWEs5_Q1m4O0rp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,56,UgxN9T3yszwsNElGOQR4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,57,UgyADdazF-PHMQeKOCd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -47,21 +52,27 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,60,UgyBwLipoBwvpNloU2t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,62,UgyI0ehQZ1_emd6JI0Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,63,UgwtwLoJNhszhfkPjsZ4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,64,Ugy7borz9L-St5pFk9B4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,64,Ugy7borz9L-St5pFk9B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,66,UgwWF3njr0F6XeTOpC54AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,67,UgzqJzNSpcyfheyrwrB4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,67,UgzqJzNSpcyfheyrwrB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,68,UgxMh4Qq4yVyG3EA-694AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,69,Ugxxl3eOVQevEcX32Nl4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,69,Ugxxl3eOVQevEcX32Nl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,71,UgyUWzUw8ULuhjazFLp4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,72,UgxAaqLv9s8m1Akwdcx4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,73,Ugzo51J2o5xUO67JRQZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,74,UgwBXtLacZJxD3hL0Ml4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,75,UgyMnq0KyqaLgovD0Jt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,76,UgyinLXOfOLDyDVgQiB4AaABAg,INFO,class_word_not_framed,matched 'million'
 03-spread,79,UgymE9-nbYsy3PmJzgd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,80,Ugxh6zpmWYO5OTvr4hN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,80,Ugxh6zpmWYO5OTvr4hN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,82,UgxqceujwA7iZAlyNT54AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,83,UgzaTvzn6hM4Rmjn8nt4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,84,UgxYHs84tNiCVYYochd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,87,UgwU28mho3JyFD1oOQd4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,89,UgzkAkttOHslhUN8it54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,90,UgyCgidnxdzXDDPj6vd4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,91,UgxK9BZWrArNlP_vAz94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -71,6 +82,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,95,Ugy_84rUkqCPvfLDh314AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,96,Ugx7s33kX09m8mPqGc54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,97,UgyE1UJkp49qO_uBpTV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,99,Ugw3v25ZuBlu-IGBux54AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,99,Ugw3v25ZuBlu-IGBux54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,100,Ugw3v25ZuBlu-IGBux54AaABAg.AY2CDdW-3KaAY2N1BpRtJh,ERROR,uncoded_row,no model output for this row
 03-spread,101,UgzQQuQoO_F-wsA4tNJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -99,8 +111,10 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,125,Ugw-4ozyBQcxSyQ8MA14AaABAg.AY1znKmJRkUAY2MsKDGhey,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,131,UgwWuaYmfoVhyaCftf14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,133,Ugw8g6M0nMZIlzjieV94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,135,UgyRSF9q6_RVpDCcUrl4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,135,UgyRSF9q6_RVpDCcUrl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,137,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY1zKMchrWs,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,138,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY24Pz2pAm5,INFO,class_word_not_framed,matched 'elite'
 03-spread,138,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY24Pz2pAm5,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 03-spread,140,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY2DrXOMCnN,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,141,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY1zubakvA2,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -108,6 +122,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,142,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY3CuuGLays,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,143,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY3JJsbf_Tn,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,145,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY21Vz6KFK2,ERROR,uncoded_row,no model output for this row
+03-spread,146,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY25M8JFDUa,INFO,class_word_not_framed,matched 'scholarships'
 03-spread,146,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY25M8JFDUa,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,148,UgyRSF9q6_RVpDCcUrl4AaABAg.AY1xhBruex_AY44YhqwVrX,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,149,UgwitIOliFFA34ULxTN4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -116,7 +131,9 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,151,Ugy8E6K0GsCSk9YT3Wd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,152,UgwEq-C3kIsENVZ6IqZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,155,Ugwrd8IjzqTx9nYaCRF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,156,UgxRxet-QZHwnOtJGk94AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,156,UgxRxet-QZHwnOtJGk94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,158,UgzKCNIc91Fh7m05VzR4AaABAg,INFO,class_word_not_framed,matched 'scholar'
 03-spread,159,UgySSG0WZlvOTQ3s39F4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,161,UgxyUWnayNWFw4MX_Ot4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,162,UgwZYHF2goMlzOnmsjF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -124,15 +141,19 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,164,Ugw8v4N0gJm-a0-tplF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,165,UgyJHcIxZxaKL0azEMx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,168,UgzpKuffxKx7p8RKILJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,169,Ugxztd1qzJJmUNk_mWB4AaABAg,INFO,class_word_not_framed,matched 'breadwinner'
 03-spread,169,Ugxztd1qzJJmUNk_mWB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,169,Ugxztd1qzJJmUNk_mWB4AaABAg,INFO,sad_emoji_missed,['pensive_face']
 03-spread,171,UgxhEViE1zX5omXAet14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,171,UgxhEViE1zX5omXAet14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,172,Ugw43w4mNstuGNlg6Xh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,173,UgyIjimZq-RNrezPrEZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,174,Ugz-kGqgIi9CE3ETwCV4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
+03-spread,176,UgzWCWUc-rs_dIpmOXp4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,176,UgzWCWUc-rs_dIpmOXp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,178,Ugx7-jPufWf4BWIq3_V4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,182,Ugy9IBYiiOJDVP782nJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,186,UgzDG6gf0BUtgnkHT_N4AaABAg,INFO,class_word_not_framed,matched 'million'
 03-spread,186,UgzDG6gf0BUtgnkHT_N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,186,UgzDG6gf0BUtgnkHT_N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,187,UgyGC2nBeYprnVn4uRx4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -146,12 +167,15 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,201,UgwusBQEJdsRFdR67Ed4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
 03-spread,203,UgzXgWQWVdp95_K_zZx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,204,Ugy4EIHkz6dv5_2nQ9N4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,205,Ugz-5ZzX7AzS4gAuwFd4AaABAg,INFO,class_word_not_framed,matched 'scholar'
 03-spread,205,Ugz-5ZzX7AzS4gAuwFd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,206,Ugz-5ZzX7AzS4gAuwFd4AaABAg.AY-Yfv-2514AY-pX6F7GDY,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,208,Ugy_m43vpvrFwGeKpuV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,208,Ugy_m43vpvrFwGeKpuV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,211,UgxhtEDuF4GjlbtSi4F4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,213,UgxoT-40krwZH9qWMRF4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,213,UgxoT-40krwZH9qWMRF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,214,UgzzGiBOi6liGookJXp4AaABAg,INFO,class_word_not_framed,matched 'billion'
 03-spread,214,UgzzGiBOi6liGookJXp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,218,UgxY11oYv-1vrLxCH8d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,220,UgxY11oYv-1vrLxCH8d4AaABAg.AY-WFH7GFqBAY-_obm5UiE,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -160,15 +184,21 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,222,Ugxrbx3o_tTXdbSFHCp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,223,UgwWFZ1b-FQheQihP-p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,225,UgwV_pa8qYBtPnsApB54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,226,UgzFzxw-qKKkHK4fzOx4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,226,UgzFzxw-qKKkHK4fzOx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,227,UgzFzxw-qKKkHK4fzOx4AaABAg.AY-UpKHSepoAY0FeFLuGd3,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,228,UgzFzxw-qKKkHK4fzOx4AaABAg.AY-UpKHSepoAY00JyrzuLr,INFO,class_word_not_framed,matched 'tuition'
 03-spread,228,UgzFzxw-qKKkHK4fzOx4AaABAg.AY-UpKHSepoAY00JyrzuLr,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,229,Ugy17YtGNOUCeKcHxFl4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,230,UgzKuDV8EK8YOwxkBRh4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,231,UgzKuDV8EK8YOwxkBRh4AaABAg.AY-SpBMUXyRAY0FnptMs_e,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,232,UgxBWs6SR3o8qi8BUsd4AaABAg,INFO,class_word_not_framed,matched 'scholar'
 03-spread,232,UgxBWs6SR3o8qi8BUsd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,233,UgxCtUDcf_5P5rCd1LN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,235,UgxVibKYpax0wy_ytdB4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,235,UgxVibKYpax0wy_ytdB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,237,UgxVibKYpax0wy_ytdB4AaABAg.AY-REfmtmb4AY-W9uTwi9G,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,238,UgxVibKYpax0wy_ytdB4AaABAg.AY-REfmtmb4AY-Y33GaLHd,INFO,class_word_not_framed,matched 'poor'
 03-spread,238,UgxVibKYpax0wy_ytdB4AaABAg.AY-REfmtmb4AY-Y33GaLHd,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,239,UgxVibKYpax0wy_ytdB4AaABAg.AY-REfmtmb4AY1j5QVjk5l,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,240,UgxVibKYpax0wy_ytdB4AaABAg.AY-REfmtmb4AY-UZYFoOH4,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -183,6 +213,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,255,UgzTihL7EAzDLXkwV1Z4AaABAg.AY-JncQLk05AY-Z_z9tfSK,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,256,UgzTihL7EAzDLXkwV1Z4AaABAg.AY-JncQLk05AY-az9VHgpM,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,258,UgzTihL7EAzDLXkwV1Z4AaABAg.AY-JncQLk05AY-afHEmy0w,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,259,UgzTihL7EAzDLXkwV1Z4AaABAg.AY-JncQLk05AY2ExMSoVrj,INFO,class_word_not_framed,matched 'million'
 03-spread,259,UgzTihL7EAzDLXkwV1Z4AaABAg.AY-JncQLk05AY2ExMSoVrj,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,260,UgxoBJXeI6oQaOVYKYt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,260,UgxoBJXeI6oQaOVYKYt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -251,6 +282,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,337,UgywskCXhf91MGKmrat4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,338,Ugz5ZNzhpghUkOl3kNx4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,339,UgwzXapu6z_OxUj1Lh94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,341,UgwNf5GubYy-QWEFdD94AaABAg.AY7B0qVZ8HuAY7k58Azfz_,INFO,class_word_not_framed,matched 'connection'
 03-spread,343,Ugz4NlaF2ZkCwhyDs9d4AaABAg.AY7AeafKmQGAY8PwXCUvYR,ERROR,uncoded_row,no model output for this row
 03-spread,345,UgwJdtPDZL3jGwm-xK54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,348,UgwJdtPDZL3jGwm-xK54AaABAg.AY77o0mJR67AY7GBR-iqY6,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -346,6 +378,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,461,UgxXHtnYkyqBurNoHVJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,462,UgwLikhJwiSjLsw5JSV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,464,UgzehCQvPcXr1oGyyRJ4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,466,UgzKLihuwMFsDCHN8sN4AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,466,UgzKLihuwMFsDCHN8sN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,466,UgzKLihuwMFsDCHN8sN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,469,Ugy8iuXLiv_LfGOC2654AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -359,6 +392,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,480,UgwhKegnr-ZcWK2Y0st4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,481,Ugw30WFxKIWMmpG3CXt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,483,UgzQmvCwscGIEnhATwB4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+03-spread,485,UgyIoevxZnngVtUFDGl4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,485,UgyIoevxZnngVtUFDGl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,488,Ugz3Zj-4IPbgpWZJUQZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,490,UgxcZJetnGPIH2xKdsd4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -366,6 +400,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,496,UgwFMWCaSil5mR2XTRl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,497,UgzEN0yka7fGuJGqVJl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,497,UgzEN0yka7fGuJGqVJl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,498,UgxsB79HTG9rUsOvg-N4AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,498,UgxsB79HTG9rUsOvg-N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,499,Ugwep1nCErb4RshrObZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,501,UgztalHzuzohXSLg1PZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -386,6 +421,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,522,UgyJmd5mNv2dLrDRrUN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,522,UgyJmd5mNv2dLrDRrUN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,524,UgyWb9HgJI-OoTUtcHd4AaABAg.AY8J-7Q0DHRAY8_Lgh-fGJ,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+03-spread,526,UgyiSCcl4-f-BDg-Y1t4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,528,UgyNM_jS61EOtH6cygF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,529,UgywXn3jxr8xsBP-RXd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,530,UgxSMYk7ANuHdFwdww54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -398,15 +434,19 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,540,Ugy7QIcEBlNHmIJuql14AaABAg.AY89s9tZVxSAYMSoeN-FOA,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,541,Ugy7QIcEBlNHmIJuql14AaABAg.AY89s9tZVxSAY8LlX7Xg_m,ERROR,uncoded_row,no model output for this row
 03-spread,552,Ugz1Q65sMNSEJQVasLt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,553,Ugy7d5tnB9dFLdXS-GV4AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,553,Ugy7d5tnB9dFLdXS-GV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,554,UgygN8mgAXMJjwP0Flh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,555,UgxdeJWU2V_WTyPoSZF4AaABAg,INFO,class_word_not_framed,matched 'kahirapan'
 03-spread,555,UgxdeJWU2V_WTyPoSZF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,555,UgxdeJWU2V_WTyPoSZF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,558,UgwWxdyGWGgnbZjRKZN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,560,Ugx3egBR2lQ7X9E9jYt4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,561,Ugx3egBR2lQ7X9E9jYt4AaABAg.AY7ohIJZRjNAY82TF_GkWJ,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,565,UgycisNXIjtOajj96yJ4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,565,UgycisNXIjtOajj96yJ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,565,UgycisNXIjtOajj96yJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,566,UgycisNXIjtOajj96yJ4AaABAg.AY7gio4EDzVAY8Daio8we8,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,566,UgycisNXIjtOajj96yJ4AaABAg.AY7gio4EDzVAY8Daio8we8,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,570,UgwgHvuars-7JbbCyH94AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,573,UgwAtU889GU6EWGJydd4AaABAg.AY7bZ2PYudBAY8BFXpNxi5,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -430,6 +470,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,597,UgxnYoukBiXAJvtRl-F4AaABAg.AY7YvkKUyAmAYOtbJ-HrxM,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,599,Ugw70BdD9fEl6svvKSh4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,604,UgzyF8YacGapwiUJ6IV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,605,UgzyF8YacGapwiUJ6IV4AaABAg.AY7POljhRS3AY7_puKKjiO,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,609,UgxSlTTNCT8vFW8XatB4AaABAg.AY7MidjIK_3AY8cxMu-RtM,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,610,UgxSlTTNCT8vFW8XatB4AaABAg.AY7MidjIK_3AY8iUqCS-ZD,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,610,UgxSlTTNCT8vFW8XatB4AaABAg.AY7MidjIK_3AY8iUqCS-ZD,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -457,6 +498,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,643,UgzCa0bWSqsDswXbJQN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,644,UgzhGBgYvBjA5yXqPj54AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,644,UgzhGBgYvBjA5yXqPj54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,645,UgxzDV4c3dI6nmg7rvp4AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,647,UgxQJLO9-Zrffw2s01t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,648,Ugww2cSt777Sq05lQ0F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,650,UgzReHwnp4oc4fea4kZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -488,6 +530,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,680,Ugz1KA6a5MwQqk8T4AV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,681,Ugz1KA6a5MwQqk8T4AV4AaABAg.AYApZi7aHHdAYAuVq4F18h,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,683,UgzCDC72iMotOz8Cyih4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+03-spread,684,Ugyd8De7GnOc5Y2Apxp4AaABAg,INFO,class_word_not_framed,matched 'connection'
 03-spread,684,Ugyd8De7GnOc5Y2Apxp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,684,Ugyd8De7GnOc5Y2Apxp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,685,Ugyd8De7GnOc5Y2Apxp4AaABAg.AYAm2Eb6s-lAYG4fUu01mc,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -556,6 +599,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,766,UgxiT2QpnB1QID1HM2B4AaABAg.AY9gMfslZ0XAYLea7pvLqG,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,767,Ugy5jEPTGaTIgKsvRxN4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,770,Ugy5jEPTGaTIgKsvRxN4AaABAg.AY9biohGHV0AYBO-Ga-Plq,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,771,Ugy5jEPTGaTIgKsvRxN4AaABAg.AY9biohGHV0AYC33gEfr3Q,INFO,class_word_not_framed,matched 'poor'
 03-spread,772,Ugy5jEPTGaTIgKsvRxN4AaABAg.AY9biohGHV0AYAEsXZRu09,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,772,Ugy5jEPTGaTIgKsvRxN4AaABAg.AY9biohGHV0AYAEsXZRu09,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,775,Ugy5jEPTGaTIgKsvRxN4AaABAg.AY9biohGHV0AYBGnMmJJcn,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -656,6 +700,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,890,Ugw84NUbz-7EKEwN9Il4AaABAg.AYIlTs9oW1fAYJJe1sJHgN,WARN,possible_response_uncoded,matched 'acting'
 03-spread,891,Ugzp5TX_Z10CFZw3TyJ4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,893,UgyAQx12eevpPUQsJvJ4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,894,UgxiXaqLO6_Cinn59Qt4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,894,UgxiXaqLO6_Cinn59Qt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,895,UgxiXaqLO6_Cinn59Qt4AaABAg.AYIWCLiMjqxAYJJk63pfL1,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,898,UgwMvjQ6QP-SVpArTyR4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -695,6 +740,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,933,Ugza6VR_CRyGLnH59iB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,933,Ugza6VR_CRyGLnH59iB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,937,Ugw1S2iwWOj_dRW0L014AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,939,UgzkSQNnWRA6PEsAhXN4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,940,UgzNMtK5xIsP8KGzsER4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,941,Ugx6oRpK96LY1NANWPp4AaABAg,WARN,possible_response_uncoded,matched 'pr'
 03-spread,943,Ugz3N-nvGJztv2gzh9F4AaABAg.AYG2UJ8XdcgAYGBsuITsnp,ERROR,uncoded_row,no model output for this row
@@ -734,6 +780,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,991,Ugz30BQtQ-4YI7Q910l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,992,UgyvAedT_eeg6_kAZiB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,995,Ugz763hkQxgEbCkd9-x4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,998,UgxfkDsTfOn4ArnUCkR4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,998,UgxfkDsTfOn4ArnUCkR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,999,Ugy9VXvIqS-QVD5igJF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,999,Ugy9VXvIqS-QVD5igJF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -742,6 +789,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1001,UgztkKrWxPHrpCeW6sh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1002,Ugx0gOt8VQ6TGbp1SxZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1002,Ugx0gOt8VQ6TGbp1SxZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1004,UgwGJ5mZfEn0z8vD2iF4AaABAg,INFO,class_word_not_framed,matched 'afford'
 03-spread,1004,UgwGJ5mZfEn0z8vD2iF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1005,UgwXyn9dcyrBesoMyQN4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,1008,UgwXyn9dcyrBesoMyQN4AaABAg.AYCzarpsRIDAYDlkS0fWrI,ERROR,uncoded_row,no model output for this row
@@ -823,6 +871,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1112,UgxBQbDWUCZWxbjBNnV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1113,UgzP1ctahy_7zInwrup4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1116,UgxYjCcT2gq0AyAJB2h4AaABAg.AYB9yzW1X-wAYBATyl7ETw,WARN,attribution_without_norm_violation,ACCUSATION
+03-spread,1117,UgwesvwqZzf75T58pup4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1120,UgxjhSNV-VcjqE-Kbw14AaABAg.AYB7aPyd5kIAYC1MwSWZ-Z,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1121,UgyKAIsFMADnlAugRqN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1122,UgyKAIsFMADnlAugRqN4AaABAg.AYB7JRn5fT4AYB8iB7ChuT,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -963,6 +1012,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1294,Ugw0KnEeI43bUkngmit4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1295,Ugxm5V8A_L4OZjgbXGx4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1296,Ugxm5V8A_L4OZjgbXGx4AaABAg.AY9gDyqopkiAYB4H9t0jfr,WARN,rejects_without_reason,REJECT_REASONS is NA
+03-spread,1297,UgwZfKUY3WVPnXNYd5R4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1297,UgwZfKUY3WVPnXNYd5R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1298,UgysJjOyWh7YvN1CVBh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1302,UgyENEmyoju-ZaZhQl14AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
@@ -986,6 +1036,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1329,UgytlZXfmlOJR6ot1PR4AaABAg.AY9WWKu6Ba-AY9YK7AulpW,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,1330,UgyNUZCQ4r5LH572k5F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1331,UgyNmFD-JFrdJhmfNzt4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,1333,UgwQRVIc0rrUMVHQo8R4AaABAg,INFO,class_word_not_framed,matched 'million'
 03-spread,1333,UgwQRVIc0rrUMVHQo8R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1334,Ugz4Qw7DzaMQX25aupV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1334,Ugz4Qw7DzaMQX25aupV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1014,6 +1065,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1376,UgwfKxckRbgTNAxewgx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1380,UgysZvjnyjHz9kvPTE54AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,1381,UgwSAYekUhYAg24IMW14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,1383,UgwPajNonY2bTkgXZyl4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1383,UgwPajNonY2bTkgXZyl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1384,UgwSYx8R5o5k8nS_WX54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1385,UgwSYx8R5o5k8nS_WX54AaABAg.AY9FtfdSAxoAY9H58Po3-s,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1071,6 +1123,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1451,UgzAqQerNaTx09SaIhp4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1452,UgzTgzaW6t2IX36ondV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1454,Ugx1ZpxMv9iI-fDMSv94AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,1457,Ugwf4pgvc9WIsixz_254AaABAg,INFO,class_word_not_framed,matched 'mayaman'
 03-spread,1459,UgxuDh7S_PF3UA2wKT14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1459,UgxuDh7S_PF3UA2wKT14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1460,UgybXxPwhMQcR1IaKH54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1152,11 +1205,13 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1555,UgweiEE6MQ4ES4_6zid4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 03-spread,1557,UgytOkgZhnRJsog84aZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1561,UgwRqCq7eAnXKB_yx4N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1562,UgxGNxJrOFp3W500tIl4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1562,UgxGNxJrOFp3W500tIl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1562,UgxGNxJrOFp3W500tIl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1563,Ugwfvg7pOpKoi9FMXeF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1564,UgzB7GqY4jmzZfIeTKx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1564,UgzB7GqY4jmzZfIeTKx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1565,Ugw8pAG4zLQCtqVM3ut4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1565,Ugw8pAG4zLQCtqVM3ut4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1568,UgwY6UQ9uULsbjIwh514AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1568,UgwY6UQ9uULsbjIwh514AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1205,6 +1260,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1635,UgxDKjfRy0PNXO5H3Gh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1636,UgzwuMMZwW7lQNxWuyp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1636,UgzwuMMZwW7lQNxWuyp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1639,UgwuC0VQo0SJu7DY9HF4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1639,UgwuC0VQo0SJu7DY9HF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1641,UgzdG5MPLD8kvWDtFh14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1641,UgzdG5MPLD8kvWDtFh14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1250,6 +1306,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1680,Ugz2MbD72XBgZeGMEUJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1680,Ugz2MbD72XBgZeGMEUJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1682,Ugx4l8ZcTkMUd8NTN4t4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,1683,Ugx1pGdCFDulYok6hlR4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1683,Ugx1pGdCFDulYok6hlR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1684,UgyN9I46vvZRspOlRvZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1684,UgyN9I46vvZRspOlRvZ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -1270,6 +1327,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1701,Ugx_8MBctfTvqysTTzN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1703,Ugzk7_2QedPqCXiJzQR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1704,UgwI2RC4rwiCRIjuv_h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1705,UgySHQjZ8owq3fQg_954AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1706,UgynFTUKs-GbeWadbGp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1708,UgzEActLDFQbthouMlF4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1709,Ugx1CuhYN5nSpZByxMF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1277,6 +1335,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1711,UgzsS3vP4FTYVPX1f7d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1712,UgxrxARsHpINmo-409B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1712,UgxrxARsHpINmo-409B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1716,Ugw7sh1vaH_XUo-uas94AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1716,Ugw7sh1vaH_XUo-uas94AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 03-spread,1717,Ugw7sh1vaH_XUo-uas94AaABAg.AY8PevBlHApAY8V3BRt5ra,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1718,Ugwiu09jyIeQTlrE8cJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1301,6 +1360,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1744,UgxtSyZ-AQfN1wPEvEN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1745,UgxAAUAr0GXNPIG2lzx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1747,Ugx5BHcvdwP0sseDdCZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1748,Ugym7AN5kN8RKkoi4jF4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1748,Ugym7AN5kN8RKkoi4jF4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,1750,UgzQx88RHtwv3PQeHxp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1750,UgzQx88RHtwv3PQeHxp4AaABAg,WARN,possible_response_uncoded,matched 'statement'
@@ -1313,6 +1373,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1759,Ugy6ysnr3NimiU8kI9J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1760,UgxAJdrZfFZ1_atDset4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1760,UgxAJdrZfFZ1_atDset4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,1761,Ugxgcqov-oKTcQ_-KQB4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1762,UgytD4LPiEyi32LJt014AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1762,UgytD4LPiEyi32LJt014AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1763,UgzJQZafDdr3Mjoxc6d4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -1337,6 +1398,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1790,UgwdoH1NNsC5qsaDMYF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1792,Ugw0b0CRjS8V47Dyetl4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1794,UgwCFR95pmftQvvvCmB4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,1795,UgwXD1Sw_JGcI9H1Dd14AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,1795,UgwXD1Sw_JGcI9H1Dd14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1796,UgwXD1Sw_JGcI9H1Dd14AaABAg.AY8Ddc9z2phAY8EQ8Zy0WA,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1797,UgwXD1Sw_JGcI9H1Dd14AaABAg.AY8Ddc9z2phAY8IaQVZ0gM,ERROR,uncoded_row,no model output for this row
@@ -1359,6 +1421,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1814,UgzIbkO8ypulK2Apt454AaABAg.AY8C1V05uYbAY8F66ytVri,WARN,possible_response_uncoded,matched 'statement'
 03-spread,1815,UgzqCcIHSp6izgCpnIJ4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1816,UgzqE79PEgcHr94f9dl4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,1817,UgwCtNyU4uSE39czlOt4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,1818,UgxuRSZOrfxqkVFfe1N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1819,UgygB1KwjI9-RpEfv_p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1820,UgyvupaDdYCQ2t_lBmt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1485,6 +1548,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,1973,UgxQMACC1Tzg8W0WRGB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,1974,UgxeBasb6GZdcS1y-kV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,1976,Ugyaq1kDI3miBlndRux4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,1977,Ugx6D5UVXSYv2bP79Rh4AaABAg,INFO,class_word_not_framed,matched 'scholars'
 03-spread,1978,UgwYCEHEtiBQMNDA5Xx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,1980,UgwepnmcU3o1f3M39et4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,1981,Ugxg6hLe0sBJPQ4x7xp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1519,6 +1583,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2014,Ugyf0FQnjA9xmMjJgaJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2015,Ugyf0FQnjA9xmMjJgaJ4AaABAg.AY7jr3AfBBgAY7ly2N-aA9,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,2016,UgzNv-h77xObcrr_qxd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2017,Ugz02JNr0mwGjMlsXqx4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2018,UgzLOp92fUDW4U_R7FR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,2020,UgyvhB502NzSxmrtHfZ4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2021,Ugy2jpzfN0hyZ6EqfQF4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -1680,6 +1745,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2252,UgwjEyku_djAZr8VEcl4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2253,UgzkVQUmkH6IggKwAyh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2253,UgzkVQUmkH6IggKwAyh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2255,UgzpMHkb-gTKpJ3cjnt4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2256,UgykIDj0lm-PNl302O54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2258,Ugyd5orieKfNBIF5WFV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2258,Ugyd5orieKfNBIF5WFV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -1736,6 +1802,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2340,Ugzo-ZG67-cn6tMouUF4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,2340,Ugzo-ZG67-cn6tMouUF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2342,UgyL1KdjViFpmD34XDd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2343,UgwpnPGZaTU2jhudZDZ4AaABAg,INFO,class_word_not_framed,matched 'probinsya'
 03-spread,2344,UgwpnPGZaTU2jhudZDZ4AaABAg.AY7Mk4ulNiHAY7NMdLWLHS,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2345,UgwpnPGZaTU2jhudZDZ4AaABAg.AY7Mk4ulNiHAY7ROsWtEQn,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2347,UgwpnPGZaTU2jhudZDZ4AaABAg.AY7Mk4ulNiHAY7_pvL9-Zx,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1792,6 +1859,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2408,Ugy3sTuvNzYRM1hvRkx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2410,Ugy3sTuvNzYRM1hvRkx4AaABAg.AY7KQUxC7vpAY7Lo91hjtm,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2411,Ugx6xj7P48UpXmvgFZh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2412,UgzaHasuww3xvpEYoNV4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,2412,UgzaHasuww3xvpEYoNV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2413,UgwIH7k6OQ6F3LXRU114AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2414,Ugzryj5BQVwnrZaH0Xh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1802,6 +1870,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2422,UgyiKs2Fb1-WUkJLLuF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2423,UgzQ2yGSF_lZEILoQMt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2424,UgzQ2yGSF_lZEILoQMt4AaABAg.AY7K3PE-bmPAY7Kv57mEU9,WARN,attribution_without_norm_violation,ACCUSATION
+03-spread,2426,UgwpWlbRX5458jSHAVB4AaABAg,INFO,class_word_not_framed,matched 'elite'
 03-spread,2426,UgwpWlbRX5458jSHAVB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2426,UgwpWlbRX5458jSHAVB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2427,Ugx4TGjtDFBEw2VidNd4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
@@ -1846,6 +1915,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2489,UgzKl_WNcnQlShFDhg94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2491,UgzBHd_sQVrJ8z-DP854AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2495,Ugy7cGfTlFYYoB3GuZR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2496,Ugy7cGfTlFYYoB3GuZR4AaABAg.AY7HN6AZOkhAY7ITleXCxf,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,2496,Ugy7cGfTlFYYoB3GuZR4AaABAg.AY7HN6AZOkhAY7ITleXCxf,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2499,Ugy7Feykf-FkM8ZfL794AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2500,Ugw_sqgE-WvRgYV8dH94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1868,6 +1938,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2519,UgwR3LrtDDP0z97njI14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2519,UgwR3LrtDDP0z97njI14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2520,UgzWMgAgf3p9na2Yah54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2521,Ugxa7TkNFsQe-itA0WN4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,2521,Ugxa7TkNFsQe-itA0WN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2522,Ugyf5eMwqwNzh-9eiqt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2523,Ugxrj7eS-I4q87qCR8t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1899,6 +1970,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2551,UgxETx4Wi5pIh737FdB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2553,Ugxtb7R7G-xb5rTVudt4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,2554,Ugzn7TB4nalqr9SVE854AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,2557,UgzeejVK-hhnLVDijG54AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2559,Ugxhy-9JDeF2_5OFEod4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2560,UgxHZP20NKZZInrR3qh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2561,Ugw6SQ_clS31FkYS7WJ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
@@ -1909,6 +1981,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2567,UgxzCLJvmFEyF0bO1WN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2573,Ugy1N6tJ7Ei4Zu4QF3h4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2574,Ugy1N6tJ7Ei4Zu4QF3h4AaABAg.AY7EmdMrxfCAY7MK1dGu4X,ERROR,uncoded_row,no model output for this row
+03-spread,2575,Ugw6ERKXvaAMpB1PLct4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2575,Ugw6ERKXvaAMpB1PLct4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2576,Ugxx8f0HHZ40zDrUGAJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2578,Ugwb-c4SDBZ8wY9HkC94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1973,6 +2046,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2667,UgxlxuJ2sKqmW7e3GfN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,2669,UgxlxuJ2sKqmW7e3GfN4AaABAg.AY7CuLdSugbAY7FNd1UYh2,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,2669,UgxlxuJ2sKqmW7e3GfN4AaABAg.AY7CuLdSugbAY7FNd1UYh2,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2670,Ugx__Hdl2CBSRCfSM1V4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,2670,Ugx__Hdl2CBSRCfSM1V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2671,UgzRW_jv4aGgdqwWWgR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2672,UgzV7BldjI8_QWAlMJF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -2049,11 +2123,13 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2760,UgxiC64MnE0Z9e3trWB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2760,UgxiC64MnE0Z9e3trWB4AaABAg,WARN,possible_response_uncoded,matched 'statement'
 03-spread,2761,Ugw1Dk-OGOKzoJPjPZx4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,2762,Ugw1Dk-OGOKzoJPjPZx4AaABAg.AY7AGrLM8hxAY7CkGL-6fJ,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,2762,Ugw1Dk-OGOKzoJPjPZx4AaABAg.AY7AGrLM8hxAY7CkGL-6fJ,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,2763,Ugw1Dk-OGOKzoJPjPZx4AaABAg.AY7AGrLM8hxAY7DX5AO814,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2765,UgxjIpiHZMWucAbxW7t4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2768,UgzK5MJ6tAqRRiUsjp94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2769,UgxhoaAS6Cicy04AOt14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2770,Ugypu2lWEULtP12cI654AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2770,Ugypu2lWEULtP12cI654AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2771,Ugyy5_yFXOqaImYogUJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2772,UgzzcnpCQskVUxspjxd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2162,6 +2238,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2894,Ugx-ISfpQKSLCxokU8x4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2894,Ugx-ISfpQKSLCxokU8x4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
 03-spread,2894,Ugx-ISfpQKSLCxokU8x4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+03-spread,2899,UgyOUAprqUzWZeh4q0p4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2899,UgyOUAprqUzWZeh4q0p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2902,UgxxO5LOw7tvFiLX-8N4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 03-spread,2903,UgzQgMdtpr4bbh9UtKl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -2183,6 +2260,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2925,UgyujR5aXSQ0Vo-S_Cd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2925,UgyujR5aXSQ0Vo-S_Cd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2926,UgzPk76BzdFXxn8sjfZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,2929,Ugywe6s5oIZjyty1wYB4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2929,Ugywe6s5oIZjyty1wYB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2930,UgzCK_4_UmEuWNgIR7J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2931,UgzCK_4_UmEuWNgIR7J4AaABAg.AY76NqxEWpRAY79ifd_NsC,WARN,attribution_without_norm_violation,ACCUSATION
@@ -2196,6 +2274,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2944,UgwQUcmWmUsXZH7tIH54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2945,Ugymo2X3eCETMNZL34Z4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,2946,Ugymo2X3eCETMNZL34Z4AaABAg.AY769WtntDNAY77BgVgLq7,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,2947,UgzOB3MsZCm4YN9_JuB4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,2948,Ugww-_Fx30WGM3dfYSl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2949,Ugwfgq3GJVGpqFk4X0N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2950,UgzM275mb7mDjCaJ9OJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -2231,6 +2310,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,2984,Ugx_rJClUGtR6iNWxN14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2985,UgzzwTbd9oNUFmD7G5x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2986,UgwNQsDuX5ppPJOE1id4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,2987,UgzBlRN38Pjbf0wZfqN4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,2988,UgzBlRN38Pjbf0wZfqN4AaABAg.AY75Kz4SPlmAY76IpCETQT,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,2989,UgzBlRN38Pjbf0wZfqN4AaABAg.AY75Kz4SPlmAY79tvGRdm4,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,2990,UgzBlRN38Pjbf0wZfqN4AaABAg.AY75Kz4SPlmAY7BBaa8hO_,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2266,6 +2346,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3028,UgyQmAiU-ojjcP677Nl4AaABAg,WARN,possible_response_uncoded,matched 'scripted'
 03-spread,3031,UgxLVP6XqnewJcoS40V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3032,Ugznw2UXc25JK02_WMd4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+03-spread,3036,Ugznw2UXc25JK02_WMd4AaABAg.AY75-ivWWaSAY76ZyfSowv,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,3036,Ugznw2UXc25JK02_WMd4AaABAg.AY75-ivWWaSAY76ZyfSowv,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3039,Ugznw2UXc25JK02_WMd4AaABAg.AY75-ivWWaSAY7G8-d-SW6,ERROR,uncoded_row,no model output for this row
 03-spread,3040,Ugznw2UXc25JK02_WMd4AaABAg.AY75-ivWWaSAY7UMv8bi6Q,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -2491,6 +2572,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3327,Ugyh7xYG2TRrkitrAXd4AaABAg.AY70QC-mUdbAY75hbcnGpK,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3329,UgwOpYJX1ybawzyZgyh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3330,UgxvFSpud83yYOUvwxN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,3331,UgwFYJRrkB7Cr4pYhCF4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,3331,UgwFYJRrkB7Cr4pYhCF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3336,Ugw1FiWHZ-iFRDhhIS94AaABAg.AY70L8LAcXMAY71_uNq3Sn,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3337,UgwrArdGaOw7t6q2EkN4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -2595,6 +2677,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3472,Ugyz83e4xWdLHLykeFB4AaABAg.AY6z7cYg689AY7G_NIrXxs,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3473,UgxJtfrAVrrUizUGfB94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3474,UgxJtfrAVrrUizUGfB94AaABAg.AY6z777sTdSAY7TUsSM19C,ERROR,uncoded_row,no model output for this row
+03-spread,3476,UgxMXLAbf9ZvSlKvEOJ4AaABAg.AY6z57R8D-NAY74a-eBCW-,INFO,class_word_not_framed,matched 'money'
 03-spread,3477,UgzK31-QFiR-OuoiLfN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3480,UgzK31-QFiR-OuoiLfN4AaABAg.AY6z4fgdcmIAY7m2j6E770,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,3480,UgzK31-QFiR-OuoiLfN4AaABAg.AY6z4fgdcmIAY7m2j6E770,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2649,6 +2732,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3542,UgyWjlfRaKRwHyqqEpd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3543,UgwrE91Uz3tPnq30Wph4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3544,Ugzunm4GS87nsjfpSGZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,3545,Ugxg1PczWe_R6PXr70Z4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,3545,Ugxg1PczWe_R6PXr70Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3546,Ugxg1PczWe_R6PXr70Z4AaABAg.AY6xlpmUKaAAY75TrNYTMr,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3547,Ugxg1PczWe_R6PXr70Z4AaABAg.AY6xlpmUKaAAY76tzGiRcS,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2662,6 +2746,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3559,UgxofKlsFhY5RY-CY1V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3560,UgxL7vkpYVzymMSzdZV4AaABAg.AY6xiUYX-ZbAY7WY95Rnr4,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3560,UgxL7vkpYVzymMSzdZV4AaABAg.AY6xiUYX-ZbAY7WY95Rnr4,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,3563,UgzzBxw2_9Pen8mHi4h4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,3563,UgzzBxw2_9Pen8mHi4h4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,3564,UgyZIIvix5kC7Yk9jCZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,3564,UgyZIIvix5kC7Yk9jCZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2670,6 +2755,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3568,UgyJi939Ij0K_Sht9xR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3569,UgxFM0USt38FrGHyVG14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3570,Ugx6m6K9dwpxlLoJuCJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,3572,UgzNaaMIOOwjrQpZPUN4AaABAg,INFO,class_word_not_framed,matched 'palakasan'
 03-spread,3572,UgzNaaMIOOwjrQpZPUN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3573,UgxXvsyIi2u7xwd8CmR4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,3573,UgxXvsyIi2u7xwd8CmR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2803,6 +2889,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3753,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAYESNPULFxa,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3754,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAYJlNVldj5k,WARN,possible_response_uncoded,matched 'scripted'
 03-spread,3755,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAY78pcjLzzn,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,3760,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAY7Fn32Wnwy,INFO,class_word_not_framed,matched 'connection'
 03-spread,3760,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAY7Fn32Wnwy,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3766,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAY8lxY4cYS2,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3766,Ugz8PTZw5susjTHruJB4AaABAg.AY6vkqfQY4tAY8lxY4cYS2,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -2843,6 +2930,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3816,UgyAlbPEdNUR4QullFt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3818,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY6xKhwK3nV,ERROR,uncoded_row,no model output for this row
 03-spread,3820,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY7JkpphcPn,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,3822,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY7Vk7fUQlF,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,3824,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY96KhoWlRh,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,3825,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY6zepZ-3O0,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,3826,UgzkLYWDeWu68dZHjp54AaABAg.AY6uxnJMBIlAY72fOyFX6B,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -2966,6 +3054,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3973,UgxrT_YmDVNgpJU9HRh4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,3975,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY77Gjb_GSm,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3978,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY74OkWvlXg,ERROR,uncoded_row,no model output for this row
+03-spread,3979,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY77XNwF-qZ,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,3981,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY9xkyQRNeu,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3982,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY8ORKRClnV,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3983,UgxrT_YmDVNgpJU9HRh4AaABAg.AY6shgqGYL2AY8PL_-bh49,ERROR,uncoded_row,no model output for this row
@@ -2975,6 +3064,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,3989,UgyK9jRhDnAfYzjIUSR4AaABAg.AY6sftpbL_uAY72yJ2YthT,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3992,UgyK9jRhDnAfYzjIUSR4AaABAg.AY6sftpbL_uAY71aIlRzQa,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,3993,UgwCmGGbzSUeJauhHuJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,3995,UgwCmGGbzSUeJauhHuJ4AaABAg.AY6senqveSoAY6tVEanc8o,INFO,class_word_not_framed,matched 'scholarships'
 03-spread,3995,UgwCmGGbzSUeJauhHuJ4AaABAg.AY6senqveSoAY6tVEanc8o,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,3995,UgwCmGGbzSUeJauhHuJ4AaABAg.AY6senqveSoAY6tVEanc8o,INFO,sad_emoji_missed,['crying_face']
 03-spread,3997,UgygHen7UxY38wPZGWF4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
@@ -3003,6 +3093,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4023,UgyObLRrNUR-RwjCbIp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4024,Ugz6Q-_tKTTaa4epezp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4026,UgxhMk0-lxg4R_Z7jm54AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,4030,UgwVbotUAS7eAPpQz6p4AaABAg,INFO,class_word_not_framed,matched 'mayaman'
 03-spread,4030,UgwVbotUAS7eAPpQz6p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4030,UgwVbotUAS7eAPpQz6p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4031,UgycZ-0UO6k4GGDqVkd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -3011,6 +3102,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4034,UgykOc7hlt5vuTTGfXF4AaABAg.AY6sDCh7SuvAY6sWlhsiF7,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4035,Ugx1XSo5oMN2CHbwriF4AaABAg,WARN,possible_response_uncoded,matched 'statement'
 03-spread,4036,Ugx1XSo5oMN2CHbwriF4AaABAg.AY6sBAelCOxAY6uxuVjq3D,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4037,UgwWMRY0sCkwRiYd5c54AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,4037,UgwWMRY0sCkwRiYd5c54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4037,UgwWMRY0sCkwRiYd5c54AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
 03-spread,4038,UgwWMRY0sCkwRiYd5c54AaABAg.AY6s8Jx34kgAY6sLcCMejj,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3019,6 +3111,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4042,Ugx7lQ1JV2ZgJOk0Yzd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4043,Ugx7lQ1JV2ZgJOk0Yzd4AaABAg.AY6runVyOMlAY6t1B0hudv,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4044,UgyHxodg9Fi5Erx2T3F4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,4045,Ugya-iEZtesqw1QYub94AaABAg,INFO,class_word_not_framed,matched 'pera'
 03-spread,4045,Ugya-iEZtesqw1QYub94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4047,UgxkFspS6N-cRHwdREZ4AaABAg.AY6rrs4WUkBAY6se0-AlXb,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4048,Ugyh-SqzrZQcxUD4W6d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3033,6 +3126,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4057,UgyVK5-Dw91LVlSE2oV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4058,UgyVK5-Dw91LVlSE2oV4AaABAg.AY6rhBDC_opAY6toM6rdEr,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4060,UgxC6CFIC5cN21JPXrd4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+03-spread,4062,UgwlCc54aYCXt_iYk1Z4AaABAg,INFO,class_word_not_framed,matched 'poor'
 03-spread,4062,UgwlCc54aYCXt_iYk1Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4064,UgwlCc54aYCXt_iYk1Z4AaABAg.AY6rcShWjEIAY6tXDEtCNW,ERROR,uncoded_row,no model output for this row
 03-spread,4065,UgwlCc54aYCXt_iYk1Z4AaABAg.AY6rcShWjEIAY6uQ9zXv3H,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3042,6 +3136,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4074,UgzNc_24jHg-uzSYS0x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4075,UgzNc_24jHg-uzSYS0x4AaABAg.AY6rZqrXgHsAY6zU9sJK2J,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4077,UgzaNdya59TVmAbShtx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4080,UgzaNdya59TVmAbShtx4AaABAg.AY6rZD2SMzSAY6xSeOCR29,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4080,UgzaNdya59TVmAbShtx4AaABAg.AY6rZD2SMzSAY6xSeOCR29,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4081,UgzaNdya59TVmAbShtx4AaABAg.AY6rZD2SMzSAY6ygApf69f,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4081,UgzaNdya59TVmAbShtx4AaABAg.AY6rZD2SMzSAY6ygApf69f,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3106,6 +3201,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4147,Ugxqa4w6YV1BaGtk67l4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4149,UgxTpv0LzoRYfQr6PY54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4150,Ugw-OllTvEM3dGVkmf94AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+03-spread,4151,UgyWvaKvKlFO0bLIbD94AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4151,UgyWvaKvKlFO0bLIbD94AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,4151,UgyWvaKvKlFO0bLIbD94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4154,UgyA6gkrzV09baDZNSh4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -3121,12 +3217,14 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4165,UgxoZ4yDX7bSnHaWWS54AaABAg.AY6qRN-9ZmCAY6tbh1pzmN,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4166,UgxoZ4yDX7bSnHaWWS54AaABAg.AY6qRN-9ZmCAY75mOjQm1m,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4166,UgxoZ4yDX7bSnHaWWS54AaABAg.AY6qRN-9ZmCAY75mOjQm1m,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4167,UgxoZ4yDX7bSnHaWWS54AaABAg.AY6qRN-9ZmCAY75rG1uNh5,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4168,Ugzeypwhp1XGhz__h-V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4169,UgxgbbRKb9sNBlTX_6Z4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,4170,UgxgbbRKb9sNBlTX_6Z4AaABAg.AY6qOvhdiFLAY6rYI5oGTa,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4170,UgxgbbRKb9sNBlTX_6Z4AaABAg.AY6qOvhdiFLAY6rYI5oGTa,WARN,possible_response_uncoded,matched 'scripted'
 03-spread,4171,UgxgbbRKb9sNBlTX_6Z4AaABAg.AY6qOvhdiFLAY6uANcfnfi,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4173,UgxgbbRKb9sNBlTX_6Z4AaABAg.AY6qOvhdiFLAY6ucFRnFCx,ERROR,uncoded_row,no model output for this row
+03-spread,4174,UgxgbbRKb9sNBlTX_6Z4AaABAg.AY6qOvhdiFLAY769UZFjpb,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4175,UgyDj27ZosuTUCfVF6N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4176,UgyDj27ZosuTUCfVF6N4AaABAg.AY6qKzFX8BQAY6u6XXtlG3,ERROR,uncoded_row,no model output for this row
 03-spread,4177,Ugz1nUw9KwLommzBnXZ4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -3177,6 +3275,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4224,UgwSfj5Dbwh02rJP8Kt4AaABAg.AY6pTRkMknJAY6ysSYQRjg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4224,UgwSfj5Dbwh02rJP8Kt4AaABAg.AY6pTRkMknJAY6ysSYQRjg,WARN,possible_response_uncoded,matched 'sorry'
 03-spread,4225,UgwSfj5Dbwh02rJP8Kt4AaABAg.AY6pTRkMknJAY8i4m9zVMs,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4226,Ugza3GiO6d2jllGhZql4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,4227,UgyGzSeANNBoYEuJVgl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 03-spread,4229,UgyGzSeANNBoYEuJVgl4AaABAg.AY6pPlgy6CNAY6rroD51Or,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4229,UgyGzSeANNBoYEuJVgl4AaABAg.AY6pPlgy6CNAY6rroD51Or,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3204,12 +3303,12 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4259,UgwWsn-pXwJPqoO4h2J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4260,UgwQjcXqI38fTKHtTTx4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,4261,UgzHLpI_j53kf8udo_J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4262,UgzHLpI_j53kf8udo_J4AaABAg.AY6oeJCuWJ8AY6y-DS6NF3,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4262,UgzHLpI_j53kf8udo_J4AaABAg.AY6oeJCuWJ8AY6y-DS6NF3,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4263,UgzHLpI_j53kf8udo_J4AaABAg.AY6oeJCuWJ8AY7Yn_CgfDH,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4265,Ugyf78AHPuMVff8AKzB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4266,UgwWVI3HNDh2wjgE2FB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4268,UgwWVI3HNDh2wjgE2FB4AaABAg.AY6oc4YUzVFAY70ucufBeb,WARN,language_heuristic,coded TAGLISH but only one language detected
-03-spread,4269,UgydaODQPrUDzufYi1B4AaABAg,WARN,evidence_not_in_text,"'i didnt even hear them say ""someone\'s saving rene'"
 03-spread,4269,UgydaODQPrUDzufYi1B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4271,UgydaODQPrUDzufYi1B4AaABAg.AY6obDeWRmCAY6qmGB_7gY,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,4272,UgydaODQPrUDzufYi1B4AaABAg.AY6obDeWRmCAY6xb49LGPp,ERROR,uncoded_row,no model output for this row
@@ -3241,6 +3340,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4305,UgysU7jy8wTOQT8HJFF4AaABAg.AY6o5ofz5ZSAY6qxCvVDBS,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,4308,UgwRSe4AX5NMakDzcCB4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,4310,UgyDT3hLvWp_2Nwjfol4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,4311,Ugz5GI8m9go1AxENNtt4AaABAg,INFO,class_word_not_framed,matched 'nepo'
 03-spread,4311,Ugz5GI8m9go1AxENNtt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4313,Ugz4JOUYhvBaYQWltLl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4314,Ugzs_GdLaW8yzqktshd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3263,8 +3363,10 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4333,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6s5YGOyu3,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4335,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY8icaAnl2J,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4340,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6r4Efzwl8,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4341,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6rKwgO5sN,INFO,class_word_not_framed,matched 'kapit'
 03-spread,4342,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6skpPB6i-,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4343,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY8jat4AhZy,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4344,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6tnetoIv5,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4345,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY8jqzyLsUA,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4346,Ugws6BmB62eDJS0_axd4AaABAg.AY6nQENkpfCAY6qGGtDgng,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4348,UgyVucgDKfLVAJIgDRJ4AaABAg.AY6nOaE5KoDAY6wvYPyzb7,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -3322,6 +3424,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4401,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY75Qbicc9j,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4401,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY75Qbicc9j,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4402,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYGCuik9MsM,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,4403,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYPl8rR7YaU,INFO,class_word_not_framed,matched 'poor'
 03-spread,4403,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYPl8rR7YaU,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4403,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYPl8rR7YaU,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4404,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYJ6SY6Otmg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3339,6 +3442,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4423,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYI33Ry4tIf,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4426,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7BLDunxyB,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4429,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY74wbx31m_,ERROR,uncoded_row,no model output for this row
+03-spread,4430,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7QEByIkRj,INFO,class_word_not_framed,matched 'poor'
 03-spread,4430,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7QEByIkRj,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4430,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7QEByIkRj,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4431,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7jEZHJoAY,WARN,attribution_without_norm_violation,ACCUSATION
@@ -3357,6 +3461,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4447,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY8ThzXIo3F,ERROR,uncoded_row,no model output for this row
 03-spread,4451,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY86LJBPV57,ERROR,uncoded_row,no model output for this row
 03-spread,4453,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY9m0X6xZjx,ERROR,uncoded_row,no model output for this row
+03-spread,4454,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAYAvOeogQlo,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4455,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6qqXUrMU4,ERROR,uncoded_row,no model output for this row
 03-spread,4457,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7-6eGAqIj,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4458,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7-fWxbT6_,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3400,10 +3505,12 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4519,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6peP0IlIo,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4520,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6ueCeeA6u,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4521,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6ze2RUoBU,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4522,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY8g_W-w-Gh,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4523,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY8gqW87gHv,ERROR,uncoded_row,no model output for this row
 03-spread,4525,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6yCUJTiUe,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4526,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7WqG65DsD,ERROR,uncoded_row,no model output for this row
 03-spread,4527,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY6ypRuBToa,ERROR,uncoded_row,no model output for this row
+03-spread,4528,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7Krpm6bIf,INFO,class_word_not_framed,matched 'breadwinner'
 03-spread,4528,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY7Krpm6bIf,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4530,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY8U4MzYAvV,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4533,Ugyj0arQFAf7qbWbrIN4AaABAg.AY6muEYNlBvAY73g0E1k9n,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3582,6 +3689,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4770,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6nTVeqFL0,ERROR,uncoded_row,no model output for this row
 03-spread,4771,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6njdxyKGq,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4772,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6nkPfViLs,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,4773,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6oACD0rDI,INFO,class_word_not_framed,matched 'pera'
 03-spread,4773,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6oACD0rDI,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,4776,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6uPwceyL5,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4777,UgzNiUdSbxlagxx2oEl4AaABAg.AY6k_eRGGqkAY6utjQGkCi,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3612,6 +3720,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4816,UgzneCFWWt0vGySJ_wR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,4816,UgzneCFWWt0vGySJ_wR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4817,UgyqJ_IzkEuweakFsfF4AaABAg,INFO,sad_emoji_missed,['pensive_face']
+03-spread,4819,UgyqJ_IzkEuweakFsfF4AaABAg.AY6juRFlzkTAY6qbjmef8T,INFO,class_word_not_framed,matched 'pera'
 03-spread,4820,UgyqJ_IzkEuweakFsfF4AaABAg.AY6juRFlzkTAY6ri5Ynthb,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4821,UgyqJ_IzkEuweakFsfF4AaABAg.AY6juRFlzkTAY6uXsdFKdC,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4825,UgypuyfARepSnP7ly1B4AaABAg.AY6jqoBw0XeAY6k0wOEyzm,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -3726,6 +3835,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,4969,UgwtT4AZP--5dXBKomd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4973,UgxgHnHmusSe_80YQ4N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4974,Ugzv5_k0Jrf0svifp2p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,4975,UgyfyJbg0rlOGPDQZQ94AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,4975,UgyfyJbg0rlOGPDQZQ94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,4976,Ugy0PKs3MwXF409kjN14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,4976,Ugy0PKs3MwXF409kjN14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3821,6 +3931,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5076,Ugy_PWJrp37X4nLQUj54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5076,Ugy_PWJrp37X4nLQUj54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5077,UgzVnrf176gRDRQijMx4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,5078,Ugza2v8pO3mkRGdds8J4AaABAg,INFO,class_word_not_framed,matched 'money'
 03-spread,5078,Ugza2v8pO3mkRGdds8J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5079,UgwOFqIIYZbDrwpu5bR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5080,Ugx09vsqJu53zHCcGm54AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
@@ -3858,6 +3969,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5114,Ugw1rXJKUIwUR-OVgeN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5114,Ugw1rXJKUIwUR-OVgeN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5115,UgyP_wYklWfL1MHOT2J4AaABAg,ERROR,uncoded_row,no model output for this row
+03-spread,5116,UgxySFOGDfVTEzp0oGN4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,5116,UgxySFOGDfVTEzp0oGN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5117,UgztCGR3JjlRdXbMetZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5120,Ugww2HtRI06YGJwtJbh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3865,6 +3977,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5123,UgzsN3EQPfFdxBKVvfJ4AaABAg.AY8d_inAYjlAY9zzxBB2bG,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5123,UgzsN3EQPfFdxBKVvfJ4AaABAg.AY8d_inAYjlAY9zzxBB2bG,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5123,UgzsN3EQPfFdxBKVvfJ4AaABAg.AY8d_inAYjlAY9zzxBB2bG,WARN,possible_response_uncoded,matched 'statement'
+03-spread,5124,UgwQvLWrXvVhExNQcIl4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,5124,UgwQvLWrXvVhExNQcIl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5128,UgwAISiu0_2Zz7LE_nJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5130,UgxSI-NxfRv6KtELIep4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -3945,6 +4058,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5206,UgxoNKSPnwTw_w36JuN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5207,UgwXejKPw8OGL0mhT9h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5208,UgwTVcVFavfUT3mXYkl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,5209,Ugw56DAnmmkKGII0PlF4AaABAg,INFO,class_word_not_framed,matched 'breadwinner'
 03-spread,5209,Ugw56DAnmmkKGII0PlF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5210,UgyYlsFBJ5qmg1DhP2J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5210,UgyYlsFBJ5qmg1DhP2J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -3978,6 +4092,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5237,Ugywog3JDXu1SEeaJE14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5238,UgxQjQJJutYIo8GeeZB4AaABAg,WARN,emoji_only_overcoding,emoji-only comment coded ['VALUES']
 03-spread,5239,UgzmYcp27Ges00DWy4l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,5241,UgwHXPcKAPT_C5VpWtx4AaABAg.AY858jtkxL3AY8PTYQahTV,INFO,class_word_not_framed,matched 'connection'
 03-spread,5242,Ugy3zEqc-jpY5sZU8354AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,5243,UgwWuZzFFwg7bhq-wl94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5245,Ugyu-2ph1gJEB_II-uZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
@@ -3998,6 +4113,7 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5264,Ugw9_CXkJq9SXY5tyy94AaABAg.AY81NwEi7tOAY85e0L2DxY,WARN,attribution_without_norm_violation,INTENTIONAL
 03-spread,5264,Ugw9_CXkJq9SXY5tyy94AaABAg.AY81NwEi7tOAY85e0L2DxY,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
 03-spread,5268,UgyEh69uDQGmkIOajup4AaABAg.AY80vCbsoicAYBJN21x1b0,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,5270,UgwRAE-KNxJyfxA2vVh4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,5270,UgwRAE-KNxJyfxA2vVh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5271,UgwyAAjLpukag4eWey54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5272,Ugwtm4xEgm20lIvJvox4AaABAg.AY80KT4By6rAY81CXsoxcN,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -4037,10 +4153,12 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5306,Ugy6fnqdUKOkpWY_3Cl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5309,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY7wvx1FekZ,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5310,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY80tc2frLc,ERROR,uncoded_row,no model output for this row
+03-spread,5311,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY88eSQO-4G,INFO,class_word_not_framed,matched 'mahirap'
 03-spread,5311,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY88eSQO-4G,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5312,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY89bGkNIXe,ERROR,uncoded_row,no model output for this row
 03-spread,5317,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY88-ReRLhr,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,5317,UgyEeDeA_4oXIGD7iKt4AaABAg.AY7tGusozptAY88-ReRLhr,WARN,possible_response_uncoded,matched 'pr'
+03-spread,5319,UgzrvVxrJ4R3CROW3114AaABAg,INFO,class_word_not_framed,matched 'mayayaman'
 03-spread,5320,Ugz4kuZEhNdL6yMEkw54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5321,UgwyOJKxC0TdcJYLiEt4AaABAg,ERROR,uncoded_row,no model output for this row
 03-spread,5322,UgwyOJKxC0TdcJYLiEt4AaABAg.AY7p3kApI0LAY7vrJC93kd,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -4079,9 +4197,11 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5363,UgzrCgBHGnjTwuMCNBx4AaABAg.AY7_ZDdb76RAY9ohR4jsit,WARN,possible_response_uncoded,matched 'scripted'
 03-spread,5364,Ugy4biqhyGtAJW48zlN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5365,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY88xPUh_7L,WARN,attribution_without_norm_violation,NEGLIGENCE
+03-spread,5366,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY9XUTCSEmO,INFO,class_word_not_framed,matched 'poor'
 03-spread,5366,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY9XUTCSEmO,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5367,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY8n1Y2X5MV,ERROR,uncoded_row,no model output for this row
 03-spread,5369,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY8oo0-H6kU,WARN,language_heuristic,coded TAGLISH but only one language detected
+03-spread,5370,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY9eqspXYG-,INFO,class_word_not_framed,matched 'scholarship'
 03-spread,5370,Ugy4biqhyGtAJW48zlN4AaABAg.AY7ZY9YT7P9AY9eqspXYG-,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5371,UgyflZWGsuKEhXUfu3J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 03-spread,5371,UgyflZWGsuKEhXUfu3J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -4090,3 +4210,5 @@ phase,row_id,comment_id,severity,check,detail
 03-spread,5376,UgyflZWGsuKEhXUfu3J4AaABAg.AY7Z4Zd6p8gAY88kDQy6fQ,WARN,attribution_without_norm_violation,ACCUSATION
 03-spread,5376,UgyflZWGsuKEhXUfu3J4AaABAg.AY7Z4Zd6p8gAY88kDQy6fQ,WARN,language_heuristic,coded TAGLISH but only one language detected
 03-spread,5377,UgyflZWGsuKEhXUfu3J4AaABAg.AY7Z4Zd6p8gAY8gQmR8K7O,WARN,possible_response_uncoded,matched 'sorry'
+03-spread,,,WARN,needs_context_high,NEEDS_CONTEXT on 23% of rows (> 15%); rule 8 forces STANCE=NEUTRAL
+03-spread,,,WARN,class_comments_missing,23% of class-vocabulary comments uncoded vs 12% of others

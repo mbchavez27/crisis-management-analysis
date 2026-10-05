@@ -1,4 +1,4 @@
-# coding-prompt v1.4 (2026-10-02) — used with codebook v2.1
+# coding-prompt v1.5 (2026-10-05) — used with codebook v2.1
 # Lines starting with "#" at the top of this file are metadata. run_local.py strips
 # them before the prompt is sent and records the version in every coded record.
 # Changes are logged in coding-prompt-CHANGELOG.md.
@@ -50,17 +50,19 @@ Each item in "evidence" has four fields:
   what is there; add no words, tone or interpretation. If the quote is
   already English, repeat it.
 - "codes": the codes these words support. Binary codes by name
-  ("ANGER"); other codes as NAME=VALUE ("ATTRIBUTION=NEGLIGENCE",
-  "BLAME_TARGETS=COACH", "VALUES=JUSTICE"). Values are the codebook's.
+  ("ANGER", "CLASS_FRAME"); list codes as NAME=VALUE
+  ("BLAME_TARGETS=COACH", "VALUES=JUSTICE"). Values are the codebook's.
 - "other_label": name the category when a code is OTHER
   ("VALUES=OTHER" -> "resilience"); otherwise "".
 Rules:
-- A choose-ONE code (ATTRIBUTION, CLASS_DIRECTION, RESPONSE_TARGET,
-  RESPONSE_EVAL) may be cited with only one value.
 - If nothing in the comment supports any code, "evidence" is [].
 
 WHOLE-COMMENT CODES
-After the evidence items, judge the comment as a whole:
+After the evidence items, give ONE value for each, judging the comment
+as a whole (codebook definitions apply):
+- "ATTRIBUTION" (C2): NONE, ACCIDENT, ACCUSATION, NEGLIGENCE, INTENTIONAL
+  or VICTIM_FAULT. Follow the C2 decision rules: a reason given decides
+  it; "accident but could have been prevented" is NEGLIGENCE.
 - "STANCE" (D1): CRITICAL, DEFENDING, MIXED or NEUTRAL. A comment that
   rejects blame or calls the incident an accident is DEFENDING; one that
   both criticizes and defends is MIXED. If NEEDS_CONTEXT is cited,
@@ -68,6 +70,12 @@ After the evidence items, judge the comment as a whole:
 - "TARGET_OF_COMMENT" (I1): who the comment is mainly addressed to or
   about: ORGANIZATION, PERSON, VICTIMS_FAMILY, OTHER_COMMENTERS, MEDIA or
   NONE.
+- "CLASS_DIRECTION" (F2): if CLASS_FRAME is cited, one of
+  INEQUALITY_JUSTICE, VICTIMS_POOR, INSTITUTION_ELITE or OTHER; otherwise
+  NA.
+- "RESPONSE_TARGET" (H1) and "RESPONSE_EVAL" (H2): only when the comment
+  evaluates an official response (announcement, apology, statement,
+  police report). Give both, or NA for both.
 
 CODING REMINDERS
 - BLAME_TARGETS: code a target only if the comment names it or clearly
@@ -82,17 +90,29 @@ CODING REMINDERS
   identity.
 - Emotions: code an emotion only if the words or emojis express it
   (general rules 1 and 9). A topic being sad is not SADNESS.
-- LANGUAGE: decide from the comment's actual words. A comment written
-  entirely in English is ENGLISH even though the case is Filipino.
+- LANGUAGE (A1): decide from the comment's actual words. TAGLISH needs
+  a meaningful mix of English AND Filipino in the comment itself. A
+  comment entirely or almost entirely in English is ENGLISH, and one
+  entirely or almost entirely in Filipino is FILIPINO, even though the
+  case is Filipino.
+- NEEDS_CONTEXT (D2, general rule 8): only when the comment's stance or
+  meaning cannot be determined without the comment it answers ("oo,
+  tama", "you're absolutely right", "its okay bro"). Addressing someone
+  ("kayo", "ikaw", a [USER] mention) is not enough: if the comment states
+  its own view, code that view and do not cite NEEDS_CONTEXT.
+- CLASS_FRAME (F1): cite it whenever the comment invokes social class,
+  wealth, poverty, privilege, scholarship status, or unequal treatment of
+  rich vs poor, including money ("kahit madami pa kayo pera", "money is
+  king"), cost of schooling, an elite school, or a humble background.
 
 CONSISTENCY CHECKS
 Before finishing each object, make sure that:
-- CLASS_FRAME and a CLASS_DIRECTION value are cited together, or neither.
-- RESPONSE_TARGET and RESPONSE_EVAL are cited together, or neither.
-- REJECT_REASONS are cited only with RESPONSE_EVAL=REJECTS or MIXED.
+- CLASS_DIRECTION is NA if and only if CLASS_FRAME is not cited.
+- RESPONSE_TARGET and RESPONSE_EVAL are both NA, or neither is.
+- REJECT_REASONS are cited only when RESPONSE_EVAL is REJECTS or MIXED.
 - If NEEDS_CONTEXT is cited, STANCE is NEUTRAL.
-- If UNCODABLE is cited, no other code is cited, STANCE is NEUTRAL and
-  TARGET_OF_COMMENT is NONE.
+- If UNCODABLE is cited, no other code is cited and every whole-comment
+  code is at its default (NONE / NEUTRAL / NA).
 - Every cited code is supported by the words of its quote.
 
 CONFIDENCE
@@ -112,8 +132,12 @@ these keys in this order (values shown are placeholders):
   "codes":["CODE","NAME=VALUE"],
   "other_label":""}
 ],
+"ATTRIBUTION":"NONE",
 "STANCE":"NEUTRAL",
 "TARGET_OF_COMMENT":"NONE",
+"CLASS_DIRECTION":"NA",
+"RESPONSE_TARGET":"NA",
+"RESPONSE_EVAL":"NA",
 "LANGUAGE":"",
 "OTHER_NOTE":"",
 "confidence":"HIGH|MEDIUM|LOW"}

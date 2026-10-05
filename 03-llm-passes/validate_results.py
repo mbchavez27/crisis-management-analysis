@@ -99,6 +99,21 @@ RESPONSE_WORDS = re.compile(
 PUNITIVE_WORDS = re.compile(
     r"jail|prison|kulong|kasuhan|\bkaso\b|managot|punish|parusahan|charge|arrest|deport|resign|"
     r"\bfire[dm]?\b|\bban(ned)?\b|revoke|accountab|surrender|\bsue\b|panagutin|sagutin", re.I)
+# Class vocabulary (F1: class, wealth, poverty, privilege, scholarship status, rich vs
+# poor). Used only to AUDIT CLASS_FRAME coverage, never to code. Extend as needed.
+CLASS_WORDS = re.compile(
+    r"\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\w*|"
+    r"scholar\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\w*|"
+    r"working class|middle class|tuition|matrikula|afford\w*|breadwinner|classism|burgis|"
+    r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
+EMOTIONS = ["ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
+            "SYMPATHY_OFFENDER", "FEAR"]
+# review_flags written by run_local.py v1.5 (rows kept after correction retries).
+REVIEW_SEVERITY = {"evidence_unverified": "WARN", "class_direction_missing": "WARN",
+                   "response_incomplete": "WARN", "class_direction_without_frame": "WARN",
+                   "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO"}
+NEEDS_CONTEXT_MAX = 0.15
+LEN_BINS = [(0, 20, "words_le20"), (21, 80, "words_21_80"), (81, 10**9, "words_gt80")]
 ANGER_EMOJI = {"enraged_face", "angry_face", "face_with_symbols_on_mouth", "pouting_face"}
 SAD_EMOJI = {"crying_face", "loudly_crying_face", "broken_heart", "pensive_face", "disappointed_face"}
 FLAG_COLS = ["phase", "row_id", "comment_id", "severity", "check", "detail"]
@@ -114,8 +129,8 @@ def parse_list(val: str):
 
 
 def norm(s: str) -> str:
-    s = s.replace("\ufe0f", "").replace("\u2018", "'").replace("\u2019", "'")
-    return re.sub(r"\s+", " ", s.lower()).strip(" \"'\u201c\u201d.,!?;:")
+    s = re.sub("[\"'`\\\u2018\u2019\u201c\u201d]", "", s.replace("\ufe0f", ""))
+    return re.sub(r"\s+", " ", s.lower()).strip(" .,!?;:")
 
 
 def is_emoji_only(text: str) -> bool:
@@ -273,7 +288,12 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         ev = r["evidence"].strip()
         coded_any = (any(b(c) for c in BINARY if c != "UNCODABLE") or r["ATTRIBUTION"] != "NONE"
                      or L.get("ACTIONS") != ["NONE"] or L.get("VALUES") != ["NONE"])
-        if ev and not leaked_ev:
+        review = [x for x in r.get("review_flags", "").split(";") if x]
+        for rf in review:
+            base = rf.split("(")[0]
+            F(REVIEW_SEVERITY.get(base, "INFO"), f"review:{base}", rf)
+        ev_flagged = any(x.startswith(("evidence_unverified", "evidence_fuzzy")) for x in review)
+        if ev and not leaked_ev and not ev_flagged:
             t = norm(r["text"].replace("\n", " "))
             miss = [f for f in (norm(x) for x in evidence_fragments(ev)) if f and f not in t]
             if miss:
@@ -291,7 +311,13 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         if b("NEEDS_CONTEXT") and r["STANCE"] != "NEUTRAL":
             F("ERROR", "needs_context_stance", f"STANCE={r['STANCE']} (rule 8: must be NEUTRAL)")
         if (r["CLASS_FRAME"] == "0") != (r["CLASS_DIRECTION"] == "NA"):
-            F("ERROR", "class_na_mismatch", f"CLASS_FRAME={r['CLASS_FRAME']} CLASS_DIRECTION={r['CLASS_DIRECTION']}")
+            if "class_direction_missing" in review:
+                pass  # kept on purpose by run_local (already flagged for review)
+            else:
+                F("ERROR", "class_na_mismatch",
+                  f"CLASS_FRAME={r['CLASS_FRAME']} CLASS_DIRECTION={r['CLASS_DIRECTION']}")
+        if r["CLASS_FRAME"] == "0" and CLASS_WORDS.search(r["text"]):
+            F("INFO", "class_word_not_framed", f"matched {CLASS_WORDS.search(r['text']).group(0)!r}")
         if (r["RESPONSE_EVAL"] == "NA") != (r["RESPONSE_TARGET"] == "NA"):
             F("ERROR", "response_na_mismatch", f"TARGET={r['RESPONSE_TARGET']} EVAL={r['RESPONSE_EVAL']}")
         rr = L.get("REJECT_REASONS", [])
@@ -347,6 +373,17 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         flags.append({"row_id": "", "comment_id": "", "severity": sev, "check": check, "detail": detail})
 
     if n >= 10:
+        nc = (ok["NEEDS_CONTEXT"] == "1").mean()
+        if nc > NEEDS_CONTEXT_MAX:
+            D("WARN", "needs_context_high",
+              f"NEEDS_CONTEXT on {nc:.0%} of rows (> {NEEDS_CONTEXT_MAX:.0%}); rule 8 forces STANCE=NEUTRAL")
+        kw = df["text"].str.contains(CLASS_WORDS)
+        if kw.sum() >= 20:
+            miss_kw = (df.loc[kw, "id"] == "").mean()
+            miss_other = (df.loc[~kw, "id"] == "").mean()
+            if miss_kw > 1.5 * miss_other and miss_kw > 0.05:
+                D("WARN", "class_comments_missing",
+                  f"{miss_kw:.0%} of class-vocabulary comments uncoded vs {miss_other:.0%} of others")
         for c in ["STANCE", "TARGET_OF_COMMENT", "LANGUAGE", "RESPONSE_EVAL", "SARCASM",
                   "META_DISCOURSE", "CLASS_FRAME", "confidence"]:
             if ok[c].nunique() == 1:
@@ -387,6 +424,24 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         "chars_mean": round(float(chars.mean()), 1) if len(chars) else None,
         "emoji_only": int(df["text"].map(is_emoji_only).sum()) if "text" in df.columns else None,
     }
+    if "text" in df.columns and "id" in df.columns:
+        words_all = df["text"].str.split().str.len().fillna(0)
+        for lo, hi, name in LEN_BINS:
+            m = words_all.between(lo, hi)
+            ov[f"uncoded_pct_{name}"] = pct(int((df.loc[m, "id"] == "").sum()), int(m.sum()))
+        kw_all = df["text"].str.contains(CLASS_WORDS)
+        ov["class_vocab_comments"] = int(kw_all.sum())
+        ov["class_vocab_uncoded_pct"] = pct(int((df.loc[kw_all, "id"] == "").sum()), int(kw_all.sum()))
+    if n and "CLASS_FRAME" in ok.columns:
+        kw = ok["text"].str.contains(CLASS_WORDS)
+        ov["CLASS_FRAME_pct"] = pct(int((ok["CLASS_FRAME"] == "1").sum()), n)
+        ov["class_vocab_framed_pct"] = pct(int(((ok["CLASS_FRAME"] == "1") & kw).sum()), int(kw.sum()))
+        ov["NEEDS_CONTEXT_pct"] = pct(int((ok["NEEDS_CONTEXT"] == "1").sum()), n)
+    if "review_flags" in ok.columns:
+        rf = ok["review_flags"].fillna("")
+        ov["review_flagged_rows"] = int((rf != "").sum())
+        kinds = Counter(x.split("(")[0] for v in rf for x in v.split(";") if x)
+        ov["review_flag_types"] = ";".join(f"{k}:{v}" for k, v in kinds.most_common())
     if "autofix" in ok.columns:
         fixes = ok["autofix"].fillna("")
         ov["language_review_flags"] = int(fixes.str.contains("language_check").sum())
@@ -424,6 +479,14 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
                     add(c, "multi_label", cat, k)
                 real = parsed.map(lambda v: [x for x in v if x not in NEUTRAL])
                 ov[f"{c}_labels_per_row"] = round(float(real.str.len().mean()), 2)
+        if "CLASS_FRAME" in ok.columns:
+            for frame, grp in (("class_framed", ok[ok["CLASS_FRAME"] == "1"]),
+                               ("not_class_framed", ok[ok["CLASS_FRAME"] != "1"])):
+                for e in EMOTIONS + ["NORM_VIOLATION", "INJUSTICE"]:
+                    if e in grp.columns and len(grp):
+                        k = int((grp[e] == "1").sum())
+                        long.append({"phase": phase, "variable": f"{e}|{frame}", "type": "class_x_code",
+                                     "category": "1", "n": k, "pct_of_coded": pct(k, len(grp))})
         for c in KEY_RATES:
             if c in ok.columns:
                 ov[f"{c}_pct"] = pct(int((ok[c] == "1").sum()), n)
@@ -446,6 +509,15 @@ def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[
         print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']}")
     if "language_review_flags" in ov:
         print(f"LANGUAGE review flags: {ov['language_review_flags']} | autofixed rows: {ov['autofixed_rows']}")
+    if "review_flagged_rows" in ov:
+        print(f"kept with review flags: {ov['review_flagged_rows']} ({ov.get('review_flag_types') or '-'})")
+    if "uncoded_pct_words_le20" in ov:
+        print(f"uncoded by length: <=20 words {ov['uncoded_pct_words_le20']}% | 21-80 "
+              f"{ov['uncoded_pct_words_21_80']}% | >80 {ov['uncoded_pct_words_gt80']}%")
+    if "CLASS_FRAME_pct" in ov:
+        print(f"class audit: CLASS_FRAME {ov['CLASS_FRAME_pct']}% of coded | class-vocabulary comments "
+              f"{ov['class_vocab_comments']} (uncoded {ov['class_vocab_uncoded_pct']}%, "
+              f"class-framed {ov['class_vocab_framed_pct']}%) | NEEDS_CONTEXT {ov['NEEDS_CONTEXT_pct']}%")
 
     by = Counter((f["severity"], f["check"]) for f in flags)
     order = {"ERROR": 0, "WARN": 1, "INFO": 2}
@@ -475,7 +547,9 @@ def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[
 def print_cross_phase(overviews: list[dict]) -> None:
     cols = (["phase", "rows", "coded", "coverage_pct", "rows_flagged_pct", "words_mean"]
             + [f"{c}_pct" for c in KEY_RATES]
-            + ["STANCE_CRITICAL_pct", "STANCE_DEFENDING_pct", "STANCE_NEUTRAL_pct"])
+            + ["STANCE_CRITICAL_pct", "STANCE_DEFENDING_pct", "STANCE_NEUTRAL_pct",
+               "NEEDS_CONTEXT_pct", "CLASS_FRAME_pct", "class_vocab_framed_pct",
+               "class_vocab_uncoded_pct", "uncoded_pct_words_gt80"])
     table = pd.DataFrame(overviews)
     table = table[[c for c in cols if c in table.columns]]
     table.columns = [c.replace("_pct", "%").replace("STANCE_", "ST_") for c in table.columns]

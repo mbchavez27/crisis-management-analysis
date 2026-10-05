@@ -1,0 +1,840 @@
+phase,row_id,comment_id,severity,check,detail
+01-onset,0,UgyhVtY5gXjG4k8fPbx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,2,UgwuDCjtbuCc5eJjXKh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,3,Ugyy0LppckPotGj1JqR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,4,Ugzsbp73869xbx1AwB14AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,5,Ugxx6Zz2lC0q0ARzhzt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,10,UgytZkvbsGpkxNEFDGF4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,10,UgytZkvbsGpkxNEFDGF4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,11,UgwUqKmDD_jplM8rJlh4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,12,Ugyv-VBEeMkWlNvFxGh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,13,UgzTVhO2ZFYwxWGZNKt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,14,Ugy8nK_5Cw9Or-nZem54AaABAg,INFO,class_word_not_framed,matched 'poor'
+01-onset,14,Ugy8nK_5Cw9Or-nZem54AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,15,UgxsoeQiz5IMdI5nRhd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,17,UgyygmSUFBLFFY66gLh4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,18,UgxTpXhNEVorzCeQFid4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,19,UgxuzGLfWokmSgJJ3El4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,21,UgwPAhbeKiAI54eDgeF4AaABAg,INFO,class_word_not_framed,matched 'million'
+01-onset,22,Ugwhvoo9gKLMjJqBSd14AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,23,UgxO0U1ep_gz3P5tyMF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,24,UgxnPij1ZhXgq0fw-iJ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,25,UgyQOul91lIcM1vgUHB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,25,UgyQOul91lIcM1vgUHB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,26,Ugx-5qZbi6EorqM4Rjh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,27,UgwE0uKKgGS9RaQTB0J4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,28,UgznQaQd5Q6fiwfvpxF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,28,UgznQaQd5Q6fiwfvpxF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,29,Ugz_rkT1HZShm2OJfsZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,32,UgzZQBWFBV3cahV3-KR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,33,UgzrT2t3tsZL1r_TPv94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,34,UgwIeGml14oVZEKgWX54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,35,UgwNv4CeTmz_KEUKqLR4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,37,UgwNv4CeTmz_KEUKqLR4AaABAg.AXpZu851R8mAXqdygwBXor,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,38,UgwNv4CeTmz_KEUKqLR4AaABAg.AXpZu851R8mAXrRVuW_bE2,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,39,Ugz9M3bG1mkOoof0ePR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,41,UgxQNUhysqSKt2GWZh54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,44,UgxfcbPAVVys6zrzAdl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,45,UgzD0RuSkdKi5zljVHR4AaABAg,INFO,class_word_not_framed,matched 'million'
+01-onset,47,UgzM6-lnIMqZlQ9A6h94AaABAg.AXpRQoj_vUpAXrb5p8DpvB,ERROR,uncoded_row,no model output for this row
+01-onset,48,UgzM6-lnIMqZlQ9A6h94AaABAg.AXpRQoj_vUpAXrbLesJAx4,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,50,Ugx5PRo8WDx6O2kLBnh4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,52,Ugx6M5ubirbzLkk4JxR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,53,UgzlUIQtD4zqMXy5oyx4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,53,UgzlUIQtD4zqMXy5oyx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,54,UgysRvO7kO7GCHiga4Z4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,55,UgysRvO7kO7GCHiga4Z4AaABAg.AXpOQw9f-H8AXp_3s3R69g,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,57,UgwI5DxHwZBdOZiTr754AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,59,UgynuBuvMvc1adqPyGl4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,60,UgynuBuvMvc1adqPyGl4AaABAg.AXpLzDkE1mZAXpRdUJG55o,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,61,Ugz3PqH2f38Q9cr9r_x4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,61,Ugz3PqH2f38Q9cr9r_x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,63,UgwBxkdaittorukW0fR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,68,UgxT0ClXsjNEu-PE00t4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,72,UgxT0ClXsjNEu-PE00t4AaABAg.AXp8U8lS790AXpks_CvjP2,ERROR,uncoded_row,no model output for this row
+01-onset,73,UgyHhSVoMtx0MfanmeB4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,74,UgyHhSVoMtx0MfanmeB4AaABAg.AXp7ifACzbRAXpIAxoooao,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,75,UgyHhSVoMtx0MfanmeB4AaABAg.AXp7ifACzbRAXpiWQNXyjM,ERROR,uncoded_row,no model output for this row
+01-onset,76,UgyHhSVoMtx0MfanmeB4AaABAg.AXp7ifACzbRAXrahD9qudR,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,77,UgxcsZfN0Q_hyU1U6dF4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,77,UgxcsZfN0Q_hyU1U6dF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,78,Ugz0h2aa6xxle74JRgZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,79,Ugx3mEsyziPmVHZPeLh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,80,UgyeHK2cKO3woa0OjhN4AaABAg,INFO,sad_emoji_missed,['crying_face']
+01-onset,81,UgxEQVW4_unXnUSbyUh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,81,UgxEQVW4_unXnUSbyUh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,82,UgwxEtwjCmAvMZK9DJd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,84,UgxSLNlI9QSnJEP8-E94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,84,UgxSLNlI9QSnJEP8-E94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,85,UgzMF2RUDmionslW0SZ4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,86,UgxKXY4udGu2-Vx9Sxl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,86,UgxKXY4udGu2-Vx9Sxl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,87,UgzsRdzUIdypTbElY7B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,88,UgwVRC9Hlhac5tb6QsJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,89,Ugy0RgffcP6D99WCLCV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,89,Ugy0RgffcP6D99WCLCV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,90,UgzUZCg10BlV651XoKZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,91,UgzcLol8ERTJhq3JteV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,91,UgzcLol8ERTJhq3JteV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,94,Ugw-3bwj3Y3QhkTYgzV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,96,UgxZ9BBcE3jQf-D_i7J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,96,UgxZ9BBcE3jQf-D_i7J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,97,UgzMNh3iXULKNjzdQ7B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,98,UgzZ_O4tqmKj7NtPeEp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,99,UgzY29G4aTopy3g9Msp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,100,UgyBWzL2B4BtNhEHxNt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,100,UgyBWzL2B4BtNhEHxNt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,101,UgyofdKecZS6KCl9sPB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,102,UgxeJ4EsLj2PDRqBhl54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,102,UgxeJ4EsLj2PDRqBhl54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,103,UgzVkGjrApD3YltxPdV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,104,UgwbI-HOUt6NxFY73od4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,104,UgwbI-HOUt6NxFY73od4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,105,Ugw2HVk7N_Al2I5NsZ14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,107,UgxtP19hP5vVHD5usrR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,107,UgxtP19hP5vVHD5usrR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,108,UgwAnMbPROv-T8LAE5d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,109,UgzMrpQn8FIzSL8PFIx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,110,Ugz48uWIrKx17plcrGF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,110,Ugz48uWIrKx17plcrGF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,112,Ugzf4xQGX97gdk0dZLF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,113,UgxT12I3kHW9P54L2J54AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,114,UgxcoINfdcZvdBEFShN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,115,Ugx1D-K-6EqH6Z4ja2N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,115,Ugx1D-K-6EqH6Z4ja2N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,117,UgxgH3IdE5cZTSDTyLV4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,118,Ugy0GXYlcdXyMntt5c94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,119,UgynzBbf3EapdRFDJf14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,120,Ugyx4xKKqcIOVDJqL6Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,122,UgwXJi_umMjW5yU05494AaABAg,INFO,class_word_not_framed,matched 'money'
+01-onset,123,Ugw6So9u18SsfsTiewR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,123,Ugw6So9u18SsfsTiewR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,124,UgyGFZ51kqzvOZbsL354AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,124,UgyGFZ51kqzvOZbsL354AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,125,Ugwwm5lP8NCFxDAqoHd4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,127,UgxsJZIqzEekNw9L7zl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,128,UgxVNAre7aOds3ffKkp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,129,UgxEB1P_6UbaXyNHrZB4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,130,UgxTV0xg3cRkyT25d1d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,130,UgxTV0xg3cRkyT25d1d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,130,UgxTV0xg3cRkyT25d1d4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+01-onset,131,UgyVu_LoqPsrpdCniat4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,133,Ugzm4SnwrmzDJQtEkzt4AaABAg,ERROR,uncodable_not_blank,UNCODABLE=1 requires all other codes blank
+01-onset,137,UgzZgi-e3ahJjp90iLl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,139,Ugz0i1s-6WES1x1UNUp4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,140,Ugyf7ncSJJZJq006xbd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,142,UgxXZFtxflKouAhbNIZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,142,UgxXZFtxflKouAhbNIZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,143,Ugye53XGLn_ZKi5Pd454AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,144,UgwzWYIPCSo-ZUiSPV54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,145,UgwJC4cmvpUItdWVir54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,146,UgzT3fpTGbIk0zoRaDV4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,147,UgyoF9KFMOq3cY9GT0Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,147,UgyoF9KFMOq3cY9GT0Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,148,UgxD9C8UvjJPpKo0jd14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,148,UgxD9C8UvjJPpKo0jd14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,149,UgxCVonLW2JpPd2cKwp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,149,UgxCVonLW2JpPd2cKwp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,150,UgxW6SNxojuEd9s4K_14AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,150,UgxW6SNxojuEd9s4K_14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,152,UgzzIXc6n7qeiydOZvJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,153,UgxQC1n2s7bHwsHbCcl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,154,Ugz0ihJERQALPiVnq0R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,154,Ugz0ihJERQALPiVnq0R4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,156,UgwBypcd2USWZBtEvqt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,157,UgxkHSi3Dm_zayQoTkR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,157,UgxkHSi3Dm_zayQoTkR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,158,UgxBX8taDPjVs8Qh8Tt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,158,UgxBX8taDPjVs8Qh8Tt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,159,Ugw5a9Lerh4p2EWZpxx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,159,Ugw5a9Lerh4p2EWZpxx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,161,UgzkNM2K-7Ljo-001Th4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,162,UgxVmGpWZUnL89zN6vN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,162,UgxVmGpWZUnL89zN6vN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,163,Ugy6qEOlG9W2EThhfFh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,163,Ugy6qEOlG9W2EThhfFh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,164,UgyHIfq-8TyAuITIDpd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,165,UgyHIfq-8TyAuITIDpd4AaABAg.AXwSA6LqWI6AXxz1xuQsLL,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,166,UgyYuKgF6Kr57GKk4yt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,166,UgyYuKgF6Kr57GKk4yt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,167,UgwF4dM6Qhkie1AgRU94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,167,UgwF4dM6Qhkie1AgRU94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,168,Ugzl4TcrpZkteOy3ZNl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,168,Ugzl4TcrpZkteOy3ZNl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,169,UgzcopUSqW15VVlXeS14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,173,UgwG3Wb8evMRD16beU14AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,174,UgzCTX21ODWdBDXR3dN4AaABAg,INFO,class_word_not_framed,matched 'poor'
+01-onset,175,Ugx2Qib0veq4Vh-kmVV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,176,UgxjTUluOgQnLWDO5vZ4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,178,UgxBHyjeRw4IvULf9ad4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,181,Ugy-YyT_9HdZ4h-AhJx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,182,Ugx3w9CwGs1MTvDMAj94AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,183,Ugz8gpdtDujrMHIfSQN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,185,UgzN3TyjnIHFAYT28Ft4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,187,UgwxUyqNbaXB6gTC9OB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,188,Ugx_xnaSohsiOi5kx6l4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,189,UgylJnghIOI1v5Vc-jR4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,189,UgylJnghIOI1v5Vc-jR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,190,UgwuD_dIJcjLDrXBnxF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,190,UgwuD_dIJcjLDrXBnxF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,191,UgxFNnU6kviwqs_pGGh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,192,UgyVhD7PL1RSXxVNwVF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,193,UgxXuah0dJWxJsC22VN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,194,Ugwn9o_XpIJfbV4vEQx4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,196,UgwQTov0FbnV_91OG4R4AaABAg,INFO,class_word_not_framed,matched 'connection'
+01-onset,196,UgwQTov0FbnV_91OG4R4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+01-onset,197,Ugz8KTM5yAvlWVm7A4d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,197,Ugz8KTM5yAvlWVm7A4d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,198,Ugw3virkI9uxcb1AFqN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,198,Ugw3virkI9uxcb1AFqN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,199,UgwdYE5nDnEX7WmQO1p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,200,UgzppMySlKHE6rVQzeV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,203,Ugw7whIRCAx2ou8v0GN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,204,UgxtMWb5hMt60-Ogi_B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,204,UgxtMWb5hMt60-Ogi_B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,205,UgztxZP3RqQFutapE8R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,205,UgztxZP3RqQFutapE8R4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,206,Ugyd2VEGYJXPl1D_iJh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,207,UgyiIUY74G3PTs1nuZ94AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,207,UgyiIUY74G3PTs1nuZ94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,208,Ugy4x2pFrxlHrtB9lNZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,209,UgzbnIP8v_G3LQYiAH54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,210,UgxCtFdbmtuqBW0NZOh4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,211,UgygF4bQI1P5pjMcRNh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,211,UgygF4bQI1P5pjMcRNh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,212,Ugx80_obYNLnHf5y-SZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,212,Ugx80_obYNLnHf5y-SZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,213,UgyzfFH3MgP3iiij5IZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,214,Ugy0WdP9_O92Y7LrXgV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,214,Ugy0WdP9_O92Y7LrXgV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,215,UgzXX6JVwwXaiGmom9l4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,216,Ugwxy0bjOjNEhqTjsVd4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,217,UgzjlWpt49XbhO37_Ut4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,218,UgysitCUg_tOJTWOHOF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,220,UgxUGfzcp4z7-jrU2sd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,221,UgwxG9VTbCKAGjR7fDN4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,222,Ugx5qGV1uuKB5yUfmfp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,223,Ugw5s6DVE5Sv2603R2B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,224,UgxPBlJ7vuxcwHCew8l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,224,UgxPBlJ7vuxcwHCew8l4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,228,UgwukzGXb0cwnJxiaip4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,228,UgwukzGXb0cwnJxiaip4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,229,UgxAlmVqH26QhEUPDvV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,229,UgxAlmVqH26QhEUPDvV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,231,UgxwkcYxOjM7jelDhOd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,231,UgxwkcYxOjM7jelDhOd4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+01-onset,233,UgwTV45aMH9R3fzSRDp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,233,UgwTV45aMH9R3fzSRDp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,234,Ugxhim8db3TEec0y0y94AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,235,UgyAnWeLftXi8J0hixp4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,236,UgwLbmZpC7F_eFzDe9d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,236,UgwLbmZpC7F_eFzDe9d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,237,UgwCvot4RzlcIEnbbQ94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,238,UgyIYzPZHi9lQZC_74t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,239,Ugz_Z9uikx_y6qgRKFR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,239,Ugz_Z9uikx_y6qgRKFR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,240,Ugzhg8ZVSiRcYfomC_R4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,241,UgxAqyyR9OpUFr6bS0B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,243,UgwDUUKxBpBPiDIRxeZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,243,UgwDUUKxBpBPiDIRxeZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,244,UgyIlPPvmqvxH2INn_F4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,245,UgyIlPPvmqvxH2INn_F4AaABAg.AXtrKYvc3ZcAXxmoIqTjbA,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,245,UgyIlPPvmqvxH2INn_F4AaABAg.AXtrKYvc3ZcAXxmoIqTjbA,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,246,Ugx08lB9z8BmMoz-Fr14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,246,Ugx08lB9z8BmMoz-Fr14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,247,Ugz9c6-A0OKmA8CRau14AaABAg,INFO,class_word_not_framed,matched 'money'
+01-onset,247,Ugz9c6-A0OKmA8CRau14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,248,UgxVVo85BuSkOiJpDqN4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,249,Ugyva5WMsuo5IVmRr9F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,250,UgxWWZc6JRdys59UxaJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,250,UgxWWZc6JRdys59UxaJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,252,Ugzvk8QVhM8jEkFr-bV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,253,UgyIa2HDdxLaFt6IDnR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,253,UgyIa2HDdxLaFt6IDnR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,255,Ugxe_pzrUDZyFAovQUp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,255,Ugxe_pzrUDZyFAovQUp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,257,Ugz4xMewjFiXcFRqK-J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,257,Ugz4xMewjFiXcFRqK-J4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,258,UgyH_Tq3v1nvVTbt0VV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,259,UgxESVcpTHGi1fROsnx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,260,UgxoRCOjHkqZA-VOuWF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,261,UgwHmMWqqZJd9HC3_UB4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,263,UgwiLTD07a81ue3hght4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,264,Ugx-D2bA1k6YYNCJXL14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,264,Ugx-D2bA1k6YYNCJXL14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,265,UgzzbA0r1Xf0psf2Rh54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,266,UgxLudHc794jf29MLUZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,266,UgxLudHc794jf29MLUZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,267,UgzrYLAPr9F1r5oZU854AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,268,Ugw7fUmh4J4zFC2p_UB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,268,Ugw7fUmh4J4zFC2p_UB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,270,Ugyh60TRqgsXzQK_ezF4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,272,UgxCS1hAvYu6tMxC1_F4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,272,UgxCS1hAvYu6tMxC1_F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,273,UgxCS1hAvYu6tMxC1_F4AaABAg.AXtglA6mSgIAXtpoqTK-QJ,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,273,UgxCS1hAvYu6tMxC1_F4AaABAg.AXtglA6mSgIAXtpoqTK-QJ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,274,UgxCS1hAvYu6tMxC1_F4AaABAg.AXtglA6mSgIAXttwrKYo8P,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,275,UgxcJzVPlWv9YLDf_9d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,276,Ugwhe6LFmeJftdQ8Ia14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,276,Ugwhe6LFmeJftdQ8Ia14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,277,UgyQIpdjwNJiPqB5e8Z4AaABAg,INFO,class_word_not_framed,matched 'pera'
+01-onset,277,UgyQIpdjwNJiPqB5e8Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,277,UgyQIpdjwNJiPqB5e8Z4AaABAg,INFO,sad_emoji_missed,['loudly_crying_face']
+01-onset,279,UgyLbcMvjx_yhdR-Krx4AaABAg,INFO,class_word_not_framed,matched 'pera'
+01-onset,279,UgyLbcMvjx_yhdR-Krx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,280,UgxIa5ry7Wrte8wjdCx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,280,UgxIa5ry7Wrte8wjdCx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,281,UgzAN9kpRe-xUhmF6Wd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,282,Ugw2Jwm_wrQHLUqfJYV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,283,UgxT5j48lmWQK0Bhg2V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,283,UgxT5j48lmWQK0Bhg2V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,285,UgwxKsxDlZGM_CwRzFd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,287,Ugwi_gccXVL9TbGMcCZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,290,Ugw4_Ee1Z3NX5_qGvhN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,293,Ugw6vVpQVFhR9NI35KV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,295,UgwszjJRxzvYMmrzdw54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,296,UgzQAUSrAqcdIukU9Vh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,296,UgzQAUSrAqcdIukU9Vh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,300,UgzCvev_stclzsRVUxV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,300,UgzCvev_stclzsRVUxV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,301,UgxSbmhzriJkWlg3wv14AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,302,UgxSbmhzriJkWlg3wv14AaABAg.AXtGn4Gl5r4AXxkMJ5WsGr,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,303,UgxSbmhzriJkWlg3wv14AaABAg.AXtGn4Gl5r4AXuJ_rcm8Zo,ERROR,uncoded_row,no model output for this row
+01-onset,304,UgxSbmhzriJkWlg3wv14AaABAg.AXtGn4Gl5r4AXxjnoeQ_S2,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,305,UgzYeiZWIkD1buiFAoB4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,307,Ugyf6dFuNf92PC2SJFF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,308,Ugzm0Ort84BoBHtKI_t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,310,Ugz28_5lE3nA5d72aN94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,311,Ugw7fFgZGcSafS7aRRp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,312,Ugw7fFgZGcSafS7aRRp4AaABAg.AXtBY0cXUR1AXz4zf3mAJ-,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,312,Ugw7fFgZGcSafS7aRRp4AaABAg.AXtBY0cXUR1AXz4zf3mAJ-,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,313,UgyEn5br5Ck3FBw2nIh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,314,UgySM_fgMo_m4vY-qWd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,315,UgwZtORlo3ihMkvnU3V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,317,UgxwT0QByxi_Bdt4_TB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,317,UgxwT0QByxi_Bdt4_TB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,319,Ugx3ANCQcOwrfuGGcsR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,319,Ugx3ANCQcOwrfuGGcsR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,320,UgydYgJNGv-PqjfD-cp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,321,UgydYgJNGv-PqjfD-cp4AaABAg.AXt7UAzly1nAYAL37_C7pm,ERROR,uncoded_row,no model output for this row
+01-onset,322,UgzyWWDaSOSDvP9IGmF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,323,UgzmVH9H6NBkPVq1Y3p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,324,Ugx6OIcAgHopJxaulKJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,326,Ugy4Z3j5j6HnX_VgJ2F4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,326,Ugy4Z3j5j6HnX_VgJ2F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,328,Ugw3lF52roVW8EvPkDd4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,329,UgzVotAzwfiUwMIYjL94AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,330,Ugy_io85Zr-jplaXsLV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,330,Ugy_io85Zr-jplaXsLV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,331,UgyLC0LJG0O1zxyoFKd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,332,UgwbLnrXOlCuDoKWc_Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,332,UgwbLnrXOlCuDoKWc_Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,333,Ugx6hs2Ujs4tUixK9zR4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,334,UgwiK9ksdrYcn7mqu9h4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,334,UgwiK9ksdrYcn7mqu9h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,335,UgzjcCuFFIev5yBzXt14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+01-onset,338,UgwHWuoyGmPZ5R2p4MN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,340,UgzSqkstULhTcMq2HYF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,340,UgzSqkstULhTcMq2HYF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,343,Ugy_E-hZmSKjKoYx5NZ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,346,Ugz-lvMEef8ZyOQOwvl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,347,UgyQb3MJB4xufkFH7NN4AaABAg,INFO,class_word_not_framed,matched 'millions'
+01-onset,348,Ugw6_Ppw7HYJ1gyLGyR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,349,Ugw6_Ppw7HYJ1gyLGyR4AaABAg.AXsvRy2vF8UAXsyNwhdu_j,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,350,Ugw6_Ppw7HYJ1gyLGyR4AaABAg.AXsvRy2vF8UAXt85nk3LDT,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,350,Ugw6_Ppw7HYJ1gyLGyR4AaABAg.AXsvRy2vF8UAXt85nk3LDT,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,351,UgxMLmNme0NclxuMapd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,352,UgxM_LN64PgNiYLvHuV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,353,UgxM_LN64PgNiYLvHuV4AaABAg.AXsunOcjfDtAXszpaNIv1k,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,354,UgzqWLD7h5-FFf_NgW14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,354,UgzqWLD7h5-FFf_NgW14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,355,Ugy2cQCZx7TEflVwcUN4AaABAg,INFO,class_word_not_framed,matched 'pera'
+01-onset,355,Ugy2cQCZx7TEflVwcUN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,355,Ugy2cQCZx7TEflVwcUN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,358,UgwLIBrtdoFHg82LQaV4AaABAg.AXssrom1aeqAXtOD5-_bYQ,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,358,UgwLIBrtdoFHg82LQaV4AaABAg.AXssrom1aeqAXtOD5-_bYQ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,359,UgxqYM4H3EzxcPuWL6Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,360,UgxePJi1MmmbfYnG_-p4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,361,UgyAJ4GdaC_16VUHoEd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,362,UgyK9A_FyBqE1W8Nq9h4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,362,UgyK9A_FyBqE1W8Nq9h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,364,UgwYfWdJJubYPD5nn2B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,366,Ugx_NoON8a0vvoDhhG54AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,366,Ugx_NoON8a0vvoDhhG54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,368,Ugwqer_-6S5uTicLKRV4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,368,Ugwqer_-6S5uTicLKRV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,369,Ugw6bGKZoP_AlEd1X254AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,370,Ugy9HA7dV-VpfLxop6Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,371,Ugy9HA7dV-VpfLxop6Z4AaABAg.AXsn5cpiLr_AXu_J6x7pf7,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,372,Ugy9HA7dV-VpfLxop6Z4AaABAg.AXsn5cpiLr_AXyuVMPE1_o,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,374,Ugy9HA7dV-VpfLxop6Z4AaABAg.AXsn5cpiLr_AY1nwKgNg0t,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,376,Ugy9HA7dV-VpfLxop6Z4AaABAg.AXsn5cpiLr_AYK3_5ff_MZ,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,376,Ugy9HA7dV-VpfLxop6Z4AaABAg.AXsn5cpiLr_AYK3_5ff_MZ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,380,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXsv6MLHzZ-,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,381,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXtqoXyMX35,INFO,class_word_not_framed,matched 'probinsya'
+01-onset,381,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXtqoXyMX35,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,382,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXuXZ5HP-k_,ERROR,uncoded_row,no model output for this row
+01-onset,384,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXt5TbBHKmS,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,384,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXt5TbBHKmS,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,385,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXtr-Z7o67g,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,386,Ugz8YQneSPe2npH9tOl4AaABAg.AXsmi1HuIrgAXttcUw0_EO,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,387,UgzgRZ9eAr_MZs2iWv54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,387,UgzgRZ9eAr_MZs2iWv54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,389,Ugwzj2XMdYtJHQZ_v3B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,390,UgzC8v_rgt8Hhj81yld4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,390,UgzC8v_rgt8Hhj81yld4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,391,UgzC8v_rgt8Hhj81yld4AaABAg.AXslRy0UGIyAXsledIzEnF,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,392,UgxNnU_3UY67YMt2rRx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,392,UgxNnU_3UY67YMt2rRx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,393,UgyR2gMublU-dt4FG0V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,394,UgxhTdEYqLhdSiH_b2h4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,394,UgxhTdEYqLhdSiH_b2h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,396,UgxAMZ8KeNJAW53e13t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,396,UgxAMZ8KeNJAW53e13t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,397,UgzPD1grpkmnKuqi6AN4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,398,Ugzz6SLn6WwkUrvlbex4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,400,UgzXRgPH_jISl3t4ixp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,400,UgzXRgPH_jISl3t4ixp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,401,UgzXRgPH_jISl3t4ixp4AaABAg.AXskMfatX7IAXsosI5fQK6,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,403,UgylxBk0yVNIU-nT_KZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,404,Ugwxfe96M-B4m_fny7V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,405,Ugzz-mvjJT7CvtfT-sl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,406,Ugzz-mvjJT7CvtfT-sl4AaABAg.AXsjbN_1fnsAXswxM_poeA,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,408,Ugzz-mvjJT7CvtfT-sl4AaABAg.AXsjbN_1fnsAXt-RX6vskX,ERROR,uncoded_row,no model output for this row
+01-onset,409,UgzVOgU8hRnYuDmLyqZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,410,UgzVOgU8hRnYuDmLyqZ4AaABAg.AXsj_anTEGQAXtGPkCc-vI,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,411,UgzwzPQIvvJ0ndrIbTF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,415,UgyvArQ3ahtwfEJsF354AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,416,Ugwv7TtmN9YINoDK1Tp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,417,Ugwv7TtmN9YINoDK1Tp4AaABAg.AXsi9mXdapUAXsocpfECpj,ERROR,uncoded_row,no model output for this row
+01-onset,418,UgzB6kjLqwFD6HLMCRd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,420,UgzB6kjLqwFD6HLMCRd4AaABAg.AXsi82K3e10AXu6pdthH59,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,421,UgwhaBycHBRlMnGTlYB4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,422,Ugwj-ZbU9vC9b2Dj9yp4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,423,UgyZOVUG6jE32PsVeRF4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,425,UgzD2NkOsA4k0wKUKx54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,426,UgzfURRvEz__VeY10r14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,427,Ugy_HZSjZY8P5_i1C-p4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,429,UgxuNtKC1XST8-Synu14AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,430,UgxshHTbObmTc9gi57p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,433,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXtzPwUueio,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,433,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXtzPwUueio,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,435,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXuOcIDfj5t,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,435,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXuOcIDfj5t,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,437,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXuQS-jmyRL,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,439,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAY3NeM6UTqh,ERROR,uncoded_row,no model output for this row
+01-onset,440,UgxshHTbObmTc9gi57p4AaABAg.AXsekZUb_NIAXzRceczD_C,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,441,UgyZG4O4GFxw6eZUIQt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,442,UgwlGMUsu1PlfyKRAgF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,442,UgwlGMUsu1PlfyKRAgF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,443,UgwlGMUsu1PlfyKRAgF4AaABAg.AXsdfWrI52GAXseaA1k175,INFO,class_word_not_framed,matched 'mahirap'
+01-onset,443,UgwlGMUsu1PlfyKRAgF4AaABAg.AXsdfWrI52GAXseaA1k175,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,444,UgzieL2SadDZCPwjAXt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,445,UgzieL2SadDZCPwjAXt4AaABAg.AXsdOOuxFN7AXsi8YSd3XB,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,448,UgzvbcxD9IbcuAU_WUd4AaABAg.AXsdJ5r6nlHAXttoCv4G26,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,449,UgzvbcxD9IbcuAU_WUd4AaABAg.AXsdJ5r6nlHAXy5K9ptngz,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,451,UgxyK_OO2zYCb1b0vHd4AaABAg.AXscqARFcE7AXswpQy_TvU,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,451,UgxyK_OO2zYCb1b0vHd4AaABAg.AXscqARFcE7AXswpQy_TvU,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,452,UgwyEfn8CzcZ6w4tqU94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,452,UgwyEfn8CzcZ6w4tqU94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,453,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXtsjJ1lVub,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,453,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXtsjJ1lVub,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,454,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXse1HdJzWU,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,455,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXseOuyZK_W,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,455,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXseOuyZK_W,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,456,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXsh1j2UVNC,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,457,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXshTlw6bd8,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,457,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXshTlw6bd8,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,457,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXshTlw6bd8,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,458,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXsgxTmxzD7,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,459,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXsgsLiia2t,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,460,UgwyEfn8CzcZ6w4tqU94AaABAg.AXscg7ryQ15AXt897MqJZH,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,462,UgwdIcPzmv4rGuprZMN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,462,UgwdIcPzmv4rGuprZMN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,463,UgwdIcPzmv4rGuprZMN4AaABAg.AXscKW0evBfAXschpOCC_d,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,463,UgwdIcPzmv4rGuprZMN4AaABAg.AXscKW0evBfAXschpOCC_d,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,464,UgzHu6AE54ykoHsNSI54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,464,UgzHu6AE54ykoHsNSI54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,465,UgzKYs-92npIOClXMEp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,468,UgwBZ_xjoAtlsMXKqOZ4AaABAg.AXsas-KIocmAXsiLTuZZsT,ERROR,uncoded_row,no model output for this row
+01-onset,469,UgwBZ_xjoAtlsMXKqOZ4AaABAg.AXsas-KIocmAXsw_d9AThv,ERROR,uncoded_row,no model output for this row
+01-onset,473,UgyyA5Wy16FS4vw0bmR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,473,UgyyA5Wy16FS4vw0bmR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,474,Ugx2VeKNdDoe6fGjUC54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,474,Ugx2VeKNdDoe6fGjUC54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,475,Ugx2VeKNdDoe6fGjUC54AaABAg.AXsWh1yBd5gAXs_FFEmeHA,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,477,Ugwiyfv7qcDzW7nXDBZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,478,UgyD6rWFHFyRBTcqnPR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,484,UgzSCuNuC97aIL3hSKl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,486,UgznBFaCt462JlKmhrh4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+01-onset,487,Ugzdabw-YwpMIN1klj54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,488,UgzWM9bTmovT1SRntNB4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+01-onset,490,UgwmJNnT-mcU-jbt8KB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,491,UgwXwFauNNR6_1rYrDF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,492,Ugwx_bsXjkRIgYTdW7t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,493,Ugwx_bsXjkRIgYTdW7t4AaABAg.AY-3vDL0azWAY1GS5MVxjl,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,494,UgxNC7zsWEKFoQw-y7Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,495,Ugz4Y4VnzXP4bHG_NT14AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,496,Ugz4Y4VnzXP4bHG_NT14AaABAg.AY-1cbZSUYGAY0mjFbeZSS,ERROR,uncoded_row,no model output for this row
+01-onset,497,UgxPaW8ewpFy6LWAN514AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,498,Ugy90yUy5wonDJ5FDJV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,500,Ugy90yUy5wonDJ5FDJV4AaABAg.AXzkcgW_hYlAY13w1LR2eC,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,501,UgxzIVVlkMdx9jZg3HF4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,502,UgyjGpxCzqZ6IyiMUv14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,504,Ugy9L3g-wiK28hWyobh4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,505,UgxIVNYo2R0YITews3h4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,506,UgydUhHVWA4jHuP-u454AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,507,UgxtHj3d37XE3wMeT_N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,510,Ugx-JnsPtQHfdbPpEPt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,510,Ugx-JnsPtQHfdbPpEPt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,512,Ugx2eDdRBRoOGzjSxUF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,512,Ugx2eDdRBRoOGzjSxUF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,513,UgwKz3G4nm1I2JgdbP14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,513,UgwKz3G4nm1I2JgdbP14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,514,UgyDdakuLlZfIuCBwbl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,515,Ugxi0rRlAXnKXnXMzp94AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,517,UgyoHPg_jp1Uht9oC1N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,517,UgyoHPg_jp1Uht9oC1N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,518,UgwSQZW2IY1N7RT_SfJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,518,UgwSQZW2IY1N7RT_SfJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,519,UgyejJchw5q-L4GaFfV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,520,UgxR5pb2p9BZ3gBLyAF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,521,UgzHwZekS3T2K-WvP554AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,521,UgzHwZekS3T2K-WvP554AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,522,UgzQ9A6JyHEbfbNFaoB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,523,UgxwftHwaiyNsecj7TJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,524,UgwsZyeKs_8Gnien5GN4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,525,UgwMWYO678BsSuhlVLh4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,526,Ugz-zkuXYm65_zGFuTx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,526,Ugz-zkuXYm65_zGFuTx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,527,Ugy78iE8QyIcALFumDZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,528,UgxLgh3iqHpWfrg21tB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,529,UgzhRgnc4cEDXSe-2v14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,530,UgwJPU419wDseGynWGh4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,531,UgwItrmR8PtL4WTZd1d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,531,UgwItrmR8PtL4WTZd1d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,532,UgwItrmR8PtL4WTZd1d4AaABAg.AXwqfT3RcAjAXwvVkiINzV,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,533,UgxTt2WVfBVC66hhBHt4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,534,UgypBxVWoopUDsgX8m14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,534,UgypBxVWoopUDsgX8m14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,535,Ugya45k-jkFp06D_55d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,535,Ugya45k-jkFp06D_55d4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,536,Ugya45k-jkFp06D_55d4AaABAg.AXwojilviqRAXxBDyg2KJI,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,536,Ugya45k-jkFp06D_55d4AaABAg.AXwojilviqRAXxBDyg2KJI,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,537,UgzJm3AZaKidD1NIsc14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,538,Ugyv6zr0c1_wJQlOh9t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,538,Ugyv6zr0c1_wJQlOh9t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,539,UgxWe2nlVdDS91gdCuV4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,540,UgxWe2nlVdDS91gdCuV4AaABAg.AXwlfm3y3-XAXxGLKFtVHl,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,541,UgyYr2Ih_7z0Ba2zGKt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,541,UgyYr2Ih_7z0Ba2zGKt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,543,UgyqIr5copSt4lxP-S14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,545,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXwn_gcfnjx,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,545,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXwn_gcfnjx,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,547,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXwp4Ltr0aA,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,547,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXwp4Ltr0aA,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,548,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXxGhe0uyBj,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,548,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXxGhe0uyBj,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,549,UgyziWljwYuUV5d__0h4AaABAg.AXwktk-squqAXzfbY9N8VR,ERROR,uncoded_row,no model output for this row
+01-onset,550,UgyShexDRGVCXIz-I294AaABAg,INFO,class_word_not_framed,matched 'mahirap'
+01-onset,550,UgyShexDRGVCXIz-I294AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,550,UgyShexDRGVCXIz-I294AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,551,UgxE16FO-kVVcK3yOS54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,552,UgxAwcXjLwOcQsM96s14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,555,Ugz5vehdFvOOkEnlcTV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,556,Ugz5vehdFvOOkEnlcTV4AaABAg.AXwiqbI7wteAXwvgGUw5Oa,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,558,UgzL_oQZKMsql9sszlV4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,559,Ugz2m-b389k5WZntxRx4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,559,Ugz2m-b389k5WZntxRx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,560,Ugz2m-b389k5WZntxRx4AaABAg.AXwi6DGb-pVAXwjlZbVwfx,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,562,UgyjPVdvGMbucCY-jnd4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,564,UgzJM1N5163gGpqMyvh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,565,UgzJM1N5163gGpqMyvh4AaABAg.AXwhdZfs6rMAXwl0xvcEQ3,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,566,UgzJM1N5163gGpqMyvh4AaABAg.AXwhdZfs6rMAXxBH-d7AtW,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,568,UgwHdzWRqFbDq0a4eo94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,568,UgwHdzWRqFbDq0a4eo94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,569,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXwj9uwLzoX,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,569,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXwj9uwLzoX,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,570,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXwmpmv8goW,ERROR,uncoded_row,no model output for this row
+01-onset,571,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXxH-OAnqJM,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,571,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXxH-OAnqJM,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,572,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXxTSYxD6st,ERROR,uncoded_row,no model output for this row
+01-onset,573,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXxxvgCqdiD,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,574,UgwHdzWRqFbDq0a4eo94AaABAg.AXwhBbk4ggTAXxzN4kvO-G,ERROR,uncoded_row,no model output for this row
+01-onset,575,Ugy0JZ2aW1mjPLImnU54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,576,UgytKQKwdQrIKCr3ZXZ4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,577,UgyJ8GXRPl5T0ZFe-_N4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,577,UgyJ8GXRPl5T0ZFe-_N4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+01-onset,578,UgyJ8GXRPl5T0ZFe-_N4AaABAg.AXwgYDPGHQWAXwo7sOa0Bc,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,578,UgyJ8GXRPl5T0ZFe-_N4AaABAg.AXwgYDPGHQWAXwo7sOa0Bc,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,579,UgyJ8GXRPl5T0ZFe-_N4AaABAg.AXwgYDPGHQWAXwonJKFnNZ,ERROR,uncoded_row,no model output for this row
+01-onset,580,UgyJ8GXRPl5T0ZFe-_N4AaABAg.AXwgYDPGHQWAXwvHqRkrV7,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,582,Ugyp0rZMn7N4pj0ZkR94AaABAg.AXweyzLTud2AXwnjLs88fs,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,583,Ugyp0rZMn7N4pj0ZkR94AaABAg.AXweyzLTud2AXwivPu6jdm,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,584,Ugyp0rZMn7N4pj0ZkR94AaABAg.AXweyzLTud2AXwj9YmD9u5,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,585,Ugybg5QtnaLkCBP34Ap4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,586,Ugxz1zdAKr0kKfDhNNR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,587,Ugxz1zdAKr0kKfDhNNR4AaABAg.AXweINOX9-HAXwobTZTPQe,ERROR,uncoded_row,no model output for this row
+01-onset,588,UgwdnedrIxfVmq5QyK14AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,588,UgwdnedrIxfVmq5QyK14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,589,UgwdnedrIxfVmq5QyK14AaABAg.AXwe7CirPRNAXwhIwJsdfP,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,589,UgwdnedrIxfVmq5QyK14AaABAg.AXwe7CirPRNAXwhIwJsdfP,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,591,Ugwl7B4qGGS170ptweV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,593,UgxyWNJDfD_FzBSoXb54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,594,UgxuQ4L8aGHHEtFgvfJ4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,595,UgxuQ4L8aGHHEtFgvfJ4AaABAg.AXwcekfJHC9AXwjSz4V-2P,ERROR,uncoded_row,no model output for this row
+01-onset,597,UgxHWU1cW9MZG7H3YFZ4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,598,Ugw3iOo6HathGmPdc9x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,600,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AY4AOjlBbjR,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,600,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AY4AOjlBbjR,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,601,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AXx4skg6zmH,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,603,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AY-02SYwGnZ,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,603,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AY-02SYwGnZ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,604,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AXyRZrnFveQ,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,604,Ugw3iOo6HathGmPdc9x4AaABAg.AXwcERJRIo2AXyRZrnFveQ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,607,UgybbcVMWu4Cso-xLyN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,607,UgybbcVMWu4Cso-xLyN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,608,Ugxm7uAopZgmAdkQHxR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,609,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXwbySDV5le,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,610,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXwbzmac2FN,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,611,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXwiDe8UIcc,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,612,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXwx-ZTEACi,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,613,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXxR47O_Uhc,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,614,Ugxm7uAopZgmAdkQHxR4AaABAg.AXwa-qc4galAXxYo5X8zC-,ERROR,uncoded_row,no model output for this row
+01-onset,618,Ugx1ncCpYyXEKptiQkF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,619,Ugx1ncCpYyXEKptiQkF4AaABAg.AXw_qANJDCFAXwaxyYkdgN,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,620,Ugz2B6QPV5IFn72fbiN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,620,Ugz2B6QPV5IFn72fbiN4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,621,UgycLjEvTQelxblYci14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,622,UgxPZaXfziFEUueC-uV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,623,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwaZuHT4ch,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,623,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwaZuHT4ch,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,625,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXz99frBPLn,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,626,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXx3fMHPDZy,ERROR,uncoded_row,no model output for this row
+01-onset,627,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwtoERbUoK,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,628,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXx32fQ7oWl,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,629,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwcoHfO8NT,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,629,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwcoHfO8NT,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,630,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwfFVGpunk,INFO,class_word_not_framed,matched 'mahirap'
+01-onset,630,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwfFVGpunk,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,630,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwfFVGpunk,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,631,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwhWsoEqp0,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,631,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwhWsoEqp0,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,632,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXxBYGnrJz-,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,632,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXxBYGnrJz-,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,633,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwbKKwumg3,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,634,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwijomu8_9,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,634,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwijomu8_9,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,635,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwm1ljdq-U,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,636,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwo5tmVPzX,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,638,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXzrjaNaFpT,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,639,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAY6D3XUZUKm,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,639,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAY6D3XUZUKm,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,640,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwkoaw67eT,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,641,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwnNkUmvJy,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,641,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwnNkUmvJy,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,642,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXwuTanQqiK,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,643,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXxlEbhawxC,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,644,UgxPZaXfziFEUueC-uV4AaABAg.AXwZzPyMt5iAXxxF8kAC9A,ERROR,uncoded_row,no model output for this row
+01-onset,645,UgxQ8-1xfEcP7huxL-x4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,646,UgxQ8-1xfEcP7huxL-x4AaABAg.AXwZtkNSZRQAXwfE7V6CM6,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,648,Ugz7mQjZt889lZH2dxl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,648,Ugz7mQjZt889lZH2dxl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,650,UgzEbodvcHdc5kJJ7w94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,651,UgzEbodvcHdc5kJJ7w94AaABAg.AXwZHMKzQH1AXyS0Xhmuj3,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,653,Ugxb5Ur78fd-usJdDdR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,656,UgzDBBB3wyYi8N0_S2p4AaABAg.AXwUqjJag8_AXwYkq5yOmY,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,657,UgzDBBB3wyYi8N0_S2p4AaABAg.AXwUqjJag8_AXwWsoaKh-S,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,660,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXweqVLlQaj,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,660,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXweqVLlQaj,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,661,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXworN_GPYz,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,661,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXworN_GPYz,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,662,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXwjq2biGeM,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,663,UgyC6YcLbsvBDJwu3r14AaABAg.AXwTtr2Ob_HAXworJxnw8L,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,666,UgzXPrBqbr_2gbZgLyN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,667,UgzXPrBqbr_2gbZgLyN4AaABAg.AXwTUPx1uj6AXwYd8ljm7N,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,667,UgzXPrBqbr_2gbZgLyN4AaABAg.AXwTUPx1uj6AXwYd8ljm7N,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,668,UgzXPrBqbr_2gbZgLyN4AaABAg.AXwTUPx1uj6AXw_yz7yzvq,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,670,UgzTE5rsfiJVcWg9cRp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,670,UgzTE5rsfiJVcWg9cRp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,671,UgwclVwF8n-f6wxDzPt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,671,UgwclVwF8n-f6wxDzPt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,672,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXwU49RF8-P,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,673,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXxBLA63HSG,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,673,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXxBLA63HSG,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,674,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXw_BeenpfK,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,675,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXw_GLSkS2v,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,675,UgwclVwF8n-f6wxDzPt4AaABAg.AXwS4RAUCNvAXw_GLSkS2v,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,677,Ugy7SE7q2JsvCQfjXgx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,682,UgwpWL6iKhKpuBhSrZB4AaABAg.AXq8X4y7K1bAXrPy0fezyl,ERROR,uncoded_row,no model output for this row
+01-onset,683,Ugxbp8-Y04rh0q04o114AaABAg.AXq8NxfGRBOAXrPlNw8qHc,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,685,Ugxbp8-Y04rh0q04o114AaABAg.AXq8NxfGRBOAXwwuag4zSd,ERROR,uncoded_row,no model output for this row
+01-onset,687,UgzXJclDDP8lpZOy1V94AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,689,Ugz8LCXFSwknbqHAQat4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,691,Ugwg4P82Tg6NQ6iNS354AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,691,Ugwg4P82Tg6NQ6iNS354AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,693,UgxEX20MYrwAzeY98kJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,693,UgxEX20MYrwAzeY98kJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,694,UgwVe4Cje3jrHcuawj94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,695,UgwS3_1JFNxHOuH5ExR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,696,UgwqgcbXFElAZzBnX9Z4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,697,Ugyzb9K6-4fpIdkKnLd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,697,Ugyzb9K6-4fpIdkKnLd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,698,UgztJhpbSWoEAC4cikJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,698,UgztJhpbSWoEAC4cikJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,699,Ugxfq9fE8x5y1cd0XCV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,699,Ugxfq9fE8x5y1cd0XCV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,700,UgxwBumQorzf5_bbInR4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,701,UgxLX9UlrVzPLx-BiLJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,701,UgxLX9UlrVzPLx-BiLJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,702,UgxIWzGocqpucJiCt5N4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,703,UgwmYDiEDdZNHD4b7814AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,705,UgxngbivbdpyHyAV83x4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,705,UgxngbivbdpyHyAV83x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,706,UgygCnsFyjCKFKCqYp14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,707,UgwWNDP7MWRTTKTJNHF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,708,UgzgvyMIFFZnMLQ2bhV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,708,UgzgvyMIFFZnMLQ2bhV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,709,UgyGmI2oNUSnwLgiH0t4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,711,Ugw0_zteO4uyKAE33ed4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,713,UgwxHacEX57Cw1vI9gt4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,714,UgxdEIQN2wt0t4fwdld4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,715,UgzcPqh_VmKCKh02rq94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,715,UgzcPqh_VmKCKh02rq94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,716,Ugxkr33_I0UB7ioyHY14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,717,UgzQq82q_yMlnkESPYJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,717,UgzQq82q_yMlnkESPYJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,717,UgzQq82q_yMlnkESPYJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+01-onset,719,UgyQxFbc2dvfUTLNGRd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,720,UgzzknIXGJTwerj4YUh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,720,UgzzknIXGJTwerj4YUh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,721,Ugzhun8XFTAQ9I9RlSl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,721,Ugzhun8XFTAQ9I9RlSl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,722,UgzWyUDeLxniwh3bzYV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,722,UgzWyUDeLxniwh3bzYV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,724,UgzkfBc2R7I70NIVCRt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,724,UgzkfBc2R7I70NIVCRt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,727,Ugx__p-Ly6rorsQHwtl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,727,Ugx__p-Ly6rorsQHwtl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,728,UgxAUHApvRFf_qjTTOJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,729,UgxkxymFzsYwIT0u4Q14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,730,Ugy47f6JorBH_RdJlHh4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,732,UgzDNoGRBgAoo0c1fth4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,734,Ugzvcu9O6OizmQxd8T54AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,735,Ugzvcu9O6OizmQxd8T54AaABAg.AXvG6yn5rfAAY8TVm0Fpak,ERROR,uncoded_row,no model output for this row
+01-onset,736,UgyDY85Rlo7ySL15Fm54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,738,UgznPKvjc65GtL89akt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,740,UgxpJ-Wm0j_tltPp3jt4AaABAg.AXvDTjqzw6rAXwNZ0s8CU6,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,742,Ugx_ACoHiwiVY0nJ0QF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,743,Ugx_ACoHiwiVY0nJ0QF4AaABAg.AXvByU6syY_AY2X_qaB_VY,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,743,Ugx_ACoHiwiVY0nJ0QF4AaABAg.AXvByU6syY_AY2X_qaB_VY,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,744,Ugx_ACoHiwiVY0nJ0QF4AaABAg.AXvByU6syY_AY4rP3Rneyh,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,746,Ugz_Laut__of_ieHuVh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,747,Ugz_Laut__of_ieHuVh4AaABAg.AXvBbSUlHluAXvEiI8zCb8,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,748,Ugz_Laut__of_ieHuVh4AaABAg.AXvBbSUlHluAY4qwBlqVzf,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,748,Ugz_Laut__of_ieHuVh4AaABAg.AXvBbSUlHluAY4qwBlqVzf,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,749,UgxidvGuAg0ZSjCcCmx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,751,UgyqqyPE3gMFZQ-57rB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,755,UgxvNbf1ml27jBj7v394AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,755,UgxvNbf1ml27jBj7v394AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,757,Ugys7LGIwqkPyjdWy8l4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,757,Ugys7LGIwqkPyjdWy8l4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,761,UgyDMFE1SMh2ap5U_j54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,762,UgwYC8geGyYleJH5Fzh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,762,UgwYC8geGyYleJH5Fzh4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,764,UgxRSWQmIQn04r---u94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,765,UgzYwVfh5K81lvvcg8h4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,765,UgzYwVfh5K81lvvcg8h4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,766,UgykkgZUTM3L-nSwZ794AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,766,UgykkgZUTM3L-nSwZ794AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,767,UgxuirPCR1RbFkUKUuZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,767,UgxuirPCR1RbFkUKUuZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,769,UgxFlZtFUAxiri7WFxx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,771,Ugz3Ler4Jvae43M3WkR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,774,UgwQjPOymrcSI1lCKpR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,774,UgwQjPOymrcSI1lCKpR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,775,UgydmSQ_txTuIRld8zN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,776,UgzaDuQsz7BsExRre4p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,777,UgxfQoVklctzD8fQhm54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,778,UgyHaeac5YanBFaLZgB4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,778,UgyHaeac5YanBFaLZgB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,779,Ugy3FmPHLqhDKKY1V0t4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,780,Ugy3FmPHLqhDKKY1V0t4AaABAg.AXoLhWMVuU2AXodUSIV2uQ,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,780,Ugy3FmPHLqhDKKY1V0t4AaABAg.AXoLhWMVuU2AXodUSIV2uQ,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,780,Ugy3FmPHLqhDKKY1V0t4AaABAg.AXoLhWMVuU2AXodUSIV2uQ,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,783,UgxC8LYXAqufxI5ilsd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,784,UgzkpLKgXQjGa_EsqB94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,784,UgzkpLKgXQjGa_EsqB94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,785,UgzkpLKgXQjGa_EsqB94AaABAg.AXoJ6j-s7FLAXoK9Kn1_2Y,ERROR,uncoded_row,no model output for this row
+01-onset,786,UgyA9JFWyTmq0hex_Al4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,786,UgyA9JFWyTmq0hex_Al4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,790,Ugzrenx-su61Qn-KR0N4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,791,UgwjW3OqA0J_LvSlHUZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,791,UgwjW3OqA0J_LvSlHUZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,792,UgxzIo3hbaFELrVoEOd4AaABAg,INFO,class_word_not_framed,matched 'elite'
+01-onset,792,UgxzIo3hbaFELrVoEOd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,793,UgwSFuR7LTTc5BEvEKd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,794,UgwiEcHXC5tRZiPPSEF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,794,UgwiEcHXC5tRZiPPSEF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,797,UgygkE-q7CV_HFHUq8J4AaABAg.AXnung5S8ZCAXogpW4cC2U,ERROR,uncoded_row,no model output for this row
+01-onset,798,UgxXUyP__524SX9yYCJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,798,UgxXUyP__524SX9yYCJ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+01-onset,799,UgxV8L9mioxJi1D3UdF4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,799,UgxV8L9mioxJi1D3UdF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,801,UgyMJyRABjA2Roltmph4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+01-onset,802,UgyMJyRABjA2Roltmph4AaABAg.AXnpOeYwIQSAXoXkKujpYh,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,803,UgyY0fxxt80xuQs6DgF4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,803,UgyY0fxxt80xuQs6DgF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,804,Ugwj1-k7yHGlDFnhJed4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,805,UgwLkqT3iZFprcnl9dx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,806,UgwLkqT3iZFprcnl9dx4AaABAg.AXnoZp1aWaOAXoQ7vaJxxn,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,807,UgyX7aLgLV8yPdbSaZp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,810,UgyfLY4biITSshruxVx4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,811,UgyfLY4biITSshruxVx4AaABAg.AXndVf7k_7EAXneuBcK41Q,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,811,UgyfLY4biITSshruxVx4AaABAg.AXndVf7k_7EAXneuBcK41Q,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,812,UgzauODNMwHmG_kzXbN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,812,UgzauODNMwHmG_kzXbN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,816,UgwHAxsM8gBaRpknDNl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+01-onset,816,UgwHAxsM8gBaRpknDNl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,818,UgzzDwjCDb3MCtWd8sF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,819,UgzzDwjCDb3MCtWd8sF4AaABAg.AXnY4HmTo_LAXn_zmSYhnz,ERROR,uncoded_row,no model output for this row
+01-onset,820,UgzzDwjCDb3MCtWd8sF4AaABAg.AXnY4HmTo_LAXnbVg5L1W8,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,821,UgzzDwjCDb3MCtWd8sF4AaABAg.AXnY4HmTo_LAXoKY58kZ0Q,INFO,class_word_not_framed,matched 'mahirap'
+01-onset,821,UgzzDwjCDb3MCtWd8sF4AaABAg.AXnY4HmTo_LAXoKY58kZ0Q,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,822,UgyZsumLaYNyZaX_nKt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,823,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXoW-OBdsBE,ERROR,uncoded_row,no model output for this row
+01-onset,824,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAYNGTl51BVK,WARN,attribution_without_norm_violation,INTENTIONAL
+01-onset,824,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAYNGTl51BVK,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,825,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAYNGUbPOVA2,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,826,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXoHSbyBJlE,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,826,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXoHSbyBJlE,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,827,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXohhUYKJx_,ERROR,uncoded_row,no model output for this row
+01-onset,828,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAYNHNamssiY,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,829,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXp7kD0Lssi,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,830,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXpl4AiM0PM,ERROR,uncoded_row,no model output for this row
+01-onset,831,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXpzqORqOhE,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,831,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXpzqORqOhE,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,832,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnm_KOLRwK,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,833,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXn_PJk8uWz,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,834,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnm3GK6MRT,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,834,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnm3GK6MRT,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,835,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXoKOjj1sbm,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,836,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXp9zpQMZg4,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,836,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXp9zpQMZg4,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,837,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnhtjEvPhE,ERROR,uncoded_row,no model output for this row
+01-onset,838,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnc7CgE3Bn,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,838,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXnc7CgE3Bn,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,839,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXoAckTSnXx,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,840,UgyZsumLaYNyZaX_nKt4AaABAg.AXnUx6awfHmAXohzuALPn5,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,841,Ugz40I71jNfYVb3zfyF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,842,UgwgM0iUR6Z02XjqQTd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,843,UgwgM0iUR6Z02XjqQTd4AaABAg.AXnTpFnDzJMAXnZCgeM0iP,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,844,UgxwItPfQbEHz-U5NvJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,848,UgwvH4XkA6qfGFdyH6l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,851,Ugw2njNR7RaMaCfYx8B4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,853,Ugyy3svjY-ZnSMUPIq14AaABAg.AXnNYOEAUWRAXna87TBN4d,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,853,Ugyy3svjY-ZnSMUPIq14AaABAg.AXnNYOEAUWRAXna87TBN4d,WARN,language_heuristic,coded TAGLISH but only one language detected
+01-onset,,,WARN,needs_context_high,NEEDS_CONTEXT on 19% of rows (> 15%); rule 8 forces STANCE=NEUTRAL
+01-onset,,,WARN,class_comments_missing,25% of class-vocabulary comments uncoded vs 11% of others
+01-onset,,,WARN,constant_column,META_DISCOURSE is '0' on all 758 rows (legitimate?)

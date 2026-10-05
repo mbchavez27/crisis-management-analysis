@@ -106,6 +106,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,137,UgyYMw5QBsvRFad_nR54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,137,UgyYMw5QBsvRFad_nR54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,138,UgwH99WAQZdUJ4Gvhn14AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,139,Ugw4YFVIEK8c45bU8mF4AaABAg,INFO,class_word_not_framed,matched 'elite'
 04-reckoning,139,Ugw4YFVIEK8c45bU8mF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,139,Ugw4YFVIEK8c45bU8mF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,140,UgzaGYnqMJXqny-RvrZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -125,6 +126,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,157,UgxXh-F8rekrPDYS1TV4AaABAg,WARN,appearance_missed,matched 'opaw'
 04-reckoning,158,UgxH-uL1Bl6-Mgttxg94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,159,UgxPYbvVIdQNApRpzK14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,162,UgzEVf7c_-ejT8BYIDl4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,162,UgzEVf7c_-ejT8BYIDl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,162,UgzEVf7c_-ejT8BYIDl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,163,UgxGYqaD4eZ9r-tzSNd4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -183,6 +185,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,219,Ugxk8GvXGrWMckKI7f94AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,221,Ugz8d-VFzIBI61Tf8yZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,222,UgzJ1p-KJkmyGpmUbm94AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,226,Ugwzl2XliDl0AoRmatR4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
 04-reckoning,226,Ugwzl2XliDl0AoRmatR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,227,Ugwzl2XliDl0AoRmatR4AaABAg.AXzAOJ0hYuhAY-Z8iFoM63,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,227,Ugwzl2XliDl0AoRmatR4AaABAg.AXzAOJ0hYuhAY-Z8iFoM63,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -249,9 +252,11 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,312,UgzjnAVfYjiGptAx3ZJ4AaABAg,WARN,possible_response_uncoded,matched 'patawad'
 04-reckoning,312,UgzjnAVfYjiGptAx3ZJ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 04-reckoning,313,Ugyr3aK7BmiCv3ViLbB4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,317,UgyUMNFhAAQISdao_Ud4AaABAg,INFO,class_word_not_framed,matched 'million'
 04-reckoning,317,UgyUMNFhAAQISdao_Ud4AaABAg,WARN,possible_response_uncoded,matched 'acting'
 04-reckoning,319,UgzAoLumf1zVP43rU_Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,320,Ugxer-44bTG9XQL1W1p4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,321,UgxRMyU6Zlfst1dlOJF4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,323,UgwuLE02Ke6prUsZEHh4AaABAg.AXy2A0wUUwsAXz4u25bz8O,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,323,UgwuLE02Ke6prUsZEHh4AaABAg.AXy2A0wUUwsAXz4u25bz8O,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,324,Ugxy_ZCzadqAPIf3YHF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -259,6 +264,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,327,UgzeNX0pWIY6vGXY1P94AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,329,UgzeNX0pWIY6vGXY1P94AaABAg.AXy0F_yPXbPAXyB1OPYGBR,ERROR,uncoded_row,no model output for this row
 04-reckoning,330,UgyJPzFQbEy9iuo5q8l4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,338,UgxynYV_s6Om-xNRp-x4AaABAg,INFO,class_word_not_framed,matched 'million'
 04-reckoning,338,UgxynYV_s6Om-xNRp-x4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,339,Ugw9ssXT8uFzfmoFSwp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,340,UgzV-i5Wwr6sdqTm-wl4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
@@ -270,6 +276,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,345,UgzWjv6m2gNP00C9YNV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,345,UgzWjv6m2gNP00C9YNV4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
 04-reckoning,347,Ugz3NToaFx_hTCVhRbd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,348,Ugz3NToaFx_hTCVhRbd4AaABAg.AXxxbJFw3-8AXxzcmVcjnD,INFO,class_word_not_framed,matched 'rich'
 04-reckoning,348,Ugz3NToaFx_hTCVhRbd4AaABAg.AXxxbJFw3-8AXxzcmVcjnD,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,349,Ugy3nonKj_VUbBcyk_R4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,350,Ugy4u5mQo9EQoWQXdn94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -281,6 +288,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,356,UgxD19VCD35m8BbAKnx4AaABAg.AXxwmkWgfcnAXyeZ_tHWGt,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,360,Ugy3DJW9NFbp_SHhXKl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,362,UgzZhI5iUsSsu3rzWFJ4AaABAg.AXxwFbPEoMTAXy-tUSFIKs,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,364,UgzoxI83i-BimvH0-QR4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,364,UgzoxI83i-BimvH0-QR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,364,UgzoxI83i-BimvH0-QR4AaABAg,WARN,possible_response_uncoded,matched 'patawad'
 04-reckoning,367,UgzKTHj2a6G-_Q-iFDt4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -409,6 +417,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,535,UgyrFV56nsPNnW8F9Kd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,535,UgyrFV56nsPNnW8F9Kd4AaABAg,INFO,sad_emoji_missed,['crying_face']
 04-reckoning,536,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXxuErXGRfV,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,537,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyCqE24E4v,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,537,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyCqE24E4v,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,538,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyIn4jPUcD,ERROR,uncoded_row,no model output for this row
 04-reckoning,540,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXy-he6nxyI,ERROR,uncoded_row,no model output for this row
@@ -443,6 +452,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,575,UgzKdy461CTAPosUXwN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,576,UgzKdy461CTAPosUXwN4AaABAg.AXxjinr1aaVAXxjkxvag5B,ERROR,uncoded_row,no model output for this row
 04-reckoning,577,UgzKdy461CTAPosUXwN4AaABAg.AXxjinr1aaVAXxm3VMqZ4Z,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,578,UgyRmf7X7qz01MWt1yN4AaABAg,INFO,class_word_not_framed,matched 'poor'
 04-reckoning,578,UgyRmf7X7qz01MWt1yN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,578,UgyRmf7X7qz01MWt1yN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,580,UgwxNYubzP1FMGb7RuR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -457,6 +467,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,587,UgwsFO8GTpcdUGjclal4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 04-reckoning,588,UgwsFO8GTpcdUGjclal4AaABAg.AXxj1PWdIF2AXxoPU7dGy-,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,589,Ugzp9pS1EugY3IeNfux4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,590,UgyFOUlfFzapcoJ-pj14AaABAg,INFO,class_word_not_framed,matched 'millions'
 04-reckoning,592,UgyFXUgdlIkXdz7R0yp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,593,Ugw0CwAQobs1HX6GnDx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,594,UgwqQzgvuAxC6j5a3FR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -482,6 +493,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,619,UgzMF3lcd5TuNt87n1N4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,621,UgwYV9ZMGqYDhMBNNl54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,621,UgwYV9ZMGqYDhMBNNl54AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,622,UgycWlp01SkR3fRmwmJ4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
 04-reckoning,622,UgycWlp01SkR3fRmwmJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,624,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXy9N-4JxMN,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,625,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXyFPkawcX8,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -522,6 +534,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,677,UgzsHalUXq3JCPGEYOh4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,680,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXxqyhlpl8e,ERROR,uncoded_row,no model output for this row
 04-reckoning,684,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXyij96Jk-2,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,687,UgxrviIuJVyjXCq6slN4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
 04-reckoning,688,Ugxcz550Nw_2l9B1UJR4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,689,UgxC4JzYhhKATDnHbEJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,689,UgxC4JzYhhKATDnHbEJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -542,7 +555,9 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,708,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXyuXv2dFjd,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,710,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXz4ukzzFrz,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,712,UgzoppnWgOGZbbjiRnB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,713,Ugzu2H6zIQ0oz_AloE14AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,713,Ugzu2H6zIQ0oz_AloE14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,714,UgwKDmkza_d6oeOVD5J4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,715,UgydhVLFyuLRjNfuE8B4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,716,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxhz5bXcov,ERROR,uncoded_row,no model output for this row
 04-reckoning,718,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxhEDMub-b,ERROR,uncoded_row,no model output for this row
@@ -569,6 +584,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,736,UgyW1D9Qb_aGFpcvn3x4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,739,Ugxvle3YAWk26S9y3qh4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,740,Ugz75BtxhdNgMPUKjjp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,742,UgwjrIsJMhPkyKjbk2d4AaABAg.AXxa1uCZCs-AXxaFkTumf_,INFO,class_word_not_framed,matched 'tuition'
 04-reckoning,746,UgwO68dbP-Gxn4oWbD94AaABAg.AXx_VgH4PJrAXxbW6h9tpv,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,746,UgwO68dbP-Gxn4oWbD94AaABAg.AXx_VgH4PJrAXxbW6h9tpv,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,748,UgxRFDRNatbSTEwLvVp4AaABAg.AXx_R6m279bAXxo5AtLNzS,WARN,anger_emoji_missed,['face_with_symbols_on_mouth']
@@ -590,6 +606,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,764,Ugz75JIqjZILywGm03R4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,765,Ugzd2IlFtoX3F3Njuxl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,766,Ugx9Cw3exKVrJAVSwOJ4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
 04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,768,UgzGv5PEUsFqsZWa5sB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,768,UgzGv5PEUsFqsZWa5sB4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -601,6 +618,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,777,UgwXNyaj1jhhHuyMfiN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,778,Ugyw-fEFtXH_OUDhDRp4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,781,UgxT9adsvhmaZmTgrNp4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,781,UgxT9adsvhmaZmTgrNp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,783,UgyBtWHLf6avvwAjDGV4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,787,UgxGHJJsbTBUbpAMpk94AaABAg,ERROR,uncoded_row,no model output for this row
@@ -632,6 +650,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,813,UgwYWbkwIX3zpqfsgxZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,814,UgwB5Pm_9uWOqzYoyl14AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,814,UgwB5Pm_9uWOqzYoyl14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,817,Ugw6tFkNtUAOBVZnWup4AaABAg,INFO,class_word_not_framed,matched 'elite'
 04-reckoning,817,Ugw6tFkNtUAOBVZnWup4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,818,UgzWBSbebtRWd2U69Q94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,819,UgzLP9xfox1SuqwV0nR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -656,6 +675,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,841,UgzBatpoYfUwdhD2roJ4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,842,UgyQKv3qRuq5wZxw2aR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,842,UgyQKv3qRuq5wZxw2aR4AaABAg,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,843,UgyLWm7dTQxgu6pe4Np4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,843,UgyLWm7dTQxgu6pe4Np4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,845,UgyOCb6IhYGSkW_hT5h4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,846,UgzKnmbTV0t1NhXUMRt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -679,6 +699,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,864,UgxOGQ4snfbCHYfFakh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,865,UgxOGQ4snfbCHYfFakh4AaABAg.AY3wLD07TYzAY4-2zFRI9-,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,865,UgxOGQ4snfbCHYfFakh4AaABAg.AY3wLD07TYzAY4-2zFRI9-,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,866,UgzlR2Hw_xHOPXP0gGF4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,867,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wCfN2Zb8,ERROR,uncoded_row,no model output for this row
 04-reckoning,868,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wOmrmRpv,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,868,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wOmrmRpv,WARN,possible_response_uncoded,matched 'pr'
@@ -735,6 +756,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,928,Ugww4L__ekExzlfUeRZ4AaABAg.AY3oT4L5pvSAY3orvnfg3V,WARN,possible_response_uncoded,matched 'apolog'
 04-reckoning,929,UgzZxZSz6vIijr6466p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,931,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY3vHTGViZI,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,932,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY3xFeONNTD,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,932,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY3xFeONNTD,WARN,possible_response_uncoded,matched 'sorry'
 04-reckoning,934,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY5YgIr7u3x,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,935,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY5XZwnAvjF,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -750,7 +772,9 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,950,UgwhKIQH5dBrJcYqp214AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,951,UgzychbO7ixIxaPzrUl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,952,UgzJxMlo_6E0UMM2-WR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,953,UgxyuVpWiMClF09ARll4AaABAg,INFO,class_word_not_framed,matched 'poor'
 04-reckoning,953,UgxyuVpWiMClF09ARll4AaABAg,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,955,UgxKIuJJWvvOdwQJvyx4AaABAg,INFO,class_word_not_framed,matched 'poor'
 04-reckoning,955,UgxKIuJJWvvOdwQJvyx4AaABAg,WARN,possible_response_uncoded,matched 'pr'
 04-reckoning,959,Ugxtzh6-mVeQ9x_rRkp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,959,Ugxtzh6-mVeQ9x_rRkp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
@@ -777,6 +801,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,988,UgwHGPdKtoCiXsLMAbt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,989,Ugxv2R1vDi8O2YvdWMl4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,992,UgznpzRLza-WYIC2osh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,996,Ugwqb8qs6SqYxAzhT2B4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,997,Ugz_2dPRrGCM3tjx67p4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,998,UgzLdT_O2Y9EcQT52y94AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,1003,UgzJMad0e4HVD-W9ZT54AaABAg,ERROR,uncoded_row,no model output for this row
@@ -821,6 +846,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1066,UgwzasusYwlcEH_06bh4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,1070,UgzfEIyeobOS4y0IJ4R4AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,1071,Ugw9HiK7tAQeRiJNJjZ4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,1072,UgwFXY_lM6ZmIDKU4M14AaABAg,INFO,class_word_not_framed,matched 'tuition'
 04-reckoning,1072,UgwFXY_lM6ZmIDKU4M14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1073,UgwLzSihopbH7JsCQQZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1073,UgwLzSihopbH7JsCQQZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
@@ -886,6 +912,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1173,Ugx6craIrjnRtgTyxSZ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 04-reckoning,1176,Ugw4KkEMh__rn1Jvuf94AaABAg.AY3s-AZLj4LAY3tA07KSvz,ERROR,uncoded_row,no model output for this row
 04-reckoning,1177,Ugz6Q3BJ6QX222_BG5p4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1179,Ugw9brBNf-5-eMSRKah4AaABAg,INFO,class_word_not_framed,matched 'kapit'
 04-reckoning,1180,UgyAuy4ErnRvmYASIMx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1181,UgzF_ayt40vbsvvhkAB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1182,UgxYmbzc0noxPjLZsu14AaABAg,ERROR,uncoded_row,no model output for this row
@@ -925,6 +952,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1224,Ugz-lHdtBKxuc4e7LFp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1226,UgzabeDuXQjq_bFp4Gt4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,1226,UgzabeDuXQjq_bFp4Gt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1227,UgzabeDuXQjq_bFp4Gt4AaABAg.AY9nkPuLxFIAYAoUDB70ln,INFO,class_word_not_framed,matched 'kapit'
 04-reckoning,1227,UgzabeDuXQjq_bFp4Gt4AaABAg.AY9nkPuLxFIAYAoUDB70ln,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1228,UgygfaByujhwpftCoZJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1231,UgygfaByujhwpftCoZJ4AaABAg.AY9nk8y9CwKAYAmxlJ-PzB,ERROR,uncoded_row,no model output for this row
@@ -960,6 +988,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1277,UgyCwPLtm82Guge2XZF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1279,UgzgrQdpkv1nE3x3OjZ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,1279,UgzgrQdpkv1nE3x3OjZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1280,Ugw5sqaxrJ9Y5Z7rBOV4AaABAg,INFO,class_word_not_framed,matched 'money'
 04-reckoning,1280,Ugw5sqaxrJ9Y5Z7rBOV4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
 04-reckoning,1283,UgyP5N-cr1O2LLCQM594AaABAg,ERROR,uncoded_row,no model output for this row
 04-reckoning,1284,UgyS-_0D9AabyLku1dl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1008,6 +1037,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1322,UgyY4jJ642UCL3A8ggV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1323,UgxgKzwWrwFYwtlopa94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1326,UgylKiDIRpe3a_OiM_R4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,1327,UgzFkPcdSVdKVsR_S0Z4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,1327,UgzFkPcdSVdKVsR_S0Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1328,Ugw1wjAoDJStGrg6uxx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1329,UgyRaBPNj0eWdEvtSSZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
@@ -1034,8 +1064,10 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1358,Ugzlz4EQ-dLSU-bVLg94AaABAg.AYN32awaDpfAYOhHkt7i8N,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1360,UgyKlcCOTcTfyy79fZV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1360,UgyKlcCOTcTfyy79fZV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1361,UgzzZizXkyJoPjE1IvB4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
 04-reckoning,1362,UgzzZizXkyJoPjE1IvB4AaABAg.AYMzx-gz1QPAYNYRVYAXk9,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1362,UgzzZizXkyJoPjE1IvB4AaABAg.AYMzx-gz1QPAYNYRVYAXk9,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1363,Ugx-fR0G1jzgNj_JHet4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,1363,Ugx-fR0G1jzgNj_JHet4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1363,Ugx-fR0G1jzgNj_JHet4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 04-reckoning,1364,UgwQYFQZPnx5E9GCDCh4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -1048,6 +1080,7 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1376,Ugx06XDo9SVnvB48CBN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1377,Ugxx9sJa3v0QVNbegaF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1378,UgywD1Aq2xGlUZ5oWWt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1379,UgxVRMdLT72Eaa97xux4AaABAg,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,1381,UgwKPZvkYU7hnlRxGaV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1381,UgwKPZvkYU7hnlRxGaV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1382,UgwKPZvkYU7hnlRxGaV4AaABAg.AYMW0x_v_ObAYMaHsFWdK1,WARN,attribution_without_norm_violation,ACCUSATION
@@ -1055,8 +1088,10 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1384,Ugwd2v9rFMuxaB7sRbB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1384,Ugwd2v9rFMuxaB7sRbB4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
 04-reckoning,1385,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYManXpH5pw,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1387,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYNtZC97jHC,INFO,class_word_not_framed,matched 'pera'
 04-reckoning,1387,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYNtZC97jHC,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1388,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYPPvy_wNUM,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1389,UgzYR92GahfVHcclUbt4AaABAg,INFO,class_word_not_framed,matched 'poor'
 04-reckoning,1389,UgzYR92GahfVHcclUbt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
 04-reckoning,1393,UgwrsJnnxPXiyaHpJlt4AaABAg.AYMPtlzfPX2AYMW_Rs4FVG,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1394,Ugwq79QVO3G1AgW8C3V4AaABAg,ERROR,uncoded_row,no model output for this row
@@ -1074,3 +1109,4 @@ phase,row_id,comment_id,severity,check,detail
 04-reckoning,1407,UgyjSfRYlT0MgDQNbet4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
 04-reckoning,1409,UgzmvAXZJWWVA6nTn7t4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
 04-reckoning,1409,UgzmvAXZJWWVA6nTn7t4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,,,WARN,class_comments_missing,27% of class-vocabulary comments uncoded vs 16% of others
