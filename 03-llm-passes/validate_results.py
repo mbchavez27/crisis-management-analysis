@@ -1,20 +1,33 @@
 #!/usr/bin/env python3
-"""Validate full_codebook_results.csv files from run_local.py against codebook v2.1.
+"""Validate run_local.py results against codebook v2.1 and describe the dataset.
 
 Checks (ERROR = objectively wrong, WARN = likely wrong, INFO = worth a look):
-  schema/enums/binaries, template leakage, evidence fidelity, NA consistency,
-  emoji-only handling, language heuristics, appearance/anger-emoji rules,
-  unused Section H, plus dataset-level patterns (constant columns, repeated
-  coding bundles, uniform confidence).
+  schema/enums/binaries, template leakage, evidence fidelity (old free-text and
+  v1.3+ «quote» -> CODES formats), NA consistency, emoji-only handling, language
+  heuristics, appearance/anger-emoji rules, unused Section H, plus dataset-level
+  patterns (constant columns, repeated coding bundles, uniform confidence, mixed
+  prompt versions or models).
+
+Descriptive statistics, per phase and for all selected phases combined:
+  coverage and failures, comment length, videos, language, code prevalence,
+  categorical and multi-label distributions, confidence, review flags.
 
 Usage:
-    python validate_results.py                      # every full_codebook_results.csv under ./output
-    python validate_results.py path/to/results.csv  # one file
-    python validate_results.py output/ateneo-drowning --strict   # also exit 1 on WARN
+    python validate_results.py                                  # all phases
+    python validate_results.py --phases 01-onset                # one phase
+    python validate_results.py --phases 01-onset,04-reckoning   # several
+    python validate_results.py --phases all --strict            # exit 1 on WARN too
+    python validate_results.py path/to/full_codebook_results.csv   # explicit file(s)
 
-Writes <results>_validation_flags.csv next to each input (one row per flag).
-These checks are heuristics: they find rows to review, not a replacement for
-comparing against human codes.
+Outputs:
+  <phase>/full_codebook_results_validation_flags.csv   one row per flag (per phase)
+  <pass dir>/_validation/<scope>/flags_all.csv          all flags, with a phase column
+  <pass dir>/_validation/<scope>/phase_overview.csv     one row per phase (+ ALL if several)
+  <pass dir>/_validation/<scope>/stats_long.csv         phase x variable x category counts
+  (<scope> is "all", or the selected phases joined with "+")
+
+These checks are heuristics: they find rows to review. Accuracy still has to be
+measured against human codes.
 """
 
 from __future__ import annotations
@@ -25,10 +38,12 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
+RESULTS_NAME = "full_codebook_results.csv"
 
 BINARY = [
     "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
@@ -61,10 +76,14 @@ LISTS = {
 TEXT_COLS = ["row_id", "comment_id", "text", "id", "evidence", "evidence_en", "EMERGENT", "OTHER_NOTE"]
 REQUIRED = TEXT_COLS + BINARY + list(SCALARS) + list(LISTS)
 NEUTRAL = {"NONE", "NA"}
+# Columns shown side by side in the cross-phase table.
+KEY_RATES = ["ANGER", "CONTEMPT", "SADNESS", "CONDOLENCE", "NORM_VIOLATION", "INJUSTICE", "SARCASM"]
 
 LEAK = [
     "short quote(s)", "english translation of the evidence", "now output exactly one json",
     "high|medium|low", "supporting each non-zero code", "output only json",
+    "«exact words»", "«english translation»", "exact words from the comment",
+    "literal english translation",
 ]
 FIL = set("""ang ng sa na mga si ay ako ikaw siya mo ka ko namin natin nila nyo niyo po opo hindi wala may
 para pero kasi dapat kayo sila lang naman din rin basta yung yun ito iyon pa ba nga sana talaga tayo kami
@@ -73,6 +92,7 @@ EN = set("""the is are was were and to of you your for that this with not but he
 has should why like will""".split())
 SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
 UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]")
+EVID_QUOTE = re.compile(r"«([^«»]*)»")
 BALD = re.compile(r"\b(kalbo|kalbohydrate\w*|opaw|upaw|bald|hairless)\b", re.I)
 RESPONSE_WORDS = re.compile(
     r"apolog|sorry|sori|patawad|scripted|acting|crocodile|\bwake\b|belated|statement|\bpr\b|lawyer", re.I)
@@ -81,8 +101,10 @@ PUNITIVE_WORDS = re.compile(
     r"\bfire[dm]?\b|\bban(ned)?\b|revoke|accountab|surrender|\bsue\b|panagutin|sagutin", re.I)
 ANGER_EMOJI = {"enraged_face", "angry_face", "face_with_symbols_on_mouth", "pouting_face"}
 SAD_EMOJI = {"crying_face", "loudly_crying_face", "broken_heart", "pensive_face", "disappointed_face"}
+FLAG_COLS = ["phase", "row_id", "comment_id", "severity", "check", "detail"]
 
 
+# --------------------------------------------------------------------------- helpers
 def parse_list(val: str):
     try:
         v = json.loads(val)
@@ -92,20 +114,76 @@ def parse_list(val: str):
 
 
 def norm(s: str) -> str:
-    return re.sub(r"\s+", " ", s.lower()).strip(" \"'\u201c\u201d")
+    s = s.replace("\ufe0f", "").replace("\u2018", "'").replace("\u2019", "'")
+    return re.sub(r"\s+", " ", s.lower()).strip(" \"'\u201c\u201d.,!?;:")
 
 
-def find_files(args_paths: list[str]) -> list[Path]:
-    roots = [Path(p) for p in args_paths] or [HERE / "output"]
-    files: list[Path] = []
-    for p in roots:
-        if p.is_file():
-            files.append(p)
-        elif p.is_dir():
-            files.extend(sorted(p.rglob("full_codebook_results.csv")))
-    return files
+def is_emoji_only(text: str) -> bool:
+    bare = re.sub(r"[\W_]+", "", UNI_EMOJI.sub("", SHORTCODE.sub("", text)))
+    return bool(text.strip()) and not bare
 
 
+def evidence_fragments(ev: str) -> list[str]:
+    """Quotes from either evidence format: «quote» -> CODES (v1.2+) or free text (v1.0/1.1)."""
+    if "«" in ev:
+        return [q for q in EVID_QUOTE.findall(ev) if q.strip()]
+    return [f for f in re.split(r"\s+\|\s+|;\s+|\s+/\s+", ev) if f.strip()]
+
+
+def pct(n: int, d: int) -> float:
+    return round(100.0 * n / d, 1) if d else 0.0
+
+
+def read_jsonl_field(path: Path, field: str) -> Counter:
+    out: Counter = Counter()
+    if not path.exists():
+        return out
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            try:
+                out[str(json.loads(line).get(field, "unrecorded"))] += 1
+            except Exception:
+                continue
+    return out
+
+
+def count_lines(path: Path) -> int:
+    if not path.exists():
+        return 0
+    with open(path, encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip())
+
+
+# --------------------------------------------------------------------------- discovery
+def discover(args: argparse.Namespace) -> list[tuple[str, Path]]:
+    """(phase, results.csv) pairs from explicit paths or --crisis/--phases."""
+    if args.paths:
+        found: list[Path] = []
+        for p in map(Path, args.paths):
+            if p.is_file():
+                found.append(p)
+            elif p.is_dir():
+                found.extend(sorted(p.rglob(RESULTS_NAME)))
+        return [(p.parent.name, p) for p in found]
+
+    pass_dir = args.output_root / args.crisis / args.pass_dir
+    if not pass_dir.is_dir():
+        print(f"No results directory: {pass_dir}")
+        return []
+    available = sorted(d.name for d in pass_dir.iterdir()
+                       if d.is_dir() and (d / RESULTS_NAME).exists())
+    if args.phases.strip().lower() == "all":
+        wanted = available
+    else:
+        wanted = [p.strip() for p in args.phases.split(",") if p.strip()]
+        missing = [p for p in wanted if p not in available]
+        if missing:
+            print(f"WARNING: no results for {missing}. Available: {available}")
+        wanted = [p for p in wanted if p in available]
+    return [(p, pass_dir / p / RESULTS_NAME) for p in wanted]
+
+
+# --------------------------------------------------------------------------- validation
 def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
     df = pd.read_csv(path, dtype=str, keep_default_na=False)
     flags: list[dict] = []
@@ -168,9 +246,8 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         coded_any = (any(b(c) for c in BINARY if c != "UNCODABLE") or r["ATTRIBUTION"] != "NONE"
                      or L.get("ACTIONS") != ["NONE"] or L.get("VALUES") != ["NONE"])
         if ev and not leaked_ev:
-            t = norm(r["text"])
-            frags = [norm(f) for f in re.split(r"\s+\|\s+|;\s+|\s+/\s+", ev) if f.strip()]
-            miss = [f for f in frags if f not in t]
+            t = norm(r["text"].replace("\n", " "))
+            miss = [f for f in (norm(x) for x in evidence_fragments(ev)) if f and f not in t]
             if miss:
                 F("WARN", "evidence_not_in_text", f"{miss[0][:70]!r}")
         if coded_any and not ev:
@@ -199,11 +276,8 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
 
         # --- content heuristics --------------------------------------------
         text = r["text"]
-        codes = {x.lower() for x in SHORTCODE.findall(text)}
-        codes = {x.strip(":") for x in codes}
-        bare = UNI_EMOJI.sub("", SHORTCODE.sub("", text))
-        bare = re.sub(r"[\W_]+", "", bare)
-        if text.strip() and not bare:
+        codes = {x.lower().strip(":") for x in SHORTCODE.findall(text)}
+        if is_emoji_only(text):
             if r["LANGUAGE"] != "EMOJI":
                 F("ERROR", "emoji_only_language", f"LANGUAGE={r['LANGUAGE']}, expected EMOJI")
             extra = [k for k, v in (("NORM_VIOLATION", b("NORM_VIOLATION")),
@@ -245,71 +319,218 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         flags.append({"row_id": "", "comment_id": "", "severity": sev, "check": check, "detail": detail})
 
     if n >= 10:
-        for c in ["TARGET_OF_COMMENT", "RESPONSE_EVAL", "SARCASM", "META_DISCOURSE", "CLASS_FRAME", "confidence"]:
+        for c in ["STANCE", "TARGET_OF_COMMENT", "LANGUAGE", "RESPONSE_EVAL", "SARCASM",
+                  "META_DISCOURSE", "CLASS_FRAME", "confidence"]:
             if ok[c].nunique() == 1:
                 D("WARN", "constant_column", f"{c} is {ok[c].iloc[0]!r} on all {n} rows (legitimate?)")
-        top, cnt = Counter(sigs).most_common(1)[0]
-        if cnt / n > 0.4:
-            D("WARN", "repeated_bundle", f"{cnt}/{n} rows share NORM_VIOLATION/ATTRIBUTION/BLAME/STANCE/ACTIONS = {top}")
+        if sigs:
+            top, cnt = Counter(sigs).most_common(1)[0]
+            if cnt / n > 0.4:
+                D("WARN", "repeated_bundle",
+                  f"{cnt}/{n} rows share NORM_VIOLATION/ATTRIBUTION/BLAME/STANCE/ACTIONS = {top}")
         if (ok["confidence"] == "HIGH").mean() > 0.95:
             D("WARN", "uniform_confidence", "over 95% HIGH; confidence cannot be used for filtering")
     return df, flags
 
 
-def report(path: Path, df: pd.DataFrame, flags: list[dict]) -> int:
+# --------------------------------------------------------------------------- statistics
+def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path | None) -> tuple[dict, list[dict]]:
+    """One overview row and long-format distribution rows for a phase (or ALL)."""
     ok = df[df["id"] != ""] if "id" in df.columns else df
     n_all, n = len(df), len(ok)
-    print(f"\n{'=' * 70}\n{path}\n{'=' * 70}")
-    bad_rows = {f["row_id"] for f in flags if f["severity"] in ("ERROR", "WARN") and f["row_id"] != ""}
-    print(f"rows: {n_all} | coded: {n} | rows with ERROR/WARN: {len(bad_rows)} | clean: {n_all - len(bad_rows)}")
+    words = df["text"].str.split().str.len().fillna(0) if "text" in df.columns else pd.Series(dtype=float)
+    chars = df["text"].str.len() if "text" in df.columns else pd.Series(dtype=float)
+    flag_rows = {(f.get("phase", phase), f["row_id"]) for f in flags
+                 if f["severity"] in ("ERROR", "WARN") and f["row_id"] != ""}
+
+    ov: dict[str, Any] = {
+        "phase": phase,
+        "rows": n_all,
+        "coded": n,
+        "coverage_pct": pct(n, n_all),
+        "errors": sum(f["severity"] == "ERROR" for f in flags),
+        "warnings": sum(f["severity"] == "WARN" for f in flags),
+        "rows_flagged": len(flag_rows),
+        "rows_flagged_pct": pct(len(flag_rows), n_all),
+        "videos": df["video_id"].nunique() if "video_id" in df.columns else None,
+        "words_mean": round(float(words.mean()), 1) if len(words) else None,
+        "words_median": float(words.median()) if len(words) else None,
+        "words_max": int(words.max()) if len(words) else None,
+        "chars_mean": round(float(chars.mean()), 1) if len(chars) else None,
+        "emoji_only": int(df["text"].map(is_emoji_only).sum()) if "text" in df.columns else None,
+    }
+    if "autofix" in ok.columns:
+        fixes = ok["autofix"].fillna("")
+        ov["language_review_flags"] = int(fixes.str.contains("language_check").sum())
+        ov["autofixed_rows"] = int(fixes.map(
+            lambda s: any(f and not f.startswith("language_check") for f in s.split(";"))).sum())
+    if results_path is not None:
+        d = results_path.parent
+        versions = read_jsonl_field(d / "full_codebook_results.jsonl", "prompt_version")
+        models = read_jsonl_field(d / "full_codebook_results.jsonl", "model")
+        ov["prompt_versions"] = ";".join(f"{k}:{v}" for k, v in sorted(versions.items()))
+        ov["models"] = ";".join(f"{k}:{v}" for k, v in sorted(models.items()))
+        ov["hard_failures"] = count_lines(d / "full_codebook_failures.log")
+        ov["pending"] = count_lines(d / "full_codebook_pending.log")
+
+    long: list[dict] = []
+
+    def add(var: str, kind: str, cat: str, k: int) -> None:
+        long.append({"phase": phase, "variable": var, "type": kind, "category": cat,
+                     "n": int(k), "pct_of_coded": pct(int(k), n)})
+
+    if n:
+        for c in BINARY:
+            if c in ok.columns:
+                add(c, "binary", "1", (ok[c] == "1").sum())
+        for c in SCALARS:
+            if c in ok.columns:
+                for cat, k in ok[c].value_counts().items():
+                    add(c, "categorical", str(cat), k)
+        for c in LISTS:
+            if c in ok.columns:
+                parsed = ok[c].map(lambda v: parse_list(v) or [])
+                for cat, k in Counter(x for v in parsed for x in v).most_common():
+                    add(c, "multi_label", cat, k)
+                real = parsed.map(lambda v: [x for x in v if x not in NEUTRAL])
+                ov[f"{c}_labels_per_row"] = round(float(real.str.len().mean()), 2)
+        for c in KEY_RATES:
+            if c in ok.columns:
+                ov[f"{c}_pct"] = pct(int((ok[c] == "1").sum()), n)
+        for cat in ("CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"):
+            ov[f"STANCE_{cat}_pct"] = pct(int((ok["STANCE"] == cat).sum()), n) if "STANCE" in ok.columns else None
+    return ov, long
+
+
+# --------------------------------------------------------------------------- reporting
+def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[dict], show_dist: bool) -> None:
+    print(f"\n{'=' * 78}\n{phase}  ({path})\n{'=' * 78}")
+    print(f"rows {ov['rows']} | coded {ov['coded']} ({ov['coverage_pct']}%) | "
+          f"rows with ERROR/WARN {ov['rows_flagged']} ({ov['rows_flagged_pct']}%) | "
+          f"hard failures {ov.get('hard_failures', '-')} | pending {ov.get('pending', '-')}")
+    print(f"comments: {ov['videos']} videos | words mean {ov['words_mean']}, median {ov['words_median']}, "
+          f"max {ov['words_max']} | emoji-only {ov['emoji_only']}")
+    if ov.get("prompt_versions"):
+        print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']}")
+    if "language_review_flags" in ov:
+        print(f"LANGUAGE review flags: {ov['language_review_flags']} | autofixed rows: {ov['autofixed_rows']}")
 
     by = Counter((f["severity"], f["check"]) for f in flags)
     order = {"ERROR": 0, "WARN": 1, "INFO": 2}
-    print("\nFlags:")
-    if not by:
-        print("  none")
+    print("\nFlags:" + ("  none" if not by else ""))
     for (sev, chk), cnt in sorted(by.items(), key=lambda kv: (order[kv[0][0]], -kv[1])):
         ex = [f for f in flags if f["severity"] == sev and f["check"] == chk][:3]
-        rows = ",".join(str(f["row_id"]) for f in ex if f["row_id"] != "")
-        det = ex[0]["detail"][:80] if ex else ""
-        print(f"  [{sev:5}] {chk:34} x{cnt:<4} rows: {rows or '-':14} {det}")
+        rows = ",".join((f"{f.get('phase')}:{f['row_id']}" if phase.startswith("ALL") else str(f["row_id"]))
+                        for f in ex if f["row_id"] != "")
+        print(f"  [{sev:5}] {chk:34} x{cnt:<5} rows: {rows or '-':14} {ex[0]['detail'][:70] if ex else ''}")
 
-    if n and all(c in ok.columns for c in BINARY):
-        print("\nBinary code rates (coded rows):")
-        line = [f"{c}={(ok[c] == '1').sum()}({(ok[c] == '1').mean():.0%})" for c in BINARY]
-        for i in range(0, len(line), 4):
-            print("  " + "  ".join(line[i:i + 4]))
-        print("\nCategorical distributions:")
-        for c in SCALARS:
-            if c in ok.columns:
-                print(f"  {c}: { {k: int(v) for k, v in ok[c].value_counts().items()} }")
-        for c in LISTS:
-            if c in ok.columns:
-                cnt = Counter(x for v in ok[c] for x in (parse_list(v) or []))
-                print(f"  {c}: {dict(cnt.most_common())}")
-
-    out = path.with_name(path.stem + "_validation_flags.csv")
-    pd.DataFrame(flags, columns=["row_id", "comment_id", "severity", "check", "detail"]).to_csv(out, index=False)
-    print(f"\nFlags written -> {out}")
-    return sum(1 for f in flags if f["severity"] == "ERROR"), sum(1 for f in flags if f["severity"] == "WARN")
+    if not show_dist or not ov["coded"]:
+        return
+    rates = [x for x in long if x["type"] == "binary"]
+    print("\nBinary code prevalence (% of coded rows):")
+    line = [f"{x['variable']}={x['n']}({x['pct_of_coded']}%)" for x in rates]
+    for i in range(0, len(line), 4):
+        print("  " + "  ".join(line[i:i + 4]))
+    print("\nCategorical and multi-label distributions (n, % of coded rows):")
+    for var in list(SCALARS) + list(LISTS):
+        cats = [x for x in long if x["variable"] == var]
+        if cats:
+            body = ", ".join(f"{x['category']} {x['n']} ({x['pct_of_coded']}%)" for x in cats)
+            extra = f"  [labels/row {ov[f'{var}_labels_per_row']}]" if f"{var}_labels_per_row" in ov else ""
+            print(f"  {var}: {body}{extra}")
 
 
+def print_cross_phase(overviews: list[dict]) -> None:
+    cols = (["phase", "rows", "coded", "coverage_pct", "rows_flagged_pct", "words_mean"]
+            + [f"{c}_pct" for c in KEY_RATES]
+            + ["STANCE_CRITICAL_pct", "STANCE_DEFENDING_pct", "STANCE_NEUTRAL_pct"])
+    table = pd.DataFrame(overviews)
+    table = table[[c for c in cols if c in table.columns]]
+    table.columns = [c.replace("_pct", "%").replace("STANCE_", "ST_") for c in table.columns]
+    print(f"\n{'=' * 78}\nACROSS PHASES (code rates are % of coded rows)\n{'=' * 78}")
+    with pd.option_context("display.width", 200, "display.max_columns", 50):
+        print(table.to_string(index=False))
+
+
+# --------------------------------------------------------------------------- main
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("paths", nargs="*", help="results CSV files or directories (default: ./output)")
+    ap.add_argument("paths", nargs="*", help="explicit results CSVs or directories (overrides --phases)")
+    ap.add_argument("--crisis", default="ateneo-drowning", help="crisis slug under the output root")
+    ap.add_argument("--phases", default="all", help="'all' or comma-separated phases, e.g. 01-onset,04-reckoning")
+    ap.add_argument("--pass-dir", default="full-codebook-coding", help="pass directory under the crisis")
+    ap.add_argument("--output-root", type=Path, default=HERE / "output", help="run_local.py output root")
+    ap.add_argument("--no-distributions", action="store_true", help="skip per-phase distribution printouts")
     ap.add_argument("--strict", action="store_true", help="exit 1 on WARN as well as ERROR")
     args = ap.parse_args()
-    files = find_files(args.paths)
-    if not files:
+
+    targets = discover(args)
+    if not targets:
         print("No full_codebook_results.csv files found.")
         return 2
-    errs = warns = 0
-    for f in files:
-        df, flags = validate(f)
-        e, w = report(f, df, flags)
-        errs += e
-        warns += w
-    print(f"\nOverall: {errs} ERROR flags, {warns} WARN flags across {len(files)} file(s)")
+
+    overviews: list[dict] = []
+    long_all: list[dict] = []
+    flags_all: list[dict] = []
+    frames: list[pd.DataFrame] = []
+    for phase, path in targets:
+        df, flags = validate(path)
+        for f in flags:
+            f["phase"] = phase
+        out = path.with_name(path.stem + "_validation_flags.csv")
+        pd.DataFrame(flags, columns=FLAG_COLS).to_csv(out, index=False)
+        ov, long = describe(phase, df, flags, path)
+        print_phase(phase, path, ov, long, flags, not args.no_distributions)
+        print(f"\nFlags written -> {out}")
+        overviews.append(ov)
+        long_all.extend(long)
+        flags_all.extend(flags)
+        frames.append(df.assign(phase=phase))
+
+    # Combined statistics across the selected phases.
+    if len(targets) > 1:
+        combined = pd.concat(frames, ignore_index=True)
+        ov_all, long_comb = describe("ALL", combined, flags_all, None)
+        for key in ("hard_failures", "pending"):
+            ov_all[key] = sum(o.get(key) or 0 for o in overviews)
+        versions = {v.split(":")[0] for o in overviews for v in (o.get("prompt_versions") or "").split(";") if v}
+        models = {v.split(":")[0] for o in overviews for v in (o.get("models") or "").split(";") if v}
+        ov_all["prompt_versions"] = ";".join(sorted(versions))
+        ov_all["models"] = ";".join(sorted(models))
+        print_phase("ALL SELECTED PHASES", Path(", ".join(p for p, _ in targets)), ov_all, long_comb,
+                    flags_all, not args.no_distributions)
+        overviews.append(ov_all)
+        long_all.extend(long_comb)
+        print_cross_phase(overviews)
+    else:
+        versions = {v.split(":")[0] for v in (overviews[0].get("prompt_versions") or "").split(";") if v}
+        models = {v.split(":")[0] for v in (overviews[0].get("models") or "").split(";") if v}
+
+    # Results from different prompt versions or models must not be pooled.
+    if len(versions) > 1:
+        print(f"\nWARNING: results mix prompt versions {sorted(versions)}; do not pool them. "
+              "Recode older phases with the current prompt.")
+        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
+                          "check": "mixed_prompt_versions", "detail": str(sorted(versions))})
+    if len(models) > 1:
+        print(f"\nWARNING: results mix models {sorted(models)}; do not pool them.")
+        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
+                          "check": "mixed_models", "detail": str(sorted(models))})
+
+    if not args.paths:
+        # One folder per selection, so a single-phase check never overwrites the
+        # all-phases summary.
+        scope = "all" if args.phases.strip().lower() == "all" else "+".join(p for p, _ in targets)
+        summary_dir = args.output_root / args.crisis / args.pass_dir / "_validation" / scope
+        summary_dir.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame(flags_all, columns=FLAG_COLS).to_csv(summary_dir / "flags_all.csv", index=False)
+        pd.DataFrame(overviews).to_csv(summary_dir / "phase_overview.csv", index=False)
+        pd.DataFrame(long_all).to_csv(summary_dir / "stats_long.csv", index=False)
+        print(f"\nSummary tables written -> {summary_dir}/ (flags_all, phase_overview, stats_long)")
+
+    errs = sum(f["severity"] == "ERROR" for f in flags_all)
+    warns = sum(f["severity"] == "WARN" for f in flags_all)
+    print(f"\nOverall: {errs} ERROR flags, {warns} WARN flags across {len(targets)} phase(s)")
     return 1 if errs or (args.strict and warns) else 0
 
 
