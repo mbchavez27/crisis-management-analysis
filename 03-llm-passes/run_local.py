@@ -1386,6 +1386,11 @@ def run_pair(
                 if isinstance(v, (list, dict))
                 else v
             )
+    # Uncoded rows make pandas upcast binary columns to float (0.0 / 1.0). Keep them
+    # as nullable integers so the CSV holds 0 / 1 and blanks for uncoded rows.
+    for c in BINARY_KEYS:
+        if c in merged.columns:
+            merged[c] = pd.to_numeric(merged[c], errors="coerce").astype("Int64")
     merged.sort_values("row_id")[keep].to_csv(csv_path, index=False)
     print(f"Wrote {len(merged)} rows (coverage {coverage:.1%}) -> {csv_path}")
     clean = (

@@ -147,6 +147,28 @@ def read_jsonl_field(path: Path, field: str) -> Counter:
     return out
 
 
+_REASON = re.compile(r"([a-z][a-z_]{2,})(?::|')")
+
+
+def failure_reasons(path: Path) -> Counter:
+    """Count hard failures by reason (prompt_too_long, evidence_not_verbatim, ...)."""
+    out: Counter = Counter()
+    if not path.exists():
+        return out
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            try:
+                err = str(json.loads(line).get("error", ""))
+            except Exception:
+                continue
+            if "EngineDeadError" in err:
+                out["engine_dead"] += 1
+                continue
+            m = _REASON.search(err.split("row ", 1)[-1] if "row " in err else err)
+            out[m.group(1) if m else "other"] += 1
+    return out
+
+
 def count_lines(path: Path) -> int:
     if not path.exists():
         return 0
@@ -186,6 +208,12 @@ def discover(args: argparse.Namespace) -> list[tuple[str, Path]]:
 # --------------------------------------------------------------------------- validation
 def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
     df = pd.read_csv(path, dtype=str, keep_default_na=False)
+    # run_local.py versions before the fix wrote binaries as 0.0 / 1.0 when a phase
+    # had uncoded rows (pandas upcasts to float on the merge). Same values, so read
+    # them as 0 / 1 instead of flagging every cell.
+    for c in BINARY:
+        if c in df.columns:
+            df[c] = df[c].replace({"0.0": "0", "1.0": "1"})
     flags: list[dict] = []
     missing = [c for c in REQUIRED if c not in df.columns]
     if missing:
@@ -371,6 +399,8 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         ov["prompt_versions"] = ";".join(f"{k}:{v}" for k, v in sorted(versions.items()))
         ov["models"] = ";".join(f"{k}:{v}" for k, v in sorted(models.items()))
         ov["hard_failures"] = count_lines(d / "full_codebook_failures.log")
+        reasons = failure_reasons(d / "full_codebook_failures.log")
+        ov["failure_reasons"] = ";".join(f"{k}:{v}" for k, v in reasons.most_common())
         ov["pending"] = count_lines(d / "full_codebook_pending.log")
 
     long: list[dict] = []
@@ -410,6 +440,8 @@ def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[
           f"hard failures {ov.get('hard_failures', '-')} | pending {ov.get('pending', '-')}")
     print(f"comments: {ov['videos']} videos | words mean {ov['words_mean']}, median {ov['words_median']}, "
           f"max {ov['words_max']} | emoji-only {ov['emoji_only']}")
+    if ov.get("failure_reasons"):
+        print(f"hard-failure reasons: {ov['failure_reasons']}")
     if ov.get("prompt_versions"):
         print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']}")
     if "language_review_flags" in ov:
@@ -493,6 +525,13 @@ def main() -> int:
         ov_all, long_comb = describe("ALL", combined, flags_all, None)
         for key in ("hard_failures", "pending"):
             ov_all[key] = sum(o.get(key) or 0 for o in overviews)
+        reasons_all: Counter = Counter()
+        for o in overviews:
+            for part in (o.get("failure_reasons") or "").split(";"):
+                if ":" in part:
+                    k, v = part.rsplit(":", 1)
+                    reasons_all[k] += int(v)
+        ov_all["failure_reasons"] = ";".join(f"{k}:{v}" for k, v in reasons_all.most_common())
         versions = {v.split(":")[0] for o in overviews for v in (o.get("prompt_versions") or "").split(";") if v}
         models = {v.split(":")[0] for o in overviews for v in (o.get("models") or "").split(";") if v}
         ov_all["prompt_versions"] = ";".join(sorted(versions))
