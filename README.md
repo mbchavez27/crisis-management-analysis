@@ -30,8 +30,10 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │   ├── pyproject.toml                    # Separate uv env for the local runner (vLLM 0.11.0)
 │   ├── run_local.py                      # Local GPU codebook coder (vLLM, schema-constrained)
 │   ├── validate_results.py               # Validation + descriptive statistics of coded output
+│   ├── make_pilot_sample.py              # Stratified (class-enriched) human-validation sample
+│   ├── pilot/{crisis-slug}/              # Pilot coding sheet, comment ids, design record
 │   ├── prompts/
-│   │   ├── coding-prompt.txt             # LLM wrapper prompt (versioned, currently v1.4)
+│   │   ├── coding-prompt.txt             # LLM wrapper prompt (versioned, currently v1.5)
 │   │   ├── coding-prompt-CHANGELOG.md    # Why each prompt version changed
 │   │   ├── codebook-v2.1.md              # Codebook shared by human and LLM coders
 │   │   └── phase-context.json            # Per-crisis, per-phase CASE CONTEXT text
@@ -153,11 +155,17 @@ How it works, in short:
 - The prompt is `prompts/coding-prompt.txt` (version in its `#` header) + the codebook
   (analysis-only sections omitted) + the phase's CASE CONTEXT from `phase-context.json`.
 - One comment per call (`--chunk-size 1`). Decoding is constrained to a JSON schema:
-  the model cites codes only inside evidence items (`quote`, `quote_en`, `codes`);
-  the script derives all 33 code fields from them, and STANCE / TARGET_OF_COMMENT /
-  LANGUAGE are whole-comment fields. Every code is traceable to quoted words.
-- Rows are checked (verbatim quotes, codebook cross-field rules); a rejected row is
-  retried up to twice with a correction note, then logged as a hard failure.
+  the model cites binary and list codes only inside evidence items (`quote`,
+  `quote_en`, `codes`); the script derives the code fields from them. The choose-ONE
+  codes (ATTRIBUTION, STANCE, TARGET_OF_COMMENT, CLASS_DIRECTION, RESPONSE_TARGET,
+  RESPONSE_EVAL) and LANGUAGE are whole-comment fields. Every cited code, including
+  CLASS_FRAME, is traceable to quoted words.
+- Rows are checked (quotes found in the comment, codebook cross-field rules). A
+  rejected row is retried up to twice with a correction note. If only soft issues
+  remain (unverifiable quote, over-long quote, unlabeled OTHER, incomplete class or
+  response pair), the row is **kept** and listed in `review_flags`, so long comments
+  are not silently lost. Only unusable output (bad JSON, prompt too long) is a hard
+  failure.
 - Progress is checkpointed per row. Rerunning the same command resumes; rows coded
   with a different prompt version are recoded, never mixed in.
 
@@ -181,77 +189,126 @@ uv run python -c "import torch, vllm, transformers; print(torch.__version__, tor
 After `uv sync`, run everything with `uv run --no-sync` so uv never re-resolves the
 environment mid-project.
 
-#### Lab PC (RTX 3060, 12 GB — 4-bit, for testing)
+#### GPU profiles and precision
 
-The 9B model only fits a 12 GB card in 4-bit with a 7,168-token context. Close Firefox
-and other GPU apps first (the desktop shares the card). Use the 3060 for smoke tests and
-prompt work; report results from the A100 run.
+`--gpu-profile` sets the right options for each machine (explicit flags override it).
+Every coded row records its `precision`; resuming at a different precision recodes
+rows, each phase folder gets `run_info.json`, and `validate_results.py` warns if
+phases mix precisions.
+
+| Profile | Weights | KV cache | Context | At once | Precision label | Use |
+|---|---|---|---|---|---|---|
+| `rtx3060` | nf4 4-bit | bf16 | 7,168 | 2 | `nf4-weights` | Testing only (secondary) |
+| `l4-full` | bf16 | bf16 | 8,192 | 4 | `bf16-weights` | Canonical, slow |
+| `l4-fp8` | FP8 | FP8 | 8,192 | 12 | `fp8-weights+fp8-kv` | Fast; 8-bit — disclose and validate on the pilot |
+| `a100` | bf16 | bf16 | 8,192 | 8 | `bf16-weights` | Canonical, fast |
+
+`l4-fp8` also turns on `--compact-json` (no optional whitespace in answers: fewer
+output tokens, same codes).
+
+#### Running the coding pass
+
+Run the setup once per session, then the block for your machine. Each block starts
+with a 10-row test; the full run starts only if all 10 rows code cleanly.
+
+**Setup (every session, inside tmux)**
 
 ```bash
-cd crisis-management-analysis/03-llm-passes
-mkdir -p logs
-tmux new -s coding          # long runs must survive a closed terminal / SSH drop
-set -o pipefail
-
+tmux new -s coding
+cd ~/Documents/crisis-management-analysis/03-llm-passes   # adjust the path on the L4 machine
+mkdir -p logs && set -o pipefail
 PHASES=$(ls ../01-preprocessing/output/ateneo-drowning/youtube/*.csv \
          | xargs -n1 basename | sed 's/\.csv//' | sort | paste -sd,)
-
-# Smoke test (10 rows) — the full run starts only if all 10 are coded cleanly
-uv run --no-sync python run_local.py --crisis ateneo-drowning \
-    --phases 01-onset --passes 1 --chunk-size 1 --max-new-tokens 1024 \
-    --max-model-len 7168 --load-in-4bit --closing --limit 10 --overwrite \
-    2>&1 | tee logs/test-01-onset.log \
-&& uv run --no-sync python run_local.py --crisis ateneo-drowning \
-    --phases "$PHASES" --passes 1 --chunk-size 1 --max-new-tokens 1024 \
-    --max-model-len 7168 --load-in-4bit --closing \
-    2>&1 | tee logs/full-all-phases.log
+BASE="--crisis ateneo-drowning --passes 1 --chunk-size 1 --max-new-tokens 1024 --closing"
 ```
 
-Detach from tmux with `Ctrl+B` then `D`; reattach with `tmux attach -t coding`.
-To run one phase only, replace `"$PHASES"` with e.g. `04-reckoning`.
+Detach with `Ctrl+B` then `D`; reattach with `tmux attach -t coding`.
 
-#### GCP VM (A100 40 GB — canonical full precision)
+**1. RTX 3060 — 4-bit, testing only (~10.6 s/comment measured)**
 
 ```bash
-# 0. One-time: request NVIDIA_A100_GPUS quota (1) in your region — approval can take days
-# 1. Create the VM (Deep Learning image = driver preinstalled; pick another pytorch image
-#    family with: gcloud compute images list --project=deeplearning-platform-release)
+# 700 per phase + class census (~3.5k comments, ~10–11 h)
+uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile rtx3060 \
+    --limit 10 --overwrite 2>&1 | tee logs/test-rtx3060.log \
+&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile rtx3060 \
+    --sample-per-phase 700 --class-census 2>&1 | tee logs/run-rtx3060-700.log
+```
+
+Close Firefox and other GPU apps first (the desktop shares the card).
+
+**2. L4 full precision — canonical, slow**
+
+```bash
+# a) 700 per phase + class census (~3.5k comments, ~8–10 h)
+uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile l4-full \
+    --limit 10 --overwrite 2>&1 | tee logs/test-l4-full.log \
+&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+    --sample-per-phase 700 --class-census 2>&1 | tee logs/run-l4-full-700.log
+
+# b) all comments (~11.5k, ~22–28 h; rerun the same command to resume across sessions)
+uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+    2>&1 | tee -a logs/run-l4-full-all.log
+```
+
+**3. L4 FP8 — fast, needs disclosure**
+
+```bash
+# a) all comments (~11.5k, ~5–9 h)
+uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile l4-fp8 \
+    --limit 10 --overwrite 2>&1 | tee logs/test-l4-fp8.log \
+&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
+    2>&1 | tee logs/run-l4-fp8-all.log
+
+# b) ~10k (3,700 per phase + class census, ~4–8 h)
+uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
+    --sample-per-phase 3700 --class-census 2>&1 | tee logs/run-l4-fp8-10k.log
+```
+
+If the FP8 test fails at startup on the KV cache, retry with
+`--attention-backend TRITON_ATTN` (or `FLASHINFER` after `uv add flashinfer-python`).
+
+**Notes**
+
+- Times are estimates: hours ≈ comments × seconds per row (from the test log) ÷ 3,600.
+  To choose between full precision and FP8, run both 10-row tests and compare speed and
+  codes (NEEDS_CONTEXT, STANCE, LANGUAGE, CLASS_FRAME) on the same comments. Each test
+  uses `--overwrite`, so read the first test's CSV before running the second.
+- Interrupted? Rerun the same full-run command (no `--limit`, no `--overwrite`); it
+  resumes with the same sample. Changing profile or sample size recodes rows instead of
+  mixing them, so decide before the long run.
+- Sampled runs: each phase folder gets `sample_info.json` (design, seed, sizes,
+  weights) and rows get `sample_stratum` / `sample_weight`. Use the weights for any
+  phase-level percentage — the class census over-represents class talk on purpose.
+- Validate afterwards: `uv run --no-sync python validate_results.py`.
+
+#### Cloud VM setup (GCP)
+
+Creates the VM and environment; then use the run blocks above.
+
+```bash
+# 0. One-time: request GPU quota in your region (NVIDIA_L4_GPUS, or NVIDIA_A100_GPUS)
+# 1. Create the VM (Deep Learning image = driver preinstalled). L4: g2-standard-8; A100: a2-highgpu-1g
 gcloud compute instances create coding-vm \
-  --zone=us-central1-a --machine-type=a2-highgpu-1g \
+  --zone=us-central1-a --machine-type=g2-standard-8 \
   --image-family=pytorch-2-cuda12-8-ubuntu-22-04-pt \
   --image-project=deeplearning-platform-release \
   --boot-disk-size=100GB
 
 # 2. SSH in and set up
 gcloud compute ssh coding-vm --zone=us-central1-a
-nvidia-smi    # expect 1x A100-SXM4-40GB and CUDA Version >= 12.8
+nvidia-smi    # expect the GPU and CUDA Version >= 12.8
 curl -LsSf https://astral.sh/uv/install.sh | sh && source ~/.local/bin/env
 git clone git@github.com:mbchavez27/crisis-management-analysis.git
 cd crisis-management-analysis/03-llm-passes && uv sync
 uv run hf auth login    # only if the weights download is 401 license-gated
 
-# 3. Smoke test, then all phases in ONE invocation (one model load), inside tmux.
-#    No --load-in-4bit and no --max-model-len: full precision, full 8,192 context.
-tmux new -s coding
-mkdir -p logs && set -o pipefail
-PHASES=$(ls ../01-preprocessing/output/ateneo-drowning/youtube/*.csv \
-         | xargs -n1 basename | sed 's/\.csv//' | sort | paste -sd,)
-
-uv run --no-sync python run_local.py --crisis ateneo-drowning \
-    --phases 01-onset --passes 1 --chunk-size 1 --max-new-tokens 1024 \
-    --closing --limit 10 --overwrite 2>&1 | tee logs/test-01-onset.log \
-&& uv run --no-sync python run_local.py --crisis ateneo-drowning \
-    --phases "$PHASES" --passes 1 --chunk-size 1 --max-new-tokens 1024 \
-    --closing 2>&1 | tee logs/full-all-phases.log
-
-# 4. Validate on the VM (see below), retrieve results, then STOP the VM
-#    (an idle A100 bills ~$3.67/hr)
+# 3. Run (blocks above), validate, then retrieve results and STOP the VM (idle GPUs bill hourly)
 exit
 gcloud compute scp --recurse coding-vm:~/crisis-management-analysis/03-llm-passes/output ./vm-output --zone=us-central1-a
 gcloud compute instances stop coding-vm --zone=us-central1-a
 ```
 
-Spot variant saves ~40% (`--provisioning-model=SPOT`): safe because per-row checkpoints
+Spot VMs save ~40% (`--provisioning-model=SPOT`): safe because per-row checkpoints
 resume after a preemption — rerun the full-run command (without `--overwrite`).
 
 #### `run_local.py` options
@@ -262,12 +319,27 @@ resume after a preemption — rerun the full-run command (without `--overwrite`)
 | `--phases` | required | Comma-separated phase slugs |
 | `--passes` | required | `1` (full-codebook pass) |
 | `--chunk-size` | `5` | **Always use `1`** — schema-constrained decoding only applies per comment |
-| `--max-new-tokens` | `1024` | Output budget per comment |
+| `--max-new-tokens` | `1024` | Maximum output per comment |
+| `--min-new-tokens` | `512` | Guaranteed output per comment; each request gets what the context has left, between the two |
 | `--max-model-len` | `8192` | Total context. Use `7168` on a 12 GB card |
 | `--load-in-4bit` | off | bitsandbytes nf4 + small-GPU memory profile. 12 GB cards only |
 | `--model` | `aisingapore/Gemma-SEA-LION-v3-9B-IT` | Any HF instruct causal LM; vet with `--limit 10` first |
 | `--limit` | all rows | Cap rows per phase (smoke tests) |
 | `--closing` | off | Append a "JSON only" reminder after the comment |
+| `--only-ids` | none | Code only these comment_ids (pilot sample); use with `--run-name pilot` |
+| `--run-name` | none | Write to `full-codebook-coding-<name>/` (e.g. `pilot`) |
+| `--concurrency` | `3` | Comments generated at once. 3060 (4-bit): `2`; L4: `4`; A100: `8`+ |
+| `--sample-per-phase` | all | Seeded random sample of N comments per phase |
+| `--class-census` | off | With sampling: keep every class-vocabulary comment too; rows get `sample_weight` |
+| `--sample-seed` | `20261005` | Same seed = same comments on every machine |
+| `--low-memory` | off | Trim unused vLLM reservations (implied by `--load-in-4bit`); use on 24 GB cards |
+| `--gpu-profile` | none | `rtx3060`, `l4-full`, `l4-fp8`, `a100` (see GPU profiles) |
+| `--fp8-weights` | off | FP8 weights (8-bit); disclose and validate on the pilot |
+| `--fp8-kv-cache` | off | FP8 attention cache: ~2× more comments at once |
+| `--no-language-rule` | off | Keep the model's LANGUAGE (no A1 word-evidence correction) |
+| `--compact-json` | off | No optional whitespace in answers (fewer tokens, same codes) |
+| `--attention-backend` | auto | Override vLLM's attention backend if FP8 cache is rejected |
+| `--gpu-memory-utilization` | `0.90` | `0.95` on headless server GPUs (L4, A100) |
 | `--overwrite` | off | Discard checkpoints. **Only for fresh tests — never on a resume** |
 
 Exit code `0` = every requested phase fully coded; `1` = some rows failed or are
@@ -277,14 +349,23 @@ Outputs per phase, in `output/{crisis}/full-codebook-coding/{phase}/`:
 
 | File | Contents |
 |---|---|
-| `full_codebook_results.csv` | One row per comment; all 39 code fields + `autofix` + `status` |
+| `full_codebook_results.csv` | One row per comment; all 39 code fields + `autofix` + `review_flags` + `status` |
 | `full_codebook_results.jsonl` | Coded records incl. `model` and `prompt_version` |
 | `full_codebook_failures.log` | Rows that failed after retries (code these by hand) |
 | `full_codebook_pending.log` | Rows not attempted (engine crash / outage) — rerun to resume |
 | `debug_raw.jsonl` | Raw model output of every rejected attempt, with the reason |
 
 The `autofix` column records deterministic codebook corrections (e.g. emoji-only →
-`LANGUAGE=EMOJI`) and `language_check:*` review flags (flagged, never overwritten).
+`LANGUAGE=EMOJI`) and `language_check:*` flags (flagged, never overwritten).
+Codebook-rule corrections also appear in `autofix`: `needs_context->0(not_reply)`
+(D2: only replies), `uncodable->0(codes_cited)` (I4), and `language->ENGLISH(rule)` /
+`language->FILIPINO(rule)` (A1; off with `--no-language-rule`). They are re-applied on
+every export, so changing them never requires recoding.
+`review_flags` also marks `blame_unnamed(X)` and `class_frame_no_class_word` for review.
+`review_flags` lists rows kept after retries: `evidence_unverified`, `evidence_long`,
+`evidence_fuzzy`, `other_unlabeled(X)`, `class_direction_missing`,
+`class_direction_without_frame(X)`, `response_incomplete(T/E)`. Report results with
+and without flagged rows.
 
 #### Validating results and dataset statistics
 
@@ -297,7 +378,9 @@ uv run --no-sync python validate_results.py --no-distributions             # sho
 uv run --no-sync python validate_results.py --strict                       # exit 1 on WARN too
 ```
 
-Per phase it prints coverage, failures, comment length, videos, code prevalence,
+Per phase it prints coverage, failures (by reason), uncoded rate by comment length,
+a class audit (CLASS_FRAME rate; class-vocabulary comments that are uncoded or not
+class-framed), NEEDS_CONTEXT rate, comment length, videos, code prevalence,
 categorical / multi-label distributions, confidence and review flags; for several
 phases it adds combined statistics and a cross-phase table. It warns if the selection
 mixes prompt versions or models (do not pool those). Outputs:
@@ -311,6 +394,32 @@ mixes prompt versions or models (do not pool those). Outputs:
 `{scope}` is `all` or the selected phases joined with `+`. The checks find rows to
 review; accuracy must still be measured against human codes (the 200 hand-coded pilot
 comments).
+
+#### Human validation (pilot sample)
+
+The coded output is only usable for the RQs if it agrees with human coders on the
+fields the RQs rely on — above all CLASS_FRAME / CLASS_DIRECTION and the emotions.
+CLASS_FRAME is rare (~4%), so the pilot sample oversamples class vocabulary:
+
+```bash
+cd crisis-management-analysis/03-llm-passes
+uv run --no-sync python make_pilot_sample.py            # 150 random + 75 class-vocabulary comments
+# -> pilot/ateneo-drowning/pilot_sample.csv      blind coding sheet for human coders
+# -> pilot/ateneo-drowning/pilot_comment_ids.txt  ids for --only-ids
+# -> pilot/ateneo-drowning/pilot_design.json      seed, strata, counts (for the methods)
+
+# Code the same comments with the LLM (setup block from "Running the coding pass" first):
+# Use the SAME --gpu-profile as the main run, so the pilot measures that precision.
+uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+    --only-ids pilot/ateneo-drowning/pilot_comment_ids.txt --run-name pilot
+# -> output/ateneo-drowning/full-codebook-coding-pilot/
+```
+
+Sampling is drawn from the preprocessed comments, so comments the model fails on are
+included. The random stratum estimates agreement as fields occur; the class stratum is
+an oversample and is reported separately or weighted (`weight` column), never pooled
+unweighted. Per-field agreement (percent, Cohen's κ, Gwet's AC1) is computed once the
+human codes are in.
 
 #### Prompt and codebook versioning
 
@@ -337,7 +446,8 @@ GTX 10-series) are unsupported by current torch wheels — use the GCP VM instea
 | `KV cache is needed, which is larger than the available KV cache memory` | Add `--max-model-len 7168`; close other GPU apps |
 | `Inference engine died` (EngineDeadError, usually OOM) | Remaining rows are marked pending. Free GPU memory, rerun without `--overwrite` |
 | Startup: `Prompt template (…) does not fit` | Prompt + `--max-new-tokens` exceed the context. Lower `--max-new-tokens` or raise `--max-model-len` |
-| Hard failures `prompt_too_long` | That comment is too long for the 3060 budget; code by hand or rerun on the A100 |
+| Hard failures `prompt_too_long` | The comment leaves less than `--min-new-tokens` of context (3060 at 7,168: comments over ~650 tokens). Code by hand or run on the L4/A100 (8,192) |
+| `rejected (output_truncated …)` | The answer hit the output limit; it is retried with a note asking for fewer, shorter evidence items |
 | `unfilled slot '<<…>>'` | Codebook placeholder in `coding-prompt.txt` is not one of `CODEBOOK_SLOTS` |
 | `No phase context for {crisis}/{phase}` | Add the phase to `prompts/phase-context.json` |
 | Many `rejected (…); retry` lines | Inspect `debug_raw.jsonl`; a model that fails most rows needs a stronger model or a prompt revision |

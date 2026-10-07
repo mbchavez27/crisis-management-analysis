@@ -1,0 +1,9 @@
+{
+  "model": "aisingapore/Gemma-SEA-LION-v3-9B-IT",
+  "precision": "nf4-weights",
+  "prompt_version": "v1.5",
+  "concurrency": 2,
+  "max_model_len": 7168,
+  "max_new_tokens": 1024,
+  "written": "2026-10-05T17:08:18"
+}
