@@ -1,6 +1,6 @@
 .PHONY: setup pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
         analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
-        insights sentiment-change summary clean help
+        insights sentiment-change stats summary clean help
 
 # Default target
 help:
@@ -31,6 +31,7 @@ help:
 	@echo ""
 	@echo "Insight targets:"
 	@echo "  sentiment-change      Sentiment change across phases"
+	@echo "  stats                 Merge LLM-coded phases + statistical analysis"
 	@echo "  summary               Final summary and visualizations"
 	@echo ""
 	@echo "Utility targets:"
@@ -90,7 +91,7 @@ topics-transcripts:
 
 # === Insights ===
 
-insights: sentiment-change summary
+insights: sentiment-change stats summary
 	@echo "=== All insights complete ==="
 
 sentiment-change:

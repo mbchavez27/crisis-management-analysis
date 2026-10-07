@@ -35,6 +35,8 @@ STAGES = {
     "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
     # Local LLM passes (full-phase, no API key)
     "llm-local":             "03-llm-passes/run_local.sh",
+    # Statistical analysis (merges LLM-coded phases, comment-level models)
+    "stats":                 "04-statistical-analysis/run_stats.sh",
     # Insights
     "summary":               "05-summary/run_summary.sh",
 }
@@ -43,7 +45,7 @@ COMPOSITE_STAGES = {
     "preprocess": ["preprocess-youtube", "preprocess-reddit", "preprocess-transcripts"],
     "analysis":   ["sentiment-youtube", "topics-youtube", "topic-validation",
                    "sentiment-transcripts", "topics-transcripts"],
-    "insights":   ["sentiment-change", "summary"],
+    "insights":   ["sentiment-change", "stats", "summary"],
     "pipeline":   ["preprocess", "analysis", "insights"],
 }
 
@@ -130,8 +132,9 @@ MENU = """
      g. All YouTube analysis
      h. All transcript analysis
      i. All analysis
-  4. Insights
-     a. Summary
+   4. Insights
+      a. Statistical analysis
+      b. Summary
   5. Clean outputs
   0. Exit
 """
@@ -151,8 +154,8 @@ INTERACTIVE_MAP = {
     "3g": ["sentiment-youtube", "topics-youtube", "topic-validation", "sentiment-change"],
     "3h": ["sentiment-transcripts", "topics-transcripts"],
     "3i": "analysis",
-    "4a": "summary",
-    "4b": "insights",
+    "4a": "stats",
+    "4b": "summary",
 }
 
 

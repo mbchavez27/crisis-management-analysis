@@ -94,7 +94,8 @@ Each crisis lives under `00-data/{crisis-slug}/` with its own set of YouTube, Re
 2. **Sentiment Analysis** — XLM-RoBERTa multilingual 3-class sentiment scoring.
 3. **Topic Modeling** — BERTopic unsupervised topic discovery.
 4. **Cross-Phase Analysis** — Sentiment trajectory, within-phase decay, boundary shifts.
-5. **Summary** — Consolidated findings with visualizations.
+5. **Statistical Analysis** — Merges LLM-coded phases (`04-statistical-analysis`), comment-level models with SEs clustered on video.
+6. **Summary** — Consolidated findings with visualizations (`05-summary`).
 
 ### Running the Pipeline (always via `uv run`)
 
