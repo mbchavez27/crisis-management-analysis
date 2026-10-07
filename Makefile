@@ -97,9 +97,13 @@ sentiment-change:
 	@echo "--- Sentiment change across phases ---"
 	@bash 02-analysis/youtube/run_sentiment_change.sh
 
+stats:
+	@echo "--- Statistical analysis (merge + models) ---"
+	@bash 04-statistical-analysis/run_stats.sh
+
 summary:
 	@echo "--- Generating summary ---"
-	@bash 04-summary/run_summary.sh
+	@bash 05-summary/run_summary.sh
 
 # === Cleanup ===
 
@@ -117,5 +121,5 @@ clean:
 	rm -f outputs/figures/01-preprocessing/*.png
 	rm -f outputs/figures/02-analysis/youtube/*.png
 	rm -f outputs/figures/02-analysis/transcripts/*.png
-	rm -f outputs/figures/04-summary/*.png
+	rm -f outputs/figures/05-summary/*.png
 	@echo "=== Outputs cleaned ==="

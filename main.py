@@ -36,7 +36,7 @@ STAGES = {
     # Local LLM passes (full-phase, no API key)
     "llm-local":             "03-llm-passes/run_local.sh",
     # Insights
-    "summary":               "04-summary/run_summary.sh",
+    "summary":               "05-summary/run_summary.sh",
 }
 
 COMPOSITE_STAGES = {

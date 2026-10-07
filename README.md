@@ -42,7 +42,14 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │       └── full-codebook-coding/
 │           ├── {phase}/                  # results CSV/JSONL, failure + pending logs, debug_raw
 │           └── _validation/{scope}/      # validate_results.py summary tables
-├── 04-summary/
+├── 04-statistical-analysis/
+│   ├── run_stats.sh                      # Merge + statistical analysis (papermill wrapper)
+│   ├── notebooks/
+│   │   ├── 01-merge-and-prep.ipynb      # Merge phase CSVs into analysis_df.csv
+│   │   └── 02-statistical-analysis.ipynb # Comment-level models, clustered SEs
+│   └── output/{crisis-slug}/
+│       └── analysis_df.csv / emotion_by_class.csv / validation samples
+├── 05-summary/
 │   └── notebooks/
 │       └── summary.ipynb    # Consolidated findings
 ├── 00-data/
