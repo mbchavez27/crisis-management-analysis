@@ -12,12 +12,12 @@ Descriptive statistics, per phase and for all selected phases combined:
   coverage and failures, comment length, videos, language, code prevalence,
   categorical and multi-label distributions, confidence, review flags.
 
-Usage:
-    python validate_results.py                                  # all phases
-    python validate_results.py --phases 01-onset                # one phase
-    python validate_results.py --phases 01-onset,04-reckoning   # several
-    python validate_results.py --phases all --strict            # exit 1 on WARN too
-    python validate_results.py path/to/full_codebook_results.csv   # explicit file(s)
+Usage (run from 03-llm-passes/):
+    python scripts/validate_results.py                                  # all phases
+    python scripts/validate_results.py --phases 01-onset                # one phase
+    python scripts/validate_results.py --phases 01-onset,04-reckoning   # several
+    python scripts/validate_results.py --phases all --strict            # exit 1 on WARN too
+    python scripts/validate_results.py path/to/full_codebook_results.csv   # explicit file(s)
 
 Outputs:
   <phase>/full_codebook_results_validation_flags.csv   one row per flag (per phase)
@@ -588,7 +588,7 @@ def main() -> int:
     ap.add_argument("--crisis", default="ateneo-drowning", help="crisis slug under the output root")
     ap.add_argument("--phases", default="all", help="'all' or comma-separated phases, e.g. 01-onset,04-reckoning")
     ap.add_argument("--pass-dir", default="full-codebook-coding", help="pass directory under the crisis")
-    ap.add_argument("--output-root", type=Path, default=HERE / "output", help="run_local.py output root")
+    ap.add_argument("--output-root", type=Path, default=HERE.parent / "output", help="run_local.py output root")
     ap.add_argument("--no-distributions", action="store_true", help="skip per-phase distribution printouts")
     ap.add_argument("--strict", action="store_true", help="exit 1 on WARN as well as ERROR")
     args = ap.parse_args()

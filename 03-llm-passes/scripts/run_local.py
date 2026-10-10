@@ -1,22 +1,22 @@
 r"""Local-LLM runner for the v2 full-codebook coding pass.
 
-Mirrors the full-codebook-coding notebook cell-for-cell except the micro-sample
-step: full phase CSVs are coded instead of head(n_sample). Passes 1-3
-(notebooks and prompts) are archived under legacy/; this runner serves the
-single active v2 codebook pass.
+Codes full phase CSVs against codebook v2.1 (single active v2 pass).
+Supersedes the removed notebooks/full-codebook-coding.ipynb micro-sample path.
 
 Opt-in execution: --phases and --passes are both required, and the script
 runs exactly their cartesian product (one phase x one prompt per run pair).
 
+Run from 03-llm-passes/ (where pyproject.toml lives, so uv resolves the env).
+
 Example:
-    uv run python run_local.py --phases 04-reckoning --passes 1
-    uv run python run_local.py --phases 04-reckoning --passes 1 --limit 10
-    uv run python run_local.py --phases 04-reckoning --passes 1 --load-in-4bit
+    uv run python scripts/run_local.py --phases 04-reckoning --passes 1
+    uv run python scripts/run_local.py --phases 04-reckoning --passes 1 --limit 10
+    uv run python scripts/run_local.py --phases 04-reckoning --passes 1 --load-in-4bit
 
     # All phases, ONE model load (comma-separated):
     PHASES=$(ls ../01-preprocessing/output/ateneo-drowning/youtube/*.csv \
              | xargs -n1 basename | sed 's/\.csv//' | sort | paste -sd,)
-    uv run --no-sync python run_local.py --crisis ateneo-drowning \
+    uv run --no-sync python scripts/run_local.py --crisis ateneo-drowning \
         --phases "$PHASES" --passes 1 --chunk-size 1 --load-in-4bit --closing
 
 --load-in-4bit: nf4 quantization (bitsandbytes, applied by vLLM at load time)
@@ -41,9 +41,10 @@ from typing import Any, Optional
 import pandas as pd
 from tqdm import tqdm
 
-HERE = Path(__file__).parent
-PROMPTS_DIR = HERE / "prompts"
-OUTPUT_ROOT = HERE / "output"
+HERE = Path(__file__).resolve().parent
+STAGE_ROOT = HERE.parent
+PROMPTS_DIR = STAGE_ROOT / "prompts"
+OUTPUT_ROOT = STAGE_ROOT / "output"
 
 # Instruction-tuned SEA-LION v3 (the plain "-9B" checkpoint is the base model).
 DEFAULT_MODEL = "aisingapore/Gemma-SEA-LION-v3-9B-IT"
@@ -52,7 +53,7 @@ MAX_MODEL_LEN = 8192
 SKIP_SUMMARY_COLS = {"row_id", "comment_id", "video_id", "text", "id", "_row_id", "row_ids", "status", "sample_weight"}
 
 # Outage-resilient retry: exponential backoff, requeue, circuit breaker.
-# Values mirror the full-codebook-coding notebook inference cell exactly.
+# Values kept identical to the former notebook inference cell.
 TRANSIENT_TRIES = 5       # 5 attempts => transient sleeps ~10/20/40/80s
 TRANSIENT_BASE_S = 10
 BACKOFF_CAP_S = 300
@@ -759,7 +760,7 @@ def split_csv_arg(value: str) -> list[str]:
     return [tok.strip() for tok in value.split(",") if tok.strip()]
 
 
-# Class vocabulary (F1). Same pattern as validate_results.py / make_pilot_sample.py.
+# Class vocabulary (F1). Same pattern as validate_results.py (keep both in sync).
 CLASS_WORDS = re.compile(
     r"\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\w*|"
     r"scholar\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\w*|"
@@ -803,7 +804,7 @@ def select_sample(df: pd.DataFrame, phase: str, n: Optional[int], seed: int,
 def load_phase_df(crisis: str, phase: str, limit: Optional[int]) -> pd.DataFrame:
     """Load a full phase CSV in file order with row_ids for lossless merging."""
     input_path = (
-        HERE / ".." / "01-preprocessing" / "output" / crisis / "youtube" / f"{phase}.csv"
+        STAGE_ROOT / ".." / "01-preprocessing" / "output" / crisis / "youtube" / f"{phase}.csv"
     ).resolve()
     full_df = pd.read_csv(input_path)
     if limit is not None:

@@ -1,9 +1,0 @@
-System Instruction:
-I will provide a dataset of comments in CSV format containing `video_id` and `text` columns. You must return the analysis strictly as a JSON array of objects. Do not include markdown formatting (other than the JSON block) or explanations outside of the JSON.
-
-For each comment's text, identify the action that is being called or demanded.
-
-Use this exact JSON structure for each object:
-- `video_id`: The video_id from the CSV.
-- `text`: The text of the comment from the CSV.
-- `action_demanded`: A string detailing the action called for. If no explicit action is demanded, state "None" or describe the implicit demand.

@@ -28,20 +28,20 @@ Text mining approach to analyzing public sentiment and discourse during multi-ph
 │       └── topics_{phase}.csv / topics_transcripts-{source}.csv
 ├── 03-llm-passes/
 │   ├── pyproject.toml                    # Separate uv env for the local runner (vLLM 0.11.0)
-│   ├── run_local.py                      # Local GPU codebook coder (vLLM, schema-constrained)
-│   ├── validate_results.py               # Validation + descriptive statistics of coded output
-│   ├── make_pilot_sample.py              # Stratified (class-enriched) human-validation sample
-│   ├── pilot/{crisis-slug}/              # Pilot coding sheet, comment ids, design record
+│   ├── scripts/
+│   │   ├── run_local.py                  # Local GPU codebook coder (vLLM, schema-constrained)
+│   │   └── validate_results.py           # Validation + descriptive statistics of coded output
 │   ├── prompts/
 │   │   ├── coding-prompt.txt             # LLM wrapper prompt (versioned, currently v1.5)
 │   │   ├── coding-prompt-CHANGELOG.md    # Why each prompt version changed
 │   │   ├── codebook-v2.1.md              # Codebook shared by human and LLM coders
 │   │   └── phase-context.json            # Per-crisis, per-phase CASE CONTEXT text
-│   ├── notebooks/                        # LLM passes (topic-label refinement, phase summaries)
-│   └── output/{crisis-slug}/
-│       └── full-codebook-coding/
-│           ├── {phase}/                  # results CSV/JSONL, failure + pending logs, debug_raw
-│           └── _validation/{scope}/      # validate_results.py summary tables
+│   └── output/
+│       ├── {crisis-slug}/
+│       │   └── full-codebook-coding/
+│       │       ├── {phase}/              # results CSV/JSONL, failure + pending logs, debug_raw
+│       │       └── _validation/{scope}/  # validate_results.py summary tables
+│       └── _archive/                     # Frozen past runs (never validated by default)
 ├── 04-summary/
 │   └── notebooks/
 │       └── summary.ipynb    # Consolidated findings
@@ -139,12 +139,12 @@ uv run python main.py --stage pipeline
 | Env var | Needed for | Where used |
 |---|---|---|
 | `GEMINI_API_KEY` | topic-label refinement | `02-analysis/*/topic-modeling.ipynb` via `load_dotenv("../../.env")` |
-| `GEMMA_API_KEY` | LLM passes | `03-llm-passes/notebooks/` |
+| `GEMMA_API_KEY` | LLM passes | `03-llm-passes/scripts/` |
 | `CRISIS` | multi-crisis select (default `ateneo-drowning`) | all `run_*.sh`, e.g. `CRISIS=... uv run bash ...` |
 
 ### Local LLM runner (GPU) — full-codebook coding
 
-`03-llm-passes/run_local.py` codes every YouTube comment against codebook v2.1 with a
+`03-llm-passes/scripts/run_local.py` codes every YouTube comment against codebook v2.1 with a
 local model. It needs **no API key and no `.env`**: only `uv`, a CUDA GPU, and network
 to HuggingFace for the first weight download (~18.5 GB for the default
 `aisingapore/Gemma-SEA-LION-v3-9B-IT`). It has its **own environment**
@@ -228,9 +228,9 @@ Detach with `Ctrl+B` then `D`; reattach with `tmux attach -t coding`.
 
 ```bash
 # 700 per phase + class census (~3.5k comments, ~10–11 h)
-uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile rtx3060 \
+uv run --no-sync python scripts/run_local.py $BASE --phases 01-onset --gpu-profile rtx3060 \
     --limit 10 --overwrite 2>&1 | tee logs/test-rtx3060.log \
-&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile rtx3060 \
+&& uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile rtx3060 \
     --sample-per-phase 700 --class-census 2>&1 | tee logs/run-rtx3060-700.log
 ```
 
@@ -240,13 +240,13 @@ Close Firefox and other GPU apps first (the desktop shares the card).
 
 ```bash
 # a) 700 per phase + class census (~3.5k comments, ~8–10 h)
-uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile l4-full \
+uv run --no-sync python scripts/run_local.py $BASE --phases 01-onset --gpu-profile l4-full \
     --limit 10 --overwrite 2>&1 | tee logs/test-l4-full.log \
-&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+&& uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
     --sample-per-phase 700 --class-census 2>&1 | tee logs/run-l4-full-700.log
 
 # b) all comments (~11.5k, ~22–28 h; rerun the same command to resume across sessions)
-uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
     2>&1 | tee -a logs/run-l4-full-all.log
 ```
 
@@ -254,13 +254,13 @@ uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-f
 
 ```bash
 # a) all comments (~11.5k, ~5–9 h)
-uv run --no-sync python run_local.py $BASE --phases 01-onset --gpu-profile l4-fp8 \
+uv run --no-sync python scripts/run_local.py $BASE --phases 01-onset --gpu-profile l4-fp8 \
     --limit 10 --overwrite 2>&1 | tee logs/test-l4-fp8.log \
-&& uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
+&& uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
     2>&1 | tee logs/run-l4-fp8-all.log
 
 # b) ~10k (3,700 per phase + class census, ~4–8 h)
-uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
+uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile l4-fp8 \
     --sample-per-phase 3700 --class-census 2>&1 | tee logs/run-l4-fp8-10k.log
 ```
 
@@ -279,7 +279,7 @@ If the FP8 test fails at startup on the KV cache, retry with
 - Sampled runs: each phase folder gets `sample_info.json` (design, seed, sizes,
   weights) and rows get `sample_stratum` / `sample_weight`. Use the weights for any
   phase-level percentage — the class census over-represents class talk on purpose.
-- Validate afterwards: `uv run --no-sync python validate_results.py`.
+- Validate afterwards: `uv run --no-sync python scripts/validate_results.py`.
 
 #### Cloud VM setup (GCP)
 
@@ -371,11 +371,11 @@ and without flagged rows.
 
 ```bash
 cd crisis-management-analysis/03-llm-passes
-uv run --no-sync python validate_results.py                                # all phases
-uv run --no-sync python validate_results.py --phases 01-onset              # one phase
-uv run --no-sync python validate_results.py --phases 01-onset,04-reckoning # several
-uv run --no-sync python validate_results.py --no-distributions             # shorter output
-uv run --no-sync python validate_results.py --strict                       # exit 1 on WARN too
+uv run --no-sync python scripts/validate_results.py                                # all phases
+uv run --no-sync python scripts/validate_results.py --phases 01-onset              # one phase
+uv run --no-sync python scripts/validate_results.py --phases 01-onset,04-reckoning # several
+uv run --no-sync python scripts/validate_results.py --no-distributions             # shorter output
+uv run --no-sync python scripts/validate_results.py --strict                       # exit 1 on WARN too
 ```
 
 Per phase it prints coverage, failures (by reason), uncoded rate by comment length,
@@ -403,14 +403,15 @@ CLASS_FRAME is rare (~4%), so the pilot sample oversamples class vocabulary:
 
 ```bash
 cd crisis-management-analysis/03-llm-passes
-uv run --no-sync python make_pilot_sample.py            # 150 random + 75 class-vocabulary comments
-# -> pilot/ateneo-drowning/pilot_sample.csv      blind coding sheet for human coders
-# -> pilot/ateneo-drowning/pilot_comment_ids.txt  ids for --only-ids
-# -> pilot/ateneo-drowning/pilot_design.json      seed, strata, counts (for the methods)
+# The pilot sampler was removed; scripts/ holds only the two runners.
+# Provide the pilot comment ids yourself, one per line (or a CSV with a
+# comment_id column), e.g. pilot/ateneo-drowning/pilot_comment_ids.txt
+# (150 random + 75 class-vocabulary comments; keep its design record —
+# seed, strata, counts — for the methods section).
 
-# Code the same comments with the LLM (setup block from "Running the coding pass" first):
+# Code those comments with the LLM (setup block from "Running the coding pass" first):
 # Use the SAME --gpu-profile as the main run, so the pilot measures that precision.
-uv run --no-sync python run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
+uv run --no-sync python scripts/run_local.py $BASE --phases "$PHASES" --gpu-profile l4-full \
     --only-ids pilot/ateneo-drowning/pilot_comment_ids.txt --run-name pilot
 # -> output/ateneo-drowning/full-codebook-coding-pilot/
 ```

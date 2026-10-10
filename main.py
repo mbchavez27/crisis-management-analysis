@@ -34,7 +34,8 @@ STAGES = {
     "sentiment-transcripts": "02-analysis/transcripts/run_sentiment.sh",
     "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
     # Local LLM passes (full-phase, no API key)
-    "llm-local":             "03-llm-passes/run_local.sh",
+    "llm-local":             "03-llm-passes/scripts/run_local.py",
+    "llm-validate":          "03-llm-passes/scripts/validate_results.py",
     # Insights
     "summary":               "04-summary/run_summary.sh",
 }
@@ -73,8 +74,9 @@ def run_stage(name: str, force: bool = False) -> bool:
     print(f"  Script:  {script}")
     print(f"{'='*50}\n")
 
+    runner = "bash" if script_path.suffix == ".sh" else "python"
     result = subprocess.run(
-        ["uv", "run", "bash", str(script_path)],
+        ["uv", "run", runner, str(script_path)],
         cwd=str(PROJECT_ROOT),
     )
 

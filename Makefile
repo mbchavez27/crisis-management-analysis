@@ -1,5 +1,6 @@
 .PHONY: setup pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
         analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
+        llm-local llm-validate \
         insights sentiment-change summary clean help
 
 # Default target
@@ -32,6 +33,10 @@ help:
 	@echo "Insight targets:"
 	@echo "  sentiment-change      Sentiment change across phases"
 	@echo "  summary               Final summary and visualizations"
+	@echo ""
+	@echo "LLM targets (GPU):"
+	@echo "  llm-local             Local codebook coding (smoke default; PHASES=... LLM_LIMIT=...)"
+	@echo "  llm-validate          Validate coded results across phases"
 	@echo ""
 	@echo "Utility targets:"
 	@echo "  clean                 Remove all output files"
@@ -87,6 +92,21 @@ sentiment-transcripts:
 topics-transcripts:
 	@echo "--- Transcript topic modeling ---"
 	@bash 02-analysis/transcripts/run_topics.sh
+
+# === Local LLM passes (GPU) ===
+# Smoke default (1 phase, 10 rows). Full runs need explicit args — see README.
+CRISIS ?= ateneo-drowning
+PHASES ?= 01-onset
+LLM_LIMIT ?= 10
+
+llm-local:
+	@echo "--- Local LLM coding pass [$(CRISIS): $(PHASES), limit $(LLM_LIMIT)] ---"
+	@uv run --no-sync python 03-llm-passes/scripts/run_local.py --crisis "$(CRISIS)" \
+		--phases "$(PHASES)" --passes 1 --chunk-size 1 --closing --limit $(LLM_LIMIT)
+
+llm-validate:
+	@echo "--- Validating LLM coding results ---"
+	@uv run python 03-llm-passes/scripts/validate_results.py
 
 # === Insights ===
 
