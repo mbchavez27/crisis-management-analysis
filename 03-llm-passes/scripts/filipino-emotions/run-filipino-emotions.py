@@ -75,116 +75,87 @@ CLOSING = (
 # Substrings that only appear if the model copied the output template or our own
 # instructions into a field instead of coding the comment.
 PLACEHOLDER_MARKERS = (
-    "short quote(s)",
+    "short quote(s) supporting",
     "english translation of the evidence",
-    "supporting each non-zero code",
     "high|medium|low",
+    "en|fil|taglish|other",
+    "one json object per comment",
     "output only json",
     "respond with the json",
     "now output exactly",
-    "one json object per comment",
-    "«exact words»",
-    "«english translation»",
-    "exact words from the comment",
-    "literal english translation",
+    "[id | comment text]",
 )
 
-BINARY_KEYS = (
-    "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-    "SYMPATHY_OFFENDER", "FEAR", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
-    "COVER_UP", "ALT_ACCOUNT", "INJUSTICE", "SELF_INTEREST", "NEEDS_CONTEXT",
-    "CLASS_FRAME", "APPEARANCE_ATTACK", "META_DISCOURSE", "SARCASM", "UNCODABLE",
+# Bumped whenever the output fields change. Checkpoints written under another schema
+# are recoded, never mixed in (prompt_version alone cannot tell: v1.0 is reused).
+SCHEMA_VERSION = "components-1"
+
+# --- Output schema of filipino-emotions-prompt v1.0 ---------------------------------
+# Step 1 screens (NEG_SOCIAL_EMOTION); if 0, every other coded field is "NA".
+# Step 2 codes the components; Step 3 assigns the cluster.
+BINARY_KEYS = ("NEG_SOCIAL_EMOTION", "SARCASM", "NEEDS_CONTEXT")  # always 0 / 1
+TERNARY_KEYS = ("MULTIPLE_FOCAL", "CLUSTER_CONFLICT")  # 0 / 1, or "NA" when screened out
+COMPONENT_KEYS = (
+    "TARGET", "FOCAL_EVENT", "BLAME_LOCUS", "CONTROL_STRATEGY", "ACTION_TENDENCY",
+    "REGULATION", "RELATIONSHIP_LEVEL", "CLUSTER",
 )
 SCALAR_ENUMS: dict[str, frozenset[str]] = {
-    "LANGUAGE": frozenset({"ENGLISH", "FILIPINO", "TAGLISH", "OTHER_PH_LANGUAGE", "EMOJI", "OTHER"}),
-    "ATTRIBUTION": frozenset({"NONE", "ACCIDENT", "ACCUSATION", "NEGLIGENCE", "INTENTIONAL", "VICTIM_FAULT"}),
-    "STANCE": frozenset({"CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"}),
-    "CLASS_DIRECTION": frozenset({"INEQUALITY_JUSTICE", "VICTIMS_POOR", "INSTITUTION_ELITE", "OTHER", "NA"}),
-    "RESPONSE_TARGET": frozenset({"UNIVERSITY_ANNOUNCEMENT", "COACH_APOLOGY", "PRESIDENT_STATEMENT",
-                                  "POLICE_REPORT", "OTHER", "NA"}),
-    "RESPONSE_EVAL": frozenset({"ACKNOWLEDGES", "REJECTS", "MIXED", "NA"}),
-    "TARGET_OF_COMMENT": frozenset({"ORGANIZATION", "PERSON", "VICTIMS_FAMILY", "OTHER_COMMENTERS",
-                                    "MEDIA", "NONE"}),
+    "LANGUAGE": frozenset({"EN", "FIL", "TAGLISH", "OTHER"}),
+    "TARGET": frozenset({"PERSON", "ORGANIZATION", "GROUP", "SITUATION_OBJECT", "SELF",
+                         "UNCLEAR", "NA"}),
+    "FOCAL_EVENT": frozenset({"MORAL_VIOLATION", "UNMET_EXPECTATION", "HINDRANCE", "UNCLEAR", "NA"}),
+    "BLAME_LOCUS": frozenset({"OTHER", "SELF", "NOT_EXPRESSED", "NA"}),
+    "CONTROL_STRATEGY": frozenset({"IGNORE", "REFRAME", "NONE_EXPRESSED", "NA"}),
+    "ACTION_TENDENCY": frozenset({"LASTING_WITHDRAWAL", "TEMPORARY_DISTANCE",
+                                  "RELATIONSHIP_MAINTAINED", "NONE_EXPRESSED", "NA"}),
+    "REGULATION": frozenset({"INTENSE_DISTRESS", "CONTROLLED", "NONVERBAL_ONLY",
+                             "NOT_DETERMINABLE", "NA"}),
+    "RELATIONSHIP_LEVEL": frozenset({"KAPWA", "HINDI_IBANG_TAO", "IBANG_TAO",
+                                     "NOT_DETERMINABLE", "NA"}),
+    "CLUSTER": frozenset({"C1", "C2", "C3", "UNCLASSIFIED", "NA"}),
     "confidence": frozenset({"HIGH", "MEDIUM", "LOW"}),
 }
-LIST_ENUMS: dict[str, tuple[frozenset[str], str]] = {  # key -> (allowed, empty-value)
-    "BLAME_TARGETS": (frozenset({"COACH", "COACHING_STAFF", "UNIVERSITY", "PRESIDENT", "ORGANIZERS",
-                                 "VENUE", "AUTHORITIES", "VICTIMS", "OTHER", "NONE"}), "NONE"),
-    "VALUES": (frozenset({"FAMILY", "CHILD_POTENTIAL", "PARENT_SACRIFICE", "DUTY_OF_CARE",
-                          "EDUCATION_MOBILITY", "FAITH", "JUSTICE", "SOLIDARITY", "SANCTITY_OF_LIFE",
-                          "OTHER", "NONE"}), "NONE"),
-    "IDENTITY_FRAME": (frozenset({"NATIONALITY", "RACE", "REGION", "RELIGION", "NONE"}), "NONE"),
-    "ACTIONS": (frozenset({"PUNITIVE", "RETALIATION", "RESTITUTION", "ACCOUNTABILITY", "INFORMATION",
-                           "REFORM", "BOYCOTT", "SUPPORT", "NONE"}), "NONE"),
-    "REJECT_REASONS": (frozenset({"INSINCERE", "WORDS_NOT_ENOUGH", "TOO_SOON", "TOO_LATE",
-                                  "NO_INFORMATION", "SELF_CENTERED", "SHIFTS_BLAME", "DISMISSIVE",
-                                  "NO_FAMILY_OUTREACH", "OTHER", "NA"}), "NA"),
-}
+EMOTION_TERMS = (
+    "ASAR", "BUWISIT", "GALIT", "INGGIT", "INIS", "MUHI", "NGITNGIT", "PIKON", "POOT",
+    "SAMA_NG_LOOB", "SELOS", "SUKLAM", "SUYA", "TAMPO", "YAMOT",
+)
+EMOTION_WORD_VALUES = frozenset(EMOTION_TERMS) | {"NONE", "NA"}  # NONE: no term; NA: screened out
 
-FREE_TEXT_KEYS = ("evidence", "evidence_en", "OTHER_NOTE")
-
-
-# --- Structured evidence (coding-prompt v1.3) ----------------------------------
-# The model writes codes ONLY inside evidence items, each tied to a quote:
-#   {"quote": "...", "quote_en": "...", "codes": ["ANGER", "BLAME_TARGETS=COACH"],
-#    "other_label": ""}
-# The script derives every code field from those items; anything not cited keeps
-# its default (0 / NONE / NA / NEUTRAL). Every code is grounded in quoted words by
-# construction, and decoding is constrained so the format cannot break.
-# Choose-ONE codes are whole-comment fields, chosen after the evidence items:
-# STANCE and TARGET_OF_COMMENT since v1.4 (the model rarely cited words for them),
-# ATTRIBUTION, CLASS_DIRECTION, RESPONSE_TARGET and RESPONSE_EVAL since v1.5 (citing
-# them per quote produced conflicting values, the second-largest failure cause).
-# The schema allows exactly one value each, so conflicts cannot occur.
-WHOLE_COMMENT_DEFAULTS = {
-    "ATTRIBUTION": "NONE",
-    "STANCE": "NEUTRAL",
-    "TARGET_OF_COMMENT": "NONE",
-    "CLASS_DIRECTION": "NA",
-    "RESPONSE_TARGET": "NA",
-    "RESPONSE_EVAL": "NA",
-}
-WHOLE_COMMENT_KEYS = tuple(WHOLE_COMMENT_DEFAULTS)
-_SCALAR_CODE_DEFAULTS: dict[str, str] = {}  # no choose-ONE code is cited in evidence
-
-
-def _code_tokens() -> list[str]:
-    """Every citable code: binaries by name, other codes as NAME=VALUE (no defaults)."""
-    toks = list(BINARY_KEYS)
-    for k, default in _SCALAR_CODE_DEFAULTS.items():
-        toks += [f"{k}={v}" for v in sorted(SCALAR_ENUMS[k]) if v != default]
-    for k, (allowed, empty) in LIST_ENUMS.items():
-        toks += [f"{k}={v}" for v in sorted(allowed) if v != empty]
-    return toks
-
-
-CODE_TOKENS: list[str] = _code_tokens()
+FREE_TEXT_KEYS = ("evidence", "evidence_en", "NOTE")
 
 
 def build_record_schema(comment_id: str) -> dict[str, Any]:
-    """JSON schema constraining decoding for one comment (coding-prompt v1.3)."""
-    item = {
-        "type": "object",
-        "properties": {
-            "quote": {"type": "string"},
-            "quote_en": {"type": "string"},
-            "codes": {
-                "type": "array",
-                "items": {"type": "string", "enum": CODE_TOKENS},
-                "minItems": 1,
-            },
-            "other_label": {"type": "string"},
-        },
-        "required": ["quote", "quote_en", "codes", "other_label"],
-        "additionalProperties": False,
-    }
-    props = {
+    """JSON schema constraining decoding for one comment (key order = prompt's OUTPUT order).
+
+    Every key is present and every coded value comes from the codebook, so the output cannot
+    be malformed. Cross-field rules (screened-out rows are all NA; screened-in rows have no
+    NA) cannot be expressed here and are enforced in validate_record().
+    """
+    def enum(key: str) -> dict[str, Any]:
+        return {"type": "string", "enum": sorted(SCALAR_ENUMS[key])}
+
+    props: dict[str, Any] = {
         "id": {"type": "string", "enum": [str(comment_id)]},
-        "evidence": {"type": "array", "items": item},
-        **{k: {"type": "string", "enum": sorted(SCALAR_ENUMS[k])} for k in WHOLE_COMMENT_KEYS},
-        "LANGUAGE": {"type": "string", "enum": sorted(SCALAR_ENUMS["LANGUAGE"])},
-        "OTHER_NOTE": {"type": "string"},
-        "confidence": {"type": "string", "enum": sorted(SCALAR_ENUMS["confidence"])},
+        "LANGUAGE": enum("LANGUAGE"),
+        "NEG_SOCIAL_EMOTION": {"enum": [0, 1]},
+        "EMOTION_WORDS": {"type": "array", "minItems": 1,
+                          "items": {"type": "string", "enum": sorted(EMOTION_WORD_VALUES)}},
+        "TARGET": enum("TARGET"),
+        "FOCAL_EVENT": enum("FOCAL_EVENT"),
+        "MULTIPLE_FOCAL": {"enum": [0, 1, "NA"]},
+        "BLAME_LOCUS": enum("BLAME_LOCUS"),
+        "CONTROL_STRATEGY": enum("CONTROL_STRATEGY"),
+        "ACTION_TENDENCY": enum("ACTION_TENDENCY"),
+        "REGULATION": enum("REGULATION"),
+        "RELATIONSHIP_LEVEL": enum("RELATIONSHIP_LEVEL"),
+        "CLUSTER": enum("CLUSTER"),
+        "CLUSTER_CONFLICT": {"enum": [0, 1, "NA"]},
+        "SARCASM": {"enum": [0, 1]},
+        "NEEDS_CONTEXT": {"enum": [0, 1]},
+        "evidence": {"type": "string"},
+        "evidence_en": {"type": "string"},
+        "NOTE": {"type": "string"},
+        "confidence": enum("confidence"),
     }
     return {
         "type": "object",
@@ -192,68 +163,6 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
         "required": list(props),
         "additionalProperties": False,
     }
-
-
-def expand_structured(
-    obj: dict[str, Any], lenient: bool = False, review: Optional[list[str]] = None
-) -> dict[str, Any]:
-    """Turn a v1.3 structured answer into the flat 39-field record.
-
-    Raises ValueError on a scalar cited with two different values or an OTHER
-    without a label. The flat `evidence` / `evidence_en` strings are rendered in
-    the v1.2 «quote» -> CODES form so check_evidence() verifies the quotes.
-    """
-    rec: dict[str, Any] = {k: 0 for k in BINARY_KEYS}
-    rec.update(_SCALAR_CODE_DEFAULTS)
-    for k, (_allowed, empty) in LIST_ENUMS.items():
-        rec[k] = [empty]
-    rec["id"] = obj.get("id", "")
-    for k, default in WHOLE_COMMENT_DEFAULTS.items():
-        rec[k] = obj.get(k, default)
-    rec["LANGUAGE"] = obj.get("LANGUAGE", "")
-    rec["OTHER_NOTE"] = obj.get("OTHER_NOTE", "") or ""
-    rec["confidence"] = obj.get("confidence", "")
-    rec["EMERGENT"] = ""  # MODE: FULL
-
-    parts, parts_en = [], []
-    for it in obj.get("evidence") or []:
-        if not isinstance(it, dict):
-            raise ValueError("evidence_format: each evidence item must be an object")
-        quote = str(it.get("quote", "")).strip()
-        codes = [str(c).strip() for c in (it.get("codes") or []) if str(c).strip()]
-        label = str(it.get("other_label", "") or "").strip()
-        if not quote or not codes:
-            raise ValueError("evidence_format: every item needs a quote and at least one code")
-        for tok in codes:
-            key, _, val = tok.partition("=")
-            key, val = key.upper(), val.upper()
-            if key in BINARY_KEYS:
-                rec[key] = 1
-            elif key in _SCALAR_CODE_DEFAULTS:
-                cur = rec[key]
-                if cur != _SCALAR_CODE_DEFAULTS[key] and cur != val:
-                    hint = " (use STANCE=MIXED)" if key == "STANCE" else ""
-                    raise ValueError(
-                        f"scalar_conflict: {key} cited as {cur} and {val}; choose ONE{hint}"
-                    )
-                rec[key] = val
-            elif key in LIST_ENUMS:
-                empty = LIST_ENUMS[key][1]
-                items = [v for v in rec[key] if v != empty]
-                if val not in items:
-                    items.append(val)
-                rec[key] = items
-            else:
-                raise ValueError(f"evidence_format: unknown code {tok!r}")
-            if val == "OTHER" and not label:
-                _soft(review if review is not None else [], lenient, f"other_unlabeled({key})",
-                      f"other_without_label: {key}=OTHER needs other_label")
-        shown = [c + (f"({label})" if c.endswith("=OTHER") else "") for c in codes]
-        parts.append(f"«{quote}» -> {', '.join(shown)}")
-        parts_en.append(f"«{str(it.get('quote_en', '')).strip()}»")
-    rec["evidence"] = "; ".join(parts)
-    rec["evidence_en"] = "; ".join(parts_en)
-    return rec
 
 
 _SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
@@ -370,47 +279,8 @@ def dump_raw(path: Path, row_ids: list[int], err: str, raw: str) -> None:
 
 
 REQUIRED_KEYS = frozenset(
-    {
-        "id",
-        "LANGUAGE",
-        "ANGER",
-        "CONTEMPT",
-        "DISGUST",
-        "SADNESS",
-        "CONDOLENCE",
-        "COMPASSION_VICTIMS",
-        "SYMPATHY_OFFENDER",
-        "FEAR",
-        "NORM_VIOLATION",
-        "ATTRIBUTION",
-        "IGNORED_WARNING",
-        "RECURRENCE",
-        "COVER_UP",
-        "ALT_ACCOUNT",
-        "INJUSTICE",
-        "SELF_INTEREST",
-        "BLAME_TARGETS",
-        "STANCE",
-        "NEEDS_CONTEXT",
-        "VALUES",
-        "CLASS_FRAME",
-        "CLASS_DIRECTION",
-        "IDENTITY_FRAME",
-        "APPEARANCE_ATTACK",
-        "ACTIONS",
-        "RESPONSE_TARGET",
-        "RESPONSE_EVAL",
-        "REJECT_REASONS",
-        "TARGET_OF_COMMENT",
-        "META_DISCOURSE",
-        "SARCASM",
-        "UNCODABLE",
-        "evidence",
-        "evidence_en",
-        "EMERGENT",
-        "OTHER_NOTE",
-        "confidence",
-    }
+    {"id", "LANGUAGE", "NEG_SOCIAL_EMOTION", "EMOTION_WORDS", *COMPONENT_KEYS, *TERNARY_KEYS,
+     "SARCASM", "NEEDS_CONTEXT", "evidence", "evidence_en", "NOTE", "confidence"}
 )
 
 COLUMN_ORDER = [
@@ -420,42 +290,23 @@ COLUMN_ORDER = [
     "text",
     "id",
     "LANGUAGE",
-    "ANGER",
-    "CONTEMPT",
-    "DISGUST",
-    "SADNESS",
-    "CONDOLENCE",
-    "COMPASSION_VICTIMS",
-    "SYMPATHY_OFFENDER",
-    "FEAR",
-    "NORM_VIOLATION",
-    "ATTRIBUTION",
-    "IGNORED_WARNING",
-    "RECURRENCE",
-    "COVER_UP",
-    "ALT_ACCOUNT",
-    "INJUSTICE",
-    "SELF_INTEREST",
-    "BLAME_TARGETS",
-    "STANCE",
-    "NEEDS_CONTEXT",
-    "VALUES",
-    "CLASS_FRAME",
-    "CLASS_DIRECTION",
-    "IDENTITY_FRAME",
-    "APPEARANCE_ATTACK",
-    "ACTIONS",
-    "RESPONSE_TARGET",
-    "RESPONSE_EVAL",
-    "REJECT_REASONS",
-    "TARGET_OF_COMMENT",
-    "META_DISCOURSE",
+    "NEG_SOCIAL_EMOTION",
+    "EMOTION_WORDS",
+    "TARGET",
+    "FOCAL_EVENT",
+    "MULTIPLE_FOCAL",
+    "BLAME_LOCUS",
+    "CONTROL_STRATEGY",
+    "ACTION_TENDENCY",
+    "REGULATION",
+    "RELATIONSHIP_LEVEL",
+    "CLUSTER",
+    "CLUSTER_CONFLICT",
     "SARCASM",
-    "UNCODABLE",
+    "NEEDS_CONTEXT",
     "evidence",
     "evidence_en",
-    "EMERGENT",
-    "OTHER_NOTE",
+    "NOTE",
     "confidence",
     "autofix",
     "review_flags",
@@ -511,6 +362,12 @@ def build_codebook_prompt(crisis: str, phase: str) -> str:
     case_context = contexts.get(crisis, {}).get(phase, "")
     if not case_context:
         raise RuntimeError(f"No phase context for {crisis}/{phase} in phase-context.json.")
+
+    # The prompt file ends with a "COMMENTS TO CODE / [id | comment text]" stub; the runner
+    # appends its own COMMENTS TO CODE section, so drop the stub.
+    cut = prompt.rfind("COMMENTS TO CODE")
+    if cut != -1:
+        prompt = prompt[:cut].rstrip()
 
     prompt = prompt.replace("MODE: [PILOT | FULL]", "MODE: FULL")
     prompt = prompt.replace(CASE_CONTEXT_SLOT, case_context)
@@ -634,12 +491,6 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         help="Code a seeded random sample of this many comments per phase (default: all).",
     )
     parser.add_argument(
-        "--class-census",
-        action="store_true",
-        help="With --sample-per-phase: also keep every comment with class vocabulary, "
-             "filling the rest of the target size randomly. Weights are written per row.",
-    )
-    parser.add_argument(
         "--sample-seed",
         type=int,
         default=20261005,
@@ -731,44 +582,26 @@ def split_csv_arg(value: str) -> list[str]:
     return [tok.strip() for tok in value.split(",") if tok.strip()]
 
 
-# Class vocabulary (F1). Same pattern as validate_results.py (keep both in sync).
-CLASS_WORDS = re.compile(
-    r"\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\w*|"
-    r"scholar\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\w*|"
-    r"working class|middle class|tuition|matrikula|afford\w*|breadwinner|classism|burgis|"
-    r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
-
-
 def select_sample(df: pd.DataFrame, phase: str, n: Optional[int], seed: int,
-                  class_census: bool) -> tuple[pd.DataFrame, dict[str, Any]]:
-    """Seeded per-phase sample, identical on every machine.
+                  ) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """Seeded per-phase simple random sample, identical on every machine.
 
-    With class_census, every comment containing class vocabulary is kept (the RQs
-    centre on class, which a plain random sample under-represents) and the rest
-    of the target size is a simple random sample of the other comments. Weights
-    (`sample_weight` = inverse selection probability) make phase-level estimates
-    unbiased; the class census has weight 1.
+    Weights (`sample_weight` = inverse selection probability) keep phase-level
+    estimates unbiased; validate-filipino-emotions.py weights its percentages
+    accordingly.
     """
     N = len(df)
     df = df.copy()
     if n is None or n >= N:
         df["sample_stratum"], df["sample_weight"] = "all", 1.0
         return df, {"phase": phase, "N": N, "n": N, "design": "all comments"}
-    is_class = df["text"].str.contains(CLASS_WORDS) if class_census else pd.Series(False, index=df.index)
-    cls = df[is_class]
-    rest = df[~is_class]
-    n_rest = max(0, min(len(rest), n - len(cls)))
     phase_seed = (seed + zlib.crc32(phase.encode())) % (2**32)
-    rnd = rest.sample(n=n_rest, random_state=phase_seed)
-    w_rest = round(len(rest) / n_rest, 4) if n_rest else None
-    out = pd.concat([cls.assign(sample_stratum="class_census", sample_weight=1.0),
-                     rnd.assign(sample_stratum="random", sample_weight=w_rest)]).sort_values("row_id")
+    rnd = df.sample(n=n, random_state=phase_seed)
+    w = round(N / n, 4)
+    out = rnd.assign(sample_stratum="random", sample_weight=w).sort_values("row_id")
     info = {"phase": phase, "N": N, "n": int(len(out)), "seed": seed, "phase_seed": int(phase_seed),
-            "design": "class census + simple random sample" if class_census else "simple random sample",
-            "class_census_n": int(len(cls)), "random_n": int(n_rest), "random_pool_N": int(len(rest)),
-            "random_weight": w_rest, "class_pattern": CLASS_WORDS.pattern if class_census else None}
-    if class_census and len(cls) > n:
-        print(f"  NOTE {phase}: {len(cls)} class-vocabulary comments exceed --sample-per-phase {n}; all kept.")
+            "design": "simple random sample",
+            "random_n": int(n), "random_weight": w}
     return out, info
 
 
@@ -836,15 +669,18 @@ def is_emoji_only(text: str) -> bool:
     return re.sub(r"[\W_]+", "", bare) == ""
 
 
-# --- Evidence linking (coding-prompt v1.2) -------------------------------------
-# evidence:    «exact words» -> CODE, CODE=VALUE; «exact words» -> CODE
-# evidence_en: «translation»; «translation»        (one per quote, same order)
-QUOTE_MAX_WORDS = 15
-# Scalar codes that need a supporting quote when they differ from these defaults.
-SCALAR_DEFAULTS: dict[str, str] = {}  # choose-ONE codes are whole-comment fields (v1.5)
-_EVID_ITEM = re.compile(r"«([^«»]+)»\s*->\s*([^«]*)")
-_EVID_QUOTE = re.compile(r"«([^«»]*)»")
-_CODE_TOKEN = re.compile(r"([A-Za-z_]+)(?:\s*=\s*([A-Za-z0-9_]+)(?:\s*\([^)]*\))?)?")
+# --- Evidence (filipino-emotions-prompt v1.0) -----------------------------------------
+# The prompt asks for free-form "short quote(s) supporting each coded component" and an
+# English translation, with no fixed delimiter. Quotes are therefore extracted leniently
+# («...» if present, otherwise split on ; | newline ...) and each must appear in the comment.
+def _as_tern(v: Any) -> Any:
+    """0 / 1, or the string "NA" (screened-out rows)."""
+    if isinstance(v, str) and v.strip().upper() == "NA":
+        return "NA"
+    return _as_bin(v)
+
+
+_HANDLE_PLACEHOLDER = "[USER]"
 
 
 class SoftIssue(ValueError):
@@ -852,9 +688,8 @@ class SoftIssue(ValueError):
 
     Strict parsing raises it so the row is retried with a correction note. When
     the retries are spent, the row is re-parsed leniently: it is kept, repaired
-    where the codebook says how, and given a review flag (v1.5). Dropping these
-    rows made long comments -- where class talk concentrates -- disproportionately
-    missing.
+    where the codebook says how, and given a review flag. Dropping these rows made
+    long comments disproportionately missing.
     """
 
     def __init__(self, msg: str, flag: str) -> None:
@@ -869,17 +704,17 @@ def _soft(review: list[str], lenient: bool, flag: str, msg: str) -> None:
         raise SoftIssue(msg, flag)
 
 
-_QUOTE_MARKS = re.compile("[\"'`\\\u2018\u2019\u201c\u201d]")
+_QUOTE_MARKS = re.compile("[\"'`\\‘’“”]")
 FUZZY_MIN_RATIO = 0.85  # similarity to the best-matching stretch of the comment
 
 
 def _norm_text(t: str) -> str:
     """Case-, quote-mark- and whitespace-insensitive form for verbatim matching.
 
-    Quote marks are dropped entirely: comments quoting someone ("…") made the model
-    alter or escape them, the main cause of evidence_not_verbatim in v1.4.
+    Quote marks are dropped entirely: comments quoting someone ("...") made the model
+    alter or escape them.
     """
-    t = _QUOTE_MARKS.sub("", t.replace("\ufe0f", ""))
+    t = _QUOTE_MARKS.sub("", t.replace("️", ""))
     return re.sub(r"\s+", " ", t.casefold()).strip()
 
 
@@ -901,79 +736,49 @@ def _coverage(quote: str, comment: str) -> float:
     return SequenceMatcher(None, window, quote, autojunk=False).ratio()
 
 
-def expected_evidence_codes(obj: dict[str, Any]) -> set[tuple[str, str]]:
-    """Every code that departs from its default and so needs a supporting quote."""
-    exp: set[tuple[str, str]] = set()
-    for k in BINARY_KEYS:
-        if obj[k] == 1:
-            exp.add((k, "1"))
-    for k, default in SCALAR_DEFAULTS.items():
-        if obj[k] != default:
-            exp.add((k, obj[k]))
-    for k, (_allowed, empty) in LIST_ENUMS.items():
-        for v in obj[k]:
-            if v != empty:
-                exp.add((k, v))
-    return exp
+_EVID_GUILLEMETS = re.compile(r"«([^«»]+)»")
+_EVID_SPLIT = re.compile(r"\s*(?:;|\||\n|…|\.\.\.)\s*")
+_EVID_LABEL = re.compile(r"^[A-Z_]{4,}\s*[:=]\s*")  # "FOCAL_EVENT: ..." prefixes
+_EVID_ARROW = re.compile(r"\s*(?:->|→|=>).*$")  # "quote -> CODE" suffixes
+
+
+def evidence_quotes(evidence: str) -> list[str]:
+    """Split the model's evidence string into individual quotes."""
+    marked = _EVID_GUILLEMETS.findall(evidence)
+    if marked:
+        return [q.strip() for q in marked if q.strip()]
+    out: list[str] = []
+    for part in _EVID_SPLIT.split(evidence):
+        part = _EVID_ARROW.sub("", _EVID_LABEL.sub("", part.strip())).strip()
+        if part:
+            out.append(part)
+    return out
 
 
 def check_evidence(
     obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
 ) -> None:
-    """Check that every cited code is tied to words actually in the comment."""
+    """Screened-in comments need quotes, and every quote must be words from the comment."""
     review = review if review is not None else []
-    expected = expected_evidence_codes(obj)
-    evidence = obj["evidence"].strip()
-    items = _EVID_ITEM.findall(evidence)
-    if not items:
-        if expected:
-            raise ValueError(
-                "evidence_format: write evidence as «exact words» -> CODES for every "
-                "non-default code"
-            )
+    if obj["NEG_SOCIAL_EMOTION"] != 1:
         return
-    comment = _norm_text(_HANDLE.sub("[USER]", text))
-    linked: set[tuple[str, str]] = set()
-    for quote, codes in items:
+    evidence = obj["evidence"].strip()
+    if not evidence:
+        _soft(review, lenient, "evidence_missing",
+              "evidence_missing: NEG_SOCIAL_EMOTION is 1, so quote the words that support the codes")
+        return
+    comment = _norm_text(_HANDLE.sub(_HANDLE_PLACEHOLDER, text))
+    for quote in evidence_quotes(evidence):
         q = _norm_text(quote).strip(" .,!?;:")
-        if q and q not in comment:
-            if _coverage(q, comment) >= FUZZY_MIN_RATIO:
-                review.append("evidence_fuzzy")  # typo / spacing differences only
-            else:
-                _soft(review, lenient, "evidence_unverified",
-                      f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
-        if len(quote.split()) > QUOTE_MAX_WORDS:
-            _soft(review, lenient, "evidence_long",
-                  f"evidence_too_long: quotes must be at most {QUOTE_MAX_WORDS} words; "
-                  "quote only the words that support the codes")
-        for key, val in _CODE_TOKEN.findall(codes):
-            key = key.upper()
-            if key in ("LANGUAGE", "CONFIDENCE", "NONE", "NA", "NEUTRAL", *WHOLE_COMMENT_KEYS):
-                continue
-            if key in BINARY_KEYS:
-                linked.add((key, "1"))
-            elif key in SCALAR_DEFAULTS or key in LIST_ENUMS:
-                if not val:
-                    raise ValueError(f"evidence_format: {key} needs a value, e.g. {key}=VALUE")
-                linked.add((key, val.upper()))
-            else:
-                raise ValueError(f"evidence_format: unknown code {key!r} in evidence")
-    defaults = {(k, v) for k, v in SCALAR_DEFAULTS.items()} | {
-        (k, empty) for k, (_a, empty) in LIST_ENUMS.items()
-    }
-    missing = expected - linked
-    if missing:
-        listed = ", ".join(f"{k}={v}" if v != "1" else k for k, v in sorted(missing))
-        raise ValueError(f"evidence_missing: no quote supports {listed}")
-    extra = linked - expected - defaults
-    if extra:
-        listed = ", ".join(f"{k}={v}" if v != "1" else k for k, v in sorted(extra))
-        raise ValueError(f"evidence_contradiction: evidence cites {listed} but the code is not set")
-    n_en = len(_EVID_QUOTE.findall(obj["evidence_en"]))
-    if n_en != len(items):
-        raise ValueError(
-            f"evidence_en_count: give one «translation» per quote ({len(items)} quotes)"
-        )
+        if not q or q in comment:
+            continue
+        if _coverage(q, comment) >= FUZZY_MIN_RATIO:
+            review.append("evidence_fuzzy")  # typo / spacing differences only
+        else:
+            _soft(review, lenient, "evidence_unverified",
+                  f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
+    if not obj["evidence_en"].strip():
+        review.append("evidence_en_missing")
 
 
 # Common Filipino and Cebuano function words. Used only to FLAG likely LANGUAGE
@@ -1006,48 +811,19 @@ def is_reply(comment_id: str, text: str) -> bool:
 
 
 def language_rule(language: str, text: str) -> Optional[str]:
-    """A1 by word evidence. Only corrects TAGLISH, the value the model over-uses:
-    no Filipino words and 2+ English function words -> ENGLISH; no English and 2+
-    Filipino -> FILIPINO. Anything ambiguous keeps the model's code."""
+    """Correct TAGLISH, the value the model over-uses, when the words clearly show one
+    language: no Filipino words and 2+ English function words -> EN; no English and 2+
+    Filipino -> FIL. Anything ambiguous keeps the model's code."""
     if language != "TAGLISH":
         return None
     words = [w.lower().strip("'") for w in _WORD.findall(_SHORTCODE.sub(" ", text))]
     fil = sum(w in _PH_MARKERS for w in words)
     en = sum(w in _EN_MARKERS for w in words)
     if fil == 0 and en >= 2:
-        return "ENGLISH"
+        return "EN"
     if en == 0 and fil >= 2:
-        return "FILIPINO"
+        return "FIL"
     return None
-
-
-# Words that name or point at each blame target. Used only to FLAG a target that the
-# comment never mentions (C9: code a target only if named or clearly referred to).
-_TARGET_WORDS = {
-    "COACH": r"coach\w*|kowts?|tagapagsanay",
-    "COACHING_STAFF": r"coach\w*|staff|trainer\w*|kowts?",
-    "UNIVERSITY": r"ateneo|admu|school|university|univ|unibersidad|paaralan|eskwelahan|"
-                  r"admin\w*|management|institution|jesuit\w*|blue ?eagles?",
-    "PRESIDENT": r"president|presidente|pres\.|fr\.?|father|padre",
-    "ORGANIZERS": r"organi[sz]\w*|nag-?organi\w*",
-    "VENUE": r"resort|venue|beach|dagat|sea|ilog|river|pool|lugar",
-    "AUTHORITIES": r"police|pulis\w*|pnp|government|gobyerno|lgu|coast ?guard|"
-                   r"authorit\w*|cops?|nbi|senat\w*|congress",
-    "VICTIMS": r"victim\w*|biktima|athlete\w*|atleta|players?|students?|bata|kids?|"
-               r"rene|divine|sila|they|them",
-}
-# Pronouns that address an institution directly ("kayo", "you") count as referring to it.
-_ADDRESS = re.compile(r"\b(?:kayo|ninyo|nyo|niyo|you|your|kau)\b", re.I)
-
-
-def blame_unnamed(target: str, text: str) -> bool:
-    pat = _TARGET_WORDS.get(target)
-    if not pat or target == "OTHER":
-        return False
-    if re.search(rf"\b(?:{pat})", text, re.I):
-        return False
-    return not (target in ("UNIVERSITY", "COACH", "COACHING_STAFF", "ORGANIZERS")
-                and _ADDRESS.search(text))
 
 
 def language_flag(language: str, text: str) -> Optional[str]:
@@ -1056,17 +832,77 @@ def language_flag(language: str, text: str) -> Optional[str]:
     if not words:
         return None
     has_ph = bool(words & _PH_MARKERS)
-    if language in ("TAGLISH", "FILIPINO") and not has_ph:
+    if language in ("TAGLISH", "FIL") and not has_ph:
         return "language_check:no_filipino_words"
-    if language == "ENGLISH" and has_ph:
+    if language == "EN" and has_ph:
         return "language_check:filipino_words_in_english"
     return None
+
+
+# --- EMOTION_WORDS: literal terms, in any inflected or affixed form ----------------
+# Advisory only (review flags). Terms that are short or common as substrings (asar, inis,
+# suya) must start at a word boundary, optionally after a verbal prefix.
+_PREFIX = r"(?:na|nag|mag|naka|nakaka|nai|mai|ka|pa)?-?"
+_EMOTION_RE = {
+    "ASAR": re.compile(rf"\b{_PREFIX}asar", re.I),
+    "BUWISIT": re.compile(r"buwisit", re.I),
+    "GALIT": re.compile(r"galit", re.I),
+    "INGGIT": re.compile(r"inggit", re.I),
+    "INIS": re.compile(rf"\b{_PREFIX}inis", re.I),
+    "MUHI": re.compile(r"muhi", re.I),
+    "NGITNGIT": re.compile(r"ngitngit", re.I),
+    "PIKON": re.compile(r"pikon", re.I),
+    "POOT": re.compile(r"poot", re.I),
+    "SAMA_NG_LOOB": re.compile(r"sama\s+ng\s+loob|masama\s+ang\s+loob|masamang\s+loob", re.I),
+    "SELOS": re.compile(r"selos", re.I),
+    "SUKLAM": re.compile(r"suklam", re.I),
+    "SUYA": re.compile(rf"\b{_PREFIX}suya", re.I),
+    "TAMPO": re.compile(r"tampo", re.I),
+    "YAMOT": re.compile(r"yamot", re.I),
+}
+
+
+def emotion_terms_in(text: str) -> list[str]:
+    return [t for t, pat in _EMOTION_RE.items() if pat.search(text)]
+
+
+# --- Cluster logic (Step 3 and CLUSTER_CONFLICT) ----------------------------------
+# FOCAL_EVENT sets the default cluster.
+DEFAULT_CLUSTER = {"MORAL_VIOLATION": "C1", "UNMET_EXPECTATION": "C2",
+                   "HINDRANCE": "C3", "UNCLEAR": "UNCLASSIFIED"}
+# Which cluster(s) each coded component value describes in the FRAMEWORK section.
+# BLAME SELF fits C2 and C3 (both: "the actor is to blame"); IGNORE fits C1 and C3;
+# CONTROLLED fits C2 and C3. Values absent here (NONE_EXPRESSED, NOT_EXPRESSED,
+# NOT_DETERMINABLE) are not coded and never conflict.
+COMPONENT_CLUSTERS: dict[str, dict[str, frozenset[str]]] = {
+    "BLAME_LOCUS": {"OTHER": frozenset({"C1"}), "SELF": frozenset({"C2", "C3"})},
+    "CONTROL_STRATEGY": {"IGNORE": frozenset({"C1", "C3"}), "REFRAME": frozenset({"C2"})},
+    "ACTION_TENDENCY": {"LASTING_WITHDRAWAL": frozenset({"C1"}),
+                        "RELATIONSHIP_MAINTAINED": frozenset({"C2"}),
+                        "TEMPORARY_DISTANCE": frozenset({"C3"})},
+    "REGULATION": {"INTENSE_DISTRESS": frozenset({"C1"}), "CONTROLLED": frozenset({"C2", "C3"}),
+                   "NONVERBAL_ONLY": frozenset({"C3"})},
+    "RELATIONSHIP_LEVEL": {"KAPWA": frozenset({"C1"}), "HINDI_IBANG_TAO": frozenset({"C2"}),
+                           "IBANG_TAO": frozenset({"C3"})},
+}
+
+
+def component_conflict(obj: dict[str, Any]) -> Optional[int]:
+    """CLUSTER_CONFLICT as the prompt defines it: 1 if any coded component matches a
+    different cluster than CLUSTER. None when CLUSTER is not C1-C3 (nothing to compare)."""
+    if obj["CLUSTER"] not in ("C1", "C2", "C3"):
+        return None
+    for key, table in COMPONENT_CLUSTERS.items():
+        clusters = table.get(obj[key])
+        if clusters is not None and obj["CLUSTER"] not in clusters:
+            return 1
+    return 0
 
 
 def validate_record(
     obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
 ) -> list[str]:
-    """Check one coded record against codebook v2.1 and normalise it in place.
+    """Check one coded record against filipino-emotions-prompt v1.0 and normalise it in place.
 
     Returns deterministic autofixes. Review flags (rows kept but needing a look)
     are appended to `review`; see SoftIssue.
@@ -1075,7 +911,7 @@ def validate_record(
     review = review if review is not None else []
 
     # Free-text fields: strings only, and never the template or our instructions.
-    for k in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "confidence"):
+    for k in FREE_TEXT_KEYS:
         v = obj.get(k, "")
         if v is None:
             v = ""
@@ -1086,9 +922,9 @@ def validate_record(
         if any(m in low for m in PLACEHOLDER_MARKERS):
             raise ValueError(f"placeholder_leak: {k}={v[:70]!r}")
         obj[k] = v
-    for k in ("evidence", "evidence_en"):
+    for k in ("evidence", "evidence_en"):  # general rule 6
         if _HANDLE.search(obj[k]):
-            obj[k] = _HANDLE.sub("[USER]", obj[k])
+            obj[k] = _HANDLE.sub(_HANDLE_PLACEHOLDER, obj[k])
             fixes.append("anonymized_handle")
 
     for k in BINARY_KEYS:
@@ -1096,6 +932,11 @@ def validate_record(
             obj[k] = _as_bin(obj[k])
         except ValueError as exc:
             raise ValueError(f"bad_binary: {k} {exc}") from exc
+    for k in TERNARY_KEYS:
+        try:
+            obj[k] = _as_tern(obj[k])
+        except ValueError as exc:
+            raise ValueError(f"bad_ternary: {k} {exc}") from exc
 
     for k, allowed in SCALAR_ENUMS.items():
         val = _enum(obj[k])
@@ -1103,89 +944,81 @@ def validate_record(
             raise ValueError(f"bad_enum: {k}={obj[k]!r}")
         obj[k] = val
 
-    for k, (allowed, empty) in LIST_ENUMS.items():
-        v = obj[k]
-        if isinstance(v, str):
-            v = [v]
-        if not isinstance(v, list) or not v:
-            raise ValueError(f"bad_list: {k}={obj[k]!r}")
-        items: list[str] = []
-        for x in v:
-            e = _enum(x)
-            if e not in allowed:
-                raise ValueError(f"bad_enum: {k} has {x!r}")
-            if e not in items:
-                items.append(e)
-        if len(items) > 1 and empty in items:
-            items.remove(empty)  # NONE/NA alongside real values is contradictory
-        obj[k] = items
+    v = obj["EMOTION_WORDS"]
+    if isinstance(v, str):
+        v = [v]
+    if not isinstance(v, list) or not v:
+        raise ValueError(f"bad_list: EMOTION_WORDS={obj['EMOTION_WORDS']!r}")
+    words: list[str] = []
+    for x in v:
+        e = _enum(x)
+        if e not in EMOTION_WORD_VALUES:
+            raise ValueError(f"bad_enum: EMOTION_WORDS has {x!r}")
+        if e not in words:
+            words.append(e)
 
-    # Evidence must tie every non-default code to words in the comment (v1.2).
-    # Runs before the autofixes below, which may reset codes the evidence cites.
+    # Step 1: a screened-out comment is NA everywhere; a screened-in one has no NA.
+    coded = (*COMPONENT_KEYS, *TERNARY_KEYS)
+    if obj["NEG_SOCIAL_EMOTION"] == 0:
+        if words != ["NA"] or any(obj[k] != "NA" for k in coded):
+            fixes.append("screened_out->NA")
+        for k in coded:
+            obj[k] = "NA"
+        obj["EMOTION_WORDS"] = ["NA"]
+    else:
+        words = [w for w in words if w != "NA"]
+        if len(words) > 1 and "NONE" in words:
+            words.remove("NONE")  # NONE alongside real terms is contradictory
+        na_fields = [k for k in coded if obj[k] == "NA"] + ([] if words else ["EMOTION_WORDS"])
+        if na_fields:
+            raise ValueError(
+                f"bad_na: NEG_SOCIAL_EMOTION is 1 but {na_fields} are NA; give each a codebook "
+                "value (EMOTION_WORDS: the literal terms, or NONE)"
+            )
+        obj["EMOTION_WORDS"] = words
+
+    # Evidence must be words that really appear in the comment.
     check_evidence(obj, text, lenient, review)
 
-    # D2 / general rule 8: NEEDS_CONTEXT is only for replies. A top-level comment cannot
-    # depend on a parent; the model used it for "needs background facts", which then
-    # forced STANCE to NEUTRAL. Runs before the STANCE rule so the model's own STANCE stands.
+    # General rule 1: NEEDS_CONTEXT is only for replies. A top-level comment cannot
+    # depend on a parent comment.
     if obj["NEEDS_CONTEXT"] == 1 and not is_reply(obj.get("id", ""), text):
         obj["NEEDS_CONTEXT"] = 0
         fixes.append("needs_context->0(not_reply)")
 
-    # I4: UNCODABLE means nothing in the comment can be coded. If other codes are cited,
-    # the comment was codable.
-    if obj["UNCODABLE"] == 1:
-        others = [k for k in BINARY_KEYS if k not in ("UNCODABLE", "NEEDS_CONTEXT") and obj[k] == 1]
-        others += [k for k, (_a, empty) in LIST_ENUMS.items() if obj[k] != [empty]]
-        if others:
-            obj["UNCODABLE"] = 0
-            fixes.append("uncodable->0(codes_cited)")
-
-    # A1: correct TAGLISH when the words clearly show one language (--no-language-rule: off).
+    # LANGUAGE: correct TAGLISH when the words clearly show one language
+    # (--no-language-rule: off); otherwise only flag disagreements.
     if LANGUAGE_RULE and not is_emoji_only(text):
         new_lang = language_rule(obj["LANGUAGE"], text)
         if new_lang:
             fixes.append(f"language->{new_lang}(rule)")
             obj["LANGUAGE"] = new_lang
-
     flag = language_flag(obj["LANGUAGE"], text)
     if flag and not is_emoji_only(text):
         fixes.append(flag)  # flagged for review, not overwritten
 
-    # Review flags (codes unchanged): blame targets the comment never mentions (C9), and
-    # class frames on comments without class vocabulary (F1) - the RQs' central code.
-    for t in obj["BLAME_TARGETS"]:
-        if t != "NONE" and blame_unnamed(t, text):
-            review.append(f"blame_unnamed({t})")
-    if obj["CLASS_FRAME"] == 1 and not CLASS_WORDS.search(text):
-        review.append("class_frame_no_class_word")
+    if obj["NEG_SOCIAL_EMOTION"] == 1:
+        # EMOTION_WORDS is literal: flag terms that are not in the text, and terms in the
+        # text that were not listed. Advisory; the model's list is kept.
+        listed = {w for w in obj["EMOTION_WORDS"] if w != "NONE"}
+        found = set(emotion_terms_in(text))
+        for t in sorted(listed - found):
+            review.append(f"emotion_word_not_in_text({t})")
+        for t in sorted(found - listed):
+            review.append(f"emotion_word_missed({t})")
 
-    # Deterministic codebook rules.
-    if is_emoji_only(text) and obj["LANGUAGE"] != "EMOJI":
-        obj["LANGUAGE"] = "EMOJI"  # A1: emoji only, no words
-        fixes.append("language->EMOJI")
-    if obj["NEEDS_CONTEXT"] == 1 and obj["STANCE"] != "NEUTRAL":
-        obj["STANCE"] = "NEUTRAL"  # general rule 8
-        fixes.append("stance->NEUTRAL(needs_context)")
-    if obj["CLASS_FRAME"] == 0 and obj["CLASS_DIRECTION"] != "NA":
-        # F2: NA if CLASS_FRAME = 0. Kept in the flag: a direction without a cited
-        # class quote is a possible missed CLASS_FRAME worth reviewing.
-        review.append(f"class_direction_without_frame({obj['CLASS_DIRECTION']})")
-        obj["CLASS_DIRECTION"] = "NA"
-        fixes.append("class_direction->NA")
-    if obj["CLASS_FRAME"] == 1 and obj["CLASS_DIRECTION"] == "NA":
-        # Keep the cited class frame (central to the RQs); only the direction is missing.
-        _soft(review, lenient, "class_direction_missing", "class_frame_without_direction: "
-              "CLASS_FRAME is cited, so choose a CLASS_DIRECTION")
-    if (obj["RESPONSE_TARGET"] == "NA") != (obj["RESPONSE_EVAL"] == "NA"):
-        msg = (f"response_na_mismatch: target={obj['RESPONSE_TARGET']} "
-               f"eval={obj['RESPONSE_EVAL']}; give both or neither")
-        _soft(review, lenient, f"response_incomplete({obj['RESPONSE_TARGET']}/{obj['RESPONSE_EVAL']})", msg)
-        if lenient:  # general rule 2: when in doubt, NA
-            obj["RESPONSE_TARGET"] = obj["RESPONSE_EVAL"] = "NA"
-            fixes.append("response->NA(incomplete)")
-    if obj["RESPONSE_EVAL"] not in ("REJECTS", "MIXED") and obj["REJECT_REASONS"] != ["NA"]:
-        obj["REJECT_REASONS"] = ["NA"]  # H3: NA unless REJECTS or MIXED
-        fixes.append("reject_reasons->NA")
+        # Step 3: CLUSTER follows FOCAL_EVENT unless the model overrode it (allowed only
+        # when the focal event is ambiguous, and explained in NOTE).
+        default = DEFAULT_CLUSTER[obj["FOCAL_EVENT"]]
+        if obj["CLUSTER"] != default:
+            review.append(f"cluster_override({default}->{obj['CLUSTER']})")
+            if not obj["NOTE"].strip():
+                review.append("cluster_override_no_note")
+        # CLUSTER_CONFLICT is defined by the coded components; flag disagreements with the
+        # model's value (kept as coded, not overwritten).
+        expected = component_conflict(obj)
+        if expected is not None and obj["CLUSTER_CONFLICT"] != expected:
+            review.append(f"cluster_conflict_check(model={obj['CLUSTER_CONFLICT']},rule={expected})")
     return fixes
 
 
@@ -1216,13 +1049,6 @@ def parse_chunk_response(
     records: list[dict[str, Any]] = []
     for rid, obj in zip(row_ids, objs):
         review: list[str] = []
-        if isinstance(obj.get("evidence"), list):  # v1.3+ structured answer
-            try:
-                obj = expand_structured(obj, lenient, review)
-            except SoftIssue as exc:
-                raise SoftIssue(f"row {rid}: {exc}", exc.flag) from exc
-            except ValueError as exc:
-                raise ValueError(f"row {rid}: {exc}") from exc
         missing = required - set(obj.keys())
         if missing:
             raise ValueError(f"missing_keys: {sorted(missing)}")
@@ -1469,6 +1295,7 @@ def run_pair(
     _, prompt_version = read_prompt()
     (pass_dir / "run_info.json").write_text(json.dumps({
         "model": model_id, "precision": precision, "prompt_version": prompt_version,
+        "schema": SCHEMA_VERSION,
         "concurrency": concurrency, "max_model_len": getattr(generator, "max_model_len", None),
         "max_new_tokens": max_new_tokens, "written": time.strftime("%Y-%m-%dT%H:%M:%S"),
     }, indent=2), encoding="utf-8")
@@ -1501,7 +1328,7 @@ def run_pair(
                             continue
                         # Outputs made with another prompt version are recoded, not
                         # mixed in (v1.0 checkpoints carry no version field).
-                        if rec.get("prompt_version", "v1.0") != prompt_version:
+                        if rec.get("prompt_version", "v1.0") != prompt_version or rec.get("schema") != SCHEMA_VERSION:
                             stale_version += 1
                             continue
                         # Rows coded at another precision (nf4 / fp8 / bf16) are recoded too.
@@ -1641,7 +1468,8 @@ def run_pair(
         def accept(current: pd.DataFrame, raw: str, lenient: bool = False) -> None:
             nonlocal outage_streak
             rec = {"row_ids": current["row_id"].tolist(), "text": raw or "",
-                   "prompt_version": prompt_version, "precision": precision}
+                   "prompt_version": prompt_version, "schema": SCHEMA_VERSION,
+                   "precision": precision}
             if lenient:
                 rec["lenient"] = True
             raw_responses.append(rec)
@@ -1698,14 +1526,14 @@ def run_pair(
                           f"{correction_counts[key]}/{MAX_CORRECTIONS} with a correction note.")
                     retry_notes[key] = (
                         "\n\nCORRECTION: the previous answer for this comment was rejected: "
-                        f"{str(exc)[:200]}. Code only this comment, from its own words. Each "
-                        "evidence item needs a short quote copied exactly from the comment (at "
-                        "most 15 words), its literal English translation, and the codes those "
-                        "words support. Name any OTHER in other_label. If CLASS_FRAME is cited, "
-                        "choose a CLASS_DIRECTION; give RESPONSE_TARGET and RESPONSE_EVAL both "
-                        "or neither."
-                        + (" Your answer was too long: use fewer evidence items, one per idea, "
-                           "and quote a repeated emoji or phrase only once."
+                        f"{str(exc)[:200]}. Code only this comment, from its own words. If "
+                        "NEG_SOCIAL_EMOTION is 0, set every other coded field to NA (EMOTION_WORDS "
+                        "[\"NA\"]). If it is 1, no field may be NA: use NONE_EXPRESSED / "
+                        "NOT_DETERMINABLE / UNCLASSIFIED when in doubt, and EMOTION_WORDS "
+                        "[\"NONE\"] when no listed term appears. Evidence must be short quotes "
+                        "copied exactly from the comment, with an English translation."
+                        + (" Your answer was too long: keep evidence and evidence_en to a few short "
+                           "quotes, and quote a repeated emoji or phrase only once."
                            if isinstance(exc, TruncatedOutput) else "")
                     )
                     chunks_queue.insert(0, current)
@@ -1799,7 +1627,7 @@ def run_pair(
         for entry in pending_entries:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
-    emergent_hit = sum(1 for r in parsed_records if str(r.get("EMERGENT", "")).strip())
+    note_hit = sum(1 for r in parsed_records if str(r.get("NOTE", "")).strip())
     def _fixes(r: dict[str, Any]) -> list[str]:
         return [f for f in str(r.get("autofix", "")).split(";") if f]
 
@@ -1823,7 +1651,7 @@ def run_pair(
         f"parsed: {len(parsed_records)}/{len(df)} rows | "
         f"parse failures: {len(parse_failures)} | api failures: {len(hard_failures)} | "
         f"pending (transient): {len(pending_entries)} | "
-        f"EMERGENT non-empty (FULL-mode warning): {emergent_hit}"
+        f"NOTE non-empty: {note_hit}"
     )
 
     with open(output_path, "w", encoding="utf-8") as f:
@@ -1854,7 +1682,7 @@ def run_pair(
     for col in [c for c in merged.columns if c not in SKIP_SUMMARY_COLS]:
         if col == "model" or col.endswith("_llm"):
             continue
-        if col in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "autofix"):
+        if col in ("evidence", "evidence_en", "NOTE", "autofix", "review_flags"):
             continue
         series = (
             merged[col].astype(str)
@@ -1889,8 +1717,8 @@ def run_pair(
         and n_matched == len(df)
     )
     if parsed_records:
-        keys = ("id", "LANGUAGE", "ANGER", "CONTEMPT", "NORM_VIOLATION", "ATTRIBUTION",
-                "STANCE", "evidence", "confidence")
+        keys = ("id", "LANGUAGE", "NEG_SOCIAL_EMOTION", "FOCAL_EVENT", "CLUSTER", "CLUSTER_CONFLICT",
+                "evidence", "confidence")
         print("\nSample record 0:", json.dumps({k: parsed_records[0].get(k) for k in keys}, ensure_ascii=False))
     print(
         f"\n{'=' * 60}\n"
@@ -1947,7 +1775,7 @@ def main(argv: Optional[list[str]] = None) -> int:
                     continue
             elif args.sample_per_phase is not None:
                 df, sample_info = select_sample(df, phase, args.sample_per_phase,
-                                                args.sample_seed, args.class_census)
+                                                args.sample_seed)
                 print(f"Phase {phase}: sample {sample_info['n']} of {sample_info['N']} "
                       f"({sample_info['design']})")
             print(f"Phase {phase}: {len(df)} rows")

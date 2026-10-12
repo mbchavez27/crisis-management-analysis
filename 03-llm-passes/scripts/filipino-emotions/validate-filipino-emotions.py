@@ -2,11 +2,12 @@
 """Validate run-filipino-emotions.py results (Sta. Maria 2010 framework) and describe the dataset.
 
 Checks (ERROR = objectively wrong, WARN = likely wrong, INFO = worth a look):
-  schema/enums/binaries, template leakage, evidence fidelity (old free-text and
-  v1.3+ «quote» -> CODES formats), NA consistency, emoji-only handling, language
-  heuristics, appearance/anger-emoji rules, unused Section H, plus dataset-level
-  patterns (constant columns, repeated coding bundles, uniform confidence, mixed
-  prompt versions or models).
+  schema/enums/binaries, template leakage, evidence fidelity (quotes must appear in the
+  comment), screen consistency (NEG_SOCIAL_EMOTION=0 rows are NA everywhere, =1 rows have
+  no NA), cluster logic (CLUSTER vs FOCAL_EVENT default, CLUSTER_CONFLICT vs the coded
+  components), language heuristics, the runner's own review flags, plus dataset-level
+  patterns (constant columns, repeated coding bundles, uniform confidence, mixed prompt
+  versions, precisions or models).
 
 Descriptive statistics, per phase and for all selected phases combined:
   coverage and failures, comment length, videos, language, code prevalence,
@@ -45,78 +46,166 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 RESULTS_NAME = "filipino_emotions_results.csv"
 
-BINARY = [
-    "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-    "SYMPATHY_OFFENDER", "FEAR", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
-    "COVER_UP", "ALT_ACCOUNT", "INJUSTICE", "SELF_INTEREST", "NEEDS_CONTEXT",
-    "CLASS_FRAME", "APPEARANCE_ATTACK", "META_DISCOURSE", "SARCASM", "UNCODABLE",
+BINARY = ["NEG_SOCIAL_EMOTION", "SARCASM", "NEEDS_CONTEXT"]  # always 0 / 1
+TERNARY = ["MULTIPLE_FOCAL", "CLUSTER_CONFLICT"]  # 0 / 1, or NA when screened out
+COMPONENT_KEYS = [
+    "TARGET",
+    "FOCAL_EVENT",
+    "BLAME_LOCUS",
+    "CONTROL_STRATEGY",
+    "ACTION_TENDENCY",
+    "REGULATION",
+    "RELATIONSHIP_LEVEL",
+    "CLUSTER",
 ]
+CLUSTER_PROFILE = [
+    "FOCAL_EVENT",
+    "BLAME_LOCUS",
+    "CONTROL_STRATEGY",
+    "ACTION_TENDENCY",
+    "REGULATION",
+    "RELATIONSHIP_LEVEL",
+]  # components compared across clusters
 SCALARS = {
-    "LANGUAGE": {"ENGLISH", "FILIPINO", "TAGLISH", "OTHER_PH_LANGUAGE", "EMOJI", "OTHER"},
-    "ATTRIBUTION": {"NONE", "ACCIDENT", "ACCUSATION", "NEGLIGENCE", "INTENTIONAL", "VICTIM_FAULT"},
-    "STANCE": {"CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"},
-    "CLASS_DIRECTION": {"INEQUALITY_JUSTICE", "VICTIMS_POOR", "INSTITUTION_ELITE", "OTHER", "NA"},
-    "RESPONSE_TARGET": {"UNIVERSITY_ANNOUNCEMENT", "COACH_APOLOGY", "PRESIDENT_STATEMENT",
-                        "POLICE_REPORT", "OTHER", "NA"},
-    "RESPONSE_EVAL": {"ACKNOWLEDGES", "REJECTS", "MIXED", "NA"},
-    "TARGET_OF_COMMENT": {"ORGANIZATION", "PERSON", "VICTIMS_FAMILY", "OTHER_COMMENTERS", "MEDIA", "NONE"},
+    "LANGUAGE": {"EN", "FIL", "TAGLISH", "OTHER"},
+    "TARGET": {
+        "PERSON",
+        "ORGANIZATION",
+        "GROUP",
+        "SITUATION_OBJECT",
+        "SELF",
+        "UNCLEAR",
+        "NA",
+    },
+    "FOCAL_EVENT": {
+        "MORAL_VIOLATION",
+        "UNMET_EXPECTATION",
+        "HINDRANCE",
+        "UNCLEAR",
+        "NA",
+    },
+    "BLAME_LOCUS": {"OTHER", "SELF", "NOT_EXPRESSED", "NA"},
+    "CONTROL_STRATEGY": {"IGNORE", "REFRAME", "NONE_EXPRESSED", "NA"},
+    "ACTION_TENDENCY": {
+        "LASTING_WITHDRAWAL",
+        "TEMPORARY_DISTANCE",
+        "RELATIONSHIP_MAINTAINED",
+        "NONE_EXPRESSED",
+        "NA",
+    },
+    "REGULATION": {
+        "INTENSE_DISTRESS",
+        "CONTROLLED",
+        "NONVERBAL_ONLY",
+        "NOT_DETERMINABLE",
+        "NA",
+    },
+    "RELATIONSHIP_LEVEL": {
+        "KAPWA",
+        "HINDI_IBANG_TAO",
+        "IBANG_TAO",
+        "NOT_DETERMINABLE",
+        "NA",
+    },
+    "CLUSTER": {"C1", "C2", "C3", "UNCLASSIFIED", "NA"},
     "confidence": {"HIGH", "MEDIUM", "LOW"},
 }
 LISTS = {
-    "BLAME_TARGETS": {"COACH", "COACHING_STAFF", "UNIVERSITY", "PRESIDENT", "ORGANIZERS", "VENUE",
-                      "AUTHORITIES", "VICTIMS", "OTHER", "NONE"},
-    "VALUES": {"FAMILY", "CHILD_POTENTIAL", "PARENT_SACRIFICE", "DUTY_OF_CARE", "EDUCATION_MOBILITY",
-               "FAITH", "JUSTICE", "SOLIDARITY", "SANCTITY_OF_LIFE", "OTHER", "NONE"},
-    "IDENTITY_FRAME": {"NATIONALITY", "RACE", "REGION", "RELIGION", "NONE"},
-    "ACTIONS": {"PUNITIVE", "RETALIATION", "RESTITUTION", "ACCOUNTABILITY", "INFORMATION", "REFORM",
-                "BOYCOTT", "SUPPORT", "NONE"},
-    "REJECT_REASONS": {"INSINCERE", "WORDS_NOT_ENOUGH", "TOO_SOON", "TOO_LATE", "NO_INFORMATION",
-                       "SELF_CENTERED", "SHIFTS_BLAME", "DISMISSIVE", "NO_FAMILY_OUTREACH", "OTHER", "NA"},
+    "EMOTION_WORDS": {
+        "ASAR",
+        "BUWISIT",
+        "GALIT",
+        "INGGIT",
+        "INIS",
+        "MUHI",
+        "NGITNGIT",
+        "PIKON",
+        "POOT",
+        "SAMA_NG_LOOB",
+        "SELOS",
+        "SUKLAM",
+        "SUYA",
+        "TAMPO",
+        "YAMOT",
+        "NONE",
+        "NA",
+    },
 }
-TEXT_COLS = ["row_id", "comment_id", "text", "id", "evidence", "evidence_en", "EMERGENT", "OTHER_NOTE"]
-REQUIRED = TEXT_COLS + BINARY + list(SCALARS) + list(LISTS)
+TEXT_COLS = ["row_id", "comment_id", "text", "id", "evidence", "evidence_en", "NOTE"]
+REQUIRED = TEXT_COLS + BINARY + TERNARY + list(SCALARS) + list(LISTS)
 NEUTRAL = {"NONE", "NA"}
 # Columns shown side by side in the cross-phase table.
-KEY_RATES = ["ANGER", "CONTEMPT", "SADNESS", "CONDOLENCE", "NORM_VIOLATION", "INJUSTICE", "SARCASM"]
+KEY_RATES = ["NEG_SOCIAL_EMOTION", "SARCASM"]
+
+# Step 3 of the prompt. Keep in sync with DEFAULT_CLUSTER / COMPONENT_CLUSTERS in
+# run-filipino-emotions.py.
+DEFAULT_CLUSTER = {
+    "MORAL_VIOLATION": "C1",
+    "UNMET_EXPECTATION": "C2",
+    "HINDRANCE": "C3",
+    "UNCLEAR": "UNCLASSIFIED",
+}
+COMPONENT_CLUSTERS = {
+    "BLAME_LOCUS": {"OTHER": {"C1"}, "SELF": {"C2", "C3"}},
+    "CONTROL_STRATEGY": {"IGNORE": {"C1", "C3"}, "REFRAME": {"C2"}},
+    "ACTION_TENDENCY": {
+        "LASTING_WITHDRAWAL": {"C1"},
+        "RELATIONSHIP_MAINTAINED": {"C2"},
+        "TEMPORARY_DISTANCE": {"C3"},
+    },
+    "REGULATION": {
+        "INTENSE_DISTRESS": {"C1"},
+        "CONTROLLED": {"C2", "C3"},
+        "NONVERBAL_ONLY": {"C3"},
+    },
+    "RELATIONSHIP_LEVEL": {
+        "KAPWA": {"C1"},
+        "HINDI_IBANG_TAO": {"C2"},
+        "IBANG_TAO": {"C3"},
+    },
+}
 
 LEAK = [
-    "short quote(s)", "english translation of the evidence", "now output exactly one json",
-    "high|medium|low", "supporting each non-zero code", "output only json",
-    "«exact words»", "«english translation»", "exact words from the comment",
-    "literal english translation",
+    "short quote(s) supporting",
+    "english translation of the evidence",
+    "now output exactly one json",
+    "high|medium|low",
+    "en|fil|taglish|other",
+    "one json object per comment",
+    "output only json",
+    "[id | comment text]",
 ]
-FIL = set("""ang ng sa na mga si ay ako ikaw siya mo ka ko namin natin nila nyo niyo po opo hindi wala may
+FIL = set(
+    """ang ng sa na mga si ay ako ikaw siya mo ka ko namin natin nila nyo niyo po opo hindi wala may
 para pero kasi dapat kayo sila lang naman din rin basta yung yun ito iyon pa ba nga sana talaga tayo kami
-bakit ano paano tama mali""".split())
-EN = set("""the is are was were and to of you your for that this with not but he she they we it in on be have
-has should why like will""".split())
+bakit ano paano tama mali""".split()
+)
+EN = set(
+    """the is are was were and to of you your for that this with not but he she they we it in on be have
+has should why like will""".split()
+)
 SHORTCODE = re.compile(r":[a-z0-9_+\-]+:", re.I)
-UNI_EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]")
+UNI_EMOJI = re.compile("[\U0001f000-\U0001faff☀-➿️‍]")
 EVID_QUOTE = re.compile(r"«([^«»]*)»")
-BALD = re.compile(r"\b(kalbo|kalbohydrate\w*|opaw|upaw|bald|hairless)\b", re.I)
-RESPONSE_WORDS = re.compile(
-    r"apolog|sorry|sori|patawad|scripted|acting|crocodile|\bwake\b|belated|statement|\bpr\b|lawyer", re.I)
-PUNITIVE_WORDS = re.compile(
-    r"jail|prison|kulong|kasuhan|\bkaso\b|managot|punish|parusahan|charge|arrest|deport|resign|"
-    r"\bfire[dm]?\b|\bban(ned)?\b|revoke|accountab|surrender|\bsue\b|panagutin|sagutin", re.I)
-# Class vocabulary (F1: class, wealth, poverty, privilege, scholarship status, rich vs
-# poor). Used only to AUDIT CLASS_FRAME coverage, never to code. Extend as needed.
-CLASS_WORDS = re.compile(
-    r"\b(?:mahirap|mahihirap|mayaman|mayayaman|elite|elitist|privileged?|privilege|nepo\w*|"
-    r"scholar\w*|iskolar|pera|money|millions?|billions?|rich|poor|probinsya\w*|"
-    r"working class|middle class|tuition|matrikula|afford\w*|breadwinner|classism|burgis|"
-    r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
-EMOTIONS = ["ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-            "SYMPATHY_OFFENDER", "FEAR"]
-# review_flags written by run-filipino-emotions.py (rows kept after correction retries).
-REVIEW_SEVERITY = {"evidence_unverified": "WARN", "class_direction_missing": "WARN",
-                   "response_incomplete": "WARN", "class_direction_without_frame": "WARN",
-                   "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO",
-                   "blame_unnamed": "WARN", "class_frame_no_class_word": "INFO"}
+HANDLE = re.compile(r"@[\w.\-]+")
+EVID_SPLIT = re.compile(r"\s*(?:;|\||\n|…|\.\.\.)\s*")
+EVID_LABEL = re.compile(r"^[A-Z_]{4,}\s*[:=]\s*")  # "FOCAL_EVENT: ..." prefixes
+EVID_ARROW = re.compile(r"\s*(?:->|→|=>).*$")  # "quote -> CODE" suffixes
+# review_flags written by run-filipino-emotions.py (rows kept after correction retries,
+# plus advisory checks). Severity here decides how they show up in the report.
+REVIEW_SEVERITY = {
+    "evidence_unverified": "WARN",
+    "evidence_missing": "WARN",
+    "evidence_fuzzy": "INFO",
+    "evidence_en_missing": "INFO",
+    "emotion_word_not_in_text": "WARN",
+    "emotion_word_missed": "INFO",
+    "cluster_override": "INFO",
+    "cluster_override_no_note": "WARN",
+    "cluster_conflict_check": "WARN",
+}
 NEEDS_CONTEXT_MAX = 0.15
 LEN_BINS = [(0, 20, "words_le20"), (21, 80, "words_21_80"), (81, 10**9, "words_gt80")]
-ANGER_EMOJI = {"enraged_face", "angry_face", "face_with_symbols_on_mouth", "pouting_face"}
-SAD_EMOJI = {"crying_face", "loudly_crying_face", "broken_heart", "pensive_face", "disappointed_face"}
 FLAG_COLS = ["phase", "row_id", "comment_id", "severity", "check", "detail"]
 
 
@@ -140,10 +229,16 @@ def is_emoji_only(text: str) -> bool:
 
 
 def evidence_fragments(ev: str) -> list[str]:
-    """Quotes from either evidence format: «quote» -> CODES (v1.2+) or free text (v1.0/1.1)."""
+    """Quotes from the evidence string: «quote» if marked, otherwise split on ; | newline ...
+    (mirrors the runner; "LABEL:" prefixes and "-> CODE" suffixes are dropped)."""
     if "«" in ev:
         return [q for q in EVID_QUOTE.findall(ev) if q.strip()]
-    return [f for f in re.split(r"\s+\|\s+|;\s+|\s+/\s+", ev) if f.strip()]
+    out = []
+    for part in EVID_SPLIT.split(ev):
+        part = EVID_ARROW.sub("", EVID_LABEL.sub("", part.strip())).strip()
+        if part:
+            out.append(part)
+    return out
 
 
 def pct(n: int, d: int) -> float:
@@ -208,8 +303,9 @@ def discover(args: argparse.Namespace) -> list[tuple[str, Path]]:
     if not pass_dir.is_dir():
         print(f"No results directory: {pass_dir}")
         return []
-    available = sorted(d.name for d in pass_dir.iterdir()
-                       if d.is_dir() and (d / RESULTS_NAME).exists())
+    available = sorted(
+        d.name for d in pass_dir.iterdir() if d.is_dir() and (d / RESULTS_NAME).exists()
+    )
     if args.phases.strip().lower() == "all":
         wanted = available
     else:
@@ -227,14 +323,21 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
     # run_local.py versions before the fix wrote binaries as 0.0 / 1.0 when a phase
     # had uncoded rows (pandas upcasts to float on the merge). Same values, so read
     # them as 0 / 1 instead of flagging every cell.
-    for c in BINARY:
+    for c in BINARY + TERNARY:
         if c in df.columns:
             df[c] = df[c].replace({"0.0": "0", "1.0": "1"})
     flags: list[dict] = []
     missing = [c for c in REQUIRED if c not in df.columns]
     if missing:
-        flags.append({"row_id": "", "comment_id": "", "severity": "ERROR",
-                      "check": "missing_columns", "detail": str(missing)})
+        flags.append(
+            {
+                "row_id": "",
+                "comment_id": "",
+                "severity": "ERROR",
+                "check": "missing_columns",
+                "detail": str(missing),
+            }
+        )
         return df, flags
     dups = set(df.loc[df["comment_id"].duplicated(keep=False), "comment_id"])
     sigs: list[tuple] = []
@@ -243,8 +346,15 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
         r = s.to_dict()
 
         def F(sev: str, check: str, detail: str = "") -> None:
-            flags.append({"row_id": r["row_id"], "comment_id": r["comment_id"],
-                          "severity": sev, "check": check, "detail": detail})
+            flags.append(
+                {
+                    "row_id": r["row_id"],
+                    "comment_id": r["comment_id"],
+                    "severity": sev,
+                    "check": check,
+                    "detail": detail,
+                }
+            )
 
         if r["id"] == "":
             F("ERROR", "uncoded_row", "no model output for this row")
@@ -256,6 +366,9 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
 
         for c in BINARY:
             if r[c] not in ("0", "1"):
+                F("ERROR", "bad_binary", f"{c}={r[c]!r}")
+        for c in TERNARY:
+            if r[c] not in ("0", "1", "NA"):
                 F("ERROR", "bad_binary", f"{c}={r[c]!r}")
         for c, allowed in SCALARS.items():
             if r[c] not in allowed:
@@ -274,12 +387,12 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
                 F("WARN", "none_mixed_with_values", f"{c}={v}")
             L[c] = v
 
-        def b(c: str) -> bool:
-            return r[c] == "1"
+        screened_in = r["NEG_SOCIAL_EMOTION"] == "1"
+        text = r["text"]
 
         # --- template / prompt leakage -------------------------------------
         leaked_ev = False
-        for c in ("evidence", "evidence_en", "EMERGENT", "OTHER_NOTE", "confidence"):
+        for c in ("evidence", "evidence_en", "NOTE", "confidence"):
             low = r[c].lower()
             if any(p in low for p in LEAK):
                 F("ERROR", "template_leakage", f"{c}: {r[c][:70]!r}")
@@ -287,127 +400,209 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
 
         # --- evidence fidelity ---------------------------------------------
         ev = r["evidence"].strip()
-        coded_any = (any(b(c) for c in BINARY if c != "UNCODABLE") or r["ATTRIBUTION"] != "NONE"
-                     or L.get("ACTIONS") != ["NONE"] or L.get("VALUES") != ["NONE"])
         review = [x for x in r.get("review_flags", "").split(";") if x]
         for rf in review:
             base = rf.split("(")[0]
             F(REVIEW_SEVERITY.get(base, "INFO"), f"review:{base}", rf)
-        ev_flagged = any(x.startswith(("evidence_unverified", "evidence_fuzzy")) for x in review)
+        ev_flagged = any(
+            x.startswith(("evidence_unverified", "evidence_fuzzy")) for x in review
+        )
         if ev and not leaked_ev and not ev_flagged:
-            t = norm(r["text"].replace("\n", " "))
-            miss = [f for f in (norm(x) for x in evidence_fragments(ev)) if f and f not in t]
+            t = norm(HANDLE.sub("[USER]", text.replace("\n", " ")))
+            miss = [
+                f for f in (norm(x) for x in evidence_fragments(ev)) if f and f not in t
+            ]
             if miss:
                 F("WARN", "evidence_not_in_text", f"{miss[0][:70]!r}")
-        if coded_any and not ev:
-            F("WARN", "no_evidence", "codes set but evidence is empty")
+        if screened_in and not ev:
+            F("WARN", "no_evidence", "NEG_SOCIAL_EMOTION=1 but evidence is empty")
         if ev and not r["evidence_en"].strip():
             F("WARN", "no_evidence_en")
         if "@" in ev:
             F("WARN", "handle_in_evidence", "replace @handles with [USER]")
 
-        # --- structural consistency ----------------------------------------
-        if b("UNCODABLE") and (coded_any or r["STANCE"] != "NEUTRAL"):
-            F("ERROR", "uncodable_not_blank", "UNCODABLE=1 requires all other codes blank")
-        if b("NEEDS_CONTEXT") and r["STANCE"] != "NEUTRAL":
-            F("ERROR", "needs_context_stance", f"STANCE={r['STANCE']} (rule 8: must be NEUTRAL)")
-        if (r["CLASS_FRAME"] == "0") != (r["CLASS_DIRECTION"] == "NA"):
-            if "class_direction_missing" in review:
-                pass  # kept on purpose by run_local (already flagged for review)
-            else:
-                F("ERROR", "class_na_mismatch",
-                  f"CLASS_FRAME={r['CLASS_FRAME']} CLASS_DIRECTION={r['CLASS_DIRECTION']}")
-        if r["CLASS_FRAME"] == "0" and CLASS_WORDS.search(r["text"]):
-            F("INFO", "class_word_not_framed", f"matched {CLASS_WORDS.search(r['text']).group(0)!r}")
-        if (r["RESPONSE_EVAL"] == "NA") != (r["RESPONSE_TARGET"] == "NA"):
-            F("ERROR", "response_na_mismatch", f"TARGET={r['RESPONSE_TARGET']} EVAL={r['RESPONSE_EVAL']}")
-        rr = L.get("REJECT_REASONS", [])
-        if r["RESPONSE_EVAL"] in ("REJECTS", "MIXED") and rr == ["NA"]:
-            F("WARN", "rejects_without_reason", "REJECT_REASONS is NA")
-        if r["RESPONSE_EVAL"] not in ("REJECTS", "MIXED") and rr and rr != ["NA"]:
-            F("ERROR", "reject_reasons_without_rejection", str(rr))
-        if r["ATTRIBUTION"] in ("ACCUSATION", "NEGLIGENCE", "INTENTIONAL") and not b("NORM_VIOLATION"):
-            F("WARN", "attribution_without_norm_violation", r["ATTRIBUTION"])
+        # --- screen consistency (Step 1: screened-out rows are NA everywhere) ----
+        coded_cols = COMPONENT_KEYS + TERNARY
+        if r["NEG_SOCIAL_EMOTION"] == "0":
+            not_na = [c for c in coded_cols if r[c] != "NA"]
+            if not_na or L.get("EMOTION_WORDS") != ["NA"]:
+                F(
+                    "ERROR",
+                    "screened_out_not_na",
+                    f"NEG_SOCIAL_EMOTION=0 but not NA: {not_na + (['EMOTION_WORDS'] if L.get('EMOTION_WORDS') != ['NA'] else [])}",
+                )
+        elif screened_in:
+            na_cols = [c for c in coded_cols if r[c] == "NA"]
+            if "NA" in L.get("EMOTION_WORDS", []):
+                na_cols.append("EMOTION_WORDS")
+            if na_cols:
+                F(
+                    "ERROR",
+                    "screened_in_has_na",
+                    f"NEG_SOCIAL_EMOTION=1 but NA: {na_cols}",
+                )
+
+        # --- cluster logic (Step 3) ------------------------------------------
+        if screened_in and r["FOCAL_EVENT"] in DEFAULT_CLUSTER:
+            default = DEFAULT_CLUSTER[r["FOCAL_EVENT"]]
+            if r["CLUSTER"] != default:
+                if r["FOCAL_EVENT"] != "UNCLEAR":
+                    # Rule 3 allows overriding the default only when the focal event is ambiguous.
+                    F(
+                        "WARN",
+                        "cluster_override_clear_focal",
+                        f"FOCAL_EVENT={r['FOCAL_EVENT']} defaults to {default}, coded {r['CLUSTER']}",
+                    )
+                elif not r["NOTE"].strip():
+                    F(
+                        "WARN",
+                        "cluster_override_no_note",
+                        f"FOCAL_EVENT=UNCLEAR but CLUSTER={r['CLUSTER']}",
+                    )
+        if screened_in and r["CLUSTER"] in ("C1", "C2", "C3"):
+            clash = [
+                c
+                for c, table in COMPONENT_CLUSTERS.items()
+                if r[c] in table and r["CLUSTER"] not in table[r[c]]
+            ]
+            if r["CLUSTER_CONFLICT"] in ("0", "1") and (
+                r["CLUSTER_CONFLICT"] == "1"
+            ) != bool(clash):
+                F(
+                    "WARN",
+                    "cluster_conflict_mismatch",
+                    f"CLUSTER_CONFLICT={r['CLUSTER_CONFLICT']} but components against {r['CLUSTER']}: {clash or 'none'}",
+                )
 
         # --- content heuristics --------------------------------------------
-        text = r["text"]
-        codes = {x.lower().strip(":") for x in SHORTCODE.findall(text)}
+        tokens = re.findall(r"[a-zñ']+", SHORTCODE.sub(" ", text.lower()))
         if is_emoji_only(text):
-            if r["LANGUAGE"] != "EMOJI":
-                F("ERROR", "emoji_only_language", f"LANGUAGE={r['LANGUAGE']}, expected EMOJI")
-            extra = [k for k, v in (("NORM_VIOLATION", b("NORM_VIOLATION")),
-                                    ("ATTRIBUTION", r["ATTRIBUTION"] != "NONE"),
-                                    ("BLAME_TARGETS", L.get("BLAME_TARGETS") != ["NONE"]),
-                                    ("VALUES", L.get("VALUES") != ["NONE"]),
-                                    ("ACTIONS", L.get("ACTIONS") != ["NONE"])) if v]
-            if extra:
-                F("WARN", "emoji_only_overcoding", f"emoji-only comment coded {extra}")
+            if screened_in and r["REGULATION"] not in (
+                "NONVERBAL_ONLY",
+                "NOT_DETERMINABLE",
+            ):
+                F(
+                    "WARN",
+                    "emoji_only_regulation",
+                    f"emoji-only comment coded REGULATION={r['REGULATION']}",
+                )
         else:
-            tokens = re.findall(r"[a-z\u00f1']+", SHORTCODE.sub(" ", text.lower()))
             fil_n = sum(t in FIL for t in tokens)
             en_n = sum(t in EN for t in tokens)
-            if r["LANGUAGE"] == "FILIPINO" and fil_n == 0 and en_n >= 2:
-                F("WARN", "language_heuristic", "coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)")
-            elif r["LANGUAGE"] == "ENGLISH" and fil_n >= 2:
-                F("WARN", "language_heuristic", "coded ENGLISH but has Filipino words (TAGLISH?)")
-            elif r["LANGUAGE"] == "TAGLISH" and (fil_n == 0 or en_n == 0) and fil_n + en_n >= 2:
-                F("WARN", "language_heuristic", "coded TAGLISH but only one language detected")
-        if BALD.search(text) and not b("APPEARANCE_ATTACK"):
-            F("WARN", "appearance_missed", f"matched {BALD.search(text).group(0)!r}")
-        if codes & ANGER_EMOJI and not b("ANGER"):
-            F("WARN", "anger_emoji_missed", str(sorted(codes & ANGER_EMOJI)))
-        if codes & SAD_EMOJI and not b("SADNESS"):
-            F("INFO", "sad_emoji_missed", str(sorted(codes & SAD_EMOJI)))
-        if RESPONSE_WORDS.search(text) and r["RESPONSE_EVAL"] == "NA":
-            F("WARN", "possible_response_uncoded", f"matched {RESPONSE_WORDS.search(text).group(0)!r}")
-        if "PUNITIVE" in L.get("ACTIONS", []) and not PUNITIVE_WORDS.search(text):
-            F("INFO", "punitive_no_keyword", "PUNITIVE coded, no punishment wording found")
+            if r["LANGUAGE"] == "FIL" and fil_n == 0 and en_n >= 2:
+                F(
+                    "WARN",
+                    "language_heuristic",
+                    "coded FIL but reads English/mixed (EN or TAGLISH?)",
+                )
+            elif r["LANGUAGE"] == "EN" and fil_n >= 2:
+                F(
+                    "WARN",
+                    "language_heuristic",
+                    "coded EN but has Filipino words (TAGLISH?)",
+                )
+            elif (
+                r["LANGUAGE"] == "TAGLISH"
+                and (fil_n == 0 or en_n == 0)
+                and fil_n + en_n >= 2
+            ):
+                F(
+                    "WARN",
+                    "language_heuristic",
+                    "coded TAGLISH but only one language detected",
+                )
+            if screened_in and r["REGULATION"] == "NONVERBAL_ONLY" and len(tokens) > 8:
+                F(
+                    "INFO",
+                    "nonverbal_but_wordy",
+                    f"NONVERBAL_ONLY on a {len(tokens)}-word comment",
+                )
 
-        sigs.append((r["NORM_VIOLATION"], r["ATTRIBUTION"], tuple(sorted(L.get("BLAME_TARGETS", []))),
-                     r["STANCE"], tuple(sorted(L.get("ACTIONS", [])))))
+        if screened_in:
+            sigs.append(tuple(r[c] for c in CLUSTER_PROFILE) + (r["CLUSTER"],))
 
     # --- dataset-level patterns ---------------------------------------------
     ok = df[df["id"] != ""]
     n = len(ok)
 
     def D(sev: str, check: str, detail: str) -> None:
-        flags.append({"row_id": "", "comment_id": "", "severity": sev, "check": check, "detail": detail})
+        flags.append(
+            {
+                "row_id": "",
+                "comment_id": "",
+                "severity": sev,
+                "check": check,
+                "detail": detail,
+            }
+        )
 
     if n >= 10:
         nc = (ok["NEEDS_CONTEXT"] == "1").mean()
         if nc > NEEDS_CONTEXT_MAX:
-            D("WARN", "needs_context_high",
-              f"NEEDS_CONTEXT on {nc:.0%} of rows (> {NEEDS_CONTEXT_MAX:.0%}); rule 8 forces STANCE=NEUTRAL")
-        kw = df["text"].str.contains(CLASS_WORDS)
-        if kw.sum() >= 20:
-            miss_kw = (df.loc[kw, "id"] == "").mean()
-            miss_other = (df.loc[~kw, "id"] == "").mean()
-            if miss_kw > 1.5 * miss_other and miss_kw > 0.05:
-                D("WARN", "class_comments_missing",
-                  f"{miss_kw:.0%} of class-vocabulary comments uncoded vs {miss_other:.0%} of others")
-        for c in ["STANCE", "TARGET_OF_COMMENT", "LANGUAGE", "RESPONSE_EVAL", "SARCASM",
-                  "META_DISCOURSE", "CLASS_FRAME", "confidence"]:
+            D(
+                "WARN",
+                "needs_context_high",
+                f"NEEDS_CONTEXT on {nc:.0%} of rows (> {NEEDS_CONTEXT_MAX:.0%}); those rows are coded on visible text only",
+            )
+        neg = (ok["NEG_SOCIAL_EMOTION"] == "1").mean()
+        if neg > 0.95 or neg < 0.02:
+            D(
+                "INFO",
+                "screen_rate_extreme",
+                f"NEG_SOCIAL_EMOTION=1 on {neg:.0%} of rows (screen too loose or too strict?)",
+            )
+        for c in [
+            "LANGUAGE",
+            "TARGET",
+            "FOCAL_EVENT",
+            "REGULATION",
+            "CLUSTER",
+            "SARCASM",
+            "confidence",
+        ]:
             if ok[c].nunique() == 1:
-                D("WARN", "constant_column", f"{c} is {ok[c].iloc[0]!r} on all {n} rows (legitimate?)")
-        if sigs:
+                D(
+                    "WARN",
+                    "constant_column",
+                    f"{c} is {ok[c].iloc[0]!r} on all {n} rows (legitimate?)",
+                )
+        if len(sigs) >= 10:
             top, cnt = Counter(sigs).most_common(1)[0]
-            if cnt / n > 0.4:
-                D("WARN", "repeated_bundle",
-                  f"{cnt}/{n} rows share NORM_VIOLATION/ATTRIBUTION/BLAME/STANCE/ACTIONS = {top}")
+            if cnt / len(sigs) > 0.4:
+                D(
+                    "WARN",
+                    "repeated_bundle",
+                    f"{cnt}/{len(sigs)} screened-in rows share FOCAL_EVENT/BLAME/CONTROL/ACTION/REGULATION/"
+                    f"RELATIONSHIP/CLUSTER = {top}",
+                )
         if (ok["confidence"] == "HIGH").mean() > 0.95:
-            D("WARN", "uniform_confidence", "over 95% HIGH; confidence cannot be used for filtering")
+            D(
+                "WARN",
+                "uniform_confidence",
+                "over 95% HIGH; confidence cannot be used for filtering",
+            )
+
     return df, flags
 
 
 # --------------------------------------------------------------------------- statistics
-def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path | None) -> tuple[dict, list[dict]]:
+def describe(
+    phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path | None
+) -> tuple[dict, list[dict]]:
     """One overview row and long-format distribution rows for a phase (or ALL)."""
     ok = df[df["id"] != ""] if "id" in df.columns else df
     n_all, n = len(df), len(ok)
-    words = df["text"].str.split().str.len().fillna(0) if "text" in df.columns else pd.Series(dtype=float)
+    words = (
+        df["text"].str.split().str.len().fillna(0)
+        if "text" in df.columns
+        else pd.Series(dtype=float)
+    )
     chars = df["text"].str.len() if "text" in df.columns else pd.Series(dtype=float)
-    flag_rows = {(f.get("phase", phase), f["row_id"]) for f in flags
-                 if f["severity"] in ("ERROR", "WARN") and f["row_id"] != ""}
+    flag_rows = {
+        (f.get("phase", phase), f["row_id"])
+        for f in flags
+        if f["severity"] in ("ERROR", "WARN") and f["row_id"] != ""
+    }
 
     ov: dict[str, Any] = {
         "phase": phase,
@@ -423,36 +618,54 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
         "words_median": float(words.median()) if len(words) else None,
         "words_max": int(words.max()) if len(words) else None,
         "chars_mean": round(float(chars.mean()), 1) if len(chars) else None,
-        "emoji_only": int(df["text"].map(is_emoji_only).sum()) if "text" in df.columns else None,
+        "emoji_only": (
+            int(df["text"].map(is_emoji_only).sum()) if "text" in df.columns else None
+        ),
     }
-    # Sampled runs (run_local.py --sample-per-phase / --class-census) carry per-row
-    # weights; the class census oversamples class talk, so unweighted percentages
-    # would overstate class-related codes. Percentages are weighted when weights exist.
-    weighted = "sample_weight" in ok.columns and ok["sample_weight"].astype(str).str.strip().ne("").any()
-    w = (pd.to_numeric(ok["sample_weight"], errors="coerce").fillna(1.0) if weighted
-         else pd.Series(1.0, index=ok.index))
+    # Sampled runs (run-filipino-emotions.py --sample-per-phase) carry per-row
+    # weights. Percentages are weighted when weights exist.
+    weighted = (
+        "sample_weight" in ok.columns
+        and ok["sample_weight"].astype(str).str.strip().ne("").any()
+    )
+    w = (
+        pd.to_numeric(ok["sample_weight"], errors="coerce").fillna(1.0)
+        if weighted
+        else pd.Series(1.0, index=ok.index)
+    )
     ov["weighted"] = bool(weighted)
     if weighted:
-        strata = ok["sample_stratum"].value_counts().to_dict() if "sample_stratum" in ok.columns else {}
+        strata = (
+            ok["sample_stratum"].value_counts().to_dict()
+            if "sample_stratum" in ok.columns
+            else {}
+        )
         ov["sample_strata"] = ";".join(f"{k}:{v}" for k, v in strata.items())
         ov["population_N_est"] = round(float(w.sum()))
 
     def wpct(mask: pd.Series) -> float:
-        return round(100.0 * float(w[mask].sum()) / float(w.sum()), 1) if len(w) and w.sum() else 0.0
+        return (
+            round(100.0 * float(w[mask].sum()) / float(w.sum()), 1)
+            if len(w) and w.sum()
+            else 0.0
+        )
 
     if "text" in df.columns and "id" in df.columns:
         words_all = df["text"].str.split().str.len().fillna(0)
         for lo, hi, name in LEN_BINS:
             m = words_all.between(lo, hi)
-            ov[f"uncoded_pct_{name}"] = pct(int((df.loc[m, "id"] == "").sum()), int(m.sum()))
-        kw_all = df["text"].str.contains(CLASS_WORDS)
-        ov["class_vocab_comments"] = int(kw_all.sum())
-        ov["class_vocab_uncoded_pct"] = pct(int((df.loc[kw_all, "id"] == "").sum()), int(kw_all.sum()))
-    if n and "CLASS_FRAME" in ok.columns:
-        kw = ok["text"].str.contains(CLASS_WORDS)
-        ov["CLASS_FRAME_pct"] = wpct(ok["CLASS_FRAME"] == "1")
-        ov["class_vocab_framed_pct"] = pct(int(((ok["CLASS_FRAME"] == "1") & kw).sum()), int(kw.sum()))
+            ov[f"uncoded_pct_{name}"] = pct(
+                int((df.loc[m, "id"] == "").sum()), int(m.sum())
+            )
+    if n and "NEG_SOCIAL_EMOTION" in ok.columns:
+        neg = ok["NEG_SOCIAL_EMOTION"] == "1"
         ov["NEEDS_CONTEXT_pct"] = pct(int((ok["NEEDS_CONTEXT"] == "1").sum()), n)
+        ov["NEG_rows"] = int(neg.sum())
+        for cat in ("C1", "C2", "C3", "UNCLASSIFIED"):  # % of coded rows
+            ov[f"CLUSTER_{cat}_pct"] = wpct(neg & (ok["CLUSTER"] == cat))
+        ov["CLUSTER_CONFLICT_pct_of_neg"] = pct(
+            int((neg & (ok["CLUSTER_CONFLICT"] == "1")).sum()), int(neg.sum())
+        )
     if "review_flags" in ok.columns:
         rf = ok["review_flags"].fillna("")
         ov["review_flagged_rows"] = int((rf != "").sum())
@@ -461,29 +674,52 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
     if "autofix" in ok.columns:
         fixes = ok["autofix"].fillna("")
         ov["language_review_flags"] = int(fixes.str.contains("language_check").sum())
-        ov["autofixed_rows"] = int(fixes.map(
-            lambda s: any(f and not f.startswith("language_check") for f in s.split(";"))).sum())
+        ov["autofixed_rows"] = int(
+            fixes.map(
+                lambda s: any(
+                    f and not f.startswith("language_check") for f in s.split(";")
+                )
+            ).sum()
+        )
     if results_path is not None:
         d = results_path.parent
-        versions = read_jsonl_field(d / "filipino_emotions_results.jsonl", "prompt_version")
+        versions = read_jsonl_field(
+            d / "filipino_emotions_results.jsonl", "prompt_version"
+        )
         models = read_jsonl_field(d / "filipino_emotions_results.jsonl", "model")
-        precisions = read_jsonl_field(d / "filipino_emotions_results.jsonl", "precision")
+        precisions = read_jsonl_field(
+            d / "filipino_emotions_results.jsonl", "precision"
+        )
         ov["precisions"] = ";".join(f"{k}:{v}" for k, v in sorted(precisions.items()))
-        ov["prompt_versions"] = ";".join(f"{k}:{v}" for k, v in sorted(versions.items()))
+        ov["prompt_versions"] = ";".join(
+            f"{k}:{v}" for k, v in sorted(versions.items())
+        )
         ov["models"] = ";".join(f"{k}:{v}" for k, v in sorted(models.items()))
-        ov["hard_failures"] = count_lines(d / "full_codebook_failures.log")
-        reasons = failure_reasons(d / "full_codebook_failures.log")
+        ov["hard_failures"] = count_lines(d / "filipino_emotions_failures.log")
+        reasons = failure_reasons(d / "filipino_emotions_failures.log")
         ov["failure_reasons"] = ";".join(f"{k}:{v}" for k, v in reasons.most_common())
-        ov["pending"] = count_lines(d / "full_codebook_pending.log")
+        ov["pending"] = count_lines(d / "filipino_emotions_pending.log")
 
     long: list[dict] = []
-    def add(var: str, kind: str, cat: str, k: int, mask: pd.Series | None = None) -> None:
-        long.append({"phase": phase, "variable": var, "type": kind, "category": cat, "n": int(k),
-                     "pct_of_coded": wpct(mask) if mask is not None else pct(int(k), n),
-                     "pct_unweighted": pct(int(k), n), "weighted": bool(weighted)})
+
+    def add(
+        var: str, kind: str, cat: str, k: int, mask: pd.Series | None = None
+    ) -> None:
+        long.append(
+            {
+                "phase": phase,
+                "variable": var,
+                "type": kind,
+                "category": cat,
+                "n": int(k),
+                "pct_of_coded": wpct(mask) if mask is not None else pct(int(k), n),
+                "pct_unweighted": pct(int(k), n),
+                "weighted": bool(weighted),
+            }
+        )
 
     if n:
-        for c in BINARY:
+        for c in BINARY + TERNARY:
             if c in ok.columns:
                 m = ok[c] == "1"
                 add(c, "binary", "1", m.sum(), m)
@@ -495,87 +731,154 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
             if c in ok.columns:
                 parsed = ok[c].map(lambda v: parse_list(v) or [])
                 for cat, k in Counter(x for v in parsed for x in v).most_common():
-                    add(c, "multi_label", cat, k, parsed.map(lambda v, cat=cat: cat in v))
+                    add(
+                        c,
+                        "multi_label",
+                        cat,
+                        k,
+                        parsed.map(lambda v, cat=cat: cat in v),
+                    )
                 real = parsed.map(lambda v: [x for x in v if x not in NEUTRAL])
                 ov[f"{c}_labels_per_row"] = round(float(real.str.len().mean()), 2)
-        if "CLASS_FRAME" in ok.columns:
-            for frame, grp in (("class_framed", ok[ok["CLASS_FRAME"] == "1"]),
-                               ("not_class_framed", ok[ok["CLASS_FRAME"] != "1"])):
-                for e in EMOTIONS + ["NORM_VIOLATION", "INJUSTICE"]:
-                    if e in grp.columns and len(grp):
-                        k = int((grp[e] == "1").sum())
-                        long.append({"phase": phase, "variable": f"{e}|{frame}", "type": "class_x_code",
-                                     "category": "1", "n": k, "pct_of_coded": pct(k, len(grp))})
+        if (
+            "CLUSTER" in ok.columns
+        ):  # do the components look like the cluster they were assigned to?
+            for cl in ("C1", "C2", "C3"):
+                grp = ok[ok["CLUSTER"] == cl]
+                for comp in CLUSTER_PROFILE:
+                    if comp in grp.columns and len(grp):
+                        for cat, k in grp[comp].value_counts().items():
+                            long.append(
+                                {
+                                    "phase": phase,
+                                    "variable": f"{comp}|{cl}",
+                                    "type": "cluster_x_component",
+                                    "category": str(cat),
+                                    "n": int(k),
+                                    "pct_of_coded": pct(int(k), len(grp)),
+                                }
+                            )
         for c in KEY_RATES:
             if c in ok.columns:
                 ov[f"{c}_pct"] = wpct(ok[c] == "1")
-        for cat in ("CRITICAL", "DEFENDING", "MIXED", "NEUTRAL"):
-            ov[f"STANCE_{cat}_pct"] = wpct(ok["STANCE"] == cat) if "STANCE" in ok.columns else None
     return ov, long
 
 
 # --------------------------------------------------------------------------- reporting
-def print_phase(phase: str, path: Path, ov: dict, long: list[dict], flags: list[dict], show_dist: bool) -> None:
+def print_phase(
+    phase: str,
+    path: Path,
+    ov: dict,
+    long: list[dict],
+    flags: list[dict],
+    show_dist: bool,
+) -> None:
     print(f"\n{'=' * 78}\n{phase}  ({path})\n{'=' * 78}")
-    print(f"rows {ov['rows']} | coded {ov['coded']} ({ov['coverage_pct']}%) | "
-          f"rows with ERROR/WARN {ov['rows_flagged']} ({ov['rows_flagged_pct']}%) | "
-          f"hard failures {ov.get('hard_failures', '-')} | pending {ov.get('pending', '-')}")
-    print(f"comments: {ov['videos']} videos | words mean {ov['words_mean']}, median {ov['words_median']}, "
-          f"max {ov['words_max']} | emoji-only {ov['emoji_only']}")
+    print(
+        f"rows {ov['rows']} | coded {ov['coded']} ({ov['coverage_pct']}%) | "
+        f"rows with ERROR/WARN {ov['rows_flagged']} ({ov['rows_flagged_pct']}%) | "
+        f"hard failures {ov.get('hard_failures', '-')} | pending {ov.get('pending', '-')}"
+    )
+    print(
+        f"comments: {ov['videos']} videos | words mean {ov['words_mean']}, median {ov['words_median']}, "
+        f"max {ov['words_max']} | emoji-only {ov['emoji_only']}"
+    )
     if ov.get("weighted"):
-        print(f"SAMPLED: strata {ov.get('sample_strata')} | estimated population {ov.get('population_N_est')} "
-              f"| percentages below are WEIGHTED by sample_weight")
+        print(
+            f"SAMPLED: strata {ov.get('sample_strata')} | estimated population {ov.get('population_N_est')} "
+            f"| percentages below are WEIGHTED by sample_weight"
+        )
     if ov.get("failure_reasons"):
         print(f"hard-failure reasons: {ov['failure_reasons']}")
     if ov.get("prompt_versions"):
-        print(f"prompt versions: {ov['prompt_versions']} | models: {ov['models']} | "
-              f"precision: {ov.get('precisions') or 'unrecorded'}")
+        print(
+            f"prompt versions: {ov['prompt_versions']} | models: {ov['models']} | "
+            f"precision: {ov.get('precisions') or 'unrecorded'}"
+        )
     if "language_review_flags" in ov:
-        print(f"LANGUAGE review flags: {ov['language_review_flags']} | autofixed rows: {ov['autofixed_rows']}")
+        print(
+            f"LANGUAGE review flags: {ov['language_review_flags']} | autofixed rows: {ov['autofixed_rows']}"
+        )
     if "review_flagged_rows" in ov:
-        print(f"kept with review flags: {ov['review_flagged_rows']} ({ov.get('review_flag_types') or '-'})")
+        print(
+            f"kept with review flags: {ov['review_flagged_rows']} ({ov.get('review_flag_types') or '-'})"
+        )
     if "uncoded_pct_words_le20" in ov:
-        print(f"uncoded by length: <=20 words {ov['uncoded_pct_words_le20']}% | 21-80 "
-              f"{ov['uncoded_pct_words_21_80']}% | >80 {ov['uncoded_pct_words_gt80']}%")
-    if "CLASS_FRAME_pct" in ov:
-        print(f"class audit: CLASS_FRAME {ov['CLASS_FRAME_pct']}% of coded | class-vocabulary comments "
-              f"{ov['class_vocab_comments']} (uncoded {ov['class_vocab_uncoded_pct']}%, "
-              f"class-framed {ov['class_vocab_framed_pct']}%) | NEEDS_CONTEXT {ov['NEEDS_CONTEXT_pct']}%")
+        print(
+            f"uncoded by length: <=20 words {ov['uncoded_pct_words_le20']}% | 21-80 "
+            f"{ov['uncoded_pct_words_21_80']}% | >80 {ov['uncoded_pct_words_gt80']}%"
+        )
+    if "CLUSTER_C1_pct" in ov:
+        print(
+            f"clusters (% of coded rows): C1 {ov['CLUSTER_C1_pct']} | C2 {ov['CLUSTER_C2_pct']} | "
+            f"C3 {ov['CLUSTER_C3_pct']} | UNCLASSIFIED {ov['CLUSTER_UNCLASSIFIED_pct']} | "
+            f"conflict {ov['CLUSTER_CONFLICT_pct_of_neg']}% of screened-in rows | "
+            f"NEEDS_CONTEXT {ov['NEEDS_CONTEXT_pct']}%"
+        )
 
     by = Counter((f["severity"], f["check"]) for f in flags)
     order = {"ERROR": 0, "WARN": 1, "INFO": 2}
     print("\nFlags:" + ("  none" if not by else ""))
     for (sev, chk), cnt in sorted(by.items(), key=lambda kv: (order[kv[0][0]], -kv[1])):
         ex = [f for f in flags if f["severity"] == sev and f["check"] == chk][:3]
-        rows = ",".join((f"{f.get('phase')}:{f['row_id']}" if phase.startswith("ALL") else str(f["row_id"]))
-                        for f in ex if f["row_id"] != "")
-        print(f"  [{sev:5}] {chk:34} x{cnt:<5} rows: {rows or '-':14} {ex[0]['detail'][:70] if ex else ''}")
+        rows = ",".join(
+            (
+                f"{f.get('phase')}:{f['row_id']}"
+                if phase.startswith("ALL")
+                else str(f["row_id"])
+            )
+            for f in ex
+            if f["row_id"] != ""
+        )
+        print(
+            f"  [{sev:5}] {chk:34} x{cnt:<5} rows: {rows or '-':14} {ex[0]['detail'][:70] if ex else ''}"
+        )
 
     if not show_dist or not ov["coded"]:
         return
     rates = [x for x in long if x["type"] == "binary"]
-    print("\nBinary code prevalence (% of coded rows" + (", weighted" if ov.get("weighted") else "") + "):")
+    print(
+        "\nBinary code prevalence (% of coded rows"
+        + (", weighted" if ov.get("weighted") else "")
+        + "):"
+    )
     line = [f"{x['variable']}={x['n']}({x['pct_of_coded']}%)" for x in rates]
     for i in range(0, len(line), 4):
-        print("  " + "  ".join(line[i:i + 4]))
+        print("  " + "  ".join(line[i : i + 4]))
     print("\nCategorical and multi-label distributions (n, % of coded rows):")
     for var in list(SCALARS) + list(LISTS):
         cats = [x for x in long if x["variable"] == var]
         if cats:
-            body = ", ".join(f"{x['category']} {x['n']} ({x['pct_of_coded']}%)" for x in cats)
-            extra = f"  [labels/row {ov[f'{var}_labels_per_row']}]" if f"{var}_labels_per_row" in ov else ""
+            body = ", ".join(
+                f"{x['category']} {x['n']} ({x['pct_of_coded']}%)" for x in cats
+            )
+            extra = (
+                f"  [labels/row {ov[f'{var}_labels_per_row']}]"
+                if f"{var}_labels_per_row" in ov
+                else ""
+            )
             print(f"  {var}: {body}{extra}")
 
 
 def print_cross_phase(overviews: list[dict]) -> None:
-    cols = (["phase", "rows", "coded", "coverage_pct", "rows_flagged_pct", "words_mean"]
-            + [f"{c}_pct" for c in KEY_RATES]
-            + ["STANCE_CRITICAL_pct", "STANCE_DEFENDING_pct", "STANCE_NEUTRAL_pct",
-               "NEEDS_CONTEXT_pct", "CLASS_FRAME_pct", "class_vocab_framed_pct",
-               "class_vocab_uncoded_pct", "uncoded_pct_words_gt80"])
+    cols = (
+        ["phase", "rows", "coded", "coverage_pct", "rows_flagged_pct", "words_mean"]
+        + [f"{c}_pct" for c in KEY_RATES]
+        + [
+            "CLUSTER_C1_pct",
+            "CLUSTER_C2_pct",
+            "CLUSTER_C3_pct",
+            "CLUSTER_UNCLASSIFIED_pct",
+            "CLUSTER_CONFLICT_pct_of_neg",
+            "NEEDS_CONTEXT_pct",
+            "uncoded_pct_words_gt80",
+        ]
+    )
     table = pd.DataFrame(overviews)
     table = table[[c for c in cols if c in table.columns]]
-    table.columns = [c.replace("_pct", "%").replace("STANCE_", "ST_") for c in table.columns]
+    table.columns = [
+        c.replace("_pct", "%").replace("CLUSTER_", "CL_") for c in table.columns
+    ]
     print(f"\n{'=' * 78}\nACROSS PHASES (code rates are % of coded rows)\n{'=' * 78}")
     with pd.option_context("display.width", 200, "display.max_columns", 50):
         print(table.to_string(index=False))
@@ -583,14 +886,41 @@ def print_cross_phase(overviews: list[dict]) -> None:
 
 # --------------------------------------------------------------------------- main
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("paths", nargs="*", help="explicit results CSVs or directories (overrides --phases)")
-    ap.add_argument("--crisis", default="ateneo-drowning", help="crisis slug under the output root")
-    ap.add_argument("--phases", default="all", help="'all' or comma-separated phases, e.g. 01-onset,04-reckoning")
-    ap.add_argument("--pass-dir", default="filipino-emotions-coding", help="pass directory under the crisis")
-    ap.add_argument("--output-root", type=Path, default=HERE.parent.parent / "output", help="run-filipino-emotions.py output root")
-    ap.add_argument("--no-distributions", action="store_true", help="skip per-phase distribution printouts")
-    ap.add_argument("--strict", action="store_true", help="exit 1 on WARN as well as ERROR")
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    ap.add_argument(
+        "paths",
+        nargs="*",
+        help="explicit results CSVs or directories (overrides --phases)",
+    )
+    ap.add_argument(
+        "--crisis", default="ateneo-drowning", help="crisis slug under the output root"
+    )
+    ap.add_argument(
+        "--phases",
+        default="all",
+        help="'all' or comma-separated phases, e.g. 01-onset,04-reckoning",
+    )
+    ap.add_argument(
+        "--pass-dir",
+        default="filipino-emotions-coding",
+        help="pass directory under the crisis",
+    )
+    ap.add_argument(
+        "--output-root",
+        type=Path,
+        default=HERE.parent.parent / "output",
+        help="run-filipino-emotions.py output root",
+    )
+    ap.add_argument(
+        "--no-distributions",
+        action="store_true",
+        help="skip per-phase distribution printouts",
+    )
+    ap.add_argument(
+        "--strict", action="store_true", help="exit 1 on WARN as well as ERROR"
+    )
     args = ap.parse_args()
 
     targets = discover(args)
@@ -628,54 +958,127 @@ def main() -> int:
                 if ":" in part:
                     k, v = part.rsplit(":", 1)
                     reasons_all[k] += int(v)
-        ov_all["failure_reasons"] = ";".join(f"{k}:{v}" for k, v in reasons_all.most_common())
-        versions = {v.split(":")[0] for o in overviews for v in (o.get("prompt_versions") or "").split(";") if v}
-        models = {v.split(":")[0] for o in overviews for v in (o.get("models") or "").split(";") if v}
+        ov_all["failure_reasons"] = ";".join(
+            f"{k}:{v}" for k, v in reasons_all.most_common()
+        )
+        versions = {
+            v.split(":")[0]
+            for o in overviews
+            for v in (o.get("prompt_versions") or "").split(";")
+            if v
+        }
+        models = {
+            v.split(":")[0]
+            for o in overviews
+            for v in (o.get("models") or "").split(";")
+            if v
+        }
         ov_all["prompt_versions"] = ";".join(sorted(versions))
         ov_all["models"] = ";".join(sorted(models))
-        precs = {v.split(":")[0] for o in overviews for v in (o.get("precisions") or "").split(";") if v}
+        precs = {
+            v.split(":")[0]
+            for o in overviews
+            for v in (o.get("precisions") or "").split(";")
+            if v
+        }
         ov_all["precisions"] = ";".join(sorted(precs))
-        print_phase("ALL SELECTED PHASES", Path(", ".join(p for p, _ in targets)), ov_all, long_comb,
-                    flags_all, not args.no_distributions)
+        print_phase(
+            "ALL SELECTED PHASES",
+            Path(", ".join(p for p, _ in targets)),
+            ov_all,
+            long_comb,
+            flags_all,
+            not args.no_distributions,
+        )
         overviews.append(ov_all)
         long_all.extend(long_comb)
         print_cross_phase(overviews)
     else:
-        versions = {v.split(":")[0] for v in (overviews[0].get("prompt_versions") or "").split(";") if v}
-        models = {v.split(":")[0] for v in (overviews[0].get("models") or "").split(";") if v}
-        precs = {v.split(":")[0] for v in (overviews[0].get("precisions") or "").split(";") if v}
+        versions = {
+            v.split(":")[0]
+            for v in (overviews[0].get("prompt_versions") or "").split(";")
+            if v
+        }
+        models = {
+            v.split(":")[0] for v in (overviews[0].get("models") or "").split(";") if v
+        }
+        precs = {
+            v.split(":")[0]
+            for v in (overviews[0].get("precisions") or "").split(";")
+            if v
+        }
 
     # Results from different prompt versions or models must not be pooled.
     if len(versions) > 1:
-        print(f"\nWARNING: results mix prompt versions {sorted(versions)}; do not pool them. "
-              "Recode older phases with the current prompt.")
-        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
-                          "check": "mixed_prompt_versions", "detail": str(sorted(versions))})
+        print(
+            f"\nWARNING: results mix prompt versions {sorted(versions)}; do not pool them. "
+            "Recode older phases with the current prompt."
+        )
+        flags_all.append(
+            {
+                "phase": "ALL",
+                "row_id": "",
+                "comment_id": "",
+                "severity": "WARN",
+                "check": "mixed_prompt_versions",
+                "detail": str(sorted(versions)),
+            }
+        )
     precs.discard("unrecorded")
     if len(precs) > 1:
-        print(f"\nWARNING: results mix precisions {sorted(precs)} (e.g. bf16 vs fp8 vs nf4); "
-              "do not pool them without disclosure.")
-        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
-                          "check": "mixed_precision", "detail": str(sorted(precs))})
+        print(
+            f"\nWARNING: results mix precisions {sorted(precs)} (e.g. bf16 vs fp8 vs nf4); "
+            "do not pool them without disclosure."
+        )
+        flags_all.append(
+            {
+                "phase": "ALL",
+                "row_id": "",
+                "comment_id": "",
+                "severity": "WARN",
+                "check": "mixed_precision",
+                "detail": str(sorted(precs)),
+            }
+        )
     if len(models) > 1:
         print(f"\nWARNING: results mix models {sorted(models)}; do not pool them.")
-        flags_all.append({"phase": "ALL", "row_id": "", "comment_id": "", "severity": "WARN",
-                          "check": "mixed_models", "detail": str(sorted(models))})
+        flags_all.append(
+            {
+                "phase": "ALL",
+                "row_id": "",
+                "comment_id": "",
+                "severity": "WARN",
+                "check": "mixed_models",
+                "detail": str(sorted(models)),
+            }
+        )
 
     if not args.paths:
         # One folder per selection, so a single-phase check never overwrites the
         # all-phases summary.
-        scope = "all" if args.phases.strip().lower() == "all" else "+".join(p for p, _ in targets)
-        summary_dir = args.output_root / args.crisis / args.pass_dir / "_validation" / scope
+        scope = (
+            "all"
+            if args.phases.strip().lower() == "all"
+            else "+".join(p for p, _ in targets)
+        )
+        summary_dir = (
+            args.output_root / args.crisis / args.pass_dir / "_validation" / scope
+        )
         summary_dir.mkdir(parents=True, exist_ok=True)
-        pd.DataFrame(flags_all, columns=FLAG_COLS).to_csv(summary_dir / "flags_all.csv", index=False)
+        pd.DataFrame(flags_all, columns=FLAG_COLS).to_csv(
+            summary_dir / "flags_all.csv", index=False
+        )
         pd.DataFrame(overviews).to_csv(summary_dir / "phase_overview.csv", index=False)
         pd.DataFrame(long_all).to_csv(summary_dir / "stats_long.csv", index=False)
-        print(f"\nSummary tables written -> {summary_dir}/ (flags_all, phase_overview, stats_long)")
+        print(
+            f"\nSummary tables written -> {summary_dir}/ (flags_all, phase_overview, stats_long)"
+        )
 
     errs = sum(f["severity"] == "ERROR" for f in flags_all)
     warns = sum(f["severity"] == "WARN" for f in flags_all)
-    print(f"\nOverall: {errs} ERROR flags, {warns} WARN flags across {len(targets)} phase(s)")
+    print(
+        f"\nOverall: {errs} ERROR flags, {warns} WARN flags across {len(targets)} phase(s)"
+    )
     return 1 if errs or (args.strict and warns) else 0
 
 
