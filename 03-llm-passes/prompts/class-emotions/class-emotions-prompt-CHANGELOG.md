@@ -1,6 +1,6 @@
 # Coding prompt change log
 
-The coding prompt (`prompts/coding-prompt.txt`) is the wrapper the LLM coder receives
+The coding prompt (`prompts/class-emotions/class-emotions-prompt-v1.5.txt`) is the wrapper the LLM coder receives
 around the codebook. It is versioned separately from the codebook: a prompt change
 alters how the LLM is instructed, never what a code means. Code definitions live only
 in the codebook, which human and LLM coders share.

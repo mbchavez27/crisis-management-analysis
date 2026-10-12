@@ -1,4 +1,4 @@
-r"""Local-LLM runner for the v2 full-codebook coding pass.
+r"""Local-LLM runner for the class-emotions coding pass (full codebook v2.1).
 
 Codes full phase CSVs against codebook v2.1 (single active v2 pass).
 Supersedes the removed notebooks/full-codebook-coding.ipynb micro-sample path.
@@ -9,14 +9,14 @@ runs exactly their cartesian product (one phase x one prompt per run pair).
 Run from 03-llm-passes/ (where pyproject.toml lives, so uv resolves the env).
 
 Example:
-    uv run python scripts/run_local.py --phases 04-reckoning --passes 1
-    uv run python scripts/run_local.py --phases 04-reckoning --passes 1 --limit 10
-    uv run python scripts/run_local.py --phases 04-reckoning --passes 1 --load-in-4bit
+    uv run python scripts/class-emotions/run-class-emotions.py --phases 04-reckoning --passes 1
+    uv run python scripts/class-emotions/run-class-emotions.py --phases 04-reckoning --passes 1 --limit 10
+    uv run python scripts/class-emotions/run-class-emotions.py --phases 04-reckoning --passes 1 --load-in-4bit
 
     # All phases, ONE model load (comma-separated):
     PHASES=$(ls ../01-preprocessing/output/ateneo-drowning/youtube/*.csv \
              | xargs -n1 basename | sed 's/\.csv//' | sort | paste -sd,)
-    uv run --no-sync python scripts/run_local.py --crisis ateneo-drowning \
+    uv run --no-sync python scripts/class-emotions/run-class-emotions.py --crisis ateneo-drowning \
         --phases "$PHASES" --passes 1 --chunk-size 1 --load-in-4bit --closing
 
 --load-in-4bit: nf4 quantization (bitsandbytes, applied by vLLM at load time)
@@ -42,8 +42,9 @@ import pandas as pd
 from tqdm import tqdm
 
 HERE = Path(__file__).resolve().parent
-STAGE_ROOT = HERE.parent
+STAGE_ROOT = HERE.parent.parent
 PROMPTS_DIR = STAGE_ROOT / "prompts"
+PASS_PROMPTS_DIR = PROMPTS_DIR / "class-emotions"
 OUTPUT_ROOT = STAGE_ROOT / "output"
 
 # Instruction-tuned SEA-LION v3 (the plain "-9B" checkpoint is the base model).
@@ -485,7 +486,7 @@ PASSES: dict[int, PassSpec] = {
 }
 
 # Slot names the wrapper may use for the codebook text. The first entry is the
-# placeholder actually used in prompts/coding-prompt.txt; it must come before the
+# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.5.txt; it must come before the
 # shorter <<...>> spellings so all three brackets on each side are replaced. The
 # result is verified below (a leftover <<...>> slot aborts the run instead of
 # silently sending a broken prompt).
@@ -504,12 +505,12 @@ CASE_CONTEXT_SLOT = "[The data are made about a Youtube video on ..... No judgme
 # cut from the LLM's copy so the coding definitions stay identical for human and
 # LLM coders while the prompt shrinks by ~660 tokens (coding-prompt v1.1).
 CODEBOOK_CUT_MARKER = "DERIVED VARIABLES (COMPUTED IN ANALYSIS, NOT CODED)"
-_PROMPT_VERSION_RE = re.compile(r"coding-prompt\s+(v[0-9][0-9.]*)", re.I)
+_PROMPT_VERSION_RE = re.compile(r"class-emotions-prompt\s+(v[0-9][0-9.]*)", re.I)
 
 
 def read_wrapper() -> tuple[str, str]:
     """Return (wrapper text without its '#' metadata header, prompt version)."""
-    lines = (PROMPTS_DIR / "coding-prompt.txt").read_text(encoding="utf-8").splitlines()
+    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.5.txt").read_text(encoding="utf-8").splitlines()
     header: list[str] = []
     while lines and lines[0].startswith("#"):
         header.append(lines.pop(0))
@@ -519,7 +520,7 @@ def read_wrapper() -> tuple[str, str]:
 
 def coding_codebook_text() -> str:
     """The codebook as sent to the LLM: everything up to the analysis-only sections."""
-    full = (PROMPTS_DIR / "codebook-v2.1.md").read_text(encoding="utf-8").strip()
+    full = (PASS_PROMPTS_DIR / "class-emotions-codebook-v2.1.md").read_text(encoding="utf-8").strip()
     cut = full.find(CODEBOOK_CUT_MARKER)
     if cut == -1:
         print(f"WARNING: '{CODEBOOK_CUT_MARKER}' not found; sending the full codebook.")

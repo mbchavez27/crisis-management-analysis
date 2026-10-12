@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate run_local.py results against codebook v2.1 and describe the dataset.
+"""Validate run-filipino-emotions.py results (Sta. Maria 2010 framework) and describe the dataset.
 
 Checks (ERROR = objectively wrong, WARN = likely wrong, INFO = worth a look):
   schema/enums/binaries, template leakage, evidence fidelity (old free-text and
@@ -13,14 +13,14 @@ Descriptive statistics, per phase and for all selected phases combined:
   categorical and multi-label distributions, confidence, review flags.
 
 Usage (run from 03-llm-passes/):
-    python scripts/validate_results.py                                  # all phases
-    python scripts/validate_results.py --phases 01-onset                # one phase
-    python scripts/validate_results.py --phases 01-onset,04-reckoning   # several
-    python scripts/validate_results.py --phases all --strict            # exit 1 on WARN too
-    python scripts/validate_results.py path/to/full_codebook_results.csv   # explicit file(s)
+    python scripts/filipino-emotions/validate-filipino-emotions.py                                  # all phases
+    python scripts/filipino-emotions/validate-filipino-emotions.py --phases 01-onset                # one phase
+    python scripts/filipino-emotions/validate-filipino-emotions.py --phases 01-onset,04-reckoning   # several
+    python scripts/filipino-emotions/validate-filipino-emotions.py --phases all --strict            # exit 1 on WARN too
+    python scripts/filipino-emotions/validate-filipino-emotions.py path/to/filipino_emotions_results.csv   # explicit file(s)
 
 Outputs:
-  <phase>/full_codebook_results_validation_flags.csv   one row per flag (per phase)
+  <phase>/filipino_emotions_results_validation_flags.csv   one row per flag (per phase)
   <pass dir>/_validation/<scope>/flags_all.csv          all flags, with a phase column
   <pass dir>/_validation/<scope>/phase_overview.csv     one row per phase (+ ALL if several)
   <pass dir>/_validation/<scope>/stats_long.csv         phase x variable x category counts
@@ -43,7 +43,7 @@ from typing import Any
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-RESULTS_NAME = "full_codebook_results.csv"
+RESULTS_NAME = "filipino_emotions_results.csv"
 
 BINARY = [
     "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
@@ -108,7 +108,7 @@ CLASS_WORDS = re.compile(
     r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
 EMOTIONS = ["ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
             "SYMPATHY_OFFENDER", "FEAR"]
-# review_flags written by run_local.py v1.5 (rows kept after correction retries).
+# review_flags written by run-filipino-emotions.py (rows kept after correction retries).
 REVIEW_SEVERITY = {"evidence_unverified": "WARN", "class_direction_missing": "WARN",
                    "response_incomplete": "WARN", "class_direction_without_frame": "WARN",
                    "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO",
@@ -465,9 +465,9 @@ def describe(phase: str, df: pd.DataFrame, flags: list[dict], results_path: Path
             lambda s: any(f and not f.startswith("language_check") for f in s.split(";"))).sum())
     if results_path is not None:
         d = results_path.parent
-        versions = read_jsonl_field(d / "full_codebook_results.jsonl", "prompt_version")
-        models = read_jsonl_field(d / "full_codebook_results.jsonl", "model")
-        precisions = read_jsonl_field(d / "full_codebook_results.jsonl", "precision")
+        versions = read_jsonl_field(d / "filipino_emotions_results.jsonl", "prompt_version")
+        models = read_jsonl_field(d / "filipino_emotions_results.jsonl", "model")
+        precisions = read_jsonl_field(d / "filipino_emotions_results.jsonl", "precision")
         ov["precisions"] = ";".join(f"{k}:{v}" for k, v in sorted(precisions.items()))
         ov["prompt_versions"] = ";".join(f"{k}:{v}" for k, v in sorted(versions.items()))
         ov["models"] = ";".join(f"{k}:{v}" for k, v in sorted(models.items()))
@@ -587,15 +587,15 @@ def main() -> int:
     ap.add_argument("paths", nargs="*", help="explicit results CSVs or directories (overrides --phases)")
     ap.add_argument("--crisis", default="ateneo-drowning", help="crisis slug under the output root")
     ap.add_argument("--phases", default="all", help="'all' or comma-separated phases, e.g. 01-onset,04-reckoning")
-    ap.add_argument("--pass-dir", default="full-codebook-coding", help="pass directory under the crisis")
-    ap.add_argument("--output-root", type=Path, default=HERE.parent / "output", help="run_local.py output root")
+    ap.add_argument("--pass-dir", default="filipino-emotions-coding", help="pass directory under the crisis")
+    ap.add_argument("--output-root", type=Path, default=HERE.parent.parent / "output", help="run-filipino-emotions.py output root")
     ap.add_argument("--no-distributions", action="store_true", help="skip per-phase distribution printouts")
     ap.add_argument("--strict", action="store_true", help="exit 1 on WARN as well as ERROR")
     args = ap.parse_args()
 
     targets = discover(args)
     if not targets:
-        print("No full_codebook_results.csv files found.")
+        print("No filipino_emotions_results.csv files found.")
         return 2
 
     overviews: list[dict] = []

@@ -1,7 +1,7 @@
-# coding-prompt v1.5 (2026-10-05) — used with codebook v2.1
-# Lines starting with "#" at the top of this file are metadata. run_local.py strips
+# class-emotions-prompt v1.5 (2026-10-05) — used with class-emotions-codebook-v2.1
+# Lines starting with "#" at the top of this file are metadata. run-class-emotions.py strips
 # them before the prompt is sent and records the version in every coded record.
-# Changes are logged in coding-prompt-CHANGELOG.md.
+# Changes are logged in class-emotions-prompt-CHANGELOG.md.
 ROLE
 You are a trained content-analysis coder for an academic study of public
 reactions to an organizational crisis in the Philippines. You apply the
