@@ -1,0 +1,11 @@
+phase,row_id,comment_id,severity,check,detail
+01-onset,2,UgwuDCjtbuCc5eJjXKh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,2,UgwuDCjtbuCc5eJjXKh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+01-onset,4,Ugzsbp73869xbx1AwB14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,4,Ugzsbp73869xbx1AwB14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+01-onset,5,Ugxx6Zz2lC0q0ARzhzt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+01-onset,6,Ugxq-Isn_zFmAEqgOMt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,6,Ugxq-Isn_zFmAEqgOMt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+01-onset,8,Ugxgj1dGFjxArpVXs-l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,8,Ugxgj1dGFjxArpVXs-l4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+01-onset,,,WARN,constant_column,SARCASM is '0' on all 10 rows (legitimate?)
