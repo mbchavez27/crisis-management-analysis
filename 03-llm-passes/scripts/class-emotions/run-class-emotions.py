@@ -1,6 +1,6 @@
-r"""Local-LLM runner for the class-emotions coding pass (full codebook v2.1).
+r"""Local-LLM runner for the class-emotions coding pass (full codebook v2.2).
 
-Codes full phase CSVs against codebook v2.1 (single active v2 pass).
+Codes full phase CSVs against codebook v2.2 (single active v2 pass).
 Supersedes the removed notebooks/full-codebook-coding.ipynb micro-sample path.
 
 Opt-in execution: --phases and --passes are both required, and the script
@@ -90,7 +90,7 @@ PLACEHOLDER_MARKERS = (
 
 BINARY_KEYS = (
     "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-    "SYMPATHY_OFFENDER", "FEAR", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
+    "SYMPATHY_OFFENDER", "FEAR", "JOY", "SURPRISE", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
     "COVER_UP", "ALT_ACCOUNT", "INJUSTICE", "SELF_INTEREST", "NEEDS_CONTEXT",
     "CLASS_FRAME", "APPEARANCE_ATTACK", "META_DISCOURSE", "SARCASM", "UNCODABLE",
 )
@@ -196,7 +196,7 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
 def expand_structured(
     obj: dict[str, Any], lenient: bool = False, review: Optional[list[str]] = None
 ) -> dict[str, Any]:
-    """Turn a v1.3 structured answer into the flat 39-field record.
+    """Turn a v1.3 structured answer into the flat 41-field record.
 
     Raises ValueError on a scalar cited with two different values or an OTHER
     without a label. The flat `evidence` / `evidence_en` strings are rendered in
@@ -380,6 +380,8 @@ REQUIRED_KEYS = frozenset(
         "COMPASSION_VICTIMS",
         "SYMPATHY_OFFENDER",
         "FEAR",
+        "JOY",
+        "SURPRISE",
         "NORM_VIOLATION",
         "ATTRIBUTION",
         "IGNORED_WARNING",
@@ -427,6 +429,8 @@ COLUMN_ORDER = [
     "COMPASSION_VICTIMS",
     "SYMPATHY_OFFENDER",
     "FEAR",
+    "JOY",
+    "SURPRISE",
     "NORM_VIOLATION",
     "ATTRIBUTION",
     "IGNORED_WARNING",
@@ -486,7 +490,7 @@ PASSES: dict[int, PassSpec] = {
 }
 
 # Slot names the wrapper may use for the codebook text. The first entry is the
-# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.5.txt; it must come before the
+# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.6.txt; it must come before the
 # shorter <<...>> spellings so all three brackets on each side are replaced. The
 # result is verified below (a leftover <<...>> slot aborts the run instead of
 # silently sending a broken prompt).
@@ -510,7 +514,7 @@ _PROMPT_VERSION_RE = re.compile(r"class-emotions-prompt\s+(v[0-9][0-9.]*)", re.I
 
 def read_wrapper() -> tuple[str, str]:
     """Return (wrapper text without its '#' metadata header, prompt version)."""
-    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.5.txt").read_text(encoding="utf-8").splitlines()
+    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.6.txt").read_text(encoding="utf-8").splitlines()
     header: list[str] = []
     while lines and lines[0].startswith("#"):
         header.append(lines.pop(0))
@@ -520,7 +524,7 @@ def read_wrapper() -> tuple[str, str]:
 
 def coding_codebook_text() -> str:
     """The codebook as sent to the LLM: everything up to the analysis-only sections."""
-    full = (PASS_PROMPTS_DIR / "class-emotions-codebook-v2.1.md").read_text(encoding="utf-8").strip()
+    full = (PASS_PROMPTS_DIR / "class-emotions-codebook-v2.2.md").read_text(encoding="utf-8").strip()
     cut = full.find(CODEBOOK_CUT_MARKER)
     if cut == -1:
         print(f"WARNING: '{CODEBOOK_CUT_MARKER}' not found; sending the full codebook.")
@@ -1096,7 +1100,7 @@ def language_flag(language: str, text: str) -> Optional[str]:
 def validate_record(
     obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
 ) -> list[str]:
-    """Check one coded record against codebook v2.1 and normalise it in place.
+    """Check one coded record against codebook v2.2 and normalise it in place.
 
     Returns deterministic autofixes. Review flags (rows kept but needing a look)
     are appended to `review`; see SoftIssue.
@@ -1502,7 +1506,7 @@ def run_pair(
         "concurrency": concurrency, "max_model_len": getattr(generator, "max_model_len", None),
         "max_new_tokens": max_new_tokens, "written": time.strftime("%Y-%m-%dT%H:%M:%S"),
     }, indent=2), encoding="utf-8")
-    print(f"Coding prompt {prompt_version} | codebook v2.1 (analysis-only sections omitted)")
+    print(f"Coding prompt {prompt_version} | codebook v2.2 (analysis-only sections omitted)")
 
     print(f"\n\n{'='*80}\nPROMPT FOR PHASE: {phase}\n{'='*80}\n{prompt_template[:500]}...[TRUNCATED FOR LOGS]\n{'='*80}\n")
     id_of = dict(zip(df["row_id"].tolist(), df["comment_id"].astype(str).tolist()))

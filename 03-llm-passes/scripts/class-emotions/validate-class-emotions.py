@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate run-class-emotions.py results against codebook v2.1 and describe the dataset.
+"""Validate run-class-emotions.py results against codebook v2.2 and describe the dataset.
 
 Checks (ERROR = objectively wrong, WARN = likely wrong, INFO = worth a look):
   schema/enums/binaries, template leakage, evidence fidelity (old free-text and
@@ -47,7 +47,7 @@ RESULTS_NAME = "full_codebook_results.csv"
 
 BINARY = [
     "ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-    "SYMPATHY_OFFENDER", "FEAR", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
+    "SYMPATHY_OFFENDER", "FEAR", "JOY", "SURPRISE", "NORM_VIOLATION", "IGNORED_WARNING", "RECURRENCE",
     "COVER_UP", "ALT_ACCOUNT", "INJUSTICE", "SELF_INTEREST", "NEEDS_CONTEXT",
     "CLASS_FRAME", "APPEARANCE_ATTACK", "META_DISCOURSE", "SARCASM", "UNCODABLE",
 ]
@@ -107,8 +107,8 @@ CLASS_WORDS = re.compile(
     r"working class|middle class|tuition|matrikula|afford\w*|breadwinner|classism|burgis|"
     r"connections?|palakasan|kapit|kahirapan|dukha|maralita|sosyal|coñ?o)\b", re.I)
 EMOTIONS = ["ANGER", "CONTEMPT", "DISGUST", "SADNESS", "CONDOLENCE", "COMPASSION_VICTIMS",
-            "SYMPATHY_OFFENDER", "FEAR"]
-# review_flags written by run-class-emotions.py v1.5 (rows kept after correction retries).
+            "SYMPATHY_OFFENDER", "FEAR", "JOY", "SURPRISE"]
+# review_flags written by run-class-emotions.py v1.5+ (rows kept after correction retries).
 REVIEW_SEVERITY = {"evidence_unverified": "WARN", "class_direction_missing": "WARN",
                    "response_incomplete": "WARN", "class_direction_without_frame": "WARN",
                    "evidence_long": "INFO", "evidence_fuzzy": "INFO", "other_unlabeled": "INFO",

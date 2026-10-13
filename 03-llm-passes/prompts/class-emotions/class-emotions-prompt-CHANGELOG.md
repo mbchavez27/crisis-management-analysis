@@ -1,12 +1,27 @@
 # Coding prompt change log
 
-The coding prompt (`prompts/class-emotions/class-emotions-prompt-v1.5.txt`) is the wrapper the LLM coder receives
+The coding prompt (`prompts/class-emotions/class-emotions-prompt-v1.6.txt`) is the wrapper the LLM coder receives
 around the codebook. It is versioned separately from the codebook: a prompt change
 alters how the LLM is instructed, never what a code means. Code definitions live only
 in the codebook, which human and LLM coders share.
 
 Every coded record stores the prompt version it was produced with (`prompt_version`
 in `full_codebook_results.jsonl`), read from the `# coding-prompt vX.Y` header line.
+
+## v1.6 — 2026-10-13
+
+Codebook: v2.2 (Added B9. JOY and B10. SURPRISE).
+Prompted by: The need to align the emotion codes with a complete and recognized theoretical framework (Ekman's six basic emotions). Anger, disgust, sadness, and fear were already present in the previous version; joy and surprise were added to complete the set.
+
+Prompt text:
+
+- Codebook injection updated: The wrapper now injects Codebook v2.2, which includes the new definitions for JOY and SURPRISE and the updated Ekman (1992) citation in the theoretical basis.
+- No structural changes to the wrapper's instructions, EVIDENCE ITEMS, or WHOLE-COMMENT CODES sections.
+
+Pipeline (run_local.py) changes required alongside this version:
+
+- Structured decoding schema: The JSON schema constraints and expand_structured() function must be updated to accept JOY and SURPRISE as valid binary code tokens. The total number of valid code tokens increases from 62 to 64.
+- Comparability: Outputs from v1.5 and v1.6 should not be pooled without acknowledging that the earlier dataset lacks capability to code for joy and surprise.
 
 ## v1.5 — 2026-10-05
 
@@ -146,7 +161,7 @@ Design change:
 
 - **Codes are written only inside evidence items.** Output is now
   `{"id", "evidence": [{"quote", "quote_en", "codes", "other_label"}], "LANGUAGE",
-  "OTHER_NOTE", "confidence"}`. The script derives all 33 code fields from the cited
+"OTHER_NOTE", "confidence"}`. The script derives all 33 code fields from the cited
   codes; anything not cited keeps its default (0 / NONE / NA / NEUTRAL), matching
   general rule 2. Every code is tied to quoted words by construction, so there is no
   second record to keep in sync.

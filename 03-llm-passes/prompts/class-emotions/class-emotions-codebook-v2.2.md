@@ -1,6 +1,6 @@
-# CODEBOOK V2.1 — EMOTIONS IN YOUTUBE COMMENTS ON THE ATHLETE DROWNING CRISIS
+# CODEBOOK V2.2 — EMOTIONS IN YOUTUBE COMMENTS ON THE ATHLETE DROWNING CRISIS
 
-Version: 2.1 · Status: revised after pilot pass 01 and the v2 recode (n = 200, single coder). Not yet validated by independent human coders.
+Version: 2.2 · Status: revised after pilot pass 01 and the v2 recode (n = 200, single coder). Not yet validated by independent human coders.
 Used by: human coders and the LLM coder (identical definitions for both)
 Unit of analysis: one YouTube comment or reply, coded on its own text
 Theoretical basis: The codebook is grounded in the moral outrage constructs of Coombs and Tachkova (2024), extended with a socio-cultural lens (class and identity talk, values, emotion-action links). Codes marked [ADDED] are study additions not taken from Coombs and Tachkova (2024). Their conceptual support is drawn from the crisis communication literature on attribution of crisis responsibility (Coombs, 2007), publics' emotions in crises (Jin et al., 2012), and social identity (Tajfel & Turner, 1979), and the citations indicate conceptual support, not adoption of an existing coding scheme. Codes marked [NEW] were added in version 2; [NEW in 2.1] in version 2.1.
@@ -77,6 +77,18 @@ B8. FEAR [ADDED]
 - Definition: Worry about one's own or others' safety, especially children or students.
 - Include: "natakot tuloy ako para sa anak ko," "ayoko na payagan anak ko."
 - Note: rare in pilot sample (coach-apology comments); retained to test on other video types.
+
+B9. JOY [NEW in 2.2] [ADDED]
+
+- Definition: Expressions of happiness, relief, or satisfaction.
+- Include: "Mabuti nga," "I'm so happy," "finally," 🎉.
+- Exclude: Sarcastic laughter (😂, 😅) directed at a target as an attack or mockery → code as CONTEMPT.
+
+B10. SURPRISE [NEW in 2.2] [ADDED]
+
+- Definition: Shock, disbelief, or astonishment regarding the incident, the revelations, or the official response.
+- Include: "Hindi ako makapaniwala," "gulat ako," "shocking," 😮, 😱.
+- Exclude: General rhetorical questions meant only to assign blame ("Bakit niyo ginawa yun?").
 
 ## SECTION C. MORAL APPRAISAL
 
@@ -360,6 +372,7 @@ Residual for content the frozen codebook misses. Report the % of comments with a
 
 ## CHANGE LOG
 
+- v2.2: added B9. JOY and B10. SURPRISE (completing Ekman's six basic emotions alongside the existing ANGER, DISGUST, SADNESS and FEAR); updated theoretical-basis citation. Output format unchanged apart from the two new binary codes.
 - v2.1 (after v2 recode of pilot 01): added REJECT_REASONS values DISMISSIVE and NO_FAMILY_OUTREACH, which together absorb 8 of the 12 "OTHER" reject reasons in the v2 recode; added DISMISSIVE decision rule. No other codes changed; output format unchanged.
 - v2.0 (after pilot pass 01): added EMOJI language; SYMPATHY_OFFENDER; ATTRIBUTION = ACCUSATION; IGNORED_WARNING; RECURRENCE; ALT_ACCOUNT; COACHING_STAFF blame target; SANCTITY_OF_LIFE value; IDENTITY_FRAME; APPEARANCE_ATTACK; actions RETALIATION, RESTITUTION, INFORMATION; REJECT_REASONS; META_DISCOURSE; NEEDS_CONTEXT; rules for replies, emojis, anonymization. Renamed COMPASSION → COMPASSION_VICTIMS. Added knowing-risk outrage.
 - v1.0 — initial draft.

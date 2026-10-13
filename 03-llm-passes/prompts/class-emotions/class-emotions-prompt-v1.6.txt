@@ -1,4 +1,4 @@
-# class-emotions-prompt v1.5 (2026-10-05) — used with class-emotions-codebook-v2.1
+# class-emotions-prompt v1.6 (2026-10-13) — used with class-emotions-codebook-v2.2
 # Lines starting with "#" at the top of this file are metadata. run-class-emotions.py strips
 # them before the prompt is sent and records the version in every coded record.
 # Changes are logged in class-emotions-prompt-CHANGELOG.md.
