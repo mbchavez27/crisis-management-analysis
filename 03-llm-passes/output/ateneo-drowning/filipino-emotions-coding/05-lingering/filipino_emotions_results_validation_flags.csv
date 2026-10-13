@@ -1,0 +1,1155 @@
+phase,row_id,comment_id,severity,check,detail
+05-lingering,0,UgxAQhaz6eqL88Mrz4p4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,0,UgxAQhaz6eqL88Mrz4p4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1,Ugya4_aJy7naJwzz_454AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,2,Ugx4MdyQeJsYITcGhqV4AaABAg,WARN,evidence_not_in_text,'ipanalò niyo ateneo ang season na ito para kay divine at rene'
+05-lingering,3,UgwYQwYgJYqJ4mffP894AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,3,UgwYQwYgJYqJ4mffP894AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,5,UgwUEdOLHa46dEdMHw14AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,6,Ugx_2tDzDLrP1Szq82Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,6,Ugx_2tDzDLrP1Szq82Z4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,7,UgzMY09iJ4H4y16lqLZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,7,UgzMY09iJ4H4y16lqLZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,12,Ugy8fohtrYDXokwp95h4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,12,Ugy8fohtrYDXokwp95h4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,14,Ugyh8p31ANuDVRErqRd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,14,Ugyh8p31ANuDVRErqRd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,14,Ugyh8p31ANuDVRErqRd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,15,UgzgtXmoaPRmgbqeCgt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,15,UgzgtXmoaPRmgbqeCgt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,15,UgzgtXmoaPRmgbqeCgt4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,16,Ugz3AGUuo8oPah82hTp4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,21,UgyANiff03dX0nDpZb94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,21,UgyANiff03dX0nDpZb94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,22,UgwX_dt3lsuQdOXeRN94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,22,UgwX_dt3lsuQdOXeRN94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,24,UgxJn49hpiC_r8DnNyh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,24,UgxJn49hpiC_r8DnNyh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,24,UgxJn49hpiC_r8DnNyh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,25,UgwY8B8gEpx_4m7rpGx4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,25,UgwY8B8gEpx_4m7rpGx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,25,UgwY8B8gEpx_4m7rpGx4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['BLAME_LOCUS']
+05-lingering,26,UgwUMLDttcosCxUZrZN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,26,UgwUMLDttcosCxUZrZN4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,28,UgwJDp2KRsYXWEvhmRp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,28,UgwJDp2KRsYXWEvhmRp4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,30,UgzifwYn9kx4uGqydst4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,30,UgzifwYn9kx4uGqydst4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,32,UgyshQczXrZIGB_r5a54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,32,UgyshQczXrZIGB_r5a54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,33,Ugxjo-uSrK785mLeysh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,33,Ugxjo-uSrK785mLeysh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,35,Ugzbzsr1OtPbrN50t8Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,35,Ugzbzsr1OtPbrN50t8Z4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,36,Ugwd8cLLSSrZfCQUYvd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,36,Ugwd8cLLSSrZfCQUYvd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,38,UgwAXtWsYshzwd30bsp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,40,UgzUCnGS14LBeGnFXGJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,43,Ugy45U9G-wjFWIhFjR94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,43,Ugy45U9G-wjFWIhFjR94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,44,UgwLOV4nnuT6fF3glTt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,44,UgwLOV4nnuT6fF3glTt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,46,Ugx8a8Vl7anj1RDZw3J4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,46,Ugx8a8Vl7anj1RDZw3J4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,47,UgxBMMclhRGxn3NTggx4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,49,UgwYuujK61eozoTSGZB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,49,UgwYuujK61eozoTSGZB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,49,UgwYuujK61eozoTSGZB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,50,UgyrgZ9upUQ94C81dQV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,50,UgyrgZ9upUQ94C81dQV4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,52,UgzRSt6DNClryLUDJOB4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 34-word comment
+05-lingering,54,UgwMcriQeUWrGJJeHIt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,54,UgwMcriQeUWrGJJeHIt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'CONTROL_STRATEGY', 'ACTION_TENDENCY']"
+05-lingering,55,UgzuvLCDBRds3Ho8kPR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,55,UgzuvLCDBRds3Ho8kPR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,57,UgwtaDQnDM8YXbpTqQt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,57,UgwtaDQnDM8YXbpTqQt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['BLAME_LOCUS']
+05-lingering,60,UgyM00TEnCSjqj0oXEd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,60,UgyM00TEnCSjqj0oXEd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,60,UgyM00TEnCSjqj0oXEd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,61,Ugx9s1OpHKErKDoZECZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,61,Ugx9s1OpHKErKDoZECZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,64,UgyaKN9MqJAw0fps-mx4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,66,Ugx3gsjjqyQvajKyyx14AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,67,UgzDiFiKeY3fMPYxacx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,67,UgzDiFiKeY3fMPYxacx4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,68,Ugz83ySuP8mGk_7hSC94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,68,Ugz83ySuP8mGk_7hSC94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,69,Ugye24ohWZlq5VcKolN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,69,Ugye24ohWZlq5VcKolN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,70,UgxEcYA2Mbwj7Iv58214AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,70,UgxEcYA2Mbwj7Iv58214AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,72,UgyhlChCyDYtB7VTsW54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,72,UgyhlChCyDYtB7VTsW54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,76,UgwwBx7V3VvhdIxeS914AaABAg.A_EfgGE51KfA_GtTouuXYM,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,76,UgwwBx7V3VvhdIxeS914AaABAg.A_EfgGE51KfA_GtTouuXYM,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,77,Ugwm2m6FYy3lgpGA5i14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,77,Ugwm2m6FYy3lgpGA5i14AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,78,Ugw5HkBrC4p_pznwihp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,78,Ugw5HkBrC4p_pznwihp4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,79,Ugw5HkBrC4p_pznwihp4AaABAg.A_EWz4YmJP2A_I5FE_kMyv,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,79,Ugw5HkBrC4p_pznwihp4AaABAg.A_EWz4YmJP2A_I5FE_kMyv,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,85,Ugx1EGi5YoWx2js1N4l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,85,Ugx1EGi5YoWx2js1N4l4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,86,UgzgWhGwp4nr9qwayY14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,86,UgzgWhGwp4nr9qwayY14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,87,UgzgWhGwp4nr9qwayY14AaABAg.A_ESgymDkIPA_FvDmIzymW,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,89,UgzE3xK3hYNw0NO_VEJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,89,UgzE3xK3hYNw0NO_VEJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,90,Ugyz4Ocy25kS1AtAFO94AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,91,UgySftx3gJywdnInmet4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,91,UgySftx3gJywdnInmet4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,97,UgyFD0ey6T0fCjXPkTd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,97,UgyFD0ey6T0fCjXPkTd4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,97,UgyFD0ey6T0fCjXPkTd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,99,UgwGXF_hulKjfltSIg14AaABAg.A_DPKwYMr_kA_FbLoJJete,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,99,UgwGXF_hulKjfltSIg14AaABAg.A_DPKwYMr_kA_FbLoJJete,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,100,UgwGXF_hulKjfltSIg14AaABAg.A_DPKwYMr_kA_GtcjfKvdH,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 11-word comment
+05-lingering,101,UgwGXF_hulKjfltSIg14AaABAg.A_DPKwYMr_kA_H4NH6f37J,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,101,UgwGXF_hulKjfltSIg14AaABAg.A_DPKwYMr_kA_H4NH6f37J,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,105,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_FhCd8AGzr,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,105,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_FhCd8AGzr,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C3: none
+05-lingering,106,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_HQeh5qdoF,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,106,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_HQeh5qdoF,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,107,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_HYgnWfYMS,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,107,Ugy8vzBx5pgsmxB2x3h4AaABAg.A_DMpbN_GCZA_HYgnWfYMS,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,108,Ugwq_rUA_hBg-4C2KVB4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,108,Ugwq_rUA_hBg-4C2KVB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,111,UgzEaHVBc7rDeK38Rzp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,112,UgzEaHVBc7rDeK38Rzp4AaABAg.A_D1_OkcMlfA_DtTiH69y3,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,112,UgzEaHVBc7rDeK38Rzp4AaABAg.A_D1_OkcMlfA_DtTiH69y3,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,113,UgzEaHVBc7rDeK38Rzp4AaABAg.A_D1_OkcMlfA_DQWoU4DGv,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,113,UgzEaHVBc7rDeK38Rzp4AaABAg.A_D1_OkcMlfA_DQWoU4DGv,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,114,Ugw752bVzwRC66mGbaJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,114,Ugw752bVzwRC66mGbaJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,114,Ugw752bVzwRC66mGbaJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,115,Ugw752bVzwRC66mGbaJ4AaABAg.A_Cxt3V1z5cA_EpwAfAPSD,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,116,UgxQDPVnQMczABW_CFF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,116,UgxQDPVnQMczABW_CFF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,117,UgwZkDJLhkC9gJvp9IF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,117,UgwZkDJLhkC9gJvp9IF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,117,UgwZkDJLhkC9gJvp9IF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,117,UgwZkDJLhkC9gJvp9IF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,118,Ugxjoi-6oZpJ-GBR6_d4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,119,UgwbWZ5OATJfma6CILB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,121,Ugzc9fBO9A0myRtHNHB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,121,Ugzc9fBO9A0myRtHNHB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,121,Ugzc9fBO9A0myRtHNHB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,122,Ugzc9fBO9A0myRtHNHB4AaABAg.AZG8TRb8PKPAZGVU7XuLLS,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,123,Ugz7sEm5ZImBDKSnI0x4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,123,Ugz7sEm5ZImBDKSnI0x4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,125,UgyHl4qWDrYD2vmfjUJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,125,UgyHl4qWDrYD2vmfjUJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,127,Ugwq14TT5qvEen2JE9h4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,127,Ugwq14TT5qvEen2JE9h4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,128,UgzR4CaQ7nYYjnKuE-V4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,128,UgzR4CaQ7nYYjnKuE-V4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,128,UgzR4CaQ7nYYjnKuE-V4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 21-word comment
+05-lingering,129,UgzR4CaQ7nYYjnKuE-V4AaABAg.AZCYoB--5HHAZCiJkA9gn7,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,129,UgzR4CaQ7nYYjnKuE-V4AaABAg.AZCYoB--5HHAZCiJkA9gn7,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,130,UgwnYbU7k9IAt5cUBr54AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 13-word comment
+05-lingering,131,Ugx2ni4hzw3lgT6DykJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,131,Ugx2ni4hzw3lgT6DykJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,131,Ugx2ni4hzw3lgT6DykJ4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 16-word comment
+05-lingering,133,UgzOpqJ8xMHBusG1pgx4AaABAg,WARN,evidence_not_in_text,'ugzopqj8xmhbusg1pgx4aaabag: :folded_hands::man_bowing'
+05-lingering,134,UgwAydzfq8k074sgmLB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,134,UgwAydzfq8k074sgmLB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,135,UgwAydzfq8k074sgmLB4AaABAg.AZCO0NVjGN5AZGVIoLOUTq,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,137,UgzccXd-H_hcjfnGHrZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,137,UgzccXd-H_hcjfnGHrZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,138,UgwChVpHbe9xjfnuVjZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,138,UgwChVpHbe9xjfnuVjZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,139,UgyAsAVA73sx4vn11EF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INGGIT)
+05-lingering,142,Ugz6BHPX60fRSy-75oV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,142,Ugz6BHPX60fRSy-75oV4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,143,UgyHueHtEE08eHygepZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,143,UgyHueHtEE08eHygepZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,145,UgyQSD2Hp1ierPuRx8Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,145,UgyQSD2Hp1ierPuRx8Z4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,146,UgxqY_qe-6NS-KKP7_x4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,146,UgxqY_qe-6NS-KKP7_x4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,147,Ugy7ynJ_y6w_uRCPVG54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,147,Ugy7ynJ_y6w_uRCPVG54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,148,UgyZkdkXjB2wInpEkel4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,148,UgyZkdkXjB2wInpEkel4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,148,UgyZkdkXjB2wInpEkel4AaABAg,WARN,language_heuristic,coded FIL but reads English/mixed (EN or TAGLISH?)
+05-lingering,149,UgwKO3j2JxaICjRg1_R4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,149,UgwKO3j2JxaICjRg1_R4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,151,Ugyy4Wgw_lKtC07MRdN4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,151,Ugyy4Wgw_lKtC07MRdN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,151,Ugyy4Wgw_lKtC07MRdN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,152,Ugzg_W5qGY1jvczx7bZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,152,Ugzg_W5qGY1jvczx7bZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,153,UgwsiSxX9DZTvoj26TF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,153,UgwsiSxX9DZTvoj26TF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,155,UgzK8gz5U2_4I7W6z4F4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,156,UgyhZ2qrv2wasJ05eD94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,156,UgyhZ2qrv2wasJ05eD94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,157,UgwdBZsRrKdAuohD61J4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,157,UgwdBZsRrKdAuohD61J4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,160,Ugxonaoa-R2TLPxn69d4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,160,Ugxonaoa-R2TLPxn69d4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,161,UgzH5_k88uTFlIH8_kd4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 21-word comment
+05-lingering,163,UgzwF-8VGTqQNLKMLmB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,163,UgzwF-8VGTqQNLKMLmB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,164,Ugw1J6CTVB1VvpdQi7l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,164,Ugw1J6CTVB1VvpdQi7l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,168,Ugxr8KRpX1hkyb7SEKB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,168,Ugxr8KRpX1hkyb7SEKB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,169,UgzbjGolNSodslum9CR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,169,UgzbjGolNSodslum9CR4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,171,UgxS9sRsr-kWenZrtu54AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(YAMOT)
+05-lingering,172,UgzQOqUcjBUcF1K1LM94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,172,UgzQOqUcjBUcF1K1LM94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,175,UgxlXgQYbl9WLL0BCUh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,175,UgxlXgQYbl9WLL0BCUh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,179,UgyRjG7w4UjxnSy-ro94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,179,UgyRjG7w4UjxnSy-ro94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,182,UgyTj2qicbMSiMqcpuN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,182,UgyTj2qicbMSiMqcpuN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,184,UgzyOeMP581Bm0RY7Ap4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,184,UgzyOeMP581Bm0RY7Ap4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,186,Ugxby6gs5dXDDR22fLF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,186,Ugxby6gs5dXDDR22fLF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,186,Ugxby6gs5dXDDR22fLF4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 17-word comment
+05-lingering,191,Ugx2lkUwfGLxbp-yH_F4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,191,Ugx2lkUwfGLxbp-yH_F4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,191,Ugx2lkUwfGLxbp-yH_F4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,192,UgxyQ2CG4gZCR5VyrJt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,192,UgxyQ2CG4gZCR5VyrJt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,194,UgxyQ2CG4gZCR5VyrJt4AaABAg.AYW_juP60NiAYY9QPhqJZD,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,194,UgxyQ2CG4gZCR5VyrJt4AaABAg.AYW_juP60NiAYY9QPhqJZD,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,196,UgweUMk5tRkB4iN_Dtl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,197,UgyRQ7FDvnrRkyUbACx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,198,UgyQowr5Iq5FvevmlAF4AaABAg,WARN,evidence_not_in_text,'face_with_tears_of_joy::red_heart'
+05-lingering,199,Ugzd0-clMszYkFXrzXh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,199,Ugzd0-clMszYkFXrzXh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,201,UgyN-damTMACtVJ0t1R4AaABAg.AYWEnV_hpD4AYWRFsRLFmL,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,201,UgyN-damTMACtVJ0t1R4AaABAg.AYWEnV_hpD4AYWRFsRLFmL,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,203,Ugz6xM9ZwVxLk4XbriV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,203,Ugz6xM9ZwVxLk4XbriV4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,205,Ugz6xM9ZwVxLk4XbriV4AaABAg.AYWBXHYl_V5AYYKeLCkCyn,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,208,Ugz6vxKSumQ3wEmJmep4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,208,Ugz6vxKSumQ3wEmJmep4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,209,Ugw2RjfGdB0rQI3flf94AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,211,UgxlhrmeMwVSjapqeCh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,211,UgxlhrmeMwVSjapqeCh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,214,Ugz959bCmydkI6-fI-14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,214,Ugz959bCmydkI6-fI-14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,217,Ugw7UKnysSbFIW0PJJV4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,217,Ugw7UKnysSbFIW0PJJV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,218,UgwLJ7vW9I0E3sSPxEp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,218,UgwLJ7vW9I0E3sSPxEp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,219,UgxF7QE16sPE68V9eQd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,221,UgyPmmb_JS0Hv11hkzt4AaABAg.AYW3tNVX4_XAYY9tMSF6wQ,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,221,UgyPmmb_JS0Hv11hkzt4AaABAg.AYW3tNVX4_XAYY9tMSF6wQ,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,222,UgzZ9pPODCyQSNryFMh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,222,UgzZ9pPODCyQSNryFMh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,223,UgzZ9pPODCyQSNryFMh4AaABAg.AYW2ptf-CAFAYW5KkthTg2,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 10-word comment
+05-lingering,227,Ugx3q92Eah6FyNG8kdx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,227,Ugx3q92Eah6FyNG8kdx4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,228,UgzHoi-sHlAZLNGcUW94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,228,UgzHoi-sHlAZLNGcUW94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,229,UgzHoi-sHlAZLNGcUW94AaABAg.AYW0k-kNfhlAYXHarByCCD,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,229,UgzHoi-sHlAZLNGcUW94AaABAg.AYW0k-kNfhlAYXHarByCCD,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,230,UgzHoi-sHlAZLNGcUW94AaABAg.AYW0k-kNfhlAYXISKIiXuJ,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,233,Ugxr8qSxEw0ZeA62XMB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,233,Ugxr8qSxEw0ZeA62XMB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,234,UgyxR0taIgZYkptRdh14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,234,UgyxR0taIgZYkptRdh14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,235,UgyxR0taIgZYkptRdh14AaABAg.AYW-itoqQPXAYYX36MBKI1,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,235,UgyxR0taIgZYkptRdh14AaABAg.AYW-itoqQPXAYYX36MBKI1,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,236,UgxtfL4Eyz3MI2byFnh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,236,UgxtfL4Eyz3MI2byFnh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,237,UgxmEYF7uqEFRG9dc894AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INGGIT)
+05-lingering,237,UgxmEYF7uqEFRG9dc894AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,237,UgxmEYF7uqEFRG9dc894AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,237,UgxmEYF7uqEFRG9dc894AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,241,UgwyQ-QG5fKyl9GvDel4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,241,UgwyQ-QG5fKyl9GvDel4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,243,UgwDIfYWU2lYtY2cjFl4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,243,UgwDIfYWU2lYtY2cjFl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,243,UgwDIfYWU2lYtY2cjFl4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,244,UgyCrFxwrOSP3C_4m6h4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,244,UgyCrFxwrOSP3C_4m6h4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,245,UgyXTDfvj18F_-IJYpF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,246,UgyXTDfvj18F_-IJYpF4AaABAg.AYVxMgYh5tYAYW-kBsUMGi,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,246,UgyXTDfvj18F_-IJYpF4AaABAg.AYVxMgYh5tYAYW-kBsUMGi,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,246,UgyXTDfvj18F_-IJYpF4AaABAg.AYVxMgYh5tYAYW-kBsUMGi,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,247,UgyXTDfvj18F_-IJYpF4AaABAg.AYVxMgYh5tYAYWA-5MbFBJ,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,247,UgyXTDfvj18F_-IJYpF4AaABAg.AYVxMgYh5tYAYWA-5MbFBJ,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,248,UgyV_AXdUd_1uoMbFON4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,248,UgyV_AXdUd_1uoMbFON4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,250,UgwitQkGk86G51E2kFt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,250,UgwitQkGk86G51E2kFt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,253,UgwbiA2nPOR1DQN1drF4AaABAg.AYVwWWsHWK7AYW7HtZa-DZ,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,253,UgwbiA2nPOR1DQN1drF4AaABAg.AYVwWWsHWK7AYW7HtZa-DZ,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,254,UgzuoyUk0lPDRXMyjqF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,258,Ugxg-guiGl7MTE-CaKh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,258,Ugxg-guiGl7MTE-CaKh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,258,Ugxg-guiGl7MTE-CaKh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,258,Ugxg-guiGl7MTE-CaKh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,259,UgxaTWxWjTZHofzyqIh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,259,UgxaTWxWjTZHofzyqIh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,260,UgxaTWxWjTZHofzyqIh4AaABAg.AYVvbvuZAg2AYWnQaHrP8D,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,260,UgxaTWxWjTZHofzyqIh4AaABAg.AYVvbvuZAg2AYWnQaHrP8D,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,262,Ugy_LjhQ5Cro97q3pnF4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 19-word comment
+05-lingering,264,UgxG6TBThc-EwrJo3OZ4AaABAg.AYVuSOn0bkVAYVvG4vvO6y,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,264,UgxG6TBThc-EwrJo3OZ4AaABAg.AYVuSOn0bkVAYVvG4vvO6y,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,265,UgxG6TBThc-EwrJo3OZ4AaABAg.AYVuSOn0bkVAYW-oCMLT68,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,265,UgxG6TBThc-EwrJo3OZ4AaABAg.AYVuSOn0bkVAYW-oCMLT68,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,266,Ugz6TwIlrcCkBOlhojB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,266,Ugz6TwIlrcCkBOlhojB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,266,Ugz6TwIlrcCkBOlhojB4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,267,UgzhxoCEqGxtCubl4lR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,267,UgzhxoCEqGxtCubl4lR4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,268,UgwlCLMq1qN9xd5fYtB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,268,UgwlCLMq1qN9xd5fYtB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,270,UgyIAIRDHOLM6QjBpVF4AaABAg.AYVsTODChY6AYW5WqpCGwc,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,270,UgyIAIRDHOLM6QjBpVF4AaABAg.AYVsTODChY6AYW5WqpCGwc,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,271,UgzDdU8NQykadW8kb7B4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,271,UgzDdU8NQykadW8kb7B4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,272,UgzDdU8NQykadW8kb7B4AaABAg.AYVrcYTVa-pAYW-l4agjWe,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,274,UgwPVvqsvKj6XbQML7l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,274,UgwPVvqsvKj6XbQML7l4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,275,UgwPVvqsvKj6XbQML7l4AaABAg.AYVrKVtLf7WAYVwXwrDdkY,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INIS)
+05-lingering,276,UgwPVvqsvKj6XbQML7l4AaABAg.AYVrKVtLf7WAYWCI-M2YBU,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,276,UgwPVvqsvKj6XbQML7l4AaABAg.AYVrKVtLf7WAYWCI-M2YBU,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,278,UgwPVvqsvKj6XbQML7l4AaABAg.AYVrKVtLf7WAYWCP0hQlBZ,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 16-word comment
+05-lingering,280,UgyLQw9-jhK1-1g056Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,280,UgyLQw9-jhK1-1g056Z4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,281,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW0ozhaGv0,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,281,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW0ozhaGv0,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,281,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW0ozhaGv0,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,281,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW0ozhaGv0,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,282,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW3Rw93GDw,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,282,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYW3Rw93GDw,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,283,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWEXL8aZNC,INFO,review:cluster_override,cluster_override(UNCLASSIFIED->C2)
+05-lingering,283,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWEXL8aZNC,WARN,review:cluster_override_no_note,cluster_override_no_note
+05-lingering,283,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWEXL8aZNC,WARN,cluster_override_no_note,FOCAL_EVENT=UNCLEAR but CLUSTER=C2
+05-lingering,284,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWjaCOwqp_,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,284,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWjaCOwqp_,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,284,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYWjaCOwqp_,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,286,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYX4nQ1EggG,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,286,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYX4nQ1EggG,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,286,UgyLQw9-jhK1-1g056Z4AaABAg.AYVpaMKYit3AYX4nQ1EggG,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,287,UgwoFQ_DycZ2I6Cc0bF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,288,Ugz0Gi5m8q8wr79y6Kl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,288,Ugz0Gi5m8q8wr79y6Kl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,288,Ugz0Gi5m8q8wr79y6Kl4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,290,UgzZTwxdoMrqPPmD5Ql4AaABAg.AYVnx2IehEVAYVxI7c8mlB,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,290,UgzZTwxdoMrqPPmD5Ql4AaABAg.AYVnx2IehEVAYVxI7c8mlB,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,290,UgzZTwxdoMrqPPmD5Ql4AaABAg.AYVnx2IehEVAYVxI7c8mlB,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,291,UgwEjIgZEYyQL6Bi2Ex4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,291,UgwEjIgZEYyQL6Bi2Ex4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,293,Ugwr4HkwEDGjaWfcrAt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,293,Ugwr4HkwEDGjaWfcrAt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,294,Ugz8pG8A9z_OHx5oWRZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,294,Ugz8pG8A9z_OHx5oWRZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,295,UgxEFlZk2mGqXkgbKYl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,297,UgwvBWFjdG8siZ93CPB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,297,UgwvBWFjdG8siZ93CPB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,300,UgwvBWFjdG8siZ93CPB4AaABAg.AYViLkrNqZTAYVsX2HznCS,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,300,UgwvBWFjdG8siZ93CPB4AaABAg.AYViLkrNqZTAYVsX2HznCS,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,302,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVw-rzlMOx,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,302,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVw-rzlMOx,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,302,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVw-rzlMOx,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,303,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVypnS0Dh1,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,303,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVypnS0Dh1,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,304,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVxMJjOMfz,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,304,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVxMJjOMfz,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,305,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVyw-I26L3,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,305,UgxYBN9OJwnNhPd_Mgp4AaABAg.AYVi3bUv1FOAYVyw-I26L3,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['BLAME_LOCUS']
+05-lingering,309,UgyT7Ne08KTF8OWlDTR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,309,UgyT7Ne08KTF8OWlDTR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,310,UgyfNJTfIOtjteiYhQJ4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,312,Ugwb1yBdHSA-3kajRgV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,314,Ugwz2_L691rARNW16zt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,314,Ugwz2_L691rARNW16zt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,314,Ugwz2_L691rARNW16zt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,315,UgzPTu30TpMt5kIzenF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,315,UgzPTu30TpMt5kIzenF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,316,UgyUt6sVnoHyC0ULRIB4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,317,UgxxF54E2lAB_uqjj-l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,317,UgxxF54E2lAB_uqjj-l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,321,UgybBbS0K_5iGtYcOa94AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,322,UgzxdGMXeOxMRUaBshl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,322,UgzxdGMXeOxMRUaBshl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,322,UgzxdGMXeOxMRUaBshl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,323,UgzXFmHCwrdLsAoGSY94AaABAg.A_HnAJUVxq3A_LpguuHZoY,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,323,UgzXFmHCwrdLsAoGSY94AaABAg.A_HnAJUVxq3A_LpguuHZoY,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,323,UgzXFmHCwrdLsAoGSY94AaABAg.A_HnAJUVxq3A_LpguuHZoY,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,324,UgzxKuYsJpSdrDIVTOJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,324,UgzxKuYsJpSdrDIVTOJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,327,UgzReuVG7HASLhuheQd4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 11-word comment
+05-lingering,328,UgxEIGonHsxJ2nGBh7Z4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,328,UgxEIGonHsxJ2nGBh7Z4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,328,UgxEIGonHsxJ2nGBh7Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,328,UgxEIGonHsxJ2nGBh7Z4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,330,UgxPkuMQ5xnsYnOLu4B4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,331,Ugz0BFVFCpD8GrNM2jd4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,334,UgxYVipSMiv5BhfuZVZ4AaABAg.A_HCS0A6zyOA_HKPGP0iks,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,338,UgxbiOjPu6cWgcdo4VJ4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,341,UgzpkoRzoHL8ERfibnt4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,342,UgwHEw5VYCgU6zzZ9jF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,342,UgwHEw5VYCgU6zzZ9jF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,342,UgwHEw5VYCgU6zzZ9jF4AaABAg,INFO,review:emotion_word_missed,emotion_word_missed(INGGIT)
+05-lingering,342,UgwHEw5VYCgU6zzZ9jF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,343,UgxsuHPcl7YyMhkg6Dx4AaABAg,WARN,evidence_not_in_text,'praying emojis'
+05-lingering,346,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_KMIOQqTPG,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,346,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_KMIOQqTPG,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'REGULATION']"
+05-lingering,347,UgxQdpBhHVmW4KxPowd4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,348,UgxJ57JSXnIcd-uY6Kt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,348,UgxJ57JSXnIcd-uY6Kt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,348,UgxJ57JSXnIcd-uY6Kt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,349,UgynmXLWW8jzPY0JcWN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,349,UgynmXLWW8jzPY0JcWN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,350,Ugx40ynFK26bmS16Yhp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,350,Ugx40ynFK26bmS16Yhp4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,350,Ugx40ynFK26bmS16Yhp4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,356,UgyPOg93Z1lu7Qw_B5F4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,360,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_HZd2BNBtP,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,360,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_HZd2BNBtP,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,360,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_HZd2BNBtP,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,360,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_HZd2BNBtP,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,361,UgxAUc9xFhiSF_8nxCd4AaABAg,WARN,evidence_not_in_text,'praying po na makamit po ni nanay yong justice para kay rene. :folded_'
+05-lingering,364,UgxReKdmRDmAw4GYx6t4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,364,UgxReKdmRDmAw4GYx6t4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,365,Ugxo9c1aNCUmfx1Uzsl4AaABAg,INFO,review:emotion_word_missed,emotion_word_missed(INGGIT)
+05-lingering,365,Ugxo9c1aNCUmfx1Uzsl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,365,Ugxo9c1aNCUmfx1Uzsl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,367,UgyBah5MiXlXntoscmh4AaABAg.A_HfrHcXhXTA_HgPoZLYrE,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,371,Ugw5nDxPKKF2TcfVtw94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,371,Ugw5nDxPKKF2TcfVtw94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,377,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_IASzyGKGr,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,377,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_IASzyGKGr,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'REGULATION']"
+05-lingering,380,UgzNMo78XMrPHtW3jSJ4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,383,UgzsbasqmtuCLe9lGMd4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,384,UgwV2jKC_rPftkxX4jt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INIS)
+05-lingering,384,UgwV2jKC_rPftkxX4jt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,384,UgwV2jKC_rPftkxX4jt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,384,UgwV2jKC_rPftkxX4jt4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,385,Ugy7OTJ6agxk6x9fVVp4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,386,UgwXTzBzAapST0tZzw94AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,387,UgwcCsbjXdNCsTlkrFt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,391,UgxSyFCW7NtZMz5FjrR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,391,UgxSyFCW7NtZMz5FjrR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,392,UgwK0hjjJthyVF8nyEZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,392,UgwK0hjjJthyVF8nyEZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,400,UgyUG7PXCEVD5yM8MRV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,402,UgxMEJjl-cTnjJRNQvd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(PIKON)
+05-lingering,402,UgxMEJjl-cTnjJRNQvd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,402,UgxMEJjl-cTnjJRNQvd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,404,UgyFHEuqiupSyXWDIDJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,404,UgyFHEuqiupSyXWDIDJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,412,Ugzqq7rMhxiiccydcud4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,412,Ugzqq7rMhxiiccydcud4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,412,Ugzqq7rMhxiiccydcud4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,413,Ugyeibko9UPSpRZsBCF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,413,Ugyeibko9UPSpRZsBCF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,415,UgxnMDkY9MsdaJeA7yB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,415,UgxnMDkY9MsdaJeA7yB4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 21-word comment
+05-lingering,417,UgyZ_klpxnt_kCoQu6F4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,422,UgxYsniZ3d4aHqFHMnh4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,427,Ugwo_hO2HdCLZicJs8R4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,427,Ugwo_hO2HdCLZicJs8R4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,430,UgxbKU6p2wAZQx8LR3Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,430,UgxbKU6p2wAZQx8LR3Z4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,432,Ugx2GOFWMjXI-irNdXB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,432,Ugx2GOFWMjXI-irNdXB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,433,UgzFUL6cWMjNcisPaQZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,433,UgzFUL6cWMjNcisPaQZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,433,UgzFUL6cWMjNcisPaQZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,434,UgyL4SYm1hpFeoZL3zx4AaABAg,WARN,language_heuristic,coded FIL but reads English/mixed (EN or TAGLISH?)
+05-lingering,435,UgwtyGA0XpfVwmv82VB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,435,UgwtyGA0XpfVwmv82VB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,435,UgwtyGA0XpfVwmv82VB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,435,UgwtyGA0XpfVwmv82VB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C1: none
+05-lingering,436,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_I8NfP3s2l,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,436,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_I8NfP3s2l,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,437,Ugx6UmBNv960x44jn_V4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,438,Ugx6rw_rW8D_lMlFvsJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,438,Ugx6rw_rW8D_lMlFvsJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,439,Ugz07bkYjRXFcaJNBIB4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,440,UgzKAwos-1LZTWnzhtd4AaABAg.A_I8E1NKlIvA_IAGcM2Vhs,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,440,UgzKAwos-1LZTWnzhtd4AaABAg.A_I8E1NKlIvA_IAGcM2Vhs,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUYA)
+05-lingering,441,Ugy0PsjlkB6pRIaCM5V4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,441,Ugy0PsjlkB6pRIaCM5V4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,444,Ugx5OQAWheooKPQ8xOB4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,445,UgwtJRG7YZ0JIF7IFm94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,445,UgwtJRG7YZ0JIF7IFm94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,447,Ugx_WaNyGUh3amIsjop4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,447,Ugx_WaNyGUh3amIsjop4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,448,UgxPKh6X0Ss6AGErP1p4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,450,Ugwh9AbiwaaMTXsSUgt4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 14-word comment
+05-lingering,454,UgwoOdFp2rIz1x4ZCLd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,454,UgwoOdFp2rIz1x4ZCLd4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,456,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HOyOz0Cnm,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,456,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HOyOz0Cnm,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,457,Ugx36Zzh60fBZ-HoH6V4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,457,Ugx36Zzh60fBZ-HoH6V4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,459,UgwPV0DztekevpZKXL14AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,460,Ugyt7y1JqR2aZvMNS2R4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,461,UgwA-_FPibXC148_4yl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,461,UgwA-_FPibXC148_4yl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,461,UgwA-_FPibXC148_4yl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,462,UgyVe6qpmfAXxhGXleV4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 15-word comment
+05-lingering,463,UgyJjIMPMbFHnkuw53B4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,465,Ugz2QzSdXHf6bdk2Ilh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,465,Ugz2QzSdXHf6bdk2Ilh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,466,UgzP5HGTjEs2rzcUCt14AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,466,UgzP5HGTjEs2rzcUCt14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,468,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_KjHR3WWix,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,468,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_KjHR3WWix,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,469,UgxOGAvPIFEDVVXiMGN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,469,UgxOGAvPIFEDVVXiMGN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,472,Ugwutvjv2KZTtXD3sIh4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,475,UgxfIE7qduLqVVhouSN4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,479,UgxBp22i2lo0GroYed54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,479,UgxBp22i2lo0GroYed54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,480,UgzywXQI11EkG6Yn_jZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,482,UgxZPg2RYT_CSsaqdKB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,482,UgxZPg2RYT_CSsaqdKB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,482,UgxZPg2RYT_CSsaqdKB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'ACTION_TENDENCY']"
+05-lingering,484,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_I4FHRlmIy,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,486,Ugw5JTc8upH8aEV1u254AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,488,UgwUQbDyah98Z3nkQfJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,488,UgwUQbDyah98Z3nkQfJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,489,Ugwdat4OU_ldKdREmZp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,489,Ugwdat4OU_ldKdREmZp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,494,UgzaAz8BZC_vu7u80Td4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,494,UgzaAz8BZC_vu7u80Td4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,495,UgxGRqr94KDmhmxWSSh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,495,UgxGRqr94KDmhmxWSSh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,495,UgxGRqr94KDmhmxWSSh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,495,UgxGRqr94KDmhmxWSSh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C1: none
+05-lingering,505,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HKu4uGp-G,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,507,UgxSd8457bd9FPuXHyR4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,508,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HS-HfIaEZ,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,508,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HS-HfIaEZ,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,510,UgyDLFSxMF8JVAETh7N4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,510,UgyDLFSxMF8JVAETh7N4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,512,Ugzye146oOb3a8qH3ip4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,514,UgzONGzT3BoUpd5exSd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,514,UgzONGzT3BoUpd5exSd4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,517,UgyxNNd6M-2vFkKwRVt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,517,UgyxNNd6M-2vFkKwRVt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,518,Ugxhoj1Px3y7zgXoVyB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,518,Ugxhoj1Px3y7zgXoVyB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,522,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HndlG-kCS,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,522,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HndlG-kCS,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,523,UgzAHMirrEI9eKWnPmJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,523,UgzAHMirrEI9eKWnPmJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,524,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_Hfe1K6HSU,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,524,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_Hfe1K6HSU,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,525,UgwBafsy5O59Pc0smf54AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,525,UgwBafsy5O59Pc0smf54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,525,UgwBafsy5O59Pc0smf54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,526,UgxtHnvI37OERXJFByR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,526,UgxtHnvI37OERXJFByR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,527,Ugy3mHj_qLd8_vbWf-94AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 10-word comment
+05-lingering,529,UgzM0uPOdI5uPC03rR94AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,INFO,review:cluster_override,cluster_override(C1->C2)
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,WARN,review:cluster_override_no_note,cluster_override_no_note
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,WARN,cluster_override_clear_focal,"FOCAL_EVENT=MORAL_VIOLATION defaults to C1, coded C2"
+05-lingering,532,UgxeGytQitgwnRZx_fl4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,535,UgyQEnLjQPh2dlIDf_h4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,535,UgyQEnLjQPh2dlIDf_h4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,538,Ugwf9XMBa0BAMCeN7pl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,538,Ugwf9XMBa0BAMCeN7pl4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['RELATIONSHIP_LEVEL']
+05-lingering,539,UgwUea03eRARpgrNu3Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,539,UgwUea03eRARpgrNu3Z4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,545,UgyY5BOKL9TeuUoAzzB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,545,UgyY5BOKL9TeuUoAzzB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,546,Ugy7iv0J6tm67pF4yu54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,546,Ugy7iv0J6tm67pF4yu54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,548,UgxQKKYg33xFbR0XtkV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,550,UgwZ3LtirD462ybILiN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,550,UgwZ3LtirD462ybILiN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,551,Ugxty8SiGOIa0oY0nyZ4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 16-word comment
+05-lingering,552,Ugw5LxeKvYKMjShxqrt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,552,Ugw5LxeKvYKMjShxqrt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,552,Ugw5LxeKvYKMjShxqrt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,556,Ugzedf8TVU4kVTZQM6l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,556,Ugzedf8TVU4kVTZQM6l4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,557,UgxZp0FfneO8fZwOAPB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,557,UgxZp0FfneO8fZwOAPB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,557,UgxZp0FfneO8fZwOAPB4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 12-word comment
+05-lingering,560,Ugwxyq5GOdM7FNcAmsJ4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,562,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_K6oYyrYgr,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,562,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_K6oYyrYgr,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,563,UgzSpQse5NbOVHVfRrZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,563,UgzSpQse5NbOVHVfRrZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,567,Ugyr1iLCCk7rAK0zreh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,567,Ugyr1iLCCk7rAK0zreh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,569,UgwQ9zV0Nssk4-PdIG14AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,570,Ugxb4L8e0pLd6snGHyV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,573,UgxUbVMlcc6PNI-yxsV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,573,UgxUbVMlcc6PNI-yxsV4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,576,UgzgrUqx9Rye6wDvBMl4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,579,UgwyJd6mZIRwLe5_Dah4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,579,UgwyJd6mZIRwLe5_Dah4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,579,UgwyJd6mZIRwLe5_Dah4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,579,UgwyJd6mZIRwLe5_Dah4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,584,UgyXg3Pfs8sUBMN-oz54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,586,Ugw5dQtZRrdk6Pa_oiB4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,587,Ugxw2OI3-_fPMiZmsm14AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,588,UgxZvTF6l27kqGeC6ER4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,588,UgxZvTF6l27kqGeC6ER4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,594,UgxltRM0fAoZytn8Jmx4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,596,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HUFw9jKEZ,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,597,UgzsLMnJEDxbNLtXPl94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,597,UgzsLMnJEDxbNLtXPl94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,598,UgwrdKyniGi9i8WSXD94AaABAg.A_N7-IKJiE6A_NEnbHfb85,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 9-word comment
+05-lingering,599,Ugy2Acb90rSblgQuQpB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,600,UgzPQfPWMIp-LBiYQTF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,600,UgzPQfPWMIp-LBiYQTF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,602,Ugxpu6pV6zc4RcHMT2x4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,605,Ugw-p8GWg_GL5onaZAN4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,605,Ugw-p8GWg_GL5onaZAN4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,606,UgxViIE-6_7ar59tOxB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,606,UgxViIE-6_7ar59tOxB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,607,UgwRCJMMITnuB0By8pJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,610,Ugwql9Cu4Dc7e2Loj2l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,610,Ugwql9Cu4Dc7e2Loj2l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,613,UgywarU59VscC5u2Ush4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,614,UgxDhs8kNYPHhPIwJzR4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,617,UgyDP_MVj3gA1vsOpYt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,617,UgyDP_MVj3gA1vsOpYt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,620,Ugy8FvdHH11kQZ4F2yB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,620,Ugy8FvdHH11kQZ4F2yB4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,620,Ugy8FvdHH11kQZ4F2yB4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,622,UgyR7-tbVz2ThR_EMhF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,622,UgyR7-tbVz2ThR_EMhF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,626,UgwToOyTrBKl5yetLEF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,626,UgwToOyTrBKl5yetLEF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,627,UgyLS1V08_7vPnNNsnp4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,627,UgyLS1V08_7vPnNNsnp4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,628,UgzQCeT0bnIsvCQtc5l4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,635,UgzHeXvjGVU75Wugicp4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,636,UgxIQ0VvBxd_hE6IfzV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,636,UgxIQ0VvBxd_hE6IfzV4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,639,Ugx2x71uUyQuytB6Ybd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,641,Ugz5DzK1RORCC_A9h654AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,641,Ugz5DzK1RORCC_A9h654AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,644,UgwkGJtBneQ1gc9H5h14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,644,UgwkGJtBneQ1gc9H5h14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,645,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HzLKYHFF7,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,645,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HzLKYHFF7,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,647,UgyO_cUJUKmfzdPHEBF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,647,UgyO_cUJUKmfzdPHEBF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,649,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HSRqEz3C6,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,649,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HSRqEz3C6,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,650,UgzKFW4iLOSAB2uxJit4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,650,UgzKFW4iLOSAB2uxJit4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,651,Ugx44g66jZq_biDgOlp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,654,UgzYPs8wsfjb3GbRvG14AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,659,UgxBvhGOJsiwvq_Tc254AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,659,UgxBvhGOJsiwvq_Tc254AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,660,UgxFpw0gv0nSlHSVBYx4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,662,UgzWoZAwptNIA4L0Z8J4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,662,UgzWoZAwptNIA4L0Z8J4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,664,Ugyf71-PzpyNYTw8Nhh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,665,Ugzl10Ba3neLAW-y9Fp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,665,Ugzl10Ba3neLAW-y9Fp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,668,Ugyj1uEXWQpa1gtRnCt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,668,Ugyj1uEXWQpa1gtRnCt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,668,Ugyj1uEXWQpa1gtRnCt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['REGULATION']
+05-lingering,669,UgyboQ8p6oBVjjYaaD94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,669,UgyboQ8p6oBVjjYaaD94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,670,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_J1yv8NEHu,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,670,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_J1yv8NEHu,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,671,UgzXBDBMkgnMoKEJ6SZ4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,672,UgzsN3OanGcQ0NzsZUl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,672,UgzsN3OanGcQ0NzsZUl4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,675,UgwjC2SNtBZCnzO-OYV4AaABAg,WARN,language_heuristic,coded FIL but reads English/mixed (EN or TAGLISH?)
+05-lingering,679,UgyWFd5raSure4tFbJB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,679,UgyWFd5raSure4tFbJB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,680,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_H_dUhK9kp,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,680,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_H_dUhK9kp,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,680,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_H_dUhK9kp,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 16-word comment
+05-lingering,681,Ugyrl8IqHuMw7MaJgiZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,681,Ugyrl8IqHuMw7MaJgiZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,681,Ugyrl8IqHuMw7MaJgiZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,683,UgzMQT5u065weDU28H14AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,685,UgzXN9DPbWD8Uh9OEV54AaABAg.A_OOths2HldA_OOzRXQIf2,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,685,UgzXN9DPbWD8Uh9OEV54AaABAg.A_OOths2HldA_OOzRXQIf2,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,688,UgxjpXEgnmmsu_uzDAt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,688,UgxjpXEgnmmsu_uzDAt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,688,UgxjpXEgnmmsu_uzDAt4AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 22-word comment
+05-lingering,689,UgySCBJH8nvfGjjx9EJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,689,UgySCBJH8nvfGjjx9EJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,691,Ugz75J58ZrR19PVmCmB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,691,Ugz75J58ZrR19PVmCmB4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,693,Ugw5wHKHktsWRym9q3l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,693,Ugw5wHKHktsWRym9q3l4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,697,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_H78qj0Bdc,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,697,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_H78qj0Bdc,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,698,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_K1ksdnRP7,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,698,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_K1ksdnRP7,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,699,UgyEHHytlIZnXTKXEb54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,699,UgyEHHytlIZnXTKXEb54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,701,UgzNbMh4HNbAZr3OdJZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,704,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_JoUwv_5jw,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,704,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_JoUwv_5jw,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,704,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_JoUwv_5jw,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,706,Ugy2WO8PWorVRNIpk8x4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,706,Ugy2WO8PWorVRNIpk8x4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,708,UgwgXMc9DWybFCJLeP94AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,708,UgwgXMc9DWybFCJLeP94AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,710,Ugyvqhyk54p0g2rRe4F4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,710,Ugyvqhyk54p0g2rRe4F4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,714,Ugzy4q-jyxY7OvOxaz14AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,715,Ugyt4P2mt3tVk36Oev54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,716,UgyQ9M0TMWIzoC0UmfJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,716,UgyQ9M0TMWIzoC0UmfJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,716,UgyQ9M0TMWIzoC0UmfJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,720,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_HWHNxyD2E,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,720,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_HWHNxyD2E,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,721,UgwDHLagDrq6uKcbHOx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,725,UgywMGdfjG6lI_V8oEZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,725,UgywMGdfjG6lI_V8oEZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,728,UgyYIvB8lvymuEccaqx4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,729,UgzYAw3-wLL1Odvj4fh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,729,UgzYAw3-wLL1Odvj4fh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,732,UgzNf3A_qzx_H689Sh14AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,733,UgzSwqdIuSNkxOvznVt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,733,UgzSwqdIuSNkxOvznVt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,734,UgyNtLg48N8VuwEnfAl4AaABAg.A_IOJC3vBElA_K8FY5BR_F,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,734,UgyNtLg48N8VuwEnfAl4AaABAg.A_IOJC3vBElA_K8FY5BR_F,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C3: none
+05-lingering,735,Ugz2vLbbZYRJXPu_nbR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,735,Ugz2vLbbZYRJXPu_nbR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['BLAME_LOCUS']
+05-lingering,735,Ugz2vLbbZYRJXPu_nbR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,736,Ugw2gbZ4798soXm53BV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,736,Ugw2gbZ4798soXm53BV4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'CONTROL_STRATEGY', 'ACTION_TENDENCY']"
+05-lingering,737,UgzsYKcZPkWX537rAbh4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,742,Ugz3JZzkqzPBx66TLBZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,742,Ugz3JZzkqzPBx66TLBZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,745,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_bjrHnZGVc,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,745,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_bjrHnZGVc,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,749,Ugxs0AsUF0Hv36z_-xh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,749,Ugxs0AsUF0Hv36z_-xh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,749,Ugxs0AsUF0Hv36z_-xh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,749,Ugxs0AsUF0Hv36z_-xh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,750,UgxxoqbXnd_7dHiN5l54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,750,UgxxoqbXnd_7dHiN5l54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,751,Ugydc98x-um4ENddGyV4AaABAg,WARN,evidence_not_in_text,'patawarin nyo po para po maka diretcho ang buhay nyo. may risks po tal'
+05-lingering,757,UgxDHgbFIG1NI5dNuc54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,757,UgxDHgbFIG1NI5dNuc54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,759,UgwULmd_sixb8oqBwYt4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,760,UgzO-I7mPHg2rn803W94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,760,UgzO-I7mPHg2rn803W94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,762,Ugy7PHxYfhps2s6wsyh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,763,Ugx7qf_Ckn015Kk_h9Z4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,763,Ugx7qf_Ckn015Kk_h9Z4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,764,UgzaWm3VFwOsW7TyJXN4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,765,UgzkF90s4cC-dmOFVWR4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,769,Ugwva652RrkhBwBxLsR4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,769,Ugwva652RrkhBwBxLsR4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,770,Ugyjn6o2y7oNfdDhQ2Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,770,Ugyjn6o2y7oNfdDhQ2Z4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,772,UgxPntOdjM8wtgLUKch4AaABAg.A_HSN6I7RlUA_HukVPANL1,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,772,UgxPntOdjM8wtgLUKch4AaABAg.A_HSN6I7RlUA_HukVPANL1,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,772,UgxPntOdjM8wtgLUKch4AaABAg.A_HSN6I7RlUA_HukVPANL1,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,774,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_blyV3yHng,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,774,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_blyV3yHng,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,776,UgxpoJMwAV6ACWdvJit4AaABAg.A_LOcVzLkpGA_ZEmZF8oCb,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,776,UgxpoJMwAV6ACWdvJit4AaABAg.A_LOcVzLkpGA_ZEmZF8oCb,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,779,Ugxh1IITsPviT-2dBGF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,781,UgyWid04MrOxN-SwFxd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,782,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSAamHp9Y3WpH,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,782,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSAamHp9Y3WpH,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,783,Ugwds2zeZRL5B6yPp-V4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,783,Ugwds2zeZRL5B6yPp-V4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,785,Ugy3lnGPzZ6sc9J-Mrp4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,786,Ugz8i3PwId3JQHyWrPV4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,787,UgxMrX4tVn0UawklBdh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,787,UgxMrX4tVn0UawklBdh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,791,UgxD8JVyfQ_8atJnM6B4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,791,UgxD8JVyfQ_8atJnM6B4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,793,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_L8KNOq-Xp,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,793,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_L8KNOq-Xp,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,795,UgzZNTlhOwsji4zvChd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,795,UgzZNTlhOwsji4zvChd4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,796,UgzGkczUR6IZ0p6fb4h4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,796,UgzGkczUR6IZ0p6fb4h4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,798,UgzUWivNH2eVuCrdPSd4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,806,UgwWxQPvfDvK8q4ZdOZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,806,UgwWxQPvfDvK8q4ZdOZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,806,UgwWxQPvfDvK8q4ZdOZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,809,UgwIO_kpuoxMDaaY_Yd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,811,UgxNrbnnTWF-WHkhWkd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,811,UgxNrbnnTWF-WHkhWkd4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,812,UgyDfIFZfMexVwlJYWh4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,818,UgwI0-NTyRSy5kWGt554AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,819,Ugy8QcWBVsjfWdB5wRR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,819,Ugy8QcWBVsjfWdB5wRR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,820,UgzMnkrSE_VFt1Ceeat4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,820,UgzMnkrSE_VFt1Ceeat4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,824,UgxtoIuxEUF1GusFK_54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,824,UgxtoIuxEUF1GusFK_54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,825,Ugz1ia1EBcN_Vaum0-t4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,825,Ugz1ia1EBcN_Vaum0-t4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,828,Ugwpev_EydYVHEBAQ8B4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,828,Ugwpev_EydYVHEBAQ8B4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,830,Ugwp0f65lv5Br4K1ikx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,830,Ugwp0f65lv5Br4K1ikx4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,831,UgzDQNeFe38YklX3rkZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,831,UgzDQNeFe38YklX3rkZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,833,Ugz9DJj514QylHClsXl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,833,Ugz9DJj514QylHClsXl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,834,UgxwtsjShvQtY0LTuyl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,834,UgxwtsjShvQtY0LTuyl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,835,Ugy3PvcSoK_hsBYwH2p4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,835,Ugy3PvcSoK_hsBYwH2p4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,836,UgzdSEgSO2nbzjTanuh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,836,UgzdSEgSO2nbzjTanuh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,837,UgxdVwt5ROXzg-U25wR4AaABAg.A_H9fbetku3A_JClzrhZea,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,837,UgxdVwt5ROXzg-U25wR4AaABAg.A_H9fbetku3A_JClzrhZea,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,840,UgznBv3F66-PXVCso8l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,840,UgznBv3F66-PXVCso8l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,841,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_NNyjlVjNC,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,842,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HbOHrqdsC,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,842,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HbOHrqdsC,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,844,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_I_Ks0mMNH,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,845,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_LSzWQyr62,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,845,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_LSzWQyr62,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,847,Ugy5wihxPMM0idIZLEN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,847,Ugy5wihxPMM0idIZLEN4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,848,Ugy58qtPhZAbD8mGZqF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,848,Ugy58qtPhZAbD8mGZqF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,854,Ugytucjx_LYm7uu7lCh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,854,Ugytucjx_LYm7uu7lCh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,857,UgxdVwt5ROXzg-U25wR4AaABAg.A_H9fbetku3A_HmzTYSvcW,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 11-word comment
+05-lingering,858,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_OlD9kjWJJ,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,858,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_OlD9kjWJJ,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,863,UgyYjt1lXxpmWxOFHXx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,863,UgyYjt1lXxpmWxOFHXx4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,865,UgwYvXdJlqKgSVXJbDZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,865,UgwYvXdJlqKgSVXJbDZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,867,Ugy546cOY9qwH10XgDV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,867,Ugy546cOY9qwH10XgDV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,867,Ugy546cOY9qwH10XgDV4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,871,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HNiaoLgho,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,871,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HNiaoLgho,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,874,UgyC4ZGvvgp9PcngPs54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,874,UgyC4ZGvvgp9PcngPs54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,876,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HdG9vHWe1,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,876,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HdG9vHWe1,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,880,Ugz4S6B-_BbUWGrL_1p4AaABAg.A_H7BBFLXXcA_UvUhrfd6w,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,880,Ugz4S6B-_BbUWGrL_1p4AaABAg.A_H7BBFLXXcA_UvUhrfd6w,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,880,Ugz4S6B-_BbUWGrL_1p4AaABAg.A_H7BBFLXXcA_UvUhrfd6w,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,880,Ugz4S6B-_BbUWGrL_1p4AaABAg.A_H7BBFLXXcA_UvUhrfd6w,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 26-word comment
+05-lingering,881,Ugw3u4E-SukcJ_Ju20R4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,881,Ugw3u4E-SukcJ_Ju20R4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,887,Ugz91Sv0b9P0pwKEsGZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,887,Ugz91Sv0b9P0pwKEsGZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,887,Ugz91Sv0b9P0pwKEsGZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,888,Ugy4vDzGPs_BPO6Mdtt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,888,Ugy4vDzGPs_BPO6Mdtt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,896,Ugxzm2e6QGNGW0o_ZFB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,896,Ugxzm2e6QGNGW0o_ZFB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,904,UgyiRBj_63IqkhzT8ut4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,905,UgyNtLg48N8VuwEnfAl4AaABAg.A_IOJC3vBElA_JHiUt-obV,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,905,UgyNtLg48N8VuwEnfAl4AaABAg.A_IOJC3vBElA_JHiUt-obV,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,905,UgyNtLg48N8VuwEnfAl4AaABAg.A_IOJC3vBElA_JHiUt-obV,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'ACTION_TENDENCY']"
+05-lingering,908,UgxDsfuNe2Ft05aj7hh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,908,UgxDsfuNe2Ft05aj7hh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,909,UgxEd2kMBpFbAsWayz94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,909,UgxEd2kMBpFbAsWayz94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,909,UgxEd2kMBpFbAsWayz94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,911,UgzvKpb-EU7dH5I-BVZ4AaABAg.A_H9St3igYOA_HVwggvizb,INFO,review:emotion_word_missed,emotion_word_missed(GALIT)
+05-lingering,912,UgzNS9TYTQK0x2H-cHZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,914,UgzVDy-WGOojxDPiZ114AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,914,UgzVDy-WGOojxDPiZ114AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,916,UgwGW9BYe5jMgB2CPK54AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(TAMPO)
+05-lingering,920,UgzukBLVZZ--nNzV0nN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,920,UgzukBLVZZ--nNzV0nN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'ACTION_TENDENCY']"
+05-lingering,922,UgyboG9xRUhADVGiDOx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,922,UgyboG9xRUhADVGiDOx4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'ACTION_TENDENCY']"
+05-lingering,923,UgyaT41GRjP5bpjIgNJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,928,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_H_qbIx0Bx,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,928,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_H_qbIx0Bx,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,932,UgxNYl02bmzHbGoi6L14AaABAg.A_JOcHStVYfA_JOqPHfk9w,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,934,UgzWTMUYndvckQUc-nh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,934,UgzWTMUYndvckQUc-nh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,934,UgzWTMUYndvckQUc-nh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,935,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HVzzZyT8D,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,935,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HVzzZyT8D,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,936,UgwAQM8SB4wiuT7vDVp4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INIS)
+05-lingering,937,UgyGDhvZUO1AH92fl9J4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,938,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_I5ILsgt3t,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,938,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_I5ILsgt3t,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C3: none
+05-lingering,942,UgzT-L3MbeL6SkkT6Qt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,942,UgzT-L3MbeL6SkkT6Qt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+05-lingering,945,UgxMg8hN1mYnU2lq4t54AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,945,UgxMg8hN1mYnU2lq4t54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,945,UgxMg8hN1mYnU2lq4t54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,947,Ugz7_OhkFk5kVNZoVbh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,947,Ugz7_OhkFk5kVNZoVbh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,948,Ugz5j2v1JU8YyhSL3DV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,948,Ugz5j2v1JU8YyhSL3DV4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,949,UgxPntOdjM8wtgLUKch4AaABAg.A_HSN6I7RlUA_HrYjUObPN,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,950,Ugx_Q0V58RxBY42k7_J4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,953,UgxhcuSZbBIDkpf9d4N4AaABAg.A_HGKUijodlA_JTc0whp3J,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,953,UgxhcuSZbBIDkpf9d4N4AaABAg.A_HGKUijodlA_JTc0whp3J,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,954,UgxXMVlljKGc3wX0dnJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,956,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HV10ONpcC,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,961,Ugz5pvaZnhlnhD74E4F4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,961,Ugz5pvaZnhlnhD74E4F4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,963,UgxpcTEA8L911nTLecF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,963,UgxpcTEA8L911nTLecF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SELOS)
+05-lingering,965,UgwMn4apGwWX2WVKEyt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,965,UgwMn4apGwWX2WVKEyt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,968,UgwAfsJ-2IT66cGRJlh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,968,UgwAfsJ-2IT66cGRJlh4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,969,Ugwj7SV-jHjr7bPpW554AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,969,Ugwj7SV-jHjr7bPpW554AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,970,UgyCpmWuhtpFdT0AdvB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,970,UgyCpmWuhtpFdT0AdvB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,977,Ugw4EKjZhcTevtdOtSh4AaABAg,INFO,review:cluster_override,cluster_override(C1->C2)
+05-lingering,977,Ugw4EKjZhcTevtdOtSh4AaABAg,WARN,cluster_override_clear_focal,"FOCAL_EVENT=MORAL_VIOLATION defaults to C1, coded C2"
+05-lingering,979,UgyunHi8cSvH-4PBZkB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,979,UgyunHi8cSvH-4PBZkB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,985,UgwrWOx8SJP6B6Zhq194AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,988,UgwCcr4UulVa9qUpD8t4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,988,UgwCcr4UulVa9qUpD8t4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'ACTION_TENDENCY']"
+05-lingering,989,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_KFIoxo8Do,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,989,Ugzf1ptx0KwXPlDF3tB4AaABAg.A_HKg5FpONMA_KFIoxo8Do,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,990,UgweX0LUKWL3R6yIL9d4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,990,UgweX0LUKWL3R6yIL9d4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['REGULATION']
+05-lingering,991,UgyHF590iAFQ1gjYT9x4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,991,UgyHF590iAFQ1gjYT9x4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,994,Ugy3nbKEh7Kl99HdWmR4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,994,Ugy3nbKEh7Kl99HdWmR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,996,UgyRTT6fJy8JiFVfwzx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,996,UgyRTT6fJy8JiFVfwzx4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,999,Ugzl921HGeI9g__tdxJ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1001,UgwQq1Tihvi4vbEU_294AaABAg,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 11-word comment
+05-lingering,1002,Ugxoji-97ommWOCQ5J14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1002,Ugxoji-97ommWOCQ5J14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1003,Ugz6QzegLbxqx8fHbzF4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,1003,Ugz6QzegLbxqx8fHbzF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INIS)
+05-lingering,1013,Ugxukg_s9Dgfs8xs7o54AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(INGGIT)
+05-lingering,1013,Ugxukg_s9Dgfs8xs7o54AaABAg,INFO,review:emotion_word_missed,emotion_word_missed(NGITNGIT)
+05-lingering,1014,UgxMc9ET250ohq6kzMl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1014,UgxMc9ET250ohq6kzMl4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,1015,UgxJ00ZFNfnN6xGMEK54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1015,UgxJ00ZFNfnN6xGMEK54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1017,UgxL_ZuYiQB_jfnUrql4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1017,UgxL_ZuYiQB_jfnUrql4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1021,Ugz9vbk-iz_DuEwoDXJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1021,Ugz9vbk-iz_DuEwoDXJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'CONTROL_STRATEGY', 'ACTION_TENDENCY']"
+05-lingering,1022,Ugx34cvEt9VuarEpbg94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1022,Ugx34cvEt9VuarEpbg94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1022,Ugx34cvEt9VuarEpbg94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1024,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HSMnJM6Lb,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1024,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_HSMnJM6Lb,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1026,UgyTCIizpj6Xtmp7AsN4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1026,UgyTCIizpj6Xtmp7AsN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1026,UgyTCIizpj6Xtmp7AsN4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,1030,UgwV4ZrZ9daAHGWXR-N4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1030,UgwV4ZrZ9daAHGWXR-N4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1031,UgwtFm3S-4g08wfCpgh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1031,UgwtFm3S-4g08wfCpgh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1032,UgzkDieqks5R6Pv2QCN4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,1032,UgzkDieqks5R6Pv2QCN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1032,UgzkDieqks5R6Pv2QCN4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1039,Ugw-wCpUCHgZzL1JayZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1039,Ugw-wCpUCHgZzL1JayZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1041,Ugw6lA0x9cKhVMSUjkN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1041,Ugw6lA0x9cKhVMSUjkN4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1042,UgxC_uZTiIrpD5ALF5R4AaABAg,WARN,evidence_not_in_text,'rest in peace po. praying for the family'
+05-lingering,1043,UgwgrkwgIywh_Bt3xTx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1043,UgwgrkwgIywh_Bt3xTx4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1044,UgwffdG6uGgV98LxnkZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1044,UgwffdG6uGgV98LxnkZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1046,UgxEQDkqVUrFy66pwFF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1046,UgxEQDkqVUrFy66pwFF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,1048,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_S69SkEIZP,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1048,Ugxukg_s9Dgfs8xs7o54AaABAg.A_HCJXZjjSRA_S69SkEIZP,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1054,UgwJakJQdnNcA0fJcmB4AaABAg.A_H2S7v8toNA_Lt-JBmQ2W,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1054,UgwJakJQdnNcA0fJcmB4AaABAg.A_H2S7v8toNA_Lt-JBmQ2W,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1057,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_H_4wKBLxC,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1057,UgwpPWxnVEdt2OmilPR4AaABAg.A_H5_6rruuJA_H_4wKBLxC,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,1058,UgzADj4o2H90pTArqAR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1058,UgzADj4o2H90pTArqAR4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS', 'RELATIONSHIP_LEVEL']"
+05-lingering,1063,UgyhzdnV5tkMebdmiHF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1063,UgyhzdnV5tkMebdmiHF4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1064,Ugwsh42rwpzQzDCtgIZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1064,Ugwsh42rwpzQzDCtgIZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,1065,UgxqyT1PQYGHqhGOUuF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1065,UgxqyT1PQYGHqhGOUuF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,1065,UgxqyT1PQYGHqhGOUuF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1066,UgxtiIAH8XzGTj0gsO54AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1067,Ugy7yBxCI_-SkGl0I7R4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1067,Ugy7yBxCI_-SkGl0I7R4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1069,Ugx86-l0ohuPzS3RpNN4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,1071,Ugy0gjR-me_ONGXBJoB4AaABAg.A_MjrC2H0mGA_MmpArAJhh,INFO,nonverbal_but_wordy,NONVERBAL_ONLY on a 10-word comment
+05-lingering,1072,UgwE0OQKMIAftpoGBt54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1072,UgwE0OQKMIAftpoGBt54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,1073,Ugwb8u0TWNwOdwZ8SwB4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1075,UgzVbFJznrg6LNFJjMZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1075,UgzVbFJznrg6LNFJjMZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1077,Ugx9rFSwXTfenxxkRch4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1077,Ugx9rFSwXTfenxxkRch4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,1078,Ugy3gWpQrD1RMnwlk-l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1078,Ugy3gWpQrD1RMnwlk-l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1080,UgygsIitm1KQcU9z1Ph4AaABAg,ERROR,uncoded_row,no model output for this row
+05-lingering,1088,UgzEeBySbFFZD6l1tR94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1088,UgzEeBySbFFZD6l1tR94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1090,UgxWVN89Wquc3DHG1PR4AaABAg.A_HqQdO4rlwA_JfgbSIIe5,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,1092,UgwkGXjCWFl0SBBbvFF4AaABAg,WARN,language_heuristic,coded FIL but reads English/mixed (EN or TAGLISH?)
+05-lingering,1096,Ugx-Z0HjpOZNfMHJn8R4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1096,Ugx-Z0HjpOZNfMHJn8R4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1099,UgzID7kd5MEMGmw7ehF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1099,UgzID7kd5MEMGmw7ehF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,1100,Ugxi6HKiHcQuH4mfCOd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1100,Ugxi6HKiHcQuH4mfCOd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1105,Ugzoji-XGbhQY4UuJjl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1105,Ugzoji-XGbhQY4UuJjl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1106,UgwNs8ugIPRjdFWGBEd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1106,UgwNs8ugIPRjdFWGBEd4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1107,Ugyf2lgbmUgO1NWQjSN4AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+05-lingering,1108,UgwKkZK3jQtMTkUve2N4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,1109,UgyVtdKJ36lEadxX2Xx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1109,UgyVtdKJ36lEadxX2Xx4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1114,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_I9Wlb_s3v,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1115,UgwlwJByLWUCmZVSeYp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,1116,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_jh1IHL2nx,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1116,UgycAXtzmJVQc8erKP94AaABAg.A_H5oVEbOglA_jh1IHL2nx,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1118,UgzOuaKM8Z49z2VnyAt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1119,Ugx1LbMRCX_1bQzKgB94AaABAg,WARN,evidence_not_in_text,'red_heart::red_heart::red_heart::red_heart::red_heart: thanks for toni'
+05-lingering,1122,UgzQt5CkZHXABIimlyl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,1124,UgyyqOE2X-tR0_fyYnV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1124,UgyyqOE2X-tR0_fyYnV4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1125,UgzJm4EDLM-rghWiJRp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1125,UgzJm4EDLM-rghWiJRp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['REGULATION']
+05-lingering,1126,UgxjcHhIwC2oMukswAF4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1134,UgyQUTjjPKB3varRg6Z4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1134,UgyQUTjjPKB3varRg6Z4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1135,UgyfpUIt4yh7S-9qom54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1135,UgyfpUIt4yh7S-9qom54AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1138,UgzrOAeWrQglRWWyiLV4AaABAg.A_Hed4iLIJBA_Hfc1yGu_3,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1138,UgzrOAeWrQglRWWyiLV4AaABAg.A_Hed4iLIJBA_Hfc1yGu_3,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1138,UgzrOAeWrQglRWWyiLV4AaABAg.A_Hed4iLIJBA_Hfc1yGu_3,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1139,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HC00T25Qh,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1139,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_HC00T25Qh,WARN,handle_in_evidence,replace @handles with [USER]
+05-lingering,1140,UgxYnZBS0zZFW114kpp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1140,UgxYnZBS0zZFW114kpp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1141,UgwwscnsrWnsGlNnGlF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1141,UgwwscnsrWnsGlNnGlF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1142,UgyN4nP9FULDMhBt-jN4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1144,UgyO-hMIK0eF1wJh0wV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,1144,UgyO-hMIK0eF1wJh0wV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1144,UgyO-hMIK0eF1wJh0wV4AaABAg,INFO,review:emotion_word_missed,emotion_word_missed(INGGIT)
+05-lingering,1145,UgyuQ0uipZ-o42N9kkt4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1150,UgwFR1vkSS3R1C3WrL54AaABAg.A_KFts4KB1XA_MsJgjqZ_d,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1150,UgwFR1vkSS3R1C3WrL54AaABAg.A_KFts4KB1XA_MsJgjqZ_d,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,1151,Ugzpy7tueFugQY_WFpB4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1151,Ugzpy7tueFugQY_WFpB4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1158,UgxMRoojaMUSdv9R8gV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1159,UgzJmN4QezN6sBPTv9J4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1159,UgzJmN4QezN6sBPTv9J4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1162,UgxGORfN_MWVPbAjKzJ4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1163,UgzsUjTXjcNKwlpWs-N4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(MUHI)
+05-lingering,1163,UgzsUjTXjcNKwlpWs-N4AaABAg,INFO,review:emotion_word_missed,emotion_word_missed(INGGIT)
+05-lingering,1167,Ugxa4R4PG7phjsujeVF4AaABAg,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1168,UgyaN96XeWYwdwNQ_aJ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1170,UgwSSmfF70D_MhhUsZ94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1170,UgwSSmfF70D_MhhUsZ94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1172,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HaGnYxALz,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1172,UgwGQ7U8vGA7D5v5eLB4AaABAg.A_HApjUVVNSA_HaGnYxALz,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C3: ['REGULATION']
+05-lingering,1173,Ugyme1BFx_Y0YUWFMwp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1173,Ugyme1BFx_Y0YUWFMwp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1175,Ugynps9qx34Rt9x-gNJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1175,Ugynps9qx34Rt9x-gNJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY', 'REGULATION']"
+05-lingering,1179,UgxG8-6Y-tR50bKz-zZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(PIKON)
+05-lingering,1179,UgxG8-6Y-tR50bKz-zZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1179,UgxG8-6Y-tR50bKz-zZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1180,Ugys_2LXXYyOeyBDICF4AaABAg.A_RDVH69zVCA_RJSlzmGRU,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1180,Ugys_2LXXYyOeyBDICF4AaABAg.A_RDVH69zVCA_RJSlzmGRU,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1180,Ugys_2LXXYyOeyBDICF4AaABAg.A_RDVH69zVCA_RJSlzmGRU,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=1,rule=0)"
+05-lingering,1183,UgyKxOQmWQ7K-1G91rt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=1 but components against C1: none
+05-lingering,1185,UgzGjG-fBwWyyXKs-Jl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,1185,UgzGjG-fBwWyyXKs-Jl4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1185,UgzGjG-fBwWyyXKs-Jl4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1185,UgzGjG-fBwWyyXKs-Jl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1186,UgyOe9HsVsqMtCBXqSF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(ASAR)
+05-lingering,1186,UgyOe9HsVsqMtCBXqSF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(POOT)
+05-lingering,1186,UgyOe9HsVsqMtCBXqSF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1189,Ugw9-Ys8BLmnIaGJ-YZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1189,Ugw9-Ys8BLmnIaGJ-YZ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['REGULATION']
+05-lingering,1191,UgznxsztVMDbNp3feuF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,1191,UgznxsztVMDbNp3feuF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SAMA_NG_LOOB)
+05-lingering,1191,UgznxsztVMDbNp3feuF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1191,UgznxsztVMDbNp3feuF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['RELATIONSHIP_LEVEL']
+05-lingering,1191,UgznxsztVMDbNp3feuF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1192,UgwHgSL1lgS2Yw341TN4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1192,UgwHgSL1lgS2Yw341TN4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1194,UgzdyFe8RcKLNHy-gs94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1194,UgzdyFe8RcKLNHy-gs94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1195,UgyhENhCXwzykrGNMLN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1198,UgyQbtl6sqwXOhYxXSt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1198,UgyQbtl6sqwXOhYxXSt4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1200,UgxrU8GsWpyg07ont7t4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1200,UgxrU8GsWpyg07ont7t4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1203,UgzjjQtJGMccDQQjdq94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1203,UgzjjQtJGMccDQQjdq94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1205,Ugz3mVTKb41Op2bt6xx4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1206,UgxoXGJZLKswJxmjFat4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1206,UgxoXGJZLKswJxmjFat4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1207,UgzG1RBnZkxRVbspKdJ4AaABAg.A_H1tSvq04kA_K65YYeSvs,WARN,emoji_only_regulation,emoji-only comment coded REGULATION=INTENSE_DISTRESS
+05-lingering,1210,UgxwLFpNalaMtDtH3kp4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1210,UgxwLFpNalaMtDtH3kp4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,1213,Ugwbc_zI06nYlv0IZg94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1213,Ugwbc_zI06nYlv0IZg94AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['ACTION_TENDENCY']
+05-lingering,1216,UgyiZ1rCEA_bMk6jNwR4AaABAg.A_HK9CGh_QuA_HdXqYpcdO,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,1218,UgzhY5gMFSobk4eAFuF4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1218,UgzhY5gMFSobk4eAFuF4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1220,UgzvbZmYU0PgGe7A7WF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1220,UgzvbZmYU0PgGe7A7WF4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,1225,Ugy5aDapogc4wJuNGi94AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1225,Ugy5aDapogc4wJuNGi94AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1226,UgzqkhmjqR1t6VVXwel4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1226,UgzqkhmjqR1t6VVXwel4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1226,UgzqkhmjqR1t6VVXwel4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1227,UgwE_uOO5wKvWZ_XxQ14AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1227,UgwE_uOO5wKvWZ_XxQ14AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1228,UgxJfM_prTEuZ4EjlfV4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUYA)
+05-lingering,1229,UgzgXk4i9SILsiRCSmZ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1229,UgzgXk4i9SILsiRCSmZ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1231,UgwksTFg8EwTFNTFBql4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1233,UgxYYxuqK0BMJ6WQqYN4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+05-lingering,1234,UgyAKGo1VmvUrfd6bnl4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1235,UgwH4cye8q14fSf7Wah4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+05-lingering,1236,UgwjiO46zfrEYixx2Kh4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1236,UgwjiO46zfrEYixx2Kh4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1239,UgypPGV6B7uVLovf73h4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1239,UgypPGV6B7uVLovf73h4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1240,UgzlDXSZTveth5IATcR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+05-lingering,1241,UgzxWlY94-BQ2uD4prd4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1241,UgzxWlY94-BQ2uD4prd4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1242,Ugz3FPHkTFwkZ19U7Px4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1242,Ugz3FPHkTFwkZ19U7Px4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1247,UgzqDSQco-c_M6vqcpV4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1247,UgzqDSQco-c_M6vqcpV4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+05-lingering,1248,UgxeT4tVBedlLRTonYh4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(SUKLAM)
+05-lingering,1249,UgxEIt9SeJBqauORksJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1249,UgxEIt9SeJBqauORksJ4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1253,UgxxidbwcgTb2DNfAvR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1253,UgxxidbwcgTb2DNfAvR4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1254,UgwMAw2cWauPuo7OTBZ4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(BUWISIT)
+05-lingering,1256,UgxfKBcog37fJ4yKf8p4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1256,UgxfKBcog37fJ4yKf8p4AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1257,UgwDPjr4G80Vvo8_uA54AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1257,UgwDPjr4G80Vvo8_uA54AaABAg,WARN,cluster_conflict_mismatch,"CLUSTER_CONFLICT=0 but components against C1: ['REGULATION', 'RELATIONSHIP_LEVEL']"
+05-lingering,1258,Ugws2sMHhoGSsnh7ndJ4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+05-lingering,1258,Ugws2sMHhoGSsnh7ndJ4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
