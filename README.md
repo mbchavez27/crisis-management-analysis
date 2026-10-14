@@ -138,7 +138,7 @@ uv run python main.py --stage pipeline
 
 | Env var | Needed for | Where used |
 |---|---|---|
-| `GEMINI_API_KEY` | topic-label refinement | `02-analysis/*/topic-modeling.ipynb` via `load_dotenv("../../.env")` |
+| `GEMINI_API_KEY` | topic-label refinement | `02-analysis/*/topic-modeling.ipynb` via `load_dotenv("../../.env")`. Notebook uses `gemini-3.5-flash-lite` (`gemini-2.5-flash` is retired for new keys); `02-analysis/youtube/relabel_topics_gemma.py` relabels with `gemma-4-26b-a4b-it`. Labeling retries transient 429/503/500s with backoff. |
 | `GEMMA_API_KEY` | LLM passes | `03-llm-passes/scripts/` |
 | `CRISIS` | multi-crisis select (default `ateneo-drowning`) | all `run_*.sh`, e.g. `CRISIS=... uv run bash ...` |
 
@@ -460,6 +460,7 @@ Raw data (`00-data/`, ~12MB) is tracked in git — no separate download needed. 
 Troubleshooting:
 
 - `KeyError: 'GEMINI_API_KEY'` → you skipped `cp .env.example .env`.
+- `404 ... gemini-2.5-flash ... no longer available` → key is new; use `gemini-3.5-flash-lite` (already the default in the notebook's `MODEL`).
 - `Can't find model 'tl_calamancy_md'` → rerun `bash setup.sh` (step 2).
 - `papermill: command not found` → you ran bare `bash run_*.sh`; use `uv run bash ...` or `source .venv/bin/activate` first.
 - Slow on CPU-only lab PC → expected for XLM-R + BERTopic; test one phase first (e.g. `uv run python main.py --stage sentiment-youtube`).
