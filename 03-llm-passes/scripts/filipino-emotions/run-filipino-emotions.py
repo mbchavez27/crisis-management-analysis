@@ -102,7 +102,7 @@ BINARY_KEYS = ("NEG_SOCIAL_EMOTION", "SARCASM", "NEEDS_CONTEXT")  # always 0 / 1
 TERNARY_KEYS = ("MULTIPLE_FOCAL",)  # 0 / 1, or "NA" when screened out
 # v1.1+ prompts no longer define these, so the runner computes them from the text and the
 # coded components (emotion_terms_in, component_conflict) instead of asking the model.
-DERIVED_KEYS = ("EMOTION_WORDS", "CLUSTER_CONFLICT")
+DERIVED_KEYS = ("EMOTION_WORDS", "CLUSTER_CONFLICT", "CONFLICT_COMPONENTS")
 # The prompt examples omit these (always 0 there), so a missing one defaults to 0.
 DEFAULT_ZERO_KEYS = ("MULTIPLE_FOCAL", "NEEDS_CONTEXT")
 COMPONENT_KEYS = (
@@ -314,6 +314,7 @@ COLUMN_ORDER = [
     "RELATIONSHIP_LEVEL",
     "CLUSTER",
     "CLUSTER_CONFLICT",
+    "CONFLICT_COMPONENTS",
     "SARCASM",
     "NEEDS_CONTEXT",
     "evidence",
@@ -933,32 +934,37 @@ def emotion_terms_in(text: str) -> list[str]:
 DEFAULT_CLUSTER = {"MORAL_VIOLATION": "C1", "UNMET_EXPECTATION": "C2",
                    "HINDRANCE": "C3", "UNCLEAR": "UNCLASSIFIED"}
 # Which cluster(s) each coded component value describes in the FRAMEWORK section.
-# BLAME SELF fits C2 and C3 (both: "the actor is to blame"); IGNORE fits C1 and C3;
-# CONTROLLED fits C2 and C3. Values absent here (NONE_EXPRESSED, NOT_EXPRESSED,
-# NOT_DETERMINABLE) are not coded and never conflict.
+# BLAME SELF fits C2 and C3 (both: "the actor is to blame"); IGNORE fits C1 and C3.
+# CONTROLLED is absent: every cluster's regulation is "the actor controls the emotion",
+# and the prompt makes it the catch-all REGULATION value (needs no quote). Values absent
+# here (NONE_EXPRESSED, NOT_EXPRESSED, NOT_DETERMINABLE, CONTROLLED) never conflict.
 COMPONENT_CLUSTERS: dict[str, dict[str, frozenset[str]]] = {
     "BLAME_LOCUS": {"OTHER": frozenset({"C1"}), "SELF": frozenset({"C2", "C3"})},
     "CONTROL_STRATEGY": {"IGNORE": frozenset({"C1", "C3"}), "REFRAME": frozenset({"C2"})},
     "ACTION_TENDENCY": {"LASTING_WITHDRAWAL": frozenset({"C1"}),
                         "RELATIONSHIP_MAINTAINED": frozenset({"C2"}),
                         "TEMPORARY_DISTANCE": frozenset({"C3"})},
-    "REGULATION": {"INTENSE_DISTRESS": frozenset({"C1"}), "CONTROLLED": frozenset({"C2", "C3"}),
-                   "NONVERBAL_ONLY": frozenset({"C3"})},
+    "REGULATION": {"INTENSE_DISTRESS": frozenset({"C1"}), "NONVERBAL_ONLY": frozenset({"C3"})},
     "RELATIONSHIP_LEVEL": {"KAPWA": frozenset({"C1"}), "HINDI_IBANG_TAO": frozenset({"C2"}),
                            "IBANG_TAO": frozenset({"C3"})},
 }
 
 
+def conflict_components(obj: dict[str, Any]) -> list[str]:
+    """Components whose coded value matches a different cluster than CLUSTER (STEP 3 says
+    the team analyzes these combinations). Empty when CLUSTER is not C1-C3."""
+    if obj["CLUSTER"] not in ("C1", "C2", "C3"):
+        return []
+    return [key for key, table in COMPONENT_CLUSTERS.items()
+            if (clusters := table.get(obj[key])) is not None and obj["CLUSTER"] not in clusters]
+
+
 def component_conflict(obj: dict[str, Any]) -> Optional[int]:
-    """CLUSTER_CONFLICT as the prompt defines it: 1 if any coded component matches a
-    different cluster than CLUSTER. None when CLUSTER is not C1-C3 (nothing to compare)."""
+    """CLUSTER_CONFLICT: 1 if any coded component matches a different cluster than
+    CLUSTER. None when CLUSTER is not C1-C3 (nothing to compare)."""
     if obj["CLUSTER"] not in ("C1", "C2", "C3"):
         return None
-    for key, table in COMPONENT_CLUSTERS.items():
-        clusters = table.get(obj[key])
-        if clusters is not None and obj["CLUSTER"] not in clusters:
-            return 1
-    return 0
+    return int(bool(conflict_components(obj)))
 
 
 def validate_record(
@@ -1055,9 +1061,11 @@ def validate_record(
     if obj["NEG_SOCIAL_EMOTION"] == 0:
         obj["EMOTION_WORDS"] = ["NA"]
         obj["CLUSTER_CONFLICT"] = "NA"
+        obj["CONFLICT_COMPONENTS"] = "NA"
     else:
         obj["EMOTION_WORDS"] = emotion_terms_in(text) or ["NONE"]
         obj["CLUSTER_CONFLICT"] = component_conflict(obj) or 0  # None: UNCLASSIFIED
+        obj["CONFLICT_COMPONENTS"] = ";".join(conflict_components(obj))  # "" when none
 
     # Evidence must be words that really appear in the comment.
     check_evidence(obj, text, lenient, review)

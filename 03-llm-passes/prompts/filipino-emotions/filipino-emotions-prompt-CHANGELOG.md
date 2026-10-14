@@ -20,6 +20,15 @@ literal-term regexes (`["NONE"]` if none), `CLUSTER_CONFLICT` from
 out. Omitted `MULTIPLE_FOCAL` / `NEEDS_CONTEXT` default to 0 (autofix
 flag). `--chunk-size` default 5 -> 1. Do not pool with components-2 rows.
 
+Follow-up (same schema; recomputed from saved raw outputs on rerun):
+`REGULATION = CONTROLLED` no longer counts toward CLUSTER_CONFLICT. Every
+cluster's regulation is "the actor controls the emotion", and the prompt
+makes CONTROLLED the catch-all, so it flagged ~75% of pilot rows. New
+`CONFLICT_COMPONENTS` column lists the clashing components (e.g.
+`BLAME_LOCUS` for C2 rows that blame others); the validator reports counts
+per cluster:component. C2 + BLAME_LOCUS=OTHER is kept as a conflict and
+reported as a framework-fit finding, not recoded.
+
 ## v1.1 — 2026-10-14
 
 Prof revision of v1.0 (sourced from `prompt_stamaria.txt`, deleted after

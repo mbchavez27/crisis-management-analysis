@@ -154,8 +154,7 @@ COMPONENT_CLUSTERS = {
         "TEMPORARY_DISTANCE": {"C3"},
     },
     "REGULATION": {
-        "INTENSE_DISTRESS": {"C1"},
-        "CONTROLLED": {"C2", "C3"},
+        "INTENSE_DISTRESS": {"C1"},  # CONTROLLED fits every cluster: never a conflict
         "NONVERBAL_ONLY": {"C3"},
     },
     "RELATIONSHIP_LEVEL": {
@@ -681,6 +680,13 @@ def describe(
         ov["CLUSTER_CONFLICT_pct_of_neg"] = pct(
             int((neg & (ok["CLUSTER_CONFLICT"] == "1")).sum()), int(neg.sum())
         )
+        if "CONFLICT_COMPONENTS" in ok.columns:  # which component clashes, per cluster
+            cc = Counter(
+                f"{cl}:{comp}"
+                for cl, v in zip(ok.loc[neg, "CLUSTER"], ok.loc[neg, "CONFLICT_COMPONENTS"].fillna(""))
+                for comp in v.split(";") if comp
+            )
+            ov["conflict_component_counts"] = ";".join(f"{k}:{v}" for k, v in sorted(cc.items()))
     if "review_flags" in ok.columns:
         rf = ok["review_flags"].fillna("")
         ov["review_flagged_rows"] = int((rf != "").sum())
@@ -830,6 +836,8 @@ def print_phase(
             f"conflict {ov['CLUSTER_CONFLICT_pct_of_neg']}% of screened-in rows | "
             f"NEEDS_CONTEXT {ov['NEEDS_CONTEXT_pct']}%"
         )
+    if ov.get("conflict_component_counts"):
+        print(f"conflicts by cluster:component: {ov['conflict_component_counts']}")
 
     by = Counter((f["severity"], f["check"]) for f in flags)
     order = {"ERROR": 0, "WARN": 1, "INFO": 2}
