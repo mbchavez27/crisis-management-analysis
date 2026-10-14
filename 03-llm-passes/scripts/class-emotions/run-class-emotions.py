@@ -508,7 +508,7 @@ PASSES: dict[int, PassSpec] = {
 }
 
 # Slot names the wrapper may use for the codebook text. The first entry is the
-# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.7.txt; it must come before the
+# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.8.txt; it must come before the
 # shorter <<...>> spellings so all three brackets on each side are replaced. The
 # result is verified below (a leftover <<...>> slot aborts the run instead of
 # silently sending a broken prompt).
@@ -532,7 +532,7 @@ _PROMPT_VERSION_RE = re.compile(r"class-emotions-prompt\s+(v[0-9][0-9.]*)", re.I
 
 def read_wrapper() -> tuple[str, str]:
     """Return (wrapper text without its '#' metadata header, prompt version)."""
-    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.7.txt").read_text(encoding="utf-8").splitlines()
+    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.8.txt").read_text(encoding="utf-8").splitlines()
     header: list[str] = []
     while lines and lines[0].startswith("#"):
         header.append(lines.pop(0))

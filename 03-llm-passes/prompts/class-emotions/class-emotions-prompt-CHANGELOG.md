@@ -8,6 +8,31 @@ in the codebook, which human and LLM coders share.
 Every coded record stores the prompt version it was produced with (`prompt_version`
 in `full_codebook_results.jsonl`), read from the `# coding-prompt vX.Y` header line.
 
+## v1.8 — 2026-10-14
+
+Codebook: v2.2 (unchanged).
+
+Prompted by: slow L4 full run on v1.7 — strict validation forcing correction
+retries (`MAX_CORRECTIONS=2` per single-row chunk). Two dominant rejections:
+`evidence_not_verbatim` where the LLM rendered emojis as `:shortcodes:` instead
+of copying the raw emoji, and `class_frame_without_direction` where
+`CLASS_FRAME` was cited without a `CLASS_DIRECTION`.
+
+Prompt text:
+
+- EVIDENCE ITEMS `quote`: explicitly forbid translating emojis into text
+  shortcodes (copy emojis exactly as they appear, e.g. use 😭, not
+  `:loudly_crying_face:`). Targets `evidence_not_verbatim` at generation time;
+  the verbatim check itself is unchanged.
+- CONSISTENCY CHECKS: first bullet made forceful — `CRITICAL: If
+  "CLASS_FRAME" is cited anywhere ... you MUST set "CLASS_DIRECTION" ... ONLY
+  "NA" if "CLASS_FRAME" is completely absent.` Targets
+  `class_frame_without_direction` retries.
+
+Pipeline (`run-class-emotions.py`): `read_wrapper()` now loads
+`class-emotions-prompt-v1.8.txt`. Checkpoint resume recodes v1.7 rows as stale
+(different `prompt_version`), so do not pool v1.7 and v1.8 outputs.
+
 ## v1.7 — 2026-10-14
 
 Codebook: v2.2 (unchanged).
