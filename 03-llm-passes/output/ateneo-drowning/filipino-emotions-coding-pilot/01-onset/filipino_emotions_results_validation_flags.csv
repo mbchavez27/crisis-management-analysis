@@ -1,0 +1,17 @@
+phase,row_id,comment_id,severity,check,detail
+01-onset,0,UgyhVtY5gXjG4k8fPbx4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,0,UgyhVtY5gXjG4k8fPbx4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+01-onset,1,UgwyX2yyZwu0wGuhQZl4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,2,UgwuDCjtbuCc5eJjXKh4AaABAg,WARN,review:evidence_missing,evidence_missing
+01-onset,3,Ugyy0LppckPotGj1JqR4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,3,Ugyy0LppckPotGj1JqR4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+01-onset,4,Ugzsbp73869xbx1AwB14AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,5,Ugxx6Zz2lC0q0ARzhzt4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,5,Ugxx6Zz2lC0q0ARzhzt4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+01-onset,6,Ugxq-Isn_zFmAEqgOMt4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,WARN,review:emotion_word_not_in_text,emotion_word_not_in_text(GALIT)
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C2: ['BLAME_LOCUS']
+01-onset,8,Ugxgj1dGFjxArpVXs-l4AaABAg,WARN,review:cluster_conflict_check,"cluster_conflict_check(model=0,rule=1)"
+01-onset,8,Ugxgj1dGFjxArpVXs-l4AaABAg,WARN,cluster_conflict_mismatch,CLUSTER_CONFLICT=0 but components against C1: ['REGULATION']
+01-onset,9,UgxhuAryB5q1c52wJOt4AaABAg,ERROR,uncoded_row,no model output for this row
