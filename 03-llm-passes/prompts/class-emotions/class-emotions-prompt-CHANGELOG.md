@@ -1,12 +1,48 @@
 # Coding prompt change log
 
-The coding prompt (`prompts/class-emotions/class-emotions-prompt-v1.6.txt`) is the wrapper the LLM coder receives
+The coding prompt (`prompts/class-emotions/class-emotions-prompt-v1.7.txt`) is the wrapper the LLM coder receives
 around the codebook. It is versioned separately from the codebook: a prompt change
 alters how the LLM is instructed, never what a code means. Code definitions live only
 in the codebook, which human and LLM coders share.
 
 Every coded record stores the prompt version it was produced with (`prompt_version`
 in `full_codebook_results.jsonl`), read from the `# coding-prompt vX.Y` header line.
+
+## v1.7 — 2026-10-14
+
+Codebook: v2.2 (unchanged).
+
+Prompted by: 01-onset pilot (10 rows, v1.6, SEA-LION 9B): 1 hard failure from a
+repetition loop (`CLASS_FRAME` cited 80+ times in one quote until the output
+budget blew), 5 `attribution_without_norm_violation` WARNs, 2 `blame_unnamed(COACH)`
+flags, 1 phantom quote kept as `evidence_unverified`, 2 `class_frame_no_class_word`
+INFOs, and evidence strings citing codes the autofixes then reset
+(`NEEDS_CONTEXT`, `UNCODABLE`, `REJECT_REASONS`).
+
+Prompt text:
+
+- EVIDENCE ITEMS rules: cite each code once per quote; at most 6 codes per
+  quote and 6 evidence items, one item per idea.
+- BLAME_TARGETS reminder: negative examples (`a life for a life` with no one
+  named → NONE; `killing someone's children` without naming the coach → NONE).
+- New NORM_VIOLATION reminder + consistency check: ACCUSATION / NEGLIGENCE /
+  INTENTIONAL / VICTIM_FAULT entail NORM_VIOLATION = 1 (only ACCIDENT and NONE
+  go with 0).
+- CLASS_FRAME reminder: safety critique with no wealth/poverty/elite language
+  is not a class frame.
+
+Pipeline (run_local.py) changes required alongside this version:
+
+- Structured decoding schema: `codes` arrays carry `maxItems: 6`, `evidence`
+  arrays `maxItems: 8`, so repetition loops are stopped at generation time.
+- `expand_structured()` dedupes repeat citations per item and raises a
+  retryable `SoftIssue` past the bounds above (kept with a flag when retries
+  are spent, never a hard failure).
+- `validate_record()` scrubs reset codes (`NEEDS_CONTEXT`, `UNCODABLE`,
+  `REJECT_REASONS`, `RESPONSE_TARGET/EVAL`) from the rendered evidence string
+  after the deterministic autofixes, keeping evidence/evidence_en aligned.
+- Comparability: outputs from v1.6 and v1.7 should not be pooled without
+  noting the instruction change; the runner recodes stale checkpoints.
 
 ## v1.6 — 2026-10-13
 

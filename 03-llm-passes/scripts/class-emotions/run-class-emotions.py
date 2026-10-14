@@ -171,6 +171,7 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
                 "type": "array",
                 "items": {"type": "string", "enum": CODE_TOKENS},
                 "minItems": 1,
+                "maxItems": 6,
             },
             "other_label": {"type": "string"},
         },
@@ -179,7 +180,7 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
     }
     props = {
         "id": {"type": "string", "enum": [str(comment_id)]},
-        "evidence": {"type": "array", "items": item},
+        "evidence": {"type": "array", "items": item, "maxItems": 8},
         **{k: {"type": "string", "enum": sorted(SCALAR_ENUMS[k])} for k in WHOLE_COMMENT_KEYS},
         "LANGUAGE": {"type": "string", "enum": sorted(SCALAR_ENUMS["LANGUAGE"])},
         "OTHER_NOTE": {"type": "string"},
@@ -215,11 +216,28 @@ def expand_structured(
     rec["EMERGENT"] = ""  # MODE: FULL
 
     parts, parts_en = [], []
-    for it in obj.get("evidence") or []:
+    items = obj.get("evidence") or []
+    if len(items) > MAX_EVIDENCE_ITEMS:
+        _soft(review if review is not None else [], lenient, "evidence_many_items",
+              f"evidence_format: at most {MAX_EVIDENCE_ITEMS} evidence items; "
+              "use fewer items, one per idea")
+    for it in items:
         if not isinstance(it, dict):
             raise ValueError("evidence_format: each evidence item must be an object")
         quote = str(it.get("quote", "")).strip()
         codes = [str(c).strip() for c in (it.get("codes") or []) if str(c).strip()]
+        # Dedupe repeat citations; rec values are identical either way.
+        seen: set[str] = set()
+        deduped: list[str] = []
+        for c in codes:
+            if c.upper() not in seen:
+                seen.add(c.upper())
+                deduped.append(c)
+        codes = deduped
+        if len(codes) > MAX_CODES_PER_ITEM:
+            _soft(review if review is not None else [], lenient, "evidence_many_codes",
+                  f"evidence_format: at most {MAX_CODES_PER_ITEM} codes per quote; "
+                  "split into one item per idea")
         label = str(it.get("other_label", "") or "").strip()
         if not quote or not codes:
             raise ValueError("evidence_format: every item needs a quote and at least one code")
@@ -490,7 +508,7 @@ PASSES: dict[int, PassSpec] = {
 }
 
 # Slot names the wrapper may use for the codebook text. The first entry is the
-# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.6.txt; it must come before the
+# placeholder actually used in prompts/class-emotions/class-emotions-prompt-v1.7.txt; it must come before the
 # shorter <<...>> spellings so all three brackets on each side are replaced. The
 # result is verified below (a leftover <<...>> slot aborts the run instead of
 # silently sending a broken prompt).
@@ -514,7 +532,7 @@ _PROMPT_VERSION_RE = re.compile(r"class-emotions-prompt\s+(v[0-9][0-9.]*)", re.I
 
 def read_wrapper() -> tuple[str, str]:
     """Return (wrapper text without its '#' metadata header, prompt version)."""
-    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.6.txt").read_text(encoding="utf-8").splitlines()
+    lines = (PASS_PROMPTS_DIR / "class-emotions-prompt-v1.7.txt").read_text(encoding="utf-8").splitlines()
     header: list[str] = []
     while lines and lines[0].startswith("#"):
         header.append(lines.pop(0))
@@ -874,6 +892,10 @@ def is_emoji_only(text: str) -> bool:
 # evidence:    «exact words» -> CODE, CODE=VALUE; «exact words» -> CODE
 # evidence_en: «translation»; «translation»        (one per quote, same order)
 QUOTE_MAX_WORDS = 15
+# v1.7 bounds: one code once per quote (the model repeated CLASS_FRAME 80+
+# times in one item and blew the output budget), one item per idea.
+MAX_EVIDENCE_ITEMS = 8
+MAX_CODES_PER_ITEM = 6
 # Scalar codes that need a supporting quote when they differ from these defaults.
 SCALAR_DEFAULTS: dict[str, str] = {}  # choose-ONE codes are whole-comment fields (v1.5)
 _EVID_ITEM = re.compile(r"«([^«»]+)»\s*->\s*([^«]*)")
@@ -1008,6 +1030,47 @@ def check_evidence(
         raise ValueError(
             f"evidence_en_count: give one «translation» per quote ({len(items)} quotes)"
         )
+
+
+def _scrub_reset_codes(obj: dict[str, Any], fixes: list[str]) -> None:
+    """Drop reset codes from the rendered evidence string (v1.7).
+
+    check_evidence runs before the deterministic autofixes, so a cited code
+    can be reset by a fix (NEEDS_CONTEXT on a top-level comment, UNCODABLE
+    alongside real codes, REJECT_REASONS without REJECTS/MIXED). The coded
+    values are correct; without a scrub the evidence string keeps the stale
+    citation. Segments left codeless are dropped with their translation so
+    evidence and evidence_en stay aligned.
+    """
+    drop: set[str] = set()
+    if any(f.startswith("needs_context->0") for f in fixes):
+        drop.add("NEEDS_CONTEXT")
+    if any(f.startswith("uncodable->0") for f in fixes):
+        drop.add("UNCODABLE")
+    if any(f.startswith("reject_reasons->NA") for f in fixes):
+        drop.add("REJECT_REASONS")
+    if any(f.startswith("response->NA") for f in fixes):
+        drop |= {"RESPONSE_TARGET", "RESPONSE_EVAL"}
+    if not drop:
+        return
+
+    def base_of(tok: str) -> str:
+        return tok.partition("=")[0].split("(")[0].strip().upper()
+
+    translations = _EVID_QUOTE.findall(obj.get("evidence_en", ""))
+    kept: list[str] = []
+    kept_en: list[str] = []
+    for i, (quote, codes) in enumerate(_EVID_ITEM.findall(obj.get("evidence", ""))):
+        # The codes group spans to the next «quote», so a trailing ";" from
+        # the "; "-joined rendering leaks in: strip it per token.
+        toks = [t.strip(" ;") for t in codes.split(",")]
+        toks = [t for t in toks if t and base_of(t) not in drop]
+        if toks:
+            kept.append(f"«{quote}» -> {', '.join(toks)}")
+            if i < len(translations):
+                kept_en.append(f"«{translations[i]}»")
+    obj["evidence"] = "; ".join(kept)
+    obj["evidence_en"] = "; ".join(kept_en)
 
 
 # Common Filipino and Cebuano function words. Used only to FLAG likely LANGUAGE
@@ -1220,6 +1283,7 @@ def validate_record(
     if obj["RESPONSE_EVAL"] not in ("REJECTS", "MIXED") and obj["REJECT_REASONS"] != ["NA"]:
         obj["REJECT_REASONS"] = ["NA"]  # H3: NA unless REJECTS or MIXED
         fixes.append("reject_reasons->NA")
+    _scrub_reset_codes(obj, fixes)
     return fixes
 
 
