@@ -229,14 +229,27 @@ def is_emoji_only(text: str) -> bool:
 
 
 def evidence_fragments(ev: str) -> list[str]:
-    """Quotes from the evidence string: «quote» if marked, otherwise split on ; | newline ...
-    (mirrors the runner; "LABEL:" prefixes and "-> CODE" suffixes are dropped)."""
-    if "«" in ev:
-        return [q for q in EVID_QUOTE.findall(ev) if q.strip()]
+    """Quotes from v1.1 object-form evidence (JSON-dumped dict) or legacy v1.0 strings.
+
+    v1.1 stores {"COMPONENT": "quote"}; values are the quotes. Older string
+    evidence («quote» marked, otherwise split) falls back to the legacy path.
+    """
+    s = (ev or "").strip()
+    if s.startswith("{"):
+        try:
+            parsed = json.loads(s)
+        except Exception:
+            parsed = None
+        if isinstance(parsed, dict):
+            return [str(v).strip() for v in parsed.values() if str(v).strip()]
+        if s == "{}":
+            return []
+    if "«" in s:
+        return [q for q in EVID_QUOTE.findall(s) if q.strip()]
     out = []
-    for part in EVID_SPLIT.split(ev):
+    for part in EVID_SPLIT.split(s):
         part = EVID_ARROW.sub("", EVID_LABEL.sub("", part.strip())).strip()
-        if part:
+        if part and part not in ("{}", "{", "}"):
             out.append(part)
     return out
 
@@ -398,8 +411,10 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
                 F("ERROR", "template_leakage", f"{c}: {r[c][:70]!r}")
                 leaked_ev = leaked_ev or c == "evidence"
 
-        # --- evidence fidelity ---------------------------------------------
+        # --- evidence fidelity (v1.1 object-form or legacy string) -----------
         ev = r["evidence"].strip()
+        ev_empty = ev in ("", "{}")
+        ev_en_empty = r["evidence_en"].strip() in ("", "{}")
         review = [x for x in r.get("review_flags", "").split(";") if x]
         for rf in review:
             base = rf.split("(")[0]
@@ -414,9 +429,9 @@ def validate(path: Path) -> tuple[pd.DataFrame, list[dict]]:
             ]
             if miss:
                 F("WARN", "evidence_not_in_text", f"{miss[0][:70]!r}")
-        if screened_in and not ev:
+        if screened_in and ev_empty:
             F("WARN", "no_evidence", "NEG_SOCIAL_EMOTION=1 but evidence is empty")
-        if ev and not r["evidence_en"].strip():
+        if not ev_empty and ev_en_empty:
             F("WARN", "no_evidence_en")
         if "@" in ev:
             F("WARN", "handle_in_evidence", "replace @handles with [USER]")

@@ -1,6 +1,6 @@
 r"""Local-LLM runner for the filipino-emotions coding pass (Sta. Maria 2010 framework).
 
-Codes full phase CSVs against the self-contained filipino-emotions-prompt-v1.0
+Codes full phase CSVs against the self-contained filipino-emotions-prompt-v1.1
 (wrapper + framework in one file; only the per-phase case context is inserted).
 Supersedes the removed notebooks/full-codebook-coding.ipynb micro-sample path.
 
@@ -88,11 +88,16 @@ PLACEHOLDER_MARKERS = (
 
 # Bumped whenever the output fields change. Checkpoints written under another schema
 # are recoded, never mixed in (prompt_version alone cannot tell: v1.0 is reused).
-SCHEMA_VERSION = "components-1"
+SCHEMA_VERSION = "components-2"
 
-# --- Output schema of filipino-emotions-prompt v1.0 ---------------------------------
-# Step 1 screens (NEG_SOCIAL_EMOTION); if 0, every other coded field is "NA".
-# Step 2 codes the components; Step 3 assigns the cluster.
+# Evidence components keyed in the v1.1 object-form evidence (prompt_stamaria revision).
+# Screened-out rows use {} for both evidence objects.
+EVIDENCE_KEYS = ("FOCAL_EVENT", "BLAME_LOCUS", "CONTROL_STRATEGY", "ACTION_TENDENCY",
+                 "REGULATION", "RELATIONSHIP_LEVEL", "SARCASM")
+
+# --- Output schema of filipino-emotions-prompt v1.1 ---------------------------------
+# Step 1 screens (NEG_SOCIAL_EMOTION); if 0, every other coded field is "NA" and both
+# evidence objects are {}. Step 2 codes the components; Step 3 assigns the cluster.
 BINARY_KEYS = ("NEG_SOCIAL_EMOTION", "SARCASM", "NEEDS_CONTEXT")  # always 0 / 1
 TERNARY_KEYS = ("MULTIPLE_FOCAL", "CLUSTER_CONFLICT")  # 0 / 1, or "NA" when screened out
 COMPONENT_KEYS = (
@@ -121,7 +126,8 @@ EMOTION_TERMS = (
 )
 EMOTION_WORD_VALUES = frozenset(EMOTION_TERMS) | {"NONE", "NA"}  # NONE: no term; NA: screened out
 
-FREE_TEXT_KEYS = ("evidence", "evidence_en", "NOTE")
+FREE_TEXT_KEYS = ("NOTE",)
+EVIDENCE_DICT_KEYS = ("evidence", "evidence_en")
 
 
 def build_record_schema(comment_id: str) -> dict[str, Any]:
@@ -152,8 +158,12 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
         "CLUSTER_CONFLICT": {"enum": [0, 1, "NA"]},
         "SARCASM": {"enum": [0, 1]},
         "NEEDS_CONTEXT": {"enum": [0, 1]},
-        "evidence": {"type": "string"},
-        "evidence_en": {"type": "string"},
+        "evidence": {"type": "object",
+                     "properties": {k: {"type": "string"} for k in EVIDENCE_KEYS},
+                     "additionalProperties": False},
+        "evidence_en": {"type": "object",
+                        "properties": {k: {"type": "string"} for k in EVIDENCE_KEYS},
+                        "additionalProperties": False},
         "NOTE": {"type": "string"},
         "confidence": enum("confidence"),
     }
@@ -339,7 +349,7 @@ PASSES: dict[int, PassSpec] = {
 
 # The filipino-emotions prompt is self-contained (wrapper + Sta. Maria 2010
 # framework in one file); only the per-phase case context is inserted.
-PROMPT_FILE = "filipino-emotions-prompt-v1.0.txt"
+PROMPT_FILE = "filipino-emotions-prompt-v1.1.txt"
 CASE_CONTEXT_SLOT = ("[3–5 neutral, factual sentences on the incident and the publicly known\n"
                      "responses. No judgments about fault.]")
 _PROMPT_VERSION_RE = re.compile(r"filipino-emotions-prompt\s+(v[0-9][0-9.]*)", re.I)
@@ -755,30 +765,77 @@ def evidence_quotes(evidence: str) -> list[str]:
     return out
 
 
+def _as_evidence_dict(v: Any) -> dict[str, str]:
+    """Coerce the model's evidence object to {COMPONENT: quote} (v1.1 object form)."""
+    if isinstance(v, dict):
+        return {str(k): str(x) for k, x in v.items()}
+    if isinstance(v, str):
+        s = v.strip()
+        if s in ("", "{}"):
+            return {}
+        try:
+            parsed = json.loads(s)
+        except Exception:
+            parsed = None
+        if isinstance(parsed, dict):
+            return {str(k): str(x) for k, x in parsed.items()}
+    raise ValueError(f"bad_type: evidence is {type(v).__name__}, expected object keyed by {list(EVIDENCE_KEYS)}")
+
+
 def check_evidence(
     obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
 ) -> None:
-    """Screened-in comments need quotes, and every quote must be words from the comment."""
+    """Screened-in comments need per-component quotes; every quote must be words from the comment (v1.1)."""
     review = review if review is not None else []
+    try:
+        evidence = _as_evidence_dict(obj.get("evidence"))
+        evidence_en = _as_evidence_dict(obj.get("evidence_en"))
+    except ValueError as exc:
+        raise ValueError(str(exc)) from exc
+    obj["evidence"] = evidence
+    obj["evidence_en"] = evidence_en
     if obj["NEG_SOCIAL_EMOTION"] != 1:
         return
-    evidence = obj["evidence"].strip()
     if not evidence:
         _soft(review, lenient, "evidence_missing",
-              "evidence_missing: NEG_SOCIAL_EMOTION is 1, so quote the words that support the codes")
+              "evidence_missing: NEG_SOCIAL_EMOTION is 1, so give per-component quotes from the comment")
         return
+    # Required keys per the prompt: FOCAL_EVENT unless UNCLEAR, plus each coded
+    # non-default component and SARCASM when 1.
+    required: set[str] = set()
+    if obj.get("FOCAL_EVENT") not in ("UNCLEAR", "NA"):
+        required.add("FOCAL_EVENT")
+    if obj.get("BLAME_LOCUS") in ("OTHER", "SELF"):
+        required.add("BLAME_LOCUS")
+    if obj.get("CONTROL_STRATEGY") in ("IGNORE", "REFRAME"):
+        required.add("CONTROL_STRATEGY")
+    if obj.get("ACTION_TENDENCY") not in ("NONE_EXPRESSED", "NA"):
+        required.add("ACTION_TENDENCY")
+    if obj.get("REGULATION") in ("INTENSE_DISTRESS", "NONVERBAL_ONLY"):
+        required.add("REGULATION")
+    if obj.get("RELATIONSHIP_LEVEL") not in ("NOT_DETERMINABLE", "NA"):
+        required.add("RELATIONSHIP_LEVEL")
+    if obj.get("SARCASM") == 1:
+        required.add("SARCASM")
+    missing = required - set(evidence)
+    if missing:
+        _soft(review, lenient, "evidence_missing",
+              f"evidence_missing: no quote for {sorted(missing)}")
     comment = _norm_text(_HANDLE.sub(_HANDLE_PLACEHOLDER, text))
-    for quote in evidence_quotes(evidence):
-        q = _norm_text(quote).strip(" .,!?;:")
+    for comp, quote in evidence.items():
+        if comp not in EVIDENCE_KEYS:
+            raise ValueError(f"bad_evidence_key: {comp!r} not in {list(EVIDENCE_KEYS)}")
+        q = _norm_text(str(quote)).strip(" .,!?;:")
         if not q or q in comment:
             continue
         if _coverage(q, comment) >= FUZZY_MIN_RATIO:
             review.append("evidence_fuzzy")  # typo / spacing differences only
         else:
             _soft(review, lenient, "evidence_unverified",
-                  f"evidence_not_verbatim: «{quote[:60]}» is not in the comment")
-    if not obj["evidence_en"].strip():
-        review.append("evidence_en_missing")
+                  f"evidence_not_verbatim: {comp} «{str(quote)[:60]}» is not in the comment")
+    if set(evidence_en) != set(evidence):
+        _soft(review, lenient, "evidence_en_missing",
+              f"evidence_en_mismatch: evidence keys {sorted(evidence)} vs evidence_en keys {sorted(evidence_en)}; give the same keys")
 
 
 # Common Filipino and Cebuano function words. Used only to FLAG likely LANGUAGE
@@ -902,7 +959,7 @@ def component_conflict(obj: dict[str, Any]) -> Optional[int]:
 def validate_record(
     obj: dict[str, Any], text: str, lenient: bool = False, review: Optional[list[str]] = None
 ) -> list[str]:
-    """Check one coded record against filipino-emotions-prompt v1.0 and normalise it in place.
+    """Check one coded record against filipino-emotions-prompt v1.1 and normalise it in place.
 
     Returns deterministic autofixes. Review flags (rows kept but needing a look)
     are appended to `review`; see SoftIssue.
@@ -922,9 +979,30 @@ def validate_record(
         if any(m in low for m in PLACEHOLDER_MARKERS):
             raise ValueError(f"placeholder_leak: {k}={v[:70]!r}")
         obj[k] = v
-    for k in ("evidence", "evidence_en"):  # general rule 6
-        if _HANDLE.search(obj[k]):
-            obj[k] = _HANDLE.sub(_HANDLE_PLACEHOLDER, obj[k])
+    # v1.1 object-form evidence: keys are components, values are exact quotes.
+    for k in EVIDENCE_DICT_KEYS:
+        try:
+            ev = _as_evidence_dict(obj.get(k))
+        except ValueError as exc:
+            raise ValueError(str(exc)) from exc
+        for comp, quote in ev.items():
+            if comp not in EVIDENCE_KEYS:
+                raise ValueError(f"bad_evidence_key: {k} has {comp!r}")
+            low = str(quote).lower()
+            if any(m in low for m in PLACEHOLDER_MARKERS):
+                raise ValueError(f"placeholder_leak: {k}.{comp}={str(quote)[:70]!r}")
+        obj[k] = ev
+    for k in EVIDENCE_DICT_KEYS:  # general rule 6
+        fixed: dict[str, str] = {}
+        changed = False
+        for comp, quote in obj[k].items():
+            q = str(quote)
+            if _HANDLE.search(q):
+                q = _HANDLE.sub(_HANDLE_PLACEHOLDER, q)
+                changed = True
+            fixed[comp] = q
+        if changed:
+            obj[k] = fixed
             fixes.append("anonymized_handle")
 
     for k in BINARY_KEYS:
@@ -965,6 +1043,11 @@ def validate_record(
         for k in coded:
             obj[k] = "NA"
         obj["EMOTION_WORDS"] = ["NA"]
+        for k in EVIDENCE_DICT_KEYS:
+            if obj.get(k) != {}:
+                obj[k] = {}
+                if "screened_out_evidence->{}" not in fixes:
+                    fixes.append("screened_out_evidence->{}")
     else:
         words = [w for w in words if w != "NA"]
         if len(words) > 1 and "NONE" in words:
@@ -1528,10 +1611,12 @@ def run_pair(
                         "\n\nCORRECTION: the previous answer for this comment was rejected: "
                         f"{str(exc)[:200]}. Code only this comment, from its own words. If "
                         "NEG_SOCIAL_EMOTION is 0, set every other coded field to NA (EMOTION_WORDS "
-                        "[\"NA\"]). If it is 1, no field may be NA: use NONE_EXPRESSED / "
+                        "[\"NA\"]) and evidence and evidence_en to {}. If it is 1, no field may be NA: use NONE_EXPRESSED / "
                         "NOT_DETERMINABLE / UNCLASSIFIED when in doubt, and EMOTION_WORDS "
-                        "[\"NONE\"] when no listed term appears. Evidence must be short quotes "
-                        "copied exactly from the comment, with an English translation."
+                        "[\"NONE\"] when no listed term appears. Evidence and evidence_en are objects keyed by "
+                        "component (FOCAL_EVENT, BLAME_LOCUS, CONTROL_STRATEGY, ACTION_TENDENCY, "
+                        "REGULATION, RELATIONSHIP_LEVEL, SARCASM) with exact quotes from the comment and "
+                        "their English translations under the same keys."
                         + (" Your answer was too long: keep evidence and evidence_en to a few short "
                            "quotes, and quote a repeated emoji or phrase only once."
                            if isinstance(exc, TruncatedOutput) else "")
