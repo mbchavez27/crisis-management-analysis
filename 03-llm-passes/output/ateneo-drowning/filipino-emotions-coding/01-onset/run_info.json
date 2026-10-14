@@ -1,10 +1,10 @@
 {
   "model": "aisingapore/Gemma-SEA-LION-v3-9B-IT",
   "precision": "bf16-weights",
-  "prompt_version": "v1.0",
-  "schema": "components-1",
+  "prompt_version": "v1.2",
+  "schema": "components-3",
   "concurrency": 4,
   "max_model_len": 8192,
   "max_new_tokens": 1024,
-  "written": "2026-10-13T09:09:15"
+  "written": "2026-10-14T09:30:51"
 }
