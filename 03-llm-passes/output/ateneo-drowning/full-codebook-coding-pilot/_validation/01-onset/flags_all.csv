@@ -1,0 +1,8 @@
+phase,row_id,comment_id,severity,check,detail
+01-onset,3,Ugyy0LppckPotGj1JqR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+01-onset,7,UgyPlK0YzhnG7QZcs4V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+01-onset,8,Ugxgj1dGFjxArpVXs-l4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+01-onset,,,WARN,constant_column,RESPONSE_EVAL is 'NA' on all 10 rows (legitimate?)
+01-onset,,,WARN,constant_column,SARCASM is '0' on all 10 rows (legitimate?)
+01-onset,,,WARN,constant_column,META_DISCOURSE is '0' on all 10 rows (legitimate?)
