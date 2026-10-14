@@ -1,3 +1,11 @@
 phase,row_id,comment_id,severity,check,detail
 01-onset,2,UgwuDCjtbuCc5eJjXKh4AaABAg,WARN,review:evidence_missing,evidence_missing
-01-onset,,,WARN,constant_column,SARCASM is '0' on all 10 rows (legitimate?)
+01-onset,23,UgxO0U1ep_gz3P5tyMF4AaABAg,WARN,review:evidence_missing,evidence_missing
+01-onset,34,UgwIeGml14oVZEKgWX54AaABAg,WARN,language_heuristic,coded EN but has Filipino words (TAGLISH?)
+01-onset,35,UgwNv4CeTmz_KEUKqLR4AaABAg,ERROR,uncoded_row,no model output for this row
+01-onset,55,UgysRvO7kO7GCHiga4Z4AaABAg.AXpOQw9f-H8AXp_3s3R69g,WARN,review:evidence_missing,evidence_missing
+01-onset,61,Ugz3PqH2f38Q9cr9r_x4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+01-onset,128,UgxVNAre7aOds3ffKkp4AaABAg,WARN,review:evidence_missing,evidence_missing
+01-onset,131,UgyVu_LoqPsrpdCniat4AaABAg,WARN,review:evidence_missing,evidence_missing
+01-onset,146,UgzT3fpTGbIk0zoRaDV4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+01-onset,,,WARN,repeated_bundle,"77/132 screened-in rows share FOCAL_EVENT/BLAME/CONTROL/ACTION/REGULATION/RELATIONSHIP/CLUSTER = ('MORAL_VIOLATION', 'OTHER', 'NONE_EXPRESSED', 'NONE_EXPRESSED', 'CONTROLLED', 'NOT_DETERMINABLE', 'C1')"
