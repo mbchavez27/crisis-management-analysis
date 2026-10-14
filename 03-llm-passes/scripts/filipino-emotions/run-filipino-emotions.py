@@ -349,7 +349,7 @@ PASSES: dict[int, PassSpec] = {
 
 # The filipino-emotions prompt is self-contained (wrapper + Sta. Maria 2010
 # framework in one file); only the per-phase case context is inserted.
-PROMPT_FILE = "filipino-emotions-prompt-v1.1.txt"
+PROMPT_FILE = "filipino-emotions-prompt-v1.2.txt"
 CASE_CONTEXT_SLOT = ("[3–5 neutral, factual sentences on the incident and the publicly known\n"
                      "responses. No judgments about fault.]")
 _PROMPT_VERSION_RE = re.compile(r"filipino-emotions-prompt\s+(v[0-9][0-9.]*)", re.I)

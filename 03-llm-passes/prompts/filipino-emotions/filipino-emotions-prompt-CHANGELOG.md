@@ -36,6 +36,26 @@ REGULATION, RELATIONSHIP_LEVEL, SARCASM}`), `{}` when screened out — not
 free-text strings. Runner schema `components-1` -> `components-2`;
 `PROMPT_FILE` now loads v1.1. Do not pool v1.0 and v1.1 outputs.
 
+## v1.2 — 2026-10-14
+
+Fit fix over v1.1 (rules and teaching unchanged — same screen-outs,
+TARGET GROUP rule, sarcasm anchors, evidence rule, all 16 inputs and
+`What it teaches` lines kept). v1.1's wrapped template was 8179 tokens,
+past the L4's 8192 window (7680 after the 512 output reservation), so
+every chunk aborted at preflight.
+
+Trims (examples only, documented in the EXAMPLES intro — constrained
+decoding still enforces every required key, and the runner autofixes
+screened-out rows to NA/{}): `text_head` dropped (runner computes it);
+`MULTIPLE_FOCAL`/`NEEDS_CONTEXT` dropped (=0 in all examples);
+empty NOTEs and HIGH confidence dropped; English-only `evidence_en`
+shown as `"same keys"` (always output full objects); screened-out
+examples show id/LANGUAGE/NEG/evidence/NOTE only (all else NA);
+ex03/ex12 inputs abridged with `[...]` (all quoted spans kept verbatim).
+
+Runner still loads `components-2`; `PROMPT_FILE` now v1.2. Recodes v1.1
+rows (prompt_version differs).
+
 ## v1.0 — 2026-10-12
 
 Initial version, converted from `stamaria.txt` with no wording changes to the
