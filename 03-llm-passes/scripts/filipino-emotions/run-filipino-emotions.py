@@ -88,7 +88,7 @@ PLACEHOLDER_MARKERS = (
 
 # Bumped whenever the output fields change. Checkpoints written under another schema
 # are recoded, never mixed in (prompt_version alone cannot tell: v1.0 is reused).
-SCHEMA_VERSION = "components-2"
+SCHEMA_VERSION = "components-3"  # -3: EMOTION_WORDS / CLUSTER_CONFLICT derived by the runner
 
 # Evidence components keyed in the v1.1 object-form evidence (prompt_stamaria revision).
 # Screened-out rows use {} for both evidence objects.
@@ -99,7 +99,12 @@ EVIDENCE_KEYS = ("FOCAL_EVENT", "BLAME_LOCUS", "CONTROL_STRATEGY", "ACTION_TENDE
 # Step 1 screens (NEG_SOCIAL_EMOTION); if 0, every other coded field is "NA" and both
 # evidence objects are {}. Step 2 codes the components; Step 3 assigns the cluster.
 BINARY_KEYS = ("NEG_SOCIAL_EMOTION", "SARCASM", "NEEDS_CONTEXT")  # always 0 / 1
-TERNARY_KEYS = ("MULTIPLE_FOCAL", "CLUSTER_CONFLICT")  # 0 / 1, or "NA" when screened out
+TERNARY_KEYS = ("MULTIPLE_FOCAL",)  # 0 / 1, or "NA" when screened out
+# v1.1+ prompts no longer define these, so the runner computes them from the text and the
+# coded components (emotion_terms_in, component_conflict) instead of asking the model.
+DERIVED_KEYS = ("EMOTION_WORDS", "CLUSTER_CONFLICT")
+# The prompt examples omit these (always 0 there), so a missing one defaults to 0.
+DEFAULT_ZERO_KEYS = ("MULTIPLE_FOCAL", "NEEDS_CONTEXT")
 COMPONENT_KEYS = (
     "TARGET", "FOCAL_EVENT", "BLAME_LOCUS", "CONTROL_STRATEGY", "ACTION_TENDENCY",
     "REGULATION", "RELATIONSHIP_LEVEL", "CLUSTER",
@@ -144,8 +149,6 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
         "id": {"type": "string", "enum": [str(comment_id)]},
         "LANGUAGE": enum("LANGUAGE"),
         "NEG_SOCIAL_EMOTION": {"enum": [0, 1]},
-        "EMOTION_WORDS": {"type": "array", "minItems": 1,
-                          "items": {"type": "string", "enum": sorted(EMOTION_WORD_VALUES)}},
         "TARGET": enum("TARGET"),
         "FOCAL_EVENT": enum("FOCAL_EVENT"),
         "MULTIPLE_FOCAL": {"enum": [0, 1, "NA"]},
@@ -155,7 +158,6 @@ def build_record_schema(comment_id: str) -> dict[str, Any]:
         "REGULATION": enum("REGULATION"),
         "RELATIONSHIP_LEVEL": enum("RELATIONSHIP_LEVEL"),
         "CLUSTER": enum("CLUSTER"),
-        "CLUSTER_CONFLICT": {"enum": [0, 1, "NA"]},
         "SARCASM": {"enum": [0, 1]},
         "NEEDS_CONTEXT": {"enum": [0, 1]},
         "evidence": {"type": "object",
@@ -289,9 +291,9 @@ def dump_raw(path: Path, row_ids: list[int], err: str, raw: str) -> None:
 
 
 REQUIRED_KEYS = frozenset(
-    {"id", "LANGUAGE", "NEG_SOCIAL_EMOTION", "EMOTION_WORDS", *COMPONENT_KEYS, *TERNARY_KEYS,
-     "SARCASM", "NEEDS_CONTEXT", "evidence", "evidence_en", "NOTE", "confidence"}
-)
+    {"id", "LANGUAGE", "NEG_SOCIAL_EMOTION", *COMPONENT_KEYS, "SARCASM",
+     "evidence", "evidence_en", "NOTE", "confidence"}
+)  # DERIVED_KEYS are computed; DEFAULT_ZERO_KEYS default to 0 when omitted
 
 COLUMN_ORDER = [
     "row_id",
@@ -465,7 +467,10 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         default=None,
         help="Cap rows per phase for smoke tests. Default: all rows.",
     )
-    parser.add_argument("--chunk-size", type=int, default=5, help="Rows per LLM call.")
+    parser.add_argument(
+        "--chunk-size", type=int, default=1,
+        help="Rows per LLM call. 1 uses schema-constrained decoding; larger chunks do not.",
+    )
     parser.add_argument(
         "--max-new-tokens",
         type=int,
@@ -1005,6 +1010,10 @@ def validate_record(
             obj[k] = fixed
             fixes.append("anonymized_handle")
 
+    for k in DEFAULT_ZERO_KEYS:
+        if k not in obj:
+            obj[k] = 0
+            fixes.append(f"{k.lower()}->0(omitted)")
     for k in BINARY_KEYS:
         try:
             obj[k] = _as_bin(obj[k])
@@ -1022,43 +1031,33 @@ def validate_record(
             raise ValueError(f"bad_enum: {k}={obj[k]!r}")
         obj[k] = val
 
-    v = obj["EMOTION_WORDS"]
-    if isinstance(v, str):
-        v = [v]
-    if not isinstance(v, list) or not v:
-        raise ValueError(f"bad_list: EMOTION_WORDS={obj['EMOTION_WORDS']!r}")
-    words: list[str] = []
-    for x in v:
-        e = _enum(x)
-        if e not in EMOTION_WORD_VALUES:
-            raise ValueError(f"bad_enum: EMOTION_WORDS has {x!r}")
-        if e not in words:
-            words.append(e)
-
     # Step 1: a screened-out comment is NA everywhere; a screened-in one has no NA.
     coded = (*COMPONENT_KEYS, *TERNARY_KEYS)
     if obj["NEG_SOCIAL_EMOTION"] == 0:
-        if words != ["NA"] or any(obj[k] != "NA" for k in coded):
+        if any(obj[k] != "NA" for k in coded):
             fixes.append("screened_out->NA")
         for k in coded:
             obj[k] = "NA"
-        obj["EMOTION_WORDS"] = ["NA"]
         for k in EVIDENCE_DICT_KEYS:
             if obj.get(k) != {}:
                 obj[k] = {}
                 if "screened_out_evidence->{}" not in fixes:
                     fixes.append("screened_out_evidence->{}")
     else:
-        words = [w for w in words if w != "NA"]
-        if len(words) > 1 and "NONE" in words:
-            words.remove("NONE")  # NONE alongside real terms is contradictory
-        na_fields = [k for k in coded if obj[k] == "NA"] + ([] if words else ["EMOTION_WORDS"])
+        na_fields = [k for k in coded if obj[k] == "NA"]
         if na_fields:
             raise ValueError(
                 f"bad_na: NEG_SOCIAL_EMOTION is 1 but {na_fields} are NA; give each a codebook "
-                "value (EMOTION_WORDS: the literal terms, or NONE)"
+                "value (NONE_EXPRESSED / NOT_DETERMINABLE / UNCLASSIFIED when in doubt)"
             )
-        obj["EMOTION_WORDS"] = words
+
+    # DERIVED_KEYS, computed from the rules (any model-supplied value is overwritten).
+    if obj["NEG_SOCIAL_EMOTION"] == 0:
+        obj["EMOTION_WORDS"] = ["NA"]
+        obj["CLUSTER_CONFLICT"] = "NA"
+    else:
+        obj["EMOTION_WORDS"] = emotion_terms_in(text) or ["NONE"]
+        obj["CLUSTER_CONFLICT"] = component_conflict(obj) or 0  # None: UNCLASSIFIED
 
     # Evidence must be words that really appear in the comment.
     check_evidence(obj, text, lenient, review)
@@ -1081,15 +1080,6 @@ def validate_record(
         fixes.append(flag)  # flagged for review, not overwritten
 
     if obj["NEG_SOCIAL_EMOTION"] == 1:
-        # EMOTION_WORDS is literal: flag terms that are not in the text, and terms in the
-        # text that were not listed. Advisory; the model's list is kept.
-        listed = {w for w in obj["EMOTION_WORDS"] if w != "NONE"}
-        found = set(emotion_terms_in(text))
-        for t in sorted(listed - found):
-            review.append(f"emotion_word_not_in_text({t})")
-        for t in sorted(found - listed):
-            review.append(f"emotion_word_missed({t})")
-
         # Step 3: CLUSTER follows FOCAL_EVENT unless the model overrode it (allowed only
         # when the focal event is ambiguous, and explained in NOTE).
         default = DEFAULT_CLUSTER[obj["FOCAL_EVENT"]]
@@ -1097,11 +1087,6 @@ def validate_record(
             review.append(f"cluster_override({default}->{obj['CLUSTER']})")
             if not obj["NOTE"].strip():
                 review.append("cluster_override_no_note")
-        # CLUSTER_CONFLICT is defined by the coded components; flag disagreements with the
-        # model's value (kept as coded, not overwritten).
-        expected = component_conflict(obj)
-        if expected is not None and obj["CLUSTER_CONFLICT"] != expected:
-            review.append(f"cluster_conflict_check(model={obj['CLUSTER_CONFLICT']},rule={expected})")
     return fixes
 
 
@@ -1610,10 +1595,9 @@ def run_pair(
                     retry_notes[key] = (
                         "\n\nCORRECTION: the previous answer for this comment was rejected: "
                         f"{str(exc)[:200]}. Code only this comment, from its own words. If "
-                        "NEG_SOCIAL_EMOTION is 0, set every other coded field to NA (EMOTION_WORDS "
-                        "[\"NA\"]) and evidence and evidence_en to {}. If it is 1, no field may be NA: use NONE_EXPRESSED / "
-                        "NOT_DETERMINABLE / UNCLASSIFIED when in doubt, and EMOTION_WORDS "
-                        "[\"NONE\"] when no listed term appears. Evidence and evidence_en are objects keyed by "
+                        "NEG_SOCIAL_EMOTION is 0, set every other coded field to NA "
+                        "and evidence and evidence_en to {}. If it is 1, no field may be NA: use NONE_EXPRESSED / "
+                        "NOT_DETERMINABLE / UNCLASSIFIED when in doubt. Evidence and evidence_en are objects keyed by "
                         "component (FOCAL_EVENT, BLAME_LOCUS, CONTROL_STRATEGY, ACTION_TENDENCY, "
                         "REGULATION, RELATIONSHIP_LEVEL, SARCASM) with exact quotes from the comment and "
                         "their English translations under the same keys."

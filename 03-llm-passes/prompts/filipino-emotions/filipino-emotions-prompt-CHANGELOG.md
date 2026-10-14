@@ -9,6 +9,17 @@ Every coded record stores the prompt version it was produced with
 (`prompt_version` in `filipino_emotions_results.jsonl`), read from the
 `# filipino-emotions-prompt vX.Y` header line.
 
+## Runner schema components-3 — 2026-10-14 (no prompt change)
+
+v1.1/v1.2 no longer define `EMOTION_WORDS` or `CLUSTER_CONFLICT`, but the
+runner still required them, so screened-in rows came back with
+`CLUSTER_CONFLICT = "NA"` (`bad_na` hard failures) and unconstrained chunks
+failed `missing_keys`. The runner now derives both: `EMOTION_WORDS` from the
+literal-term regexes (`["NONE"]` if none), `CLUSTER_CONFLICT` from
+`component_conflict()` (0 when CLUSTER is UNCLASSIFIED); NA when screened
+out. Omitted `MULTIPLE_FOCAL` / `NEEDS_CONTEXT` default to 0 (autofix
+flag). `--chunk-size` default 5 -> 1. Do not pool with components-2 rows.
+
 ## v1.1 — 2026-10-14
 
 Prof revision of v1.0 (sourced from `prompt_stamaria.txt`, deleted after
