@@ -1393,7 +1393,7 @@ class LocalGenerator:
             # memory that is never used. Shrinking them frees room for the 8K KV cache
             # without changing what the model computes.
             engine_kwargs.update(
-                max_num_seqs=max(1, concurrency),  # only as many sequences as we send
+                max_num_seqs=max(1, concurrency),  # sequences running at once; the rest queue
                 max_num_batched_tokens=512,  # small prefill pieces = small activation peak
                 enforce_eager=True,  # skip CUDA graph capture (saves memory, some speed)
             )
@@ -1823,8 +1823,12 @@ def run_pair(
                 return
             accept(current, raw)
 
+        # Hand vLLM several waves at once: it still runs only `concurrency` sequences
+        # (max_num_seqs), but refills a slot as soon as one finishes instead of idling
+        # until the longest answer in a lock-step batch is done.
+        wave = concurrency * 4
         while chunks_queue:
-            batch = [chunks_queue.pop(0) for _ in range(min(concurrency, len(chunks_queue)))]
+            batch = [chunks_queue.pop(0) for _ in range(min(wave, len(chunks_queue)))]
             results = generate_batch_with_retry(generator, [build_job(c) for c in batch])
             if any(isinstance(r, Exception) and is_engine_dead(r) for r in results):
                 # Retrying is pointless and would mark every remaining row a hard
