@@ -1,0 +1,1268 @@
+phase,row_id,comment_id,severity,check,detail
+04-reckoning,0,UgwTD23z8dTZypqQyMh4AaABAg,WARN,possible_response_uncoded,matched 'scripted'
+04-reckoning,2,UgyLa19hOYvc5iUvrfd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,2,UgyLa19hOYvc5iUvrfd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,2,UgyLa19hOYvc5iUvrfd4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,3,UgxbtKxF2apNa83HFMB4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,3,UgxbtKxF2apNa83HFMB4AaABAg,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+04-reckoning,4,UgwfUqH1zmmXtcdyuK14AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,4,UgwfUqH1zmmXtcdyuK14AaABAg,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,5,UgzT-k_r9jnl7j8ALrB4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,6,UgxAUGJevp2bNuEEzfF4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,7,UgwBCv6bXOsNHAZsqQp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,8,Ugy_x60YNQlNOGZioR94AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,8,Ugy_x60YNQlNOGZioR94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,9,UgyEStVBk-pKj42hgfh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,10,Ugzf-U33_1hUjVW_OsB4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,10,Ugzf-U33_1hUjVW_OsB4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,13,UgzMjrih1oJjlPDMwQ94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,13,UgzMjrih1oJjlPDMwQ94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,16,UgzqCdKLBZMjDO4Y0b94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,17,UgyrPipwcwzGaIegN1l4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,18,UgwaxYZwaZxvdhOUO2F4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,18,UgwaxYZwaZxvdhOUO2F4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,19,UgzsaqPHk-YwEoJJqEJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,19,UgzsaqPHk-YwEoJJqEJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,20,Ugw6zNEQJsF3HmwKSy94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,22,Ugxr3n54K_-hnW44p1p4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,25,UgxahcuBIllUessQt5B4AaABAg.AY-6VxFaslpAY-Bsxk8Zvy,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,26,Ugy9xaIZWjpJpeL3vkp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,29,UgxUk2QlU-n98NHvM3Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,29,UgxUk2QlU-n98NHvM3Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,32,Ugwz7AcUttdg-0wN1n54AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,34,UgxTfqGYklXly09-uT14AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,34,UgxTfqGYklXly09-uT14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,36,Ugy4GR0B5SxS4CytDLx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,36,Ugy4GR0B5SxS4CytDLx4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,40,UgxGZZecneaknFWlfEp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,40,UgxGZZecneaknFWlfEp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,41,Ugx9Xl8r_vJ2HcKpCel4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,41,Ugx9Xl8r_vJ2HcKpCel4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,46,Ugxcex12EwPcvzeL7rd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,46,Ugxcex12EwPcvzeL7rd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,47,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzo16JswPq,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,48,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzrZwQHKNN,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,48,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzrZwQHKNN,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,48,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzrZwQHKNN,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,48,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzrZwQHKNN,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,49,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzzXm1EjS5,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,50,Ugxcex12EwPcvzeL7rd4AaABAg.AXzkuFwX5Y0AXzt7nuaYh2,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,53,Ugyhj-IHauYdYjNolHl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,54,Ugyhj-IHauYdYjNolHl4AaABAg.AXzWDSZaqQMAY-oO4Ku3jI,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,56,Ugxphq0USt_le-RJQcl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,56,Ugxphq0USt_le-RJQcl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,59,Ugz24WuWZ9U8wgtdOK94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,59,Ugz24WuWZ9U8wgtdOK94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,60,UgwRRarykpEsIihpdxp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,61,UgxFTrNOuYXALeYLeOt4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,62,UgypemHFW5xP5PAajYl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,63,UgwGMV6RAeQrJqATYFV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,63,UgwGMV6RAeQrJqATYFV4AaABAg,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,63,UgwGMV6RAeQrJqATYFV4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,66,UgzLqqiL7Y6dEU9s0fB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,66,UgzLqqiL7Y6dEU9s0fB4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,67,UgxbqEy_BAfFNq1-WMd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,68,Ugy_L8RXAzqBOov6umR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,68,Ugy_L8RXAzqBOov6umR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,71,UgxKAOAaovnOfrGNFtN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,71,UgxKAOAaovnOfrGNFtN4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,73,Ugz1K6oyP14WOm1Fde94AaABAg,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,75,UgzptkNb9WnloAgd2t54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,81,UgwVXnE84kl4mM2no0x4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,82,UgwogVkzJqu3PCpPOVp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,83,UgwogVkzJqu3PCpPOVp4AaABAg.AXxjZEaSWNiAXzj_zFAnTk,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,84,UgwBkp3JYFkavoqns5J4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,86,Ugxd2BXobEon65YRs3V4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,87,UgyiMbswZCnNGr25caN4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,88,UgwgcKg2Gt2uLBr7gGd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,88,UgwgcKg2Gt2uLBr7gGd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,88,UgwgcKg2Gt2uLBr7gGd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,89,Ugy_yX44YSMpi4Jrrel4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,89,Ugy_yX44YSMpi4Jrrel4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,90,Ugxy2UsVS3chXgxpEwN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,90,Ugxy2UsVS3chXgxpEwN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,91,UgxcU2Qri4JZB8OrrYV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,92,UgzmXll8paAdb7hHfB94AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,92,UgzmXll8paAdb7hHfB94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,92,UgzmXll8paAdb7hHfB94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,92,UgzmXll8paAdb7hHfB94AaABAg,WARN,possible_response_uncoded,matched 'patawad'
+04-reckoning,94,Ugy-rk_o-4QNn7wbztR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,94,Ugy-rk_o-4QNn7wbztR4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,95,Ugw5ySBnD45nhtMMc2J4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,97,UgzKxQJT9spNbRcIYwN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,98,Ugwg9Yf4gqvmJ_KlnWd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,100,UgytJt6pHIducQVD0gV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,101,UgwmoEJIsfzva-JUqMt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,102,UgyQxiPyP1LQAkj2P194AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,102,UgyQxiPyP1LQAkj2P194AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,103,Ugz_wGbu_mFRrpraIEB4AaABAg,WARN,possible_response_uncoded,matched 'patawad'
+04-reckoning,104,Ugz0Sh--tQ2zFvNMB3F4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,105,UgwenSYg5CI7POkJoiN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,105,UgwenSYg5CI7POkJoiN4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,106,UgwmDVSHqoKqxAA9fB54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,106,UgwmDVSHqoKqxAA9fB54AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,106,UgwmDVSHqoKqxAA9fB54AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,107,Ugw8eLAjVnFHcPtz9o14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,108,UgzsuBLhhHSFUFOMITR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,113,UgyZgeqAcADvJ1tQ78J4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,114,Ugz_kBNHfCBHSqAav654AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,116,Ugyf_V8YyPnbYTEwM654AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,117,UgwSjHb0j2duXZYM-5V4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,119,UgwIpEYPDx9IJMX5HFt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,120,UgwC1rmiONXuejjrzZV4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,120,UgwC1rmiONXuejjrzZV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,122,UgzEgLgq5VR3Af4OTtd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,122,UgzEgLgq5VR3Af4OTtd4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,123,Ugy06VZ8uOZcI5yCt1F4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,124,UgywTdSX5l_Pu04Wlah4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,124,UgywTdSX5l_Pu04Wlah4AaABAg,WARN,review:blame_unnamed,blame_unnamed(ORGANIZERS)
+04-reckoning,124,UgywTdSX5l_Pu04Wlah4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,125,Ugx9y2-Uq6C_w8kbWpF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,126,Ugxd_m1XO9OYm_z1d3B4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,126,Ugxd_m1XO9OYm_z1d3B4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,128,UgytB2bRHh86uQ1pZ4R4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,128,UgytB2bRHh86uQ1pZ4R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,129,UgyL-cNpKZKSHdXrccx4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,129,UgyL-cNpKZKSHdXrccx4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,130,UgxVacomeI6Q7N4jOW14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,130,UgxVacomeI6Q7N4jOW14AaABAg,WARN,possible_response_uncoded,matched 'crocodile'
+04-reckoning,132,UgznLsvFLwYworOGfz14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,134,UgzCk0CVVRk_jEy5Glx4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,135,Ugz3TwPTlipgqZ5bZll4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,135,Ugz3TwPTlipgqZ5bZll4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,136,Ugyl5k1fMpKp86wgxmJ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,136,Ugyl5k1fMpKp86wgxmJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,136,Ugyl5k1fMpKp86wgxmJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,136,Ugyl5k1fMpKp86wgxmJ4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,136,Ugyl5k1fMpKp86wgxmJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,137,UgyYMw5QBsvRFad_nR54AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,137,UgyYMw5QBsvRFad_nR54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,137,UgyYMw5QBsvRFad_nR54AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,138,UgwH99WAQZdUJ4Gvhn14AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,140,UgzaGYnqMJXqny-RvrZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,140,UgzaGYnqMJXqny-RvrZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,141,UgxHiBI7rA5pS9VckmJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,143,UgxN-QdPweG1oqaq-Y94AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,144,UgyOpRVdTDMNcqJ1XMV4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,145,UgyQ5Nvf_lmw2tO90Rh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,146,UgyzWAHKu0DKQBgGLrx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,147,Ugx14MTpS5EZhugwX0Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,147,Ugx14MTpS5EZhugwX0Z4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,152,Ugx7rp31WNkOYB2-k2Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,153,UgyXj1JiGQOF7XITQmx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,155,UgwGnfOVp1kVfwJXpG94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,155,UgwGnfOVp1kVfwJXpG94AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,156,Ugx-34vdX9qFm-3oQaV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,157,UgxXh-F8rekrPDYS1TV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,158,UgxH-uL1Bl6-Mgttxg94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,159,UgxPYbvVIdQNApRpzK14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,159,UgxPYbvVIdQNApRpzK14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,161,UgwWT4QFkxPJXhbE1yd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,162,UgzEVf7c_-ejT8BYIDl4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,162,UgzEVf7c_-ejT8BYIDl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,163,UgxGYqaD4eZ9r-tzSNd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,163,UgxGYqaD4eZ9r-tzSNd4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,166,UgzTKhFYs-X94LZySQR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,169,UgyngJgml6ylSy6J-e54AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,170,UgwMAtpDLAc6QZ8MSAR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,170,UgwMAtpDLAc6QZ8MSAR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,170,UgwMAtpDLAc6QZ8MSAR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,171,UgzUW9Gojc7hJhVnQUt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,171,UgzUW9Gojc7hJhVnQUt4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,173,UgyIS0VqlIRb5_rVqZN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,173,UgyIS0VqlIRb5_rVqZN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,173,UgyIS0VqlIRb5_rVqZN4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,174,Ugwvn7nCmHS36lQ7h-Z4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,174,Ugwvn7nCmHS36lQ7h-Z4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,176,UgzzhDBi1R_F7s50xwh4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,176,UgzzhDBi1R_F7s50xwh4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,177,Ugw7GW2-yHOG--nA0Bl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,177,Ugw7GW2-yHOG--nA0Bl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,178,Ugyvkvs6IjKqIEut9Xl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,181,UgwHkf-7nTbo4XYJX3d4AaABAg.AY-5lV7EOxQAY-AIRJbDC3,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,182,Ugz9yYs_8CjChGpUpJt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,183,UgwB91pV0twgJzuskxh4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,183,UgwB91pV0twgJzuskxh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,185,UgwCTkTJA7DWmRO6Bdp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,189,UgzTq6l7kGc27n9kZCR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,191,UgzTAus9oHtyrvjt5hx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,192,Ugx2QERqkl9JEbVLl3R4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,194,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY-ZhFs0xNS,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,195,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY-qLYBeRQW,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,198,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY0BsihsPqN,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,199,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY0eotpioeM,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,199,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY0eotpioeM,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,199,UgxYnn3bdTzi5jNTDNV4AaABAg.AXzi0EsQ8hqAY0eotpioeM,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,201,Ugy1hSHi4Xs7aZfL9nR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,201,Ugy1hSHi4Xs7aZfL9nR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,202,UgxZ20q-Jdnw4AtNq3J4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+04-reckoning,203,UgzANLpdwWHyhtWrNel4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,204,UgzKVJqMrg-wtc_usvd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,205,Ugzopf7MSBiCssU2XCJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,205,Ugzopf7MSBiCssU2XCJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,208,UgydeOFKtlpTyb3cVOh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,208,UgydeOFKtlpTyb3cVOh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,209,UgydeOFKtlpTyb3cVOh4AaABAg.AXzbq487SCdAY-X7KcHKhA,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,209,UgydeOFKtlpTyb3cVOh4AaABAg.AXzbq487SCdAY-X7KcHKhA,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,210,Ugxzk1osox7hisNkaoh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,210,Ugxzk1osox7hisNkaoh4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,211,Ugyhw0-1-fqXfEcYLsV4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,211,Ugyhw0-1-fqXfEcYLsV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,211,Ugyhw0-1-fqXfEcYLsV4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,212,UgwM8mrjwzFbJDwThTJ4AaABAg,WARN,possible_response_uncoded,matched 'scripted'
+04-reckoning,213,UgwCfAboUZkoQ7amWfV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,213,UgwCfAboUZkoQ7amWfV4AaABAg,INFO,class_word_not_framed,matched 'pera'
+04-reckoning,214,UgwlQRHaSQ5E-MhMmQB4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,215,UgyPx86BTE1xbt3h1UB4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,218,UgyPx86BTE1xbt3h1UB4AaABAg.AXzM9_II1zRAY-UR_phD7B,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,220,UgzueKyPvjVM39ee_DN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,221,Ugz8d-VFzIBI61Tf8yZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,221,Ugz8d-VFzIBI61Tf8yZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,221,Ugz8d-VFzIBI61Tf8yZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,222,UgzJ1p-KJkmyGpmUbm94AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,223,Ugy9dSFKRk6kGJBimsR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,225,UgwH3Cdj68SN17FvkR54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,226,Ugwzl2XliDl0AoRmatR4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,226,Ugwzl2XliDl0AoRmatR4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
+04-reckoning,227,Ugwzl2XliDl0AoRmatR4AaABAg.AXzAOJ0hYuhAY-Z8iFoM63,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,227,Ugwzl2XliDl0AoRmatR4AaABAg.AXzAOJ0hYuhAY-Z8iFoM63,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,228,UgymkxXIssU5UjObkKZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,229,UgyjsnwxsVq768jjBu14AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,229,UgyjsnwxsVq768jjBu14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,229,UgyjsnwxsVq768jjBu14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,230,Ugzf2MsFja6HqF6jUnR4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,232,UgxsVNiX2dP1xwd124d4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,232,UgxsVNiX2dP1xwd124d4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,233,Ugw-30Kgj-H44f06hAB4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+04-reckoning,234,UgxhHTmE_v9UmEuZtTx4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,235,UgxaFRbJqDsD9IAXcSt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,235,UgxaFRbJqDsD9IAXcSt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,236,Ugxzz3uUEsmn4rw8hDN4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,236,Ugxzz3uUEsmn4rw8hDN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,236,Ugxzz3uUEsmn4rw8hDN4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,237,UgwB6nwnRd2da2pHndR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,237,UgwB6nwnRd2da2pHndR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,238,UgxxfkMfZ_M9yHRK5iZ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,238,UgxxfkMfZ_M9yHRK5iZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,238,UgxxfkMfZ_M9yHRK5iZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,239,Ugw-ay1QM4hclRbF4Xx4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,239,Ugw-ay1QM4hclRbF4Xx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,240,UgxN6Xix46uqPE-A57Z4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,240,UgxN6Xix46uqPE-A57Z4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,240,UgxN6Xix46uqPE-A57Z4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,240,UgxN6Xix46uqPE-A57Z4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,244,UgzEjAxGaTV3hI3Y0fV4AaABAg.AXyuH30JPoWAXzRTJuXUOI,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,244,UgzEjAxGaTV3hI3Y0fV4AaABAg.AXyuH30JPoWAXzRTJuXUOI,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,245,UgzEjAxGaTV3hI3Y0fV4AaABAg.AXyuH30JPoWAY-Y4u1gmY7,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,245,UgzEjAxGaTV3hI3Y0fV4AaABAg.AXyuH30JPoWAY-Y4u1gmY7,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,247,UgwmAz4_Hs3AUyw_mSp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,247,UgwmAz4_Hs3AUyw_mSp4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,249,UgxPIzKvttEySFa3LbV4AaABAg.AXyqPZ2Z_izAXz4BanAZDP,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,249,UgxPIzKvttEySFa3LbV4AaABAg.AXyqPZ2Z_izAXz4BanAZDP,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,250,UgxPIzKvttEySFa3LbV4AaABAg.AXyqPZ2Z_izAY-KPegVV1d,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,252,UgwWEF2x8ZD5pw_IDIp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,253,UgwWEF2x8ZD5pw_IDIp4AaABAg.AXypqENnxzJAY-Lg3YS_4c,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,254,Ugxxs20jfDStjxAxfAZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,254,Ugxxs20jfDStjxAxfAZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,254,Ugxxs20jfDStjxAxfAZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,255,Ugz96OWp0R3hV1vGX-B4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,258,UgwHfMITrOxXxEfHQ9h4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,258,UgwHfMITrOxXxEfHQ9h4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,259,Ugw5yPsUGXIkBrwH3Dp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,260,UgwXq2iUmVMki49LAkZ4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,261,UgyvEtXEOi2HIOJbqOp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,261,UgyvEtXEOi2HIOJbqOp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,261,UgyvEtXEOi2HIOJbqOp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,263,UgyvEtXEOi2HIOJbqOp4AaABAg.AXykfjhcxQ3AY08JvqZbDR,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,264,UgyvEtXEOi2HIOJbqOp4AaABAg.AXykfjhcxQ3AY0uCuid6iv,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,266,Ugyr2GI_u14KkS245lp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,266,Ugyr2GI_u14KkS245lp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,268,UgySKcUaHRAKCeUnAGl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,269,Ugwe5U52rLbtAU6wPcF4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,270,UgxZO4LMnikMWJQrlv94AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,272,UgxXmY1UcktElsVLb3h4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,273,Ugwdy9xWffBR8Wmqoq54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,273,Ugwdy9xWffBR8Wmqoq54AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,274,Ugwdy9xWffBR8Wmqoq54AaABAg.AXydLE8I8mOAY-HtrP-Cq6,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,275,UgwHt3bfe_ICgz06FtJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,276,Ugx1FPATJoUgN4KToPF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,279,UgxOOX7SNBSV2pe-0et4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,279,UgxOOX7SNBSV2pe-0et4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,281,Ugz897UWT0iktIuw85d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,282,UgxyLKC-TiLxDAmbiVp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,283,UgxB336pFQjns-ji5TV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,284,UgybpbQUkEVaSeuJ1Px4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,285,Ugz7lRUPKxYqEq-uEY54AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,286,UgwtSR69EKA4GWsDWgt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,288,UgzlakTuQ3p19UCeQEd4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,289,Ugw5_KAdM3aNj60-iK14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,294,UgxnfEP2WvNVgjRQZyx4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,297,UgzWpiTVN8225GqcJ5Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,298,UgwqWKEnVwwFi6IucNJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,298,UgwqWKEnVwwFi6IucNJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,298,UgwqWKEnVwwFi6IucNJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,299,Ugz2JDXqdwBN8kn6rkp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,299,Ugz2JDXqdwBN8kn6rkp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,301,Ugwf_dTZhnREg4i5AHt4AaABAg.AXyEE7zfWNiAY-YiHTKemf,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,303,UgwwKVtvb_1XwJMBa9l4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,306,UgzcGsdHTiM_Fo4zTLV4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,310,UgzMlb-kSRV6GFohszd4AaABAg.AXy7Oexvl2AAY-HqcmsyJc,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,310,UgzMlb-kSRV6GFohszd4AaABAg.AXy7Oexvl2AAY-HqcmsyJc,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,311,Ugxx7Q3iHOyShPUPGm14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,311,Ugxx7Q3iHOyShPUPGm14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,312,UgzjnAVfYjiGptAx3ZJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,312,UgzjnAVfYjiGptAx3ZJ4AaABAg,WARN,possible_response_uncoded,matched 'patawad'
+04-reckoning,312,UgzjnAVfYjiGptAx3ZJ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,313,Ugyr3aK7BmiCv3ViLbB4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,317,UgyUMNFhAAQISdao_Ud4AaABAg,INFO,class_word_not_framed,matched 'million'
+04-reckoning,317,UgyUMNFhAAQISdao_Ud4AaABAg,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,319,UgzAoLumf1zVP43rU_Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,319,UgzAoLumf1zVP43rU_Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,320,Ugxer-44bTG9XQL1W1p4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,321,UgxRMyU6Zlfst1dlOJF4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,323,UgwuLE02Ke6prUsZEHh4AaABAg.AXy2A0wUUwsAXz4u25bz8O,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,323,UgwuLE02Ke6prUsZEHh4AaABAg.AXy2A0wUUwsAXz4u25bz8O,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,324,Ugxy_ZCzadqAPIf3YHF4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,324,Ugxy_ZCzadqAPIf3YHF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,325,Ugxy_ZCzadqAPIf3YHF4AaABAg.AXy0dkUnOq2AXynf7Ow0we,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,325,Ugxy_ZCzadqAPIf3YHF4AaABAg.AXy0dkUnOq2AXynf7Ow0we,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,325,Ugxy_ZCzadqAPIf3YHF4AaABAg.AXy0dkUnOq2AXynf7Ow0we,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,326,Ugxa_An6hlfAPut9CIt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,327,UgzeNX0pWIY6vGXY1P94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,327,UgzeNX0pWIY6vGXY1P94AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,329,UgzeNX0pWIY6vGXY1P94AaABAg.AXy0F_yPXbPAXyB1OPYGBR,INFO,review:evidence_long,evidence_long
+04-reckoning,330,UgyJPzFQbEy9iuo5q8l4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,335,UgzaUv0_1GMoXNlcJRJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,338,UgxynYV_s6Om-xNRp-x4AaABAg,INFO,class_word_not_framed,matched 'million'
+04-reckoning,341,Ugz54xUgZT3vPKxqmYN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,342,UgxoAlutN1w1fTKDnpZ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,343,UgxoAlutN1w1fTKDnpZ4AaABAg.AXxyDMhzWkFAXz5sW056wP,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,348,Ugz3NToaFx_hTCVhRbd4AaABAg.AXxxbJFw3-8AXxzcmVcjnD,INFO,class_word_not_framed,matched 'rich'
+04-reckoning,348,Ugz3NToaFx_hTCVhRbd4AaABAg.AXxxbJFw3-8AXxzcmVcjnD,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,349,Ugy3nonKj_VUbBcyk_R4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,350,Ugy4u5mQo9EQoWQXdn94AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,350,Ugy4u5mQo9EQoWQXdn94AaABAg,WARN,no_evidence,codes set but evidence is empty
+04-reckoning,350,Ugy4u5mQo9EQoWQXdn94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,352,UgwPNVg8A_TH95vF9Th4AaABAg,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,353,UgwPNVg8A_TH95vF9Th4AaABAg.AXxxEtXyJGJAXxzQl3r2f9,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,356,UgxD19VCD35m8BbAKnx4AaABAg.AXxwmkWgfcnAXyeZ_tHWGt,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,358,UgyYAEfKgrE2PrZJm3J4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,360,Ugy3DJW9NFbp_SHhXKl4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,360,Ugy3DJW9NFbp_SHhXKl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,361,UgzZhI5iUsSsu3rzWFJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,362,UgzZhI5iUsSsu3rzWFJ4AaABAg.AXxwFbPEoMTAXy-tUSFIKs,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,364,UgzoxI83i-BimvH0-QR4AaABAg,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,364,UgzoxI83i-BimvH0-QR4AaABAg,WARN,possible_response_uncoded,matched 'patawad'
+04-reckoning,365,UgzrPfJdStgtIhQvvmZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,365,UgzrPfJdStgtIhQvvmZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(VENUE)
+04-reckoning,365,UgzrPfJdStgtIhQvvmZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,366,UgxPB2wbWZ__coP5sYR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,367,UgzKTHj2a6G-_Q-iFDt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,367,UgzKTHj2a6G-_Q-iFDt4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,368,UgznKUzx-xKKaAj6pkN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,368,UgznKUzx-xKKaAj6pkN4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,369,UgznKUzx-xKKaAj6pkN4AaABAg.AXxvEaY_o0cAXxybk8yj-t,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,369,UgznKUzx-xKKaAj6pkN4AaABAg.AXxvEaY_o0cAXxybk8yj-t,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,370,UgxVsDVvC-PT-DjtXRp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,371,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAXycz-ILmlt,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,372,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAXynMPM6Otx,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,375,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAXz5gP95Sf7,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,377,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY3HAjOVU-H,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,379,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY4DB9p-hyy,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,379,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY4DB9p-hyy,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,381,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY-0Mjn3nD8,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,381,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY-0Mjn3nD8,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,383,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY3dnoM1526,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,383,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAY3dnoM1526,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,384,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAXzlvBoaYz2,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,384,UgxVsDVvC-PT-DjtXRp4AaABAg.AXxueZ9TpCUAXzlvBoaYz2,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,386,UgxNyXmO3FhvL-l9LGl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,387,UgyaS46dhlZEnBYm3uF4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,387,UgyaS46dhlZEnBYm3uF4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,388,UgzmgyZbamYnP_ed4Xh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,390,UgyT3Ams-_OLojezkfJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,392,UgzoQebPYXm3JA6_QQZ4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+04-reckoning,393,UgzoQebPYXm3JA6_QQZ4AaABAg.AXxsl0PkNY1AXxwQpvqYdE,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,393,UgzoQebPYXm3JA6_QQZ4AaABAg.AXxsl0PkNY1AXxwQpvqYdE,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,395,Ugz7kQOFiIs5nhlatFR4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,396,UgzvHZYmvIcQYgpcbmJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,397,Ugw5mqQUx-snceAn6W54AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,399,UgyJS9ogFNyww2lyR854AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,399,UgyJS9ogFNyww2lyR854AaABAg,WARN,possible_response_uncoded,matched 'patawad'
+04-reckoning,400,UgyJS9ogFNyww2lyR854AaABAg.AXxrvKWJl-fAXxxIAJtKEZ,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,402,UgxzmzrP8_g7i_xbp3B4AaABAg.AXxrul1iVmeAXxvjS3bQrR,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,403,Ugxnd13gtnmMJX47ctZ4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,404,Ugxnd13gtnmMJX47ctZ4AaABAg.AXxroyodeabAXxvTKwvL-o,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,404,Ugxnd13gtnmMJX47ctZ4AaABAg.AXxroyodeabAXxvTKwvL-o,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,406,Ugxnd13gtnmMJX47ctZ4AaABAg.AXxroyodeabAXySWEHL-sx,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,406,Ugxnd13gtnmMJX47ctZ4AaABAg.AXxroyodeabAXySWEHL-sx,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,407,Ugxnd13gtnmMJX47ctZ4AaABAg.AXxroyodeabAXyVxi4QyRl,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,410,UgzC18vfbv_tCV8IYsV4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,411,UgyiqZqmm_Oqk-gkVz14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,412,UgyiqZqmm_Oqk-gkVz14AaABAg.AXxr1g9ryzuAXxxCy_vEED,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,412,UgyiqZqmm_Oqk-gkVz14AaABAg.AXxr1g9ryzuAXxxCy_vEED,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,416,UgzDIIGSSK7A9rLhf3V4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,425,UgzI6R-DmpEQ_SA9Vvd4AaABAg.AXxqnGmzNM7AXxxrBl1V5-,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,427,UgyRDK-ZOzkn6mOpE7t4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,428,Ugzln8-wa43PY-3uiBl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,428,Ugzln8-wa43PY-3uiBl4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,430,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXz3Iu8Pi9D,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,430,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXz3Iu8Pi9D,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,430,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXz3Iu8Pi9D,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,431,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXxyql44kyu,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,433,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXy-U4KYtXk,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,434,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXyC2Eu19l5,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,435,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXxzr5cHdti,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,436,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXxzUz8JY0H,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,436,UgzNeHckUll3ISu9LVp4AaABAg.AXxqdV4uY2KAXxzUz8JY0H,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,440,UgwjXaaYHvBsRQIn5O94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,440,UgwjXaaYHvBsRQIn5O94AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,444,UgxgJ9MgBFhZg1CuI5R4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,446,UgzjpHXqAvHKXMFOlVN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,446,UgzjpHXqAvHKXMFOlVN4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,447,UgzjpHXqAvHKXMFOlVN4AaABAg.AXxp1ILHcJ9AXz1nCyR09E,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,448,UgzjpHXqAvHKXMFOlVN4AaABAg.AXxp1ILHcJ9AXzYiIM9uvT,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,450,UgzjpHXqAvHKXMFOlVN4AaABAg.AXxp1ILHcJ9AXyufHRdIH_,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,453,UgzPv-JJA6hiVLlmxBt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,454,UgwNz62t_aZzbK06FBR4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,454,UgwNz62t_aZzbK06FBR4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,456,Ugzb-80HKWI9Bv5ya_x4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,457,UgzPimZviNCm5TnhNwJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,457,UgzPimZviNCm5TnhNwJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,458,UgzVA44HnsU6w59g0hB4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,460,UgzVA44HnsU6w59g0hB4AaABAg.AXxoI6RcWALAXxqMq94t-P,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,461,UgzVA44HnsU6w59g0hB4AaABAg.AXxoI6RcWALAXz2j2Noi9X,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,462,Ugw2WXTR0HLA36fzibN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,464,UgyZx0ES6K20WHCO6YZ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,468,UgyOcSwwUMpT3_U9lqh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,468,UgyOcSwwUMpT3_U9lqh4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,470,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAXzCr9Ulrxn,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,470,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAXzCr9Ulrxn,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,470,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAXzCr9Ulrxn,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,472,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAXzYGAsQTqP,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,472,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAXzYGAsQTqP,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,474,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAY26d9BnA3L,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,475,UgzUL6VWCb-T3yAYLLh4AaABAg.AXxnTS_k7hyAY26mcns-E3,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,477,UgyfgJ8JZu20xgef5lB4AaABAg,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+04-reckoning,478,Ugw2snfG3v2je46MD9N4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,479,UgxN8tdlULognETSh_J4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,480,Ugyejaq4m79BgPK8snF4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,480,Ugyejaq4m79BgPK8snF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,481,UgxEjSUI0hieHWDexsZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,482,UgyV4EjAf7nW7q7LefZ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,486,UgwiUuEctwEWJBZ-u2t4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,488,UgzY7Z4WvtGuTgj1acF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,489,Ugw8VTYTeEzjTFfXwHx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,489,Ugw8VTYTeEzjTFfXwHx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,489,Ugw8VTYTeEzjTFfXwHx4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,491,UgxvnhNHZ-7y6LXbvOJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,493,UgwEJ9JwoMZGRadU6jh4AaABAg.AXxmyjvt5UjAXz6B8PrqR0,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,494,UgysnKMwBWMr5doQaYp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,497,UgybdQLCUjPqgxTrcex4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,498,UgyiLx7gQB-CsiwDqn54AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,498,UgyiLx7gQB-CsiwDqn54AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,499,Ugzz-d_3WB_L7PSRLql4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,499,Ugzz-d_3WB_L7PSRLql4AaABAg,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,500,Ugzz-d_3WB_L7PSRLql4AaABAg.AXxmkrhiIbrAXxoSXDlneE,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,501,Ugzz-d_3WB_L7PSRLql4AaABAg.AXxmkrhiIbrAXxz4xCYeeY,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,501,Ugzz-d_3WB_L7PSRLql4AaABAg.AXxmkrhiIbrAXxz4xCYeeY,WARN,possible_response_uncoded,matched 'acting'
+04-reckoning,502,UgwawqPgVcWaafyCkp94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,505,Ugys4jh_LHmoGGLzWG54AaABAg.AXxm_Gwsmk7AXxoOq6qMT8,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,506,Ugys4jh_LHmoGGLzWG54AaABAg.AXxm_Gwsmk7AXxqiZjCEGG,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,506,Ugys4jh_LHmoGGLzWG54AaABAg.AXxm_Gwsmk7AXxqiZjCEGG,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,507,Ugys4jh_LHmoGGLzWG54AaABAg.AXxm_Gwsmk7AXxrDY824RE,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,508,Ugys4jh_LHmoGGLzWG54AaABAg.AXxm_Gwsmk7AXze66WhJdN,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,509,UgzHlArVScgKnuznqWZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,509,UgzHlArVScgKnuznqWZ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,510,UgwLYJhVCPLto9onJcZ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,511,Ugwz6Qm0cyItaYs6OWt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,511,Ugwz6Qm0cyItaYs6OWt4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,512,UgwHx08XMs1fI-yp_Wh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,514,UgzoTlRHMUJ82gQKoe94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,515,UgzoTlRHMUJ82gQKoe94AaABAg.AXxm3PciBASAXxzcu7_JCn,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,515,UgzoTlRHMUJ82gQKoe94AaABAg.AXxm3PciBASAXxzcu7_JCn,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,516,UgycsIBtD6GorFHg_1N4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,519,UgwRFwZhtCE6Gg8XO714AaABAg.AXxlnWZ5rG4AXxmtM5Sblf,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,520,Ugw4vO0zxKzsqn4oMLd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,521,UgwWyB5s7_eLij_nb5N4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,527,Ugx_-wDOe8rgzJwGmOp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,527,Ugx_-wDOe8rgzJwGmOp4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,528,UgxQRODNHBitPNvRxmx4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,528,UgxQRODNHBitPNvRxmx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,532,UgxQFXl4qCDooxsFJ3t4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,533,UgzBtBnT-TzcZe2FfBl4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,533,UgzBtBnT-TzcZe2FfBl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,534,UgzBtBnT-TzcZe2FfBl4AaABAg.AXxkgiXw_39AXxyf8AUEwb,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,535,UgyrFV56nsPNnW8F9Kd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,535,UgyrFV56nsPNnW8F9Kd4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,537,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyCqE24E4v,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,537,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyCqE24E4v,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,537,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyCqE24E4v,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,538,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyIn4jPUcD,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,538,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyIn4jPUcD,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,539,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAY38qe4QDdF,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,539,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAY38qe4QDdF,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,541,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyIcsvpC0W,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,542,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyQ0guIPQi,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,543,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXz2pEA4riU,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,543,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXz2pEA4riU,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,544,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXzS6ADBKPd,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,544,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXzS6ADBKPd,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,544,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXzS6ADBKPd,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,545,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXxvkEpv1U-,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,545,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXxvkEpv1U-,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,545,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXxvkEpv1U-,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,547,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXy14XLVRn3,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,549,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyIud58Ywu,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,550,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyJ0aiobxF,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,550,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyJ0aiobxF,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,551,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXygSC8gfpP,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,552,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyiTcK1ARl,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,553,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXzDItlbn8o,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,554,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAY38wJMcbOk,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,555,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyITpszVtG,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,557,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXxx-m_sTk8,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,558,UgyrFV56nsPNnW8F9Kd4AaABAg.AXxkbSLZSzaAXyiKBhnlPg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,559,Ugx91bxWDe9CN_IMFgN4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,559,Ugx91bxWDe9CN_IMFgN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,559,Ugx91bxWDe9CN_IMFgN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,560,UgwRQkC4wMRhgbGwKOB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,560,UgwRQkC4wMRhgbGwKOB4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,564,UgwRUfeIX-MgpEI3YxR4AaABAg.AXxkCVOgGHiAXxkTrdHMEa,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,566,UgwRUfeIX-MgpEI3YxR4AaABAg.AXxkCVOgGHiAXy-QArJcU7,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,566,UgwRUfeIX-MgpEI3YxR4AaABAg.AXxkCVOgGHiAXy-QArJcU7,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,567,UgwLXEhVzgeousGgDSR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,568,Ugynp-6JaHuKct8ZN-J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,568,Ugynp-6JaHuKct8ZN-J4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,570,Ugz-28om4E2LRNkb0114AaABAg.AXxk1vX9odtAXxw4_i4FL2,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,570,Ugz-28om4E2LRNkb0114AaABAg.AXxk1vX9odtAXxw4_i4FL2,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,571,UgzN5FDAuJ1AXDOPJBN4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,571,UgzN5FDAuJ1AXDOPJBN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,573,Ugwuyv6hzuapAa7zxyR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,573,Ugwuyv6hzuapAa7zxyR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,573,Ugwuyv6hzuapAa7zxyR4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,573,Ugwuyv6hzuapAa7zxyR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,574,Ugx-xcwwZzcDuYJIDRR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,575,UgzKdy461CTAPosUXwN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,580,UgwxNYubzP1FMGb7RuR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,581,Ugyh8XspLGCG0vloxkN4AaABAg,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+04-reckoning,586,UgxcQq_51w0ByV2oP8B4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,587,UgwsFO8GTpcdUGjclal4AaABAg,WARN,review:blame_unnamed,blame_unnamed(ORGANIZERS)
+04-reckoning,588,UgwsFO8GTpcdUGjclal4AaABAg.AXxj1PWdIF2AXxoPU7dGy-,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,588,UgwsFO8GTpcdUGjclal4AaABAg.AXxj1PWdIF2AXxoPU7dGy-,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,590,UgyFOUlfFzapcoJ-pj14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,592,UgyFXUgdlIkXdz7R0yp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,593,Ugw0CwAQobs1HX6GnDx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,593,Ugw0CwAQobs1HX6GnDx4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,594,UgwqQzgvuAxC6j5a3FR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,595,UgyOqqvGUt_fix1nOt54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,598,UgxRB1A1AUKxmXZ9ALR4AaABAg.AXxi5k8YPRBAXxmOy90IY7,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,598,UgxRB1A1AUKxmXZ9ALR4AaABAg.AXxi5k8YPRBAXxmOy90IY7,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,598,UgxRB1A1AUKxmXZ9ALR4AaABAg.AXxi5k8YPRBAXxmOy90IY7,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,600,UgxzbFANxohvcDiwMux4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,600,UgxzbFANxohvcDiwMux4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,604,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXxnb68WBCp,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,605,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXyz8uzb-m4,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,605,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXyz8uzb-m4,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,607,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXzYYrRPkYt,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,608,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAYB3RQKO0uR,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,611,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXxpnc54o6b,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,611,UgyP6qKbkTz1ZF03uyJ4AaABAg.AXxhvJEFcvkAXxpnc54o6b,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,613,Ugw6qx9pUWt4YNWWwEx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,614,UgwHk0zACBIEPGWGQaZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,615,UgwP0_GSwGIobBEoLtN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,617,UgxRISx1cNsR78Ej_xl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,619,UgzMF3lcd5TuNt87n1N4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,620,UgwG9AaecUyjaZitxXp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,621,UgwYV9ZMGqYDhMBNNl54AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,622,UgycWlp01SkR3fRmwmJ4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
+04-reckoning,622,UgycWlp01SkR3fRmwmJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,623,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXyHFesFxuD,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,624,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXy9N-4JxMN,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,626,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXzCl4R6F0v,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,626,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXzCl4R6F0v,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,627,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXytGNK372L,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,627,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXytGNK372L,WARN,appearance_missed,matched 'kalbo'
+04-reckoning,628,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXzll-Q2Olm,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,629,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAY8sqKpl5y-,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,629,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAY8sqKpl5y-,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,630,UgycWlp01SkR3fRmwmJ4AaABAg.AXxgpzew4RBAXy8Im5WXUP,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,634,UgyUzRwp9UySPFt9svd4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,634,UgyUzRwp9UySPFt9svd4AaABAg,INFO,review:evidence_long,evidence_long
+04-reckoning,634,UgyUzRwp9UySPFt9svd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,634,UgyUzRwp9UySPFt9svd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,634,UgyUzRwp9UySPFt9svd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,636,UgyUzRwp9UySPFt9svd4AaABAg.AXxgJEXw1pCAXze_mB9xch,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,637,UgyUzRwp9UySPFt9svd4AaABAg.AXxgJEXw1pCAXzfOqp2zxC,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,644,UgxgXkl73pFtd8-MksR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,647,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAXxqEG_d2ht,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,648,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAXxwOBrwu5y,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,648,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAXxwOBrwu5y,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,649,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAXxxtFDWoNN,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,651,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAY3mQhtkxR-,WARN,review:class_direction_without_frame,class_direction_without_frame(VICTIMS_POOR)
+04-reckoning,651,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAY3mQhtkxR-,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,652,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAY4Y7y1ulNt,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,652,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAY4Y7y1ulNt,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,653,Ugy-hyFDTtjYRi4paol4AaABAg.AXxfz4YuY0RAXxoYE_khZf,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,654,Ugx-uGna0MwZGbYcrXt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,654,Ugx-uGna0MwZGbYcrXt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,654,Ugx-uGna0MwZGbYcrXt4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,655,UgwXUo1uMlMxPm2gvGl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,656,UgwUzHG5lPZz7kfPszp4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,656,UgwUzHG5lPZz7kfPszp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,656,UgwUzHG5lPZz7kfPszp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,656,UgwUzHG5lPZz7kfPszp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,658,UgzD3LIkzsfLA6E3jHF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,658,UgzD3LIkzsfLA6E3jHF4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,659,UgzD3LIkzsfLA6E3jHF4AaABAg.AXxfff-3OTNAY1esshQLJm,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,659,UgzD3LIkzsfLA6E3jHF4AaABAg.AXxfff-3OTNAY1esshQLJm,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,660,Ugw-EvmZMjTMLVP0Ahx4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,661,Ugxw6r0ycrEH4Iq4DvF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,662,Ugx1ebjVXxkMot8R70B4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,664,UgycSsBXKX_yPVAfIoR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,665,UgzJ2X-gv6-PFZn_YS14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,666,UgyfYSvfpRZy_6lwGyR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,667,UgyfYSvfpRZy_6lwGyR4AaABAg.AXxf4DBs9zsAXxx9XtlCh-,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,669,UgwOGme4SCNoISpvTjd4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,669,UgwOGme4SCNoISpvTjd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,671,Ugy4RriDW-bOPI8GLwR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,671,Ugy4RriDW-bOPI8GLwR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,672,UgwmZzT1RohgMXQepjx4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,675,UgxJjjIDh_7G6p92SXd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,675,UgxJjjIDh_7G6p92SXd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,677,UgzsHalUXq3JCPGEYOh4AaABAg,INFO,sad_emoji_missed,['loudly_crying_face']
+04-reckoning,677,UgzsHalUXq3JCPGEYOh4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,678,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXxiigyYNfW,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,678,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXxiigyYNfW,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,680,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXxqyhlpl8e,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,680,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXxqyhlpl8e,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,681,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXz1wx-byDu,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,681,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXz1wx-byDu,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,681,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAXz1wx-byDu,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,683,UgzsHalUXq3JCPGEYOh4AaABAg.AXxdK3GnxaJAYB3zkmcdKe,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,687,UgxrviIuJVyjXCq6slN4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
+04-reckoning,687,UgxrviIuJVyjXCq6slN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,689,UgxC4JzYhhKATDnHbEJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,689,UgxC4JzYhhKATDnHbEJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,689,UgxC4JzYhhKATDnHbEJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,690,UgzZqIGidjUzp3FVbi54AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,692,Ugw7hGVu8_UNboJsf5Z4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,692,Ugw7hGVu8_UNboJsf5Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,692,Ugw7hGVu8_UNboJsf5Z4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,692,Ugw7hGVu8_UNboJsf5Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,694,Ugy4K_l8pgSfaSP2eA14AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,696,UgwuR-G6hBwRQWW2prZ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,697,UgwuR-G6hBwRQWW2prZ4AaABAg.AXxcpXw_2FCAXxhb2Hq9Uj,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,699,UgwuR-G6hBwRQWW2prZ4AaABAg.AXxcpXw_2FCAXyA-09UQA_,WARN,language_heuristic,coded ENGLISH but has Filipino words (TAGLISH?)
+04-reckoning,699,UgwuR-G6hBwRQWW2prZ4AaABAg.AXxcpXw_2FCAXyA-09UQA_,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,701,Ugz6cu4bmO5S_biq1i14AaABAg.AXxciNFrVTKAXxfeHIzSFd,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+04-reckoning,702,Ugz6cu4bmO5S_biq1i14AaABAg.AXxciNFrVTKAXxjC-UHke7,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,702,Ugz6cu4bmO5S_biq1i14AaABAg.AXxciNFrVTKAXxjC-UHke7,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,703,Ugx2H2JytLlhe1VUS854AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,703,Ugx2H2JytLlhe1VUS854AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,703,Ugx2H2JytLlhe1VUS854AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,704,Ugy142j9sotTpoQ0s4N4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,705,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXxmO30L06J,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,706,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXxpn1rFxeu,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,708,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXyuXv2dFjd,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,709,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXz3k8Wmd7k,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,709,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAXz3k8Wmd7k,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,711,Ugy142j9sotTpoQ0s4N4AaABAg.AXxc_uQ9rNXAY92XUoyOgW,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,714,UgwKDmkza_d6oeOVD5J4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,715,UgydhVLFyuLRjNfuE8B4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,715,UgydhVLFyuLRjNfuE8B4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,715,UgydhVLFyuLRjNfuE8B4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,717,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxgY6kOHw7,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,719,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxkMeQl6gP,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,722,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxkHBRzxHj,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,723,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxcsLQoood,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,723,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxcsLQoood,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,724,UgydhVLFyuLRjNfuE8B4AaABAg.AXxbvSXQXRLAXxdPHVM-nv,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,725,UgzPS5-ZbD3uRgeDCyB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,726,UgxvJxW6tE2BLgbb8jN4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,726,UgxvJxW6tE2BLgbb8jN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,727,UgwIcKbo6pi5sjrb-wR4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,728,UgzsrwIXMvIhO6srWRF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,730,Ugw68y5oYw-AiByDjxR4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,730,Ugw68y5oYw-AiByDjxR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,731,Ugxdpv1lr6ZOeFCzbI14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,732,Ugwma32pCj14bExOzuJ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,734,Ugwma32pCj14bExOzuJ4AaABAg.AXxale6DwkwAXxzwR07laX,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,735,Ugwma32pCj14bExOzuJ4AaABAg.AXxale6DwkwAXxirw-OEpQ,WARN,review:blame_unnamed,blame_unnamed(ORGANIZERS)
+04-reckoning,735,Ugwma32pCj14bExOzuJ4AaABAg.AXxale6DwkwAXxirw-OEpQ,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,735,Ugwma32pCj14bExOzuJ4AaABAg.AXxale6DwkwAXxirw-OEpQ,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,739,Ugxvle3YAWk26S9y3qh4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,740,Ugz75BtxhdNgMPUKjjp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,740,Ugz75BtxhdNgMPUKjjp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,741,UgwjrIsJMhPkyKjbk2d4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,742,UgwjrIsJMhPkyKjbk2d4AaABAg.AXxa1uCZCs-AXxaFkTumf_,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,744,UgxvXmRCoSvywjblVqJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,746,UgwO68dbP-Gxn4oWbD94AaABAg.AXx_VgH4PJrAXxbW6h9tpv,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,746,UgwO68dbP-Gxn4oWbD94AaABAg.AXx_VgH4PJrAXxbW6h9tpv,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,747,UgxRFDRNatbSTEwLvVp4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,748,UgxRFDRNatbSTEwLvVp4AaABAg.AXx_R6m279bAXxo5AtLNzS,WARN,anger_emoji_missed,['face_with_symbols_on_mouth']
+04-reckoning,749,Ugx8hdFMvunITT1yHQl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,749,Ugx8hdFMvunITT1yHQl4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,751,UgzddAKY57jEwyS2jcN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,752,UgyhTlbcfAMFhABijEh4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,752,UgyhTlbcfAMFhABijEh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,754,UgxcWgWtfn-aO-HS4nx4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,755,UgxsRa9-F4AZ5UuFmiF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,756,UgwNPDDxnrVBTZd_ukl4AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(INEQUALITY_JUSTICE)
+04-reckoning,756,UgwNPDDxnrVBTZd_ukl4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,758,Ugwf_jTA_scHTO8CMoR4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,758,Ugwf_jTA_scHTO8CMoR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,759,Ugzl6kLXw7SwgryD19B4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,759,Ugzl6kLXw7SwgryD19B4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,759,Ugzl6kLXw7SwgryD19B4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,759,Ugzl6kLXw7SwgryD19B4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,761,UgxBT19sORP7jJxugxh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,763,UgwTjOQ2CxN__BZMRQR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,763,UgwTjOQ2CxN__BZMRQR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,763,UgwTjOQ2CxN__BZMRQR4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,764,Ugz75JIqjZILywGm03R4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,764,Ugz75JIqjZILywGm03R4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,766,Ugx9Cw3exKVrJAVSwOJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,INFO,class_word_not_framed,matched 'scholarships'
+04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,767,UgybXVpp42QJeqCv-0V4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,768,UgzGv5PEUsFqsZWa5sB4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,772,Ugy1-g4WPojIv5OckcV4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,773,Ugw4AFS9LRj7OQZGFG14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,775,UgxBvnl7NazMALS5pRl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,778,Ugyw-fEFtXH_OUDhDRp4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,778,Ugyw-fEFtXH_OUDhDRp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,778,Ugyw-fEFtXH_OUDhDRp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,INFO,review:evidence_long,evidence_long
+04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,779,UgwC1elh8yloVqqGHAJ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,781,UgxT9adsvhmaZmTgrNp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,784,UgzRWW0Y_UTQ2VH7omJ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,784,UgzRWW0Y_UTQ2VH7omJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,785,UgzRWW0Y_UTQ2VH7omJ4AaABAg.AY4RpN04XX4AY4VCO8GSBH,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,787,UgxGHJJsbTBUbpAMpk94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,788,UgyUDfp4U1jz6S72Yal4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,788,UgyUDfp4U1jz6S72Yal4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,788,UgyUDfp4U1jz6S72Yal4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,789,UgyUDfp4U1jz6S72Yal4AaABAg.AY4LLDLYKXBAY4NddDyVbO,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,789,UgyUDfp4U1jz6S72Yal4AaABAg.AY4LLDLYKXBAY4NddDyVbO,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,791,UgyExXd3KaMVwSMe_I54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,791,UgyExXd3KaMVwSMe_I54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,794,Ugwm1QSTULjuaGCUwkR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,794,Ugwm1QSTULjuaGCUwkR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,795,Ugwm1QSTULjuaGCUwkR4AaABAg.AY4AXJWmbGVAY5uSxcYeM9,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,795,Ugwm1QSTULjuaGCUwkR4AaABAg.AY4AXJWmbGVAY5uSxcYeM9,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,797,UgxeP71593tWq9dVzsZ4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,798,UgwQiLfb9UE-DMxmxFl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,798,UgwQiLfb9UE-DMxmxFl4AaABAg,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,798,UgwQiLfb9UE-DMxmxFl4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,799,UgwwGt3ig9a94FMOtDV4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,799,UgwwGt3ig9a94FMOtDV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,800,UgySwE2_XuDvW50lJdV4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,801,UgyP0EGwg5H9IStdjDB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,801,UgyP0EGwg5H9IStdjDB4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,803,UgyYlJhrlwSPhZXgm-B4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,803,UgyYlJhrlwSPhZXgm-B4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,804,UgzXwKSLWqYzJCpOAlR4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,806,UgzhjVFDx7kv1aSaLwt4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,806,UgzhjVFDx7kv1aSaLwt4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,807,Ugzii4LDrmzZ1OOmReF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,809,UgyTAxkEHXKEgDgkzdJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,810,UgwVg7He09tFBDIUDVp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,810,UgwVg7He09tFBDIUDVp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,811,UgyIMkcM_Hyx5X4-kHt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,815,UgwmE-_8iVVTLplG7Kd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,816,UgyNEKw5kBbTL88Ge1Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,816,UgyNEKw5kBbTL88Ge1Z4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,818,UgzWBSbebtRWd2U69Q94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,818,UgzWBSbebtRWd2U69Q94AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,819,UgzLP9xfox1SuqwV0nR4AaABAg,WARN,possible_response_uncoded,matched 'scripted'
+04-reckoning,820,UgwxIaOT3Omm8_-u0IB4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,822,Ugzvg82abZMAvh2oFIt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,822,Ugzvg82abZMAvh2oFIt4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,822,Ugzvg82abZMAvh2oFIt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,823,Ugwis9z966Cf5eLihN14AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(INEQUALITY_JUSTICE)
+04-reckoning,823,Ugwis9z966Cf5eLihN14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,824,UgzNTvjYt_A41Jrw71t4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,826,UgySvDD6dvhdkcclTUd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,828,UgwcNEkE2Rbcmhhj7hp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,829,UgxEhrGK4vJEdoiektN4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,829,UgxEhrGK4vJEdoiektN4AaABAg,INFO,class_word_not_framed,matched 'scholarship'
+04-reckoning,832,Ugz2eMDbR-mXOPrrN1J4AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(VICTIMS_POOR)
+04-reckoning,835,UgxRyA7mrLNTJwvp1OR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,836,UgwKi2RuleMXh_bV-V94AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,837,UgzSU0BIpfRdJwCNBxd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,837,UgzSU0BIpfRdJwCNBxd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,838,Ugygj2ws2SlbZVBBRlB4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,838,Ugygj2ws2SlbZVBBRlB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,839,UgxXlcOzIkwYtYExtOZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,841,UgzBatpoYfUwdhD2roJ4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,842,UgyQKv3qRuq5wZxw2aR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,842,UgyQKv3qRuq5wZxw2aR4AaABAg,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,843,UgyLWm7dTQxgu6pe4Np4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,845,UgyOCb6IhYGSkW_hT5h4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,846,UgzKnmbTV0t1NhXUMRt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,847,UgwgEQJTkusGe5WCgIl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,849,Ugwno7P9KN1XCIz8mSJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,851,UgxRzAHPefCvVD8_V_54AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,853,Ugzea3hAwrGoM8h_7eh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,854,UgzmUlSBLZUE9PwUtv14AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,855,UgzPqT4Y8G5a81vpfYR4AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(INEQUALITY_JUSTICE)
+04-reckoning,858,UgxrNPPF9DwhrWFB2nR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,858,UgxrNPPF9DwhrWFB2nR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,859,UgwEwXzER9C-VIgeTkd4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,859,UgwEwXzER9C-VIgeTkd4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,860,UgxCd80alZPUPmnqTBR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,862,UgwBDCHRIVskp63JMVp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,862,UgwBDCHRIVskp63JMVp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,863,UgwBDCHRIVskp63JMVp4AaABAg.AY3wqm809ztAY6jSEHmPtW,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,866,UgzlR2Hw_xHOPXP0gGF4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,866,UgzlR2Hw_xHOPXP0gGF4AaABAg,INFO,class_word_not_framed,matched 'pera'
+04-reckoning,866,UgzlR2Hw_xHOPXP0gGF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,867,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wCfN2Zb8,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,867,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wCfN2Zb8,WARN,review:blame_unnamed,blame_unnamed(AUTHORITIES)
+04-reckoning,867,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wCfN2Zb8,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,868,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wOmrmRpv,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,868,UgzlR2Hw_xHOPXP0gGF4AaABAg.AY3w2TMCNs2AY3wOmrmRpv,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,869,UgwEEcP40YhDr7DzZ-J4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,871,UgzG_Epyo-7lddzsPmd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,874,Ugz8M-pXojziISOmwpx4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,877,UgxrCpHlQj03s-8-kLF4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,878,Ugz4IOLIFjkJaJcv5Sd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,879,Ugz4IOLIFjkJaJcv5Sd4AaABAg.AY3tmL4_45tAY3yGJTj93b,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,881,Ugz4IOLIFjkJaJcv5Sd4AaABAg.AY3tmL4_45tAY4ZKGn3QxH,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,883,UgyDDXB3FE0-yUCIEFd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,883,UgyDDXB3FE0-yUCIEFd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,884,UgwIvv50vPVUv0gniP54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,887,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY3xadkvNk9,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,889,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY45I2Czfoc,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,889,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY45I2Czfoc,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,891,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4_BO80lfu,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,891,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4_BO80lfu,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,892,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4aeNAfSt6,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,892,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4aeNAfSt6,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,893,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4b9NuJLh9,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,894,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4Za2B28py,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,895,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4_zW69pc6,INFO,review:evidence_long,evidence_long
+04-reckoning,895,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4_zW69pc6,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,895,UgzHd-gqSMiBUU6xGFB4AaABAg.AY3sWho2HMKAY4_zW69pc6,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,896,Ugxige8Nhm7NbTfVc8h4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,898,Ugyu1FL8_pJ9IJLkpBJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,900,UgzoTQw1YllD7WyRqjd4AaABAg.AY3sDbvtakZAY3tHlgptfa,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,901,UgzoTQw1YllD7WyRqjd4AaABAg.AY3sDbvtakZAY3toPLvkPr,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,903,UgxJ0L-Pw6IhSpLFYnB4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,904,UgyY7Lm7C_FsSfwp-Y14AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,905,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY3xFxyEQYD,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,905,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY3xFxyEQYD,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,905,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY3xFxyEQYD,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,906,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY3xNuGUQxc,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,907,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY5TYKxanrf,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,907,UgyY7Lm7C_FsSfwp-Y14AaABAg.AY3qxIiEKcKAY5TYKxanrf,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,909,UgxNBMTZtmtQLPT4RVx4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,911,UgzoGE8rjjbhLl-3vQN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,914,UgyfOZy9fK75WcJkBDV4AaABAg.AY3qNBFTmi7AY6ivMzExu1,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,914,UgyfOZy9fK75WcJkBDV4AaABAg.AY3qNBFTmi7AY6ivMzExu1,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,915,Ugw6S4NWINDdifOF06R4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,917,UgxeJmyIusIa0vNcBhJ4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,918,UgxeJmyIusIa0vNcBhJ4AaABAg.AY3pyvSebB2AY3tvNjkWJL,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,918,UgxeJmyIusIa0vNcBhJ4AaABAg.AY3pyvSebB2AY3tvNjkWJL,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,919,UgxeJmyIusIa0vNcBhJ4AaABAg.AY3pyvSebB2AY3xPlJYJRW,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,919,UgxeJmyIusIa0vNcBhJ4AaABAg.AY3pyvSebB2AY3xPlJYJRW,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,920,UgxeJmyIusIa0vNcBhJ4AaABAg.AY3pyvSebB2AY3yE2epbfh,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,921,UgxmlMonvsNg1Tjklvp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,921,UgxmlMonvsNg1Tjklvp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,922,UgxOdXCXCg4W98pdhB94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,924,Ugww4L__ekExzlfUeRZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,924,Ugww4L__ekExzlfUeRZ4AaABAg,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+04-reckoning,924,Ugww4L__ekExzlfUeRZ4AaABAg,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,928,Ugww4L__ekExzlfUeRZ4AaABAg.AY3oT4L5pvSAY3orvnfg3V,WARN,possible_response_uncoded,matched 'apolog'
+04-reckoning,929,UgzZxZSz6vIijr6466p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,932,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY3xFeONNTD,INFO,class_word_not_framed,matched 'mahirap'
+04-reckoning,932,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY3xFeONNTD,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,934,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY5YgIr7u3x,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,934,UgzZxZSz6vIijr6466p4AaABAg.AY3oMQWxwDkAY5YgIr7u3x,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,940,UgxogRl2Y55uoiMoxn54AaABAg.AY3mopYXBqwAY3u0JczD8x,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,941,UgxogRl2Y55uoiMoxn54AaABAg.AY3mopYXBqwAY70fgGnKsW,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,942,UgwmGVlbDlG5HnrMT7R4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,943,UgyuG5_3zEhiE3Fc69t4AaABAg,INFO,review:evidence_long,evidence_long
+04-reckoning,943,UgyuG5_3zEhiE3Fc69t4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,944,UgwKmQTt5M00FcbsB_14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,945,Ugx66lqA594jw8nYwfZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,946,UgzuR6pRjzVw0aFqsOV4AaABAg,WARN,rejects_without_reason,REJECT_REASONS is NA
+04-reckoning,947,UgzAbj7Vpx15vldEJBZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,948,Ugw82obV7H8iFEJtsrJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,950,UgwhKIQH5dBrJcYqp214AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,952,UgzJxMlo_6E0UMM2-WR4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,953,UgxyuVpWiMClF09ARll4AaABAg,INFO,class_word_not_framed,matched 'poor'
+04-reckoning,953,UgxyuVpWiMClF09ARll4AaABAg,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,954,UgxcvJoNymuiNPoH0zl4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,955,UgxKIuJJWvvOdwQJvyx4AaABAg,WARN,possible_response_uncoded,matched 'pr'
+04-reckoning,958,UgyL1I7IMQ8T6QOM21F4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,958,UgyL1I7IMQ8T6QOM21F4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,959,Ugxtzh6-mVeQ9x_rRkp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,959,Ugxtzh6-mVeQ9x_rRkp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,962,Ugxq8Cx00Nqo7NqGnGt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,963,Ugwz10MJbF3cXFLF2Mp4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,963,Ugwz10MJbF3cXFLF2Mp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,967,UgxI_khiMd0PUyTi5rt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,971,Ugx5g8p6Sj5URWuRTeN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,974,Ugy70zZ9TU432101Nih4AaABAg,INFO,class_word_not_framed,matched 'pera'
+04-reckoning,974,Ugy70zZ9TU432101Nih4AaABAg,WARN,anger_emoji_missed,['face_with_symbols_on_mouth']
+04-reckoning,975,UgxlntM1kPiS1ed3Xpd4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,984,UgxbspTag_FdDxb6g0V4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,986,UgxkrLZaYewk_PQ8W3F4AaABAg.AYAia_j4zMtAYMbTn2pEl1,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,990,UgxWpZXDccSJDFLvBqN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,991,Ugx9enA_msdBQ0E6GqZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,992,UgznpzRLza-WYIC2osh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,993,UgxgkXHlIPy35bAzIsF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,997,Ugz_2dPRrGCM3tjx67p4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,999,UgyTBc1cEJpbsCw14w54AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1006,UgzC1Ea7sem3x21q1tB4AaABAg.AY8hchJpI9aAYK6lWcAj50,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1008,UgzirLXqyvVsF588q194AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,1009,UgyS7GEFi-fzQwZ9egF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1011,UgwdGsa2cJUZoC3sbaV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1012,Ugxq3QCcnEluJRFc3Td4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1012,Ugxq3QCcnEluJRFc3Td4AaABAg,WARN,anger_emoji_missed,['enraged_face']
+04-reckoning,1013,UgxtmmecC8yCWXLoTdJ4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,1015,Ugwc6qSqypqPtUG8mhR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1016,Ugx63t27iaBP_TQd77t4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1018,UgyXQx7-ZEWCmHNNr5Z4AaABAg.AY7ms9uETLeAYHm8wmagY-,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1018,UgyXQx7-ZEWCmHNNr5Z4AaABAg.AY7ms9uETLeAYHm8wmagY-,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1021,UgyXXkLRmR_rMqcJiL14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1021,UgyXXkLRmR_rMqcJiL14AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,1024,UgyMSBuQzph0Uqo3Rol4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1031,UgzQufzInRqHdVHUBl14AaABAg.AY7Hd0ogZEAAY86JSJU_8F,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1031,UgzQufzInRqHdVHUBl14AaABAg.AY7Hd0ogZEAAY86JSJU_8F,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1032,UgxN9K4y6OM26pQ_Iol4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1033,UgxN9K4y6OM26pQ_Iol4AaABAg.AY7CCLFGNwFAY9-5GlCanK,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1033,UgxN9K4y6OM26pQ_Iol4AaABAg.AY7CCLFGNwFAY9-5GlCanK,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1035,UgyAO1yOQ6Vom9jkj_V4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1036,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAY7wJi6e1nQ,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1036,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAY7wJi6e1nQ,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1036,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAY7wJi6e1nQ,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1037,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAYHlxnP15Ks,ERROR,uncoded_row,no model output for this row
+04-reckoning,1039,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAYBGW9t752Q,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1039,UgyAO1yOQ6Vom9jkj_V4AaABAg.AY78sIXuTlwAYBGW9t752Q,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1041,Ugz3N861wMpRhYesdzt4AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,1042,UgwkqikayA1RNl65pyF4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,1044,UgwzpoDjztcSeGoPGJ14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1045,UgzBkdbQKplCqt52ekN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1045,UgzBkdbQKplCqt52ekN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1046,UgzBkdbQKplCqt52ekN4AaABAg.AY720pRoZ0fAY7HVomXmBi,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1047,UgzBkdbQKplCqt52ekN4AaABAg.AY720pRoZ0fAY8BFMQ-pPt,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,1049,UgyRVt2o8lDPc1SSOVN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1049,UgyRVt2o8lDPc1SSOVN4AaABAg,WARN,possible_response_uncoded,matched 'crocodile'
+04-reckoning,1051,UgyLVNvRK5BElfe4VuJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1051,UgyLVNvRK5BElfe4VuJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1052,UgyinVE1svs-vrBenv14AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1052,UgyinVE1svs-vrBenv14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1052,UgyinVE1svs-vrBenv14AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1054,Ugycz3e8lVZQOUep9Nd4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1054,Ugycz3e8lVZQOUep9Nd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1057,Ugycz3e8lVZQOUep9Nd4AaABAg.AY6vZc4i2NFAY6vf1aYLJ5,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1059,UgzJkg5r4MQp4h6nc-54AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1061,UgygGzZEaT8XxyIq7TB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1063,Ugzda9yUkyn_MRUg_4J4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1064,UgyP95aE0IB-DcfDBEN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1066,UgwzasusYwlcEH_06bh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1066,UgwzasusYwlcEH_06bh4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1068,UgxKRCrC7vPl-KLpH6l4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1069,UgxjosdB47L8Hy76RVp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1070,UgzfEIyeobOS4y0IJ4R4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1070,UgzfEIyeobOS4y0IJ4R4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1070,UgzfEIyeobOS4y0IJ4R4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1071,Ugw9HiK7tAQeRiJNJjZ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1071,Ugw9HiK7tAQeRiJNJjZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1071,Ugw9HiK7tAQeRiJNJjZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1071,Ugw9HiK7tAQeRiJNJjZ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1072,UgwFXY_lM6ZmIDKU4M14AaABAg,INFO,class_word_not_framed,matched 'tuition'
+04-reckoning,1073,UgwLzSihopbH7JsCQQZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1073,UgwLzSihopbH7JsCQQZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1076,UgxEKBHusWPKtFjKLq54AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1078,UgzyQMAAn1FLJVU92S54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1082,Ugz3oBwA77ytee1ig8l4AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(INEQUALITY_JUSTICE)
+04-reckoning,1082,Ugz3oBwA77ytee1ig8l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1085,UgxSc3BSMoill03hncV4AaABAg,INFO,class_word_not_framed,matched 'tuition'
+04-reckoning,1085,UgxSc3BSMoill03hncV4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1086,UgwC7w_FIhNCbtgYDud4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1089,UgzRh5MazRUX6KXB7wR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1091,Ugy3rul_FoLEI7-eygR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1093,Ugxkfkw0dlUkY4HbBQR4AaABAg,WARN,possible_response_uncoded,matched 'wake'
+04-reckoning,1094,UgyWcK_5TwSI3XVoFoh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1095,Ugx1ZlJQY-_I2-Q8Hlt4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1097,UgxX9UrjW0mRSRFlJuF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1102,Ugy66cqSDLrJfwd6evh4AaABAg.AYIMNfgrQQlAYIMip6wioL,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1103,UgwuI3MxaaOjmldNaxp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1106,Ugx4uwSa6XQn_M2BpS14AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1107,UgxNmrLOVG03YXlgavN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1111,Ugy-PxNWeJmmg54sBEt4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1113,UgyRw1M4c7ZVI5Bb5CN4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,1118,UgyBHxXucpGzCOYP6Op4AaABAg,WARN,emoji_only_overcoding,"emoji-only comment coded ['NORM_VIOLATION', 'ATTRIBUTION', 'BLAME_TARGETS', 'VALUES']"
+04-reckoning,1120,UgwLDiKbGdAQHaLqk-x4AaABAg.AYEKInP1wdcAYEYcyzwoJs,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1121,UgwLDiKbGdAQHaLqk-x4AaABAg.AYEKInP1wdcAYFxDtnwwHb,INFO,review:evidence_long,evidence_long
+04-reckoning,1121,UgwLDiKbGdAQHaLqk-x4AaABAg.AYEKInP1wdcAYFxDtnwwHb,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1122,UgyvWgORj-n-MJykUph4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1123,Ugyj5cJGiVoUEDhU4Tt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1130,Ugzh9osCuvlkRoDYT954AaABAg.AYECLv8Y9bfAYEGYxRqAut,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1131,UgyPyHwNN7M3-TmDzC14AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1134,UgzKDBK_HOnZWho-OpF4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1135,Ugzx6hPL9pp-t_2S3Up4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1138,Ugwfyl9fkGyRGPeDDt94AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1139,UgyMJO8lM5vl87tSV4d4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1139,UgyMJO8lM5vl87tSV4d4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1142,UgwSjMOmn5J9OF9BDfB4AaABAg,WARN,language_heuristic,coded FILIPINO but reads English/mixed (ENGLISH or TAGLISH?)
+04-reckoning,1146,UgxTurJJANKLnzeYiOZ4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1146,UgxTurJJANKLnzeYiOZ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1148,UgxiUhSYKFTQIX6Pm-d4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1149,UgzLCBo0U3B8v0g8UUl4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,1150,Ugz66a-wQfKCerX6SyN4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1152,UgxIda7PXQ9QKHShXLd4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,1154,Ugxn5Z4ofuMhQluMzgZ4AaABAg.AYJJhPoj5lBAYPhuWtyHxr,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1156,UgzaQpexVs2os2Y47UV4AaABAg,WARN,review:class_direction_without_frame,class_direction_without_frame(INEQUALITY_JUSTICE)
+04-reckoning,1157,Ugz7SUSg_eKO5LyEl4p4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1158,Ugwwd_JobLlyX39GaWt4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1158,Ugwwd_JobLlyX39GaWt4AaABAg,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,1164,Ugw1rIew4IXs3sSHCn54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1167,UgyKYbhs-oCW_GsyZit4AaABAg,WARN,review:blame_unnamed,blame_unnamed(ORGANIZERS)
+04-reckoning,1168,Ugw6SO7iiLQrcD-liRp4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1169,UgzfmTVhu7cGqWCWuJF4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1170,Ugzz_wNnxeWi6iooH7B4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1171,UgzvTY8yiv0nKAF8TgV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1172,Ugw0nPfU4bGvZdrCN6d4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1172,Ugw0nPfU4bGvZdrCN6d4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1173,Ugx6craIrjnRtgTyxSZ4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1173,Ugx6craIrjnRtgTyxSZ4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1175,Ugw4KkEMh__rn1Jvuf94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1175,Ugw4KkEMh__rn1Jvuf94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1176,Ugw4KkEMh__rn1Jvuf94AaABAg.AY3s-AZLj4LAY3tA07KSvz,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1176,Ugw4KkEMh__rn1Jvuf94AaABAg.AY3s-AZLj4LAY3tA07KSvz,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1177,Ugz6Q3BJ6QX222_BG5p4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1177,Ugz6Q3BJ6QX222_BG5p4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1177,Ugz6Q3BJ6QX222_BG5p4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1179,Ugw9brBNf-5-eMSRKah4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1179,Ugw9brBNf-5-eMSRKah4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1179,Ugw9brBNf-5-eMSRKah4AaABAg,INFO,class_word_not_framed,matched 'kapit'
+04-reckoning,1180,UgyAuy4ErnRvmYASIMx4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1180,UgyAuy4ErnRvmYASIMx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1183,UgwQA5BVkTsaub2Xmhp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1183,UgwQA5BVkTsaub2Xmhp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1184,UgxRmWIH7ARSX5O8GhN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1185,UgzVjqIgcbqo6DHdwU14AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1187,UgyOx979nN1obBLYK_V4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1188,Ugy1BIBjcFpQYEGWiiJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1190,UgzpVKxL5o12a14V-nR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1190,UgzpVKxL5o12a14V-nR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1193,UgwGfNqmP6B8xd8LKaZ4AaABAg,WARN,no_evidence,codes set but evidence is empty
+04-reckoning,1193,UgwGfNqmP6B8xd8LKaZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1194,UgxP1JtedFJp7AET3QN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1194,UgxP1JtedFJp7AET3QN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1195,UgyKpJiHtzXS-h8_vMx4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1195,UgyKpJiHtzXS-h8_vMx4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1197,UgzXYxnpaJt1W_FC-3l4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1197,UgzXYxnpaJt1W_FC-3l4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1197,UgzXYxnpaJt1W_FC-3l4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1198,UgzXYxnpaJt1W_FC-3l4AaABAg.AYBZyv-EGJ5AYGK2OPDWLN,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1198,UgzXYxnpaJt1W_FC-3l4AaABAg.AYBZyv-EGJ5AYGK2OPDWLN,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1198,UgzXYxnpaJt1W_FC-3l4AaABAg.AYBZyv-EGJ5AYGK2OPDWLN,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,1201,UgxDgp51R3jOgNn52794AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1202,UgzAOuX0-ujhI-WE1tt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1204,UgyCcESz0rxp28y7cgJ4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1207,UgxyBEuUs8msr4sjMQp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1208,Ugza2uScK-IuagmKCN54AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1208,Ugza2uScK-IuagmKCN54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1208,Ugza2uScK-IuagmKCN54AaABAg,WARN,possible_response_uncoded,matched 'statement'
+04-reckoning,1211,UgwaB-Qv6_Cmc_iuMdp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1211,UgwaB-Qv6_Cmc_iuMdp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1211,UgwaB-Qv6_Cmc_iuMdp4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1211,UgwaB-Qv6_Cmc_iuMdp4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1213,UgwyyWwWJAdDLeE8cdZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1213,UgwyyWwWJAdDLeE8cdZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1214,UgwVRJ6lMOyIrYuHATh4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1215,UgyuguW_FjBOKZVSNaB4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1215,UgyuguW_FjBOKZVSNaB4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1217,UgxN_PGnwnKedjj9_l54AaABAg,WARN,no_evidence,codes set but evidence is empty
+04-reckoning,1217,UgxN_PGnwnKedjj9_l54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1218,UgxBEWIrdi-kKejj-Bh4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1220,Ugxg3vJnPMGlsWcu0aV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1221,Ugwa9y2O6OvjGTgLMJV4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1221,Ugwa9y2O6OvjGTgLMJV4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1221,Ugwa9y2O6OvjGTgLMJV4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1222,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYA27EUL5PH,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1222,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYA27EUL5PH,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1222,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYA27EUL5PH,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1223,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYCAZTlXfSz,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1223,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYCAZTlXfSz,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1223,Ugwa9y2O6OvjGTgLMJV4AaABAg.AYA1Mv2thmKAYCAZTlXfSz,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1225,Ugz_yGeL_HTLTlqSo4p4AaABAg,INFO,class_word_not_framed,matched 'money'
+04-reckoning,1225,Ugz_yGeL_HTLTlqSo4p4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1226,UgzabeDuXQjq_bFp4Gt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1227,UgzabeDuXQjq_bFp4Gt4AaABAg.AY9nkPuLxFIAYAoUDB70ln,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1227,UgzabeDuXQjq_bFp4Gt4AaABAg.AY9nkPuLxFIAYAoUDB70ln,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1227,UgzabeDuXQjq_bFp4Gt4AaABAg.AY9nkPuLxFIAYAoUDB70ln,INFO,class_word_not_framed,matched 'kapit'
+04-reckoning,1229,UgygfaByujhwpftCoZJ4AaABAg.AY9nk8y9CwKAYAC0l84VRo,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1231,UgygfaByujhwpftCoZJ4AaABAg.AY9nk8y9CwKAYAmxlJ-PzB,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1231,UgygfaByujhwpftCoZJ4AaABAg.AY9nk8y9CwKAYAmxlJ-PzB,WARN,possible_response_uncoded,matched 'scripted'
+04-reckoning,1235,Ugx8wwQxFI6V4IRI0zZ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1236,Ugx8wwQxFI6V4IRI0zZ4AaABAg.AY9bByZLz1EAY9gb78fMOU,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1236,Ugx8wwQxFI6V4IRI0zZ4AaABAg.AY9bByZLz1EAY9gb78fMOU,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1238,Ugz20_xbFLPQtLreo8Z4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1240,UgzuMSuR-R-q7zar3554AaABAg,INFO,review:evidence_long,evidence_long
+04-reckoning,1242,Ugwu5vHHKxwodSHAs1p4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1242,Ugwu5vHHKxwodSHAs1p4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1244,UgyqvFGMJ5rPaIpcZAR4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1244,UgyqvFGMJ5rPaIpcZAR4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1245,Ugw-42b52NJ2ddvC0bR4AaABAg,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,1246,Ugy5PV4MBy5w7GL_3wh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1249,Ugx-5ksIwBcE7CM15sp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1249,Ugx-5ksIwBcE7CM15sp4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1251,UgwTCX3j87bb8LNKom94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1251,UgwTCX3j87bb8LNKom94AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1253,Ugx35yN0H_LCuNn__rh4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1255,UgwaMaVKaZDDkLjCFFF4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1257,UgywFSwTM9KECHkl4bd4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1258,UgxP8IyXREnecoV236Z4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1260,UgwHaup1VrCl0YO4qTR4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1260,UgwHaup1VrCl0YO4qTR4AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1261,UgzgJJQA6lxQIDSUpVl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1263,UgwYtTbhtSDfbfF1z3t4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1263,UgwYtTbhtSDfbfF1z3t4AaABAg,WARN,review:blame_unnamed,blame_unnamed(VENUE)
+04-reckoning,1265,UgwYtTbhtSDfbfF1z3t4AaABAg.AY9WjwQysJ1AYCCeSYcA5q,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1265,UgwYtTbhtSDfbfF1z3t4AaABAg.AY9WjwQysJ1AYCCeSYcA5q,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1268,UgyZhVvBrLyBwHyus_N4AaABAg.AY9IzXCMd_2AYBi9xESLY7,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1269,UgyZhVvBrLyBwHyus_N4AaABAg.AY9IzXCMd_2AYEmTy0mXWH,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1270,UgwIxIOQMXZkV8Fk4QZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1270,UgwIxIOQMXZkV8Fk4QZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1271,UgwFzLNKrX8zSolSTlN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1272,UgyQQsPbLesfUIJ60QF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1273,UgyQQsPbLesfUIJ60QF4AaABAg.AY73U31AjCjAYBZZJ8qzGS,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1274,Ugwr29IgAf5TpG7AOz14AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1274,Ugwr29IgAf5TpG7AOz14AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1277,UgyCwPLtm82Guge2XZF4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1277,UgyCwPLtm82Guge2XZF4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1279,UgzgrQdpkv1nE3x3OjZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1280,Ugw5sqaxrJ9Y5Z7rBOV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1281,UgymC_gVvUDR26vDDWZ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1283,UgyP5N-cr1O2LLCQM594AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1286,UgwvncDjvrHJlkJ6NGN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1286,UgwvncDjvrHJlkJ6NGN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1290,Ugzn6_AcQLrQINXMYwt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1290,Ugzn6_AcQLrQINXMYwt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1291,Ugzn6_AcQLrQINXMYwt4AaABAg.AY8hVIFHvZTAY93wTa3mnP,WARN,review:blame_unnamed,blame_unnamed(ORGANIZERS)
+04-reckoning,1292,UgxGNdyYc57Tpvakk5Z4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1292,UgxGNdyYc57Tpvakk5Z4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1293,Ugxe7EVs9brZJzezlrl4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1294,Ugwx3ms5w7KyclI3rF94AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1295,Ugz4TNiufBUEoDOXVsV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1296,UgzMblJ4J3J5bNc4QY14AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1299,UgxLE5IYUOUIWZY8Och4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1299,UgxLE5IYUOUIWZY8Och4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1300,UgzOxYgOCiMVou4AoeN4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1301,UgwTnMcIpNXANdALuYp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1302,UgzVHu8tDD-hGHjvfdJ4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1302,UgzVHu8tDD-hGHjvfdJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1302,UgzVHu8tDD-hGHjvfdJ4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1305,UgwE3uEaqfXSFaYdDRt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1306,UgwGETyWm5QPJBXqDmZ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1308,Ugyol5CmqvAnvDZpBEJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1309,UgzAc7F7i_iOzzOA7w94AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1309,UgzAc7F7i_iOzzOA7w94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1310,Ugx3TDHVDdreLpF5SNp4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1311,UgwfjwDS9_zfkygjJhd4AaABAg,ERROR,uncoded_row,no model output for this row
+04-reckoning,1312,UgwfjwDS9_zfkygjJhd4AaABAg.AYAdz-gu2r_AYBO--1o5L4,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1313,UgwfjwDS9_zfkygjJhd4AaABAg.AYAdz-gu2r_AYBPgbbnwCT,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1313,UgwfjwDS9_zfkygjJhd4AaABAg.AYAdz-gu2r_AYBPgbbnwCT,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1314,UgxpgG4D-ybrNNRcRyt4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1318,UgwpGMqoL3UBA6Ecxc54AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1318,UgwpGMqoL3UBA6Ecxc54AaABAg,WARN,review:class_direction_missing,class_direction_missing
+04-reckoning,1320,Ugx7Uk-VTeni-O5Bozl4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1321,Ugy6NNlyIdL18VeDzDB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1321,Ugy6NNlyIdL18VeDzDB4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1322,UgyY4jJ642UCL3A8ggV4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1322,UgyY4jJ642UCL3A8ggV4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1322,UgyY4jJ642UCL3A8ggV4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1323,UgxgKzwWrwFYwtlopa94AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1323,UgxgKzwWrwFYwtlopa94AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1324,Ugxd-C2gJUvmlbEEaUZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1325,UgxVVvvMqYXSKaA5AfJ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1326,UgylKiDIRpe3a_OiM_R4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1326,UgylKiDIRpe3a_OiM_R4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1326,UgylKiDIRpe3a_OiM_R4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1327,UgzFkPcdSVdKVsR_S0Z4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1329,UgyRaBPNj0eWdEvtSSZ4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1331,UgwuIEkbUzap_hqBTGp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1332,UgwOGidb1G3FFmxeyBt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1333,UgzPNhDOCHOoYbwOIMh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1333,UgzPNhDOCHOoYbwOIMh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1333,UgzPNhDOCHOoYbwOIMh4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1335,UgxIMre6WVNhr93DRqN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1336,UgyvCYWsg1D8COP_okJ4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1338,UgzNxRfMO7ZRJG8s-UR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1343,Ugwg4J3CSqDHgZOQwKt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1343,Ugwg4J3CSqDHgZOQwKt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1344,Ugx6uH1Qsy9RpSWuJNN4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1344,Ugx6uH1Qsy9RpSWuJNN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1344,Ugx6uH1Qsy9RpSWuJNN4AaABAg,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1347,UgwlOGjdQ6fOO8W1hDJ4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1349,Ugz1QevQHgGi69e6hPN4AaABAg,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1350,UgxMCNSeCRQ4vkALgbp4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1350,UgxMCNSeCRQ4vkALgbp4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1350,UgxMCNSeCRQ4vkALgbp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1353,UgwpKz8q5o2xNNCEXC14AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1354,Ugy2IqCVHq8Qit4WQB94AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1354,Ugy2IqCVHq8Qit4WQB94AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1355,Ugx0eeI798puoSOwWnN4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1355,Ugx0eeI798puoSOwWnN4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1357,Ugzlz4EQ-dLSU-bVLg94AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1360,UgyKlcCOTcTfyy79fZV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1362,UgzzZizXkyJoPjE1IvB4AaABAg.AYMzx-gz1QPAYNYRVYAXk9,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1362,UgzzZizXkyJoPjE1IvB4AaABAg.AYMzx-gz1QPAYNYRVYAXk9,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1362,UgzzZizXkyJoPjE1IvB4AaABAg.AYMzx-gz1QPAYNYRVYAXk9,WARN,language_heuristic,coded TAGLISH but only one language detected
+04-reckoning,1363,Ugx-fR0G1jzgNj_JHet4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1363,Ugx-fR0G1jzgNj_JHet4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1364,UgwQYFQZPnx5E9GCDCh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1367,UgxRXLhGiwPglcmxiTR4AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1367,UgxRXLhGiwPglcmxiTR4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1367,UgxRXLhGiwPglcmxiTR4AaABAg,INFO,sad_emoji_missed,['crying_face']
+04-reckoning,1368,Ugy13xNrmtL-y_QDaWd4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1368,Ugy13xNrmtL-y_QDaWd4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1369,Ugy13xNrmtL-y_QDaWd4AaABAg.AYMiS4sEOa0AYNIdb8RX_S,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1370,Ugwp6pA--eYrXXULYAF4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1370,Ugwp6pA--eYrXXULYAF4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1371,UgzNB2cZFiNjlMsb1CV4AaABAg,INFO,review:other_unlabeled,other_unlabeled(BLAME_TARGETS)
+04-reckoning,1371,UgzNB2cZFiNjlMsb1CV4AaABAg,INFO,review:evidence_long,evidence_long
+04-reckoning,1371,UgzNB2cZFiNjlMsb1CV4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1373,UgyaKXSh5_IV_qyhL_t4AaABAg.AYMe2zPfCZdAYN-K3LkSnA,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1375,UgyOo8r9DISbslXlny94AaABAg,WARN,review:evidence_unverified,evidence_unverified
+04-reckoning,1378,UgywD1Aq2xGlUZ5oWWt4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1379,UgxVRMdLT72Eaa97xux4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1383,UgwsgQnLDnTnqFbhVbh4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1383,UgwsgQnLDnTnqFbhVbh4AaABAg,WARN,attribution_without_norm_violation,ACCUSATION
+04-reckoning,1384,Ugwd2v9rFMuxaB7sRbB4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1384,Ugwd2v9rFMuxaB7sRbB4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1385,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYManXpH5pw,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1385,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYManXpH5pw,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1386,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYMeKYmwI57,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1386,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYMeKYmwI57,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1387,Ugwd2v9rFMuxaB7sRbB4AaABAg.AYMTjTDxCnVAYNtZC97jHC,WARN,review:blame_unnamed,blame_unnamed(UNIVERSITY)
+04-reckoning,1389,UgzYR92GahfVHcclUbt4AaABAg,INFO,class_word_not_framed,matched 'poor'
+04-reckoning,1390,UgwyjY1v1Lsh3DcrnjV4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACHING_STAFF)
+04-reckoning,1390,UgwyjY1v1Lsh3DcrnjV4AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1392,UgwrsJnnxPXiyaHpJlt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1393,UgwrsJnnxPXiyaHpJlt4AaABAg.AYMPtlzfPX2AYMW_Rs4FVG,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1394,Ugwq79QVO3G1AgW8C3V4AaABAg,INFO,review:evidence_fuzzy,evidence_fuzzy
+04-reckoning,1394,Ugwq79QVO3G1AgW8C3V4AaABAg,INFO,punitive_no_keyword,"PUNITIVE coded, no punishment wording found"
+04-reckoning,1395,UgwJqoo57QV5rGqGoT54AaABAg,WARN,no_evidence,codes set but evidence is empty
+04-reckoning,1395,UgwJqoo57QV5rGqGoT54AaABAg,WARN,attribution_without_norm_violation,NEGLIGENCE
+04-reckoning,1396,UgwPJy7syVi3FYrW0Rp4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1396,UgwPJy7syVi3FYrW0Rp4AaABAg,WARN,attribution_without_norm_violation,INTENTIONAL
+04-reckoning,1397,Ugxdq2Cig9YlmuqIycl4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1398,UgxGCrJVGZV8_OM1Zgt4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1398,UgxGCrJVGZV8_OM1Zgt4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
+04-reckoning,1399,UgyLK-HUKIFPY7FrfXp4AaABAg,WARN,possible_response_uncoded,matched 'sorry'
+04-reckoning,1400,Ugxh66-dev6t4QAeZTl4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1406,UgzVjkulikXmJNwqtFd4AaABAg,WARN,possible_response_uncoded,matched 'lawyer'
+04-reckoning,1407,UgyjSfRYlT0MgDQNbet4AaABAg,WARN,review:blame_unnamed,blame_unnamed(COACH)
+04-reckoning,1409,UgzmvAXZJWWVA6nTn7t4AaABAg,INFO,review:class_frame_no_class_word,class_frame_no_class_word
