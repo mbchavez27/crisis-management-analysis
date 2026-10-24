@@ -34,10 +34,10 @@ STAGES = {
     "sentiment-transcripts": "02-analysis/transcripts/run_sentiment.sh",
     "topics-transcripts":    "02-analysis/transcripts/run_topics.sh",
     # Local LLM passes (full-phase, no API key)
-    "llm-local":             "03-llm-passes/scripts/run_local.py",
-    "llm-validate":          "03-llm-passes/scripts/validate_results.py",
+    "llm-local":             "03-llm-passes/scripts/class-emotions/run-class-emotions.py",
+    "llm-validate":          "03-llm-passes/scripts/class-emotions/validate-class-emotions.py",
     # Insights
-    "summary":               "04-summary/run_summary.sh",
+    "summary":               "05-summary/run_summary.sh",
 }
 
 COMPOSITE_STAGES = {
@@ -74,11 +74,15 @@ def run_stage(name: str, force: bool = False) -> bool:
     print(f"  Script:  {script}")
     print(f"{'='*50}\n")
 
-    runner = "bash" if script_path.suffix == ".sh" else "python"
-    result = subprocess.run(
-        ["uv", "run", runner, str(script_path)],
-        cwd=str(PROJECT_ROOT),
-    )
+    # Each stage has its own uv project: .sh scripts select theirs with
+    # `uv run --project`, .py scripts run inside their top-level stage folder.
+    if script_path.suffix == ".sh":
+        cmd = ["bash", str(script_path)]
+    else:
+        stage_dir = PROJECT_ROOT / Path(script).parts[0]
+        cmd = ["uv", "run", "--project", str(stage_dir), "--no-sync",
+               "python", str(script_path)]
+    result = subprocess.run(cmd, cwd=str(PROJECT_ROOT))
 
     if result.returncode != 0:
         print(f"\n  FAILED: {name} (exit code {result.returncode})")

@@ -10,7 +10,7 @@ help:
 	@echo "Usage: make <target>"
 	@echo ""
 	@echo "Setup:"
-	@echo "  setup                 Fresh-PC setup (uv sync + calamancy model + NLTK data)"
+	@echo "  setup                 Fresh-PC setup (uv sync per stage + calamancy model + NLTK data)"
 	@echo ""
 	@echo "Pipeline targets:"
 	@echo "  pipeline              Run full pipeline (preprocess → analysis → insights)"
@@ -100,13 +100,13 @@ PHASES ?= 01-onset
 LLM_LIMIT ?= 10
 
 llm-local:
-	@echo "--- Local LLM coding pass [$(CRISIS): $(PHASES), limit $(LLM_LIMIT)] ---"
-	@uv run --no-sync python 03-llm-passes/scripts/run_local.py --crisis "$(CRISIS)" \
+	@echo "--- Local LLM class-emotions pass [$(CRISIS): $(PHASES), limit $(LLM_LIMIT)] ---"
+	@uv run --project 03-llm-passes --no-sync python 03-llm-passes/scripts/class-emotions/run-class-emotions.py --crisis "$(CRISIS)" \
 		--phases "$(PHASES)" --passes 1 --chunk-size 1 --closing --limit $(LLM_LIMIT)
 
 llm-validate:
-	@echo "--- Validating LLM coding results ---"
-	@uv run python 03-llm-passes/scripts/validate_results.py
+	@echo "--- Validating class-emotions results ---"
+	@uv run --project 03-llm-passes --no-sync python 03-llm-passes/scripts/class-emotions/validate-class-emotions.py
 
 # === Insights ===
 
@@ -119,7 +119,7 @@ sentiment-change:
 
 summary:
 	@echo "--- Generating summary ---"
-	@bash 04-summary/run_summary.sh
+	@bash 05-summary/run_summary.sh
 
 # === Cleanup ===
 
@@ -137,5 +137,5 @@ clean:
 	rm -f outputs/figures/01-preprocessing/*.png
 	rm -f outputs/figures/02-analysis/youtube/*.png
 	rm -f outputs/figures/02-analysis/transcripts/*.png
-	rm -f outputs/figures/04-summary/*.png
+	rm -f outputs/figures/05-summary/*.png
 	@echo "=== Outputs cleaned ==="

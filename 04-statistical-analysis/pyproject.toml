@@ -1,0 +1,13 @@
+[project]
+name = "statistical-analysis"
+version = "0.1.0"
+description = "Merge coded comments, run statistical tests, and build findings figures"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.0",
+    "numpy>=2.4.6",
+    "pandas>=3.0.3",
+    "scipy>=1.14",
+    "statsmodels>=0.14.4",
+]

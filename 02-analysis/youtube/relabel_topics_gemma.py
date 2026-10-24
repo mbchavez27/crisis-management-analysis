@@ -6,8 +6,8 @@ and writes the CSVs back in place. Checkpointed per phase so a rerun
 skips already-labeled phases (API quota safety).
 
 Usage:
-    uv run python 02-analysis/youtube/relabel_topics_gemma.py
-    CRISIS=other-slug uv run python 02-analysis/youtube/relabel_topics_gemma.py
+    uv run --project 02-analysis python 02-analysis/youtube/relabel_topics_gemma.py
+    CRISIS=other-slug uv run --project 02-analysis python 02-analysis/youtube/relabel_topics_gemma.py
 """
 
 import json

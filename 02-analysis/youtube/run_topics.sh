@@ -12,10 +12,11 @@ PHASES=(
 )
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+STAGE_DIR="$(cd "$NOTEBOOK_DIR/.." && pwd)"
 
 for phase in "${PHASES[@]}"; do
   echo "=== YouTube Topics [$CRISIS]: $phase ==="
-  uv run papermill "$NOTEBOOK_DIR/youtube-comments-topic-modeling.ipynb" /dev/null \
+  uv run --project "$STAGE_DIR" papermill "$NOTEBOOK_DIR/youtube-comments-topic-modeling.ipynb" /dev/null \
     -p crisis_name "$CRISIS" -p phase_name "$phase" --cwd "$NOTEBOOK_DIR" --log-output
 done
 

@@ -11,11 +11,12 @@ PHASES=(
   05-lingering
 )
 
-NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)/notebooks"
+STAGE_DIR="$(cd "$(dirname "$0")" && pwd)"
+NOTEBOOK_DIR="$STAGE_DIR/notebooks"
 
 for phase in "${PHASES[@]}"; do
   echo "=== YouTube [$CRISIS]: $phase ==="
-  uv run papermill "$NOTEBOOK_DIR/youtube-comments-preprocessing.ipynb" /dev/null \
+  uv run --project "$STAGE_DIR" papermill "$NOTEBOOK_DIR/youtube-comments-preprocessing.ipynb" /dev/null \
     -p crisis_name "$CRISIS" -p batch_name "$phase" --cwd "$NOTEBOOK_DIR" --log-output
 done
 

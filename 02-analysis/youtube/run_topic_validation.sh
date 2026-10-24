@@ -4,10 +4,11 @@ set -euo pipefail
 CRISIS="${CRISIS:-ateneo-drowning}"
 
 NOTEBOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+STAGE_DIR="$(cd "$NOTEBOOK_DIR/.." && pwd)"
 REVIEW_CSV="$(cd "$(dirname "$0")/../../02-analysis/output/$CRISIS/youtube-comments/topic-modeling" && pwd)/topic-review-sheet.csv"
 
 echo "=== Generating cross-phase review sheet ==="
-uv run papermill "$NOTEBOOK_DIR/youtube-comments-topic-validation.ipynb" /dev/null \
+uv run --project "$STAGE_DIR" papermill "$NOTEBOOK_DIR/youtube-comments-topic-validation.ipynb" /dev/null \
   -p mode generate \
   -p review_csv_path "$REVIEW_CSV" \
   --cwd "$NOTEBOOK_DIR" --log-output
@@ -22,7 +23,7 @@ read -p "Press Enter after validating the CSV (or Ctrl+C to cancel)... "
 
 echo ""
 echo "=== Applying validated decisions ==="
-uv run papermill "$NOTEBOOK_DIR/youtube-comments-topic-validation.ipynb" /dev/null \
+uv run --project "$STAGE_DIR" papermill "$NOTEBOOK_DIR/youtube-comments-topic-validation.ipynb" /dev/null \
   -p mode apply \
   -p review_csv_path "$REVIEW_CSV" \
   --cwd "$NOTEBOOK_DIR" --log-output
