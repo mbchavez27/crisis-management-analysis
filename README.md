@@ -119,13 +119,15 @@ Phases are trigger-based (the full definitions are in `00-data/CRISIS-PHASES-TEM
 | 04 | Reckoning | `04-reckoning` | First → last accountability act by the same party |
 | 05 | Lingering | `05-lingering` | End of phase 4 → pre-registered cutoff |
 
-To add a crisis, follow the template, add its phase context to
-`03-llm-passes/prompts/phase-context.json`, and run with `CRISIS=<slug>`.
+**Using your own data:** see [`00-data/README.md`](00-data/README.md). It covers the dataset
+format (folders, columns, timestamps), a format checker (`python3 00-data/check_dataset.py <slug>`),
+and the few per-crisis edits each stage needs.
 
 ## Repository layout
 
 ```
 00-data/{crisis}/                      raw YouTube comments, Reddit threads, transcripts
+00-data/README.md, check_dataset.py   dataset format guide and checker
 01-preprocessing/   notebooks/, run_*.sh, output/{crisis}/{youtube,reddit,transcripts}/
 02-analysis/        youtube/, transcripts/ (notebooks + run_*.sh), output/{crisis}/
 03-llm-passes/      scripts/, prompts/, output/{crisis}/   (own README)

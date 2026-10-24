@@ -141,26 +141,9 @@ indefinitely but at lower intensity.
 
 ## Adding a New Crisis
 
-1. **Choose a slug** — kebab-case, descriptive (e.g., `ateneo-drowning`, `flood-response`)
-
-2. **Create directory structure** — follow the template above under `00-data/{slug}/`
-
-3. **Collect YouTube data** — one `{video_id}_comments.csv` per video, placed in the
-   phase folder its content addresses
-
-4. **Collect Reddit data** — one CSV per thread, organized by subreddit subfolder
-   within each phase. Update `phase-mapping.csv` with post→phase assignments.
-
-5. **Collect transcripts** (if applicable) — VTT files under `video-transcripts/`
-
-6. **Update pipeline config** — set `CRISIS={slug}` in all shell scripts under
-   `01-preprocessing/` and `02-analysis/`
-
-7. **Run preprocessing** — `python main.py --stage preprocess`
-
-8. **Run analysis** — `python main.py --stage analysis`
-
-9. **Generate insights** — `python main.py --stage insights`
+File formats, the per-crisis edits and the format checker are in
+[`README.md`](README.md) (*Using your own data*). Check a new dataset with
+`python3 00-data/check_dataset.py {slug}`.
 
 ---
 
@@ -175,36 +158,4 @@ indefinitely but at lower intensity.
 - **No minimum engagement threshold:** Include all relevant content regardless of
   comment count
 
----
-
-## Schema Reference
-
-### YouTube Comments CSV (12 columns)
-
-| Column | Description |
-|--------|-------------|
-| `video_id` | YouTube video identifier |
-| `video_title` | Title of the video |
-| `channel_id` | Channel ID |
-| `comment_id` | Unique comment identifier |
-| `text` | Comment text content |
-| `user_handle` | Commenter's YouTube handle |
-| `user_display_name` | Commenter's display name |
-| `like_count` | Number of likes |
-| `reply_count` | Reply count |
-| `create_time` | Comment timestamp (ISO 8601) |
-| `is_reply` | Reply flag (unreliable — use `parent_comment_id` instead) |
-| `parent_comment_id` | Parent comment ID (`"root"` for top-level) |
-
-### Reddit Thread CSV
-
-| Column | Description |
-|--------|-------------|
-| `type` | `"post"` or `"comment"` |
-| `subreddit` | Subreddit name |
-| `title` | Thread title (posts only) |
-| `text` | Content text |
-| `author` | Author username |
-| `score` | Upvote score |
-| `created_utc` | Timestamp (UTC) |
-| `permalink` | Full Reddit URL |
+Column schemas for YouTube, Reddit and transcript files: see [`README.md`](README.md#3-file-formats).
