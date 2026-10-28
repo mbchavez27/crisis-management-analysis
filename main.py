@@ -36,15 +36,13 @@ STAGES = {
     # Local LLM passes (full-phase, no API key)
     "llm-local":             "03-llm-passes/scripts/class-emotions/run-class-emotions.py",
     "llm-validate":          "03-llm-passes/scripts/class-emotions/validate-class-emotions.py",
-    # Insights
-    "summary":               "05-summary/run_summary.sh",
 }
 
 COMPOSITE_STAGES = {
     "preprocess": ["preprocess-youtube", "preprocess-reddit", "preprocess-transcripts"],
     "analysis":   ["sentiment-youtube", "topics-youtube", "topic-validation",
                    "sentiment-transcripts", "topics-transcripts"],
-    "insights":   ["sentiment-change", "summary"],
+    "insights":   ["sentiment-change"],
     "pipeline":   ["preprocess", "analysis", "insights"],
 }
 
@@ -137,7 +135,7 @@ MENU = """
      h. All transcript analysis
      i. All analysis
   4. Insights
-     a. Summary
+     a. All insights
   5. Clean outputs
   0. Exit
 """
@@ -157,8 +155,7 @@ INTERACTIVE_MAP = {
     "3g": ["sentiment-youtube", "topics-youtube", "topic-validation", "sentiment-change"],
     "3h": ["sentiment-transcripts", "topics-transcripts"],
     "3i": "analysis",
-    "4a": "summary",
-    "4b": "insights",
+    "4a": "insights",
 }
 
 

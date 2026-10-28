@@ -6,8 +6,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-echo "=== 1/3 uv sync (01, 02, 04, 05) ==="
-for stage in 01-preprocessing 02-analysis 04-statistical-analysis 05-summary; do
+echo "=== 1/3 uv sync (01, 02, 04) ==="
+for stage in 01-preprocessing 02-analysis 04-statistical-analysis; do
   echo "--- $stage ---"
   uv sync --project "$stage"
 done

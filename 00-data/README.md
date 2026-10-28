@@ -58,7 +58,7 @@ example to copy from.
         └── timestamped.vtt           one folder per video
 ```
 
-Only YouTube comments are required. Stages 03–05 (LLM coding, findings, summary) use only the
+Only YouTube comments are required. Stages 03–04 (LLM coding, findings) use only the
 YouTube comments. Reddit and transcripts go through stages 01 and 02 only.
 
 ## 3. File formats
@@ -146,7 +146,7 @@ Everything else reads the slug from `CRISIS`.
 |---|---|---|---|
 | 01 | `01-preprocessing/notebooks/youtube-comments-preprocessing.ipynb` | `_INSTITUTIONAL`: public accounts (the organization, news channels) to keep un-pseudonymized | Recommended |
 | 01, 02 | `01-preprocessing/run_transcripts.sh`, `02-analysis/transcripts/run_sentiment.sh`, `02-analysis/transcripts/run_topics.sh` | Put your transcript `{name}`s in the `TRANSCRIPTS=( … )` list | Only with transcripts |
-| 02, 05 | `02-analysis/youtube/youtube-comments-sentiment-change-across-phases.ipynb`, `05-summary/notebooks/summary.ipynb` | Phase event labels (date and key events per phase) and the `"Date (June 2026)"` axis label | Recommended (figure labels only) |
+| 02 | `02-analysis/youtube/youtube-comments-sentiment-change-across-phases.ipynb` | Phase event labels (date and key events per phase) and the `"Date (June 2026)"` axis label | Recommended (figure labels only) |
 | 03 | `03-llm-passes/prompts/phase-context.json` | Add a `"{slug}"` entry with one neutral CASE CONTEXT sentence or two per phase: when the videos were posted and what was publicly known. No judgments about fault. Copy the `ateneo-drowning` entry's style | Required for stage 03 |
 | 03 | `03-llm-passes/prompts/*/…-prompt-v*.txt` | The few-shot examples come from the Ateneo case. They still work for other Filipino crises; for a very different case, write a new prompt version (see the versioning rules in `03-llm-passes/README.md`) | Optional |
 | 04 | `04-statistical-analysis/notebooks/*.ipynb` | `CRISIS = "ateneo-drowning"` is set at the top of each notebook; change it to your slug. In `01-merge-and-prep`, point `ARCHIVE` at your stage 03 output (`03-llm-passes/output`) | Required for stage 04 |
@@ -160,7 +160,6 @@ python3 main.py --stage preprocess        # 01 → 01-preprocessing/output/{slug
 python3 main.py --stage analysis          # 02 → 02-analysis/output/{slug}/ (needs GEMINI_API_KEY)
 # 03: on a GPU machine, see 03-llm-passes/README.md (use --crisis {slug})
 # 04: open the notebooks (see the main README)
-bash 05-summary/run_summary.sh            # 05 → outputs/figures/05-summary/
 ```
 
 The run scripts and `main.py` read `CRISIS` from the shell, not from `.env`.

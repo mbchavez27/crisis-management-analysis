@@ -21,11 +21,10 @@ the ones before it.
 | `02-analysis` | XLM-RoBERTa sentiment, BERTopic topics (labels from Gemini), sentiment change across phases | CPU works (slow); GPU optional; `GEMINI_API_KEY` for topic labels | Yes |
 | `03-llm-passes` | Codes every comment with a local LLM (class-emotions codebook, Filipino emotions) | CUDA GPU (12 GB+), CUDA 12.8 driver | Linux/Windows GPU only. See [`03-llm-passes/README.md`](03-llm-passes/README.md) |
 | `04-statistical-analysis` | Joins the LLM codes with sentiment and topics; RQ1–RQ3 tables and figures | CPU | Yes |
-| `05-summary` | Cross-phase sentiment trajectory, topic heatmaps, boundary shifts | CPU | Yes |
 
 ## Quick start: reproduce the findings (CPU, no API keys, ~5 min)
 
-This regenerates the stage 04 and 05 figures from the committed outputs. It works on macOS,
+This regenerates the stage 04 figures from the committed outputs. It works on macOS,
 Linux and Windows (Git Bash or WSL).
 
 ```bash
@@ -38,11 +37,6 @@ uv sync --project 04-statistical-analysis
 uv run --project 04-statistical-analysis --with jupyterlab \
     jupyter lab 04-statistical-analysis/notebooks/03-findings.ipynb
 #   → Run All. Tables and PNGs land in 04-statistical-analysis/output/ateneo-drowning/findings/
-
-# Stage 05 summary figures (runs the notebook headless)
-uv sync --project 05-summary
-bash 05-summary/run_summary.sh
-#   → outputs/figures/05-summary/
 ```
 
 Re-running gives the committed numbers back (the only differences are floating-point noise
@@ -77,7 +71,7 @@ python3 main.py --list                 # all stages
 python3 main.py                        # interactive menu
 python3 main.py --stage preprocess     # 01: YouTube, Reddit, transcripts
 python3 main.py --stage analysis       # 02: sentiment, topics, topic validation
-python3 main.py --stage insights       # 02 sentiment change + 05 summary
+python3 main.py --stage insights       # 02 sentiment change across phases
 python3 main.py --stage sentiment-youtube   # a single step
 
 make preprocess                        # same stages through make
@@ -133,10 +127,9 @@ and the few per-crisis edits each stage needs.
 03-llm-passes/      scripts/, prompts/, output/{crisis}/   (own README)
 04-statistical-analysis/  notebooks/01-merge-and-prep, 02-statistical-analysis, 03-findings
                           output/{crisis}/findings/
-05-summary/         notebooks/summary.ipynb, run_summary.sh
-outputs/figures/    figures from 01, 02 and 05
+outputs/figures/    figures from 01 and 02
 main.py, Makefile   stage runners
-setup.sh            one-shot setup for stages 01, 02, 04, 05
+setup.sh            one-shot setup for stages 01, 02, 04
 ```
 
 Each stage folder has its own `pyproject.toml`, `uv.lock` and `.python-version` (3.11). There is

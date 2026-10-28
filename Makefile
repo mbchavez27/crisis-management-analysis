@@ -1,7 +1,7 @@
 .PHONY: setup pipeline preprocess preprocess-youtube preprocess-reddit preprocess-transcripts \
         analysis sentiment-youtube topics-youtube topic-validation sentiment-transcripts topics-transcripts \
         llm-local llm-validate \
-        insights sentiment-change summary clean help
+        insights sentiment-change clean help
 
 # Default target
 help:
@@ -32,7 +32,6 @@ help:
 	@echo ""
 	@echo "Insight targets:"
 	@echo "  sentiment-change      Sentiment change across phases"
-	@echo "  summary               Final summary and visualizations"
 	@echo ""
 	@echo "LLM targets (GPU):"
 	@echo "  llm-local             Local codebook coding (smoke default; PHASES=... LLM_LIMIT=...)"
@@ -110,16 +109,12 @@ llm-validate:
 
 # === Insights ===
 
-insights: sentiment-change summary
+insights: sentiment-change
 	@echo "=== All insights complete ==="
 
 sentiment-change:
 	@echo "--- Sentiment change across phases ---"
 	@bash 02-analysis/youtube/run_sentiment_change.sh
-
-summary:
-	@echo "--- Generating summary ---"
-	@bash 05-summary/run_summary.sh
 
 # === Cleanup ===
 
@@ -137,5 +132,4 @@ clean:
 	rm -f outputs/figures/01-preprocessing/*.png
 	rm -f outputs/figures/02-analysis/youtube/*.png
 	rm -f outputs/figures/02-analysis/transcripts/*.png
-	rm -f outputs/figures/05-summary/*.png
 	@echo "=== Outputs cleaned ==="
